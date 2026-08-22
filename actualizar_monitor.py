@@ -753,28 +753,125 @@ def fetch_ons():
         series_map[o['id']] = hist_series
     return results, series_map
 
+def fit_yield_curve_regression(points):
+    """Calcula la curva de regresión no lineal TIR = f(Duration) sobre los pares reales (Duration, TIR)."""
+    valid = [p for p in points if p.get('duration') is not None and p.get('tir') is not None and p['duration'] > 0 and p['tir'] > 0]
+    if len(valid) < 2:
+        return []
+        
+    x_vals = np.array([p['duration'] for p in valid])
+    y_vals = np.array([p['tir'] for p in valid])
+    
+    # Ordenar por duration
+    sort_idx = np.argsort(x_vals)
+    x_sorted = x_vals[sort_idx]
+    y_sorted = y_vals[sort_idx]
+    
+    min_x = max(0.05, float(x_sorted[0]))
+    max_x = float(x_sorted[-1])
+    
+    # Modelo de regresión polinómica cuadrática o logarítmica
+    try:
+        if len(x_sorted) >= 3:
+            # Polinomio de grado 2
+            coeffs = np.polyfit(x_sorted, y_sorted, deg=2)
+            poly_fn = np.poly1d(coeffs)
+            
+            # Generar 40 puntos densos a lo largo de la curva para un trazado suave
+            x_dense = np.linspace(min_x, max_x, 40)
+            y_dense = poly_fn(x_dense)
+        else:
+            # Regresión lineal
+            coeffs = np.polyfit(x_sorted, y_sorted, deg=1)
+            poly_fn = np.poly1d(coeffs)
+            x_dense = np.linspace(min_x, max_x, 20)
+            y_dense = poly_fn(x_dense)
+            
+        curve_line = [{'x': round(float(xd), 2), 'y': round(float(yd), 2)} for xd, yd in zip(x_dense, y_dense)]
+        return curve_line
+    except Exception as e:
+        return [{'x': round(float(xd), 2), 'y': round(float(yd), 2)} for xd, yd in zip(x_sorted, y_sorted)]
+
 def build_yield_curves(bonos_list, ons_list):
-    print('-> Generando Curvas de Rendimiento (TIR vs Duration)...')
-    curves = {'soberanos_usd': [], 'bonos_cer': [], 'lecaps': [], 'ons_usd': []}
+    print('-> Generando Curvas de Rendimiento (TIR vs Duration con Regresión Spline/Polinómica)...')
+    
+    categories_keys = {
+        'soberanos_usd': ['soberano', 'dólar hard', 'dolar hard', 'al/gd', 'al30', 'gd30'],
+        'bonos_cer': ['cer', 'inflación', 'boncer', 'dicp', 'tx26', 'tx28', 'tzx'],
+        'lecaps': ['lecap', 'tasa fija', 'boncap', 's30', 'to26'],
+        'tamar_badlar': ['tamar', 'badlar', 'bdc28', 'pba25', 'tb27'],
+        'dolar_linked': ['linked', 'dual', 'tzv', 'tv25', 'd31m7'],
+        'bopreal': ['bopreal', 'bpo'],
+        'ons_usd': ['on', 'obligaciones negociables']
+    }
+    
+    raw_buckets = {k: [] for k in categories_keys}
+    
     for b in bonos_list:
+        sub = str(b.get('subtipo', '')).lower()
+        nom = str(b.get('nombre', '')).lower()
+        sym = str(b.get('symbol', '')).lower()
+        
+        tir_val = b.get('tir')
+        dur_val = b.get('duration')
+        
         pt = {
-            'id': b['id'], 'symbol': b['symbol'], 'nombre': b['nombre'],
-            'tir': b['tir'], 'duration': b['duration'], 'dias_vto': b['dias_vto'],
-            'precio': b['precio'], 'ley': b.get('ley', 'Argentina')
+            'id': b.get('id'),
+            'symbol': b.get('symbol'),
+            'nombre': b.get('nombre'),
+            'emisor': 'República Argentina',
+            'tir': tir_val,
+            'duration': dur_val,
+            'dias_vto': b.get('dias_vto'),
+            'precio': b.get('precio'),
+            'paridad': b.get('paridad_pct'),
+            'cupon': b.get('cupon_anual_pct'),
+            'ley': b.get('ley', 'Argentina')
         }
-        if b['subtipo'] == 'Soberanos USD': curves['soberanos_usd'].append(pt)
-        elif b['subtipo'] == 'Bonos CER': curves['bonos_cer'].append(pt)
-        elif b['subtipo'] == 'LECAPs': curves['lecaps'].append(pt)
+        
+        # Clasificar en su curva correspondiente
+        if any(k in sub or k in nom or k in sym for k in categories_keys['soberanos_usd']):
+            raw_buckets['soberanos_usd'].append(pt)
+        elif any(k in sub or k in nom or k in sym for k in categories_keys['bonos_cer']):
+            raw_buckets['bonos_cer'].append(pt)
+        elif any(k in sub or k in nom or k in sym for k in categories_keys['lecaps']):
+            raw_buckets['lecaps'].append(pt)
+        elif any(k in sub or k in nom or k in sym for k in categories_keys['tamar_badlar']):
+            raw_buckets['tamar_badlar'].append(pt)
+        elif any(k in sub or k in nom or k in sym for k in categories_keys['dolar_linked']):
+            raw_buckets['dolar_linked'].append(pt)
+        elif any(k in sub or k in nom or k in sym for k in categories_keys['bopreal']):
+            raw_buckets['bopreal'].append(pt)
+            
     for o in ons_list:
-        curves['ons_usd'].append({
-            'id': o['id'], 'symbol': o['symbol'], 'nombre': o['nombre'],
-            'emisor': o['emisor'], 'tir': o['tir'], 'duration': o['duration'],
-            'dias_vto': o['dias_vto'], 'precio': o['precio'], 'cupon': o['cupon'],
+        raw_buckets['ons_usd'].append({
+            'id': o.get('id'),
+            'symbol': o.get('symbol'),
+            'nombre': o.get('nombre'),
+            'emisor': o.get('emisor', 'Corporativo'),
+            'tir': o.get('tir'),
+            'duration': o.get('duration'),
+            'dias_vto': o.get('dias_vto'),
+            'precio': o.get('precio'),
+            'paridad': o.get('paridad_pct', 100.0),
+            'cupon': o.get('cupon'),
             'ley': o.get('ley', 'Nueva York')
         })
-    for k in curves:
-        curves[k] = sorted(curves[k], key=lambda x: x['duration'] if x['duration'] is not None else 0)
-    return curves
+
+    # Construir paquete final con puntos y regresión ajustada
+    final_curves = {}
+    for cat_k, pts in raw_buckets.items():
+        # Ordenar por duration
+        valid_pts = sorted([p for p in pts if p.get('duration') is not None and p['duration'] > 0], key=lambda x: x['duration'])
+        regression_line = fit_yield_curve_regression(valid_pts)
+        
+        final_curves[cat_k] = {
+            'puntos': valid_pts,
+            'regresion': regression_line
+        }
+        print(f'   [Curva {cat_k}] {len(valid_pts)} bonos cargados, {len(regression_line)} puntos de regresión.')
+        
+    return final_curves
 
 CONFIG_INDICES = [
     {'symbol': '^GSPC', 'name': 'S&P 500', 'id': 'IDX_SP500', 'currency': 'USD', 'subtitulo': 'Estados Unidos - 500 Empresas Líderes'},
