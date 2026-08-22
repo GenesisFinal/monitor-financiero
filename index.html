@@ -294,8 +294,14 @@
 
         <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-100 p-2.5 rounded-xl text-xs">
           
+          <div class="flex items-center space-x-2" id="bondMetricsToolbar">
+            <span class="text-[11px] font-semibold text-slate-600 mr-1">Métrica:</span>
+            <button onclick="setBondMetric('precio')" data-metric="precio" class="bond-metric-btn px-2 py-0.5 rounded bg-brand-red font-semibold text-white shadow-sm">Precio</button>
+            <button onclick="setBondMetric('paridad')" data-metric="paridad" class="bond-metric-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-200">Paridad %</button>
+            <button onclick="setBondMetric('tir')" data-metric="tir" class="bond-metric-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-200">TIR %</button>
+          </div>
+
           <div class="flex items-center space-x-3" id="indicatorsToolbar">
-            <span class="text-[11px] font-semibold text-slate-600">Evolución de Precios de Cierre</span>
             <label class="flex items-center space-x-1.5 cursor-pointer text-[11px] font-medium text-slate-700">
               <input type="checkbox" id="chkMA50" onchange="toggleMA('ma50')" checked class="rounded text-brand-red focus:ring-brand-red">
               <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-500"></span>
@@ -315,7 +321,7 @@
             <button onclick="setTimeframe(24)" data-tf="24" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">24M</button>
             <button onclick="setTimeframe(36)" data-tf="36" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">36M</button>
             <button onclick="setTimeframe(48)" data-tf="48" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">48M</button>
-            <button onclick="setTimeframe(120)" data-tf="120" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">120M</button>
+            <button onclick="setTimeframe(60)" data-tf="60" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">60M</button>
           </div>
 
         </div>
@@ -1092,13 +1098,32 @@
       renderModalChart();
     }
 
+    let CURRENT_BOND_METRIC = 'precio'; // 'precio', 'tir', 'paridad'
+
+    function setBondMetric(metric) {
+      CURRENT_BOND_METRIC = metric;
+      document.querySelectorAll('.bond-metric-btn').forEach(btn => {
+        if (btn.getAttribute('data-metric') === metric) {
+          btn.className = 'bond-metric-btn px-2.5 py-1 rounded bg-brand-red font-semibold text-white shadow-sm';
+        } else {
+          btn.className = 'bond-metric-btn px-2.5 py-1 rounded font-medium text-slate-600 hover:bg-slate-200';
+        }
+      });
+      renderModalChart();
+    }
+
     function renderModalChart() {
       if (!CURRENT_MODAL_ASSET || !HISTORICAL_SERIES) return;
       const rawSeries = HISTORICAL_SERIES[CURRENT_MODAL_ASSET.id] || [];
       if (!rawSeries.length) return;
 
-      const daysCount = CURRENT_TIMEFRAME * 22;
-      const series = rawSeries.slice(-daysCount);
+      // Filtrado exacto por fecha calendario
+      const now = new Date();
+      const cutoffTime = now.getTime() - (CURRENT_TIMEFRAME * 30.4375 * 24 * 60 * 60 * 1000);
+      let series = rawSeries.filter(pt => new Date(pt.date).getTime() >= cutoffTime);
+      if (series.length < 2) {
+        series = rawSeries.slice(-Math.min(rawSeries.length, CURRENT_TIMEFRAME * 22));
+      }
 
       const ctx = document.getElementById('modalMainCanvas').getContext('2d');
       if (modalChartInstance) {
@@ -1107,14 +1132,35 @@
       }
 
       const labels = series.map(x => x.date);
-      const closePrices = series.map(x => x.close);
       const datasets = [];
 
+      let chartData = series.map(x => x.close);
+      let chartLabel = 'Precio de Cierre';
+      let chartColor = '#e20039';
+      let chartBg = 'rgba(226, 0, 57, 0.06)';
+
+      const isBond = CURRENT_MODAL_ASSET.categoria && CURRENT_MODAL_ASSET.categoria.includes('Bono');
+      
+      if (isBond && CURRENT_BOND_METRIC === 'paridad' && CURRENT_MODAL_ASSET.paridad_pct) {
+        chartLabel = 'Paridad Bursátil (%)';
+        chartColor = '#0284c7';
+        chartBg = 'rgba(2, 132, 199, 0.06)';
+        const vt = CURRENT_MODAL_ASSET.valor_tecnico || 100;
+        chartData = series.map(x => roundNumber((x.close / vt) * 100, 2));
+      } else if (isBond && CURRENT_BOND_METRIC === 'tir' && CURRENT_MODAL_ASSET.tir) {
+        chartLabel = 'TIR Estimada (%)';
+        chartColor = '#8b5cf6';
+        chartBg = 'rgba(139, 92, 246, 0.06)';
+        const baseTir = CURRENT_MODAL_ASSET.tir;
+        const lastPx = CURRENT_MODAL_ASSET.precio || 1;
+        chartData = series.map(x => roundNumber(baseTir * (lastPx / Math.max(0.01, x.close)), 2));
+      }
+
       datasets.push({
-        label: 'Precio de Cierre',
-        data: closePrices,
-        borderColor: '#e20039',
-        backgroundColor: 'rgba(226, 0, 57, 0.06)',
+        label: chartLabel,
+        data: chartData,
+        borderColor: chartColor,
+        backgroundColor: chartBg,
         borderWidth: 2.2,
         pointRadius: series.length > 60 ? 0 : 2,
         pointHoverRadius: 5,
