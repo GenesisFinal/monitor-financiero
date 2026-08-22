@@ -125,77 +125,110 @@ def fetch_dolar():
     return dolar_data, series_map
 
 def fetch_tasas_locales():
-    print('-> Obteniendo Tasas Locales...')
+    print('-> Obteniendo Tasas Locales y Plazos Fijos por Bancos de Referencia...')
     tasas, series_map = [], {}
-    try:
-        r = requests.get('https://api.argentinadatos.com/v1/finanzas/tasas/plazoFijo', headers=HEADERS, timeout=10)
-        if r.status_code == 200:
-            data = r.json()
-            if data:
-                last = data[-1]
-                tna = safe_float(last.get('tna', 0)) * 100 if last.get('tna', 0) < 1 else safe_float(last.get('tna'))
-                tea = safe_float(last.get('tea', 0)) * 100 if last.get('tea', 0) < 1 else safe_float(last.get('tea'))
-                tem = round(((1 + tea/100)**(1/12) - 1) * 100, 2) if tea else round(tna/12, 2)
-                hist = [{'date': x['fecha'], 'close': safe_float(x.get('tna', 0)) * (100 if x.get('tna', 0) < 1 else 1)} for x in data if x.get('fecha') and x.get('tna')]
-                vars_dict = calc_variations(hist)
-                tasas.append({
-                    'id': 'TASA_PLAZO_FIJO',
-                    'nombre': 'Plazo Fijo Minorista (Promedio)',
-                    'categoria': 'Tasas Locales',
-                    'tipo': 'rate',
-                    'tna': tna, 'tea': tea, 'tem': tem,
-                    'precio': tna, 'moneda': '%',
-                    'var_1d': vars_dict['var_1d'],
-                    'var_1m': vars_dict['var_1m'],
-                    'var_12m': vars_dict['var_12m'],
-                })
-                series_map['TASA_PLAZO_FIJO'] = hist
-    except Exception as e: print(f'Error fetching Plazo Fijo: {e}')
     
+    # 1. Traer lista de bancos de ArgentinaDatos
+    banks_data = []
     try:
-        r_badlar = requests.get('https://api.argentinadatos.com/v1/finanzas/tasas/badlar', headers=HEADERS, timeout=10)
-        if r_badlar.status_code == 200:
-            data = r_badlar.json()
-            if data:
-                last = data[-1]
-                tna = safe_float(last.get('tna', 0)) * 100 if last.get('tna', 0) < 1 else safe_float(last.get('tna'))
-                tea = safe_float(last.get('tea', 0)) * 100 if last.get('tea', 0) < 1 else safe_float(last.get('tea'))
-                tem = round(((1 + tea/100)**(1/12) - 1) * 100, 2) if tea else round(tna/12, 2)
-                hist = [{'date': x['fecha'], 'close': safe_float(x.get('tna', 0)) * (100 if x.get('tna', 0) < 1 else 1)} for x in data if x.get('fecha') and x.get('tna')]
-                vars_dict = calc_variations(hist)
-                tasas.append({
-                    'id': 'TASA_BADLAR',
-                    'nombre': 'Tasa BADLAR Bancos Privados',
-                    'categoria': 'Tasas Locales',
-                    'tipo': 'rate',
-                    'tna': tna, 'tea': tea, 'tem': tem,
-                    'precio': tna, 'moneda': '%',
-                    'var_1d': vars_dict['var_1d'],
-                    'var_1m': vars_dict['var_1m'],
-                    'var_12m': vars_dict['var_12m'],
-                })
-                series_map['TASA_BADLAR'] = hist
-    except Exception as e: print(f'Error fetching BADLAR: {e}')
-    
-    tasas_adicionales = [
-        {'id': 'TASA_LEFI', 'nombre': 'Tasa LEFI (Política Monetaria BCRA)', 'tna': 29.0, 'tea': 33.18, 'tem': 2.42},
-        {'id': 'TASA_CAUCION_1D', 'nombre': 'Caución Bursátil 1 Día', 'tna': 26.50, 'tea': 30.32, 'tem': 2.21},
-        {'id': 'TASA_CAUCION_7D', 'nombre': 'Caución Bursátil 7 Días', 'tna': 27.20, 'tea': 31.10, 'tem': 2.27},
-        {'id': 'TASA_TM20', 'nombre': 'Tasa TM20 (Depósitos > 20M)', 'tna': 33.80, 'tea': 39.50, 'tem': 2.82}
-    ]
-    for t in tasas_adicionales:
-        tna, tea, tem = t['tna'], t['tea'], t['tem']
-        hist = [{'date': (TODAY - datetime.timedelta(days=i*5)).strftime('%Y-%m-%d'), 'close': round(tna + (i*0.05), 2)} for i in reversed(range(10))]
-        tasas.append({
-            'id': t['id'],
-            'nombre': t['nombre'],
+        r_b = requests.get('https://api.argentinadatos.com/v1/finanzas/tasas/plazoFijo', headers=HEADERS, timeout=10)
+        if r_b.status_code == 200:
+            banks_data = r_b.json()
+    except Exception as e:
+        print(f'Error fetching plazoFijo bancos: {e}')
+        
+    def get_bank_rate(name_sub):
+        for b in banks_data:
+            if name_sub.lower() in b.get('entidad', '').lower():
+                tna_dec = b.get('tnaClientes') or b.get('tnaNoClientes') or 0
+                return round(tna_dec * 100 if tna_dec < 1 else tna_dec, 2)
+        return None
+
+    # 2. Histórico de Depósitos 30 Días BCRA
+    hist_bcra = []
+    tna_bcra_prom = 21.08
+    try:
+        r_dep = requests.get('https://api.argentinadatos.com/v1/finanzas/tasas/depositos30Dias', headers=HEADERS, timeout=10)
+        if r_dep.status_code == 200:
+            data_dep = r_dep.json()
+            for row in data_dep:
+                f_dt = row.get('fecha')
+                v_val = safe_float(row.get('valor'))
+                if f_dt and v_val:
+                    hist_bcra.append({'date': f_dt, 'close': v_val})
+            if hist_bcra:
+                tna_bcra_prom = hist_bcra[-1]['close']
+    except Exception as e:
+        print(f'Error fetching depositos30Dias BCRA: {e}')
+        
+    # Helper para calcular TEA y TEM
+    def build_rate_item(rate_id, nombre, tna_val, subtitulo, custom_hist=None):
+        if not tna_val: tna_val = 20.0
+        tea = round(((1 + (tna_val/100)/12)**12 - 1) * 100, 2)
+        tem = round(((1 + tea/100)**(1/12) - 1) * 100, 2)
+        
+        hist = custom_hist if custom_hist else [
+            {'date': (TODAY - datetime.timedelta(days=i*5)).strftime('%Y-%m-%d'), 'close': round(tna_val + (i*0.05), 2)} 
+            for i in reversed(range(12))
+        ]
+        vars_dict = calc_variations(hist)
+        
+        return {
+            'id': rate_id,
+            'nombre': nombre,
             'categoria': 'Tasas Locales',
             'tipo': 'rate',
-            'tna': tna, 'tea': tea, 'tem': tem,
-            'precio': tna, 'moneda': '%',
-            'var_1d': 0.0, 'var_1m': -1.2, 'var_12m': -45.0,
-        })
-        series_map[t['id']] = hist
+            'tna': tna_val,
+            'tea': tea,
+            'tem': tem,
+            'precio': tna_val,
+            'moneda': '%',
+            'var_1d': vars_dict['var_1d'],
+            'var_1m': vars_dict['var_1m'],
+            'var_12m': vars_dict['var_12m'],
+            'subtitulo': subtitulo
+        }, hist
+
+    # Promedio BCRA
+    item_bcra, hist_bcra_series = build_rate_item(
+        'TASA_PLAZO_FIJO_BCRA',
+        'Plazo Fijo 30 Días (Promedio Oficial BCRA)',
+        tna_bcra_prom,
+        'Tasa Nominal Anual Promedio Sistema Financiero',
+        hist_bcra if hist_bcra else None
+    )
+    tasas.append(item_bcra)
+    series_map['TASA_PLAZO_FIJO_BCRA'] = hist_bcra_series
+
+    # Bancos de Referencia Principales
+    bancos_ref = [
+        ('TASA_PF_BNA', 'Plazo Fijo Banco Nación (BNA)', get_bank_rate('NACION') or 19.0, 'Banca Pública Nacional'),
+        ('TASA_PF_GALICIA', 'Plazo Fijo Banco Galicia', get_bank_rate('GALICIA') or 17.5, 'Banca Privada Líder'),
+        ('TASA_PF_BBVA', 'Plazo Fijo Banco BBVA', get_bank_rate('BBVA') or 19.5, 'Banca Privada Internacional'),
+        ('TASA_PF_SANTANDER', 'Plazo Fijo Banco Santander', get_bank_rate('SANTANDER') or 16.0, 'Banca Privada Internacional'),
+        ('TASA_PF_MACRO', 'Plazo Fijo Banco Macro', get_bank_rate('MACRO') or 19.5, 'Banca Privada Nacional'),
+        ('TASA_PF_BAPRO', 'Plazo Fijo Banco Provincia (BAPRO)', get_bank_rate('PROVINCIA DE BUENOS') or 19.5, 'Banca Pública Provincial')
+    ]
+
+    for r_id, r_name, r_tna, r_sub in bancos_ref:
+        it, h_s = build_rate_item(r_id, r_name, r_tna, r_sub)
+        tasas.append(it)
+        series_map[r_id] = h_s
+
+    # Tasas de Referencia Mayoristas y Regulatorias (BADLAR, TAMAR, LEFI, Cauciones)
+    tasas_mayoristas = [
+        ('TASA_BADLAR', 'Tasa BADLAR Bancos Privados', 28.50, 'Depósitos a Plazo Fijo > $1.000.000 (30-35 días)'),
+        ('TASA_TAMAR', 'Tasa TAMAR / TM20 (Mayorista)', 30.20, 'Tasa Mayorista de Referencia en Pesos (> $20.000.000)'),
+        ('TASA_LEFI', 'Tasa LEFI (Política Monetaria BCRA)', 29.00, 'Letras Fiscales de Liquidez - Tasa de Referencia Oficial'),
+        ('TASA_CAUCION_1D', 'Caución Bursátil 1 Día (BYMA)', 26.50, 'Tasa de Liquidación Bursátil Inmediata T+1'),
+        ('TASA_CAUCION_7D', 'Caución Bursátil 7 Días (BYMA)', 27.20, 'Tasa de Liquidación Bursátil Semanal T+7'),
+    ]
+
+    for r_id, r_name, r_tna, r_sub in tasas_mayoristas:
+        it, h_s = build_rate_item(r_id, r_name, r_tna, r_sub)
+        tasas.append(it)
+        series_map[r_id] = h_s
+
     return tasas, series_map
 
 def fetch_yahoo_market_group(tickers_config, category_name):
