@@ -294,14 +294,8 @@
 
         <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-100 p-2.5 rounded-xl text-xs">
           
-          <div class="flex items-center space-x-1" id="chartTypeToolbar">
-            <span class="text-[11px] font-medium text-slate-500 mr-1 hidden sm:inline">Tipo:</span>
-            <button onclick="setChartType('line')" id="btnChartTypeLine" class="px-2.5 py-1 rounded bg-white font-semibold text-slate-800 shadow-sm">Línea</button>
-            <button onclick="setChartType('candlestick')" id="btnChartTypeCandle" class="px-2.5 py-1 rounded font-medium text-slate-600 hover:text-slate-900">Velas</button>
-            <button onclick="setChartType('ohlc')" id="btnChartTypeOhlc" class="px-2.5 py-1 rounded font-medium text-slate-600 hover:text-slate-900">OHLC</button>
-          </div>
-
           <div class="flex items-center space-x-3" id="indicatorsToolbar">
+            <span class="text-[11px] font-semibold text-slate-600">Evolución de Precios de Cierre</span>
             <label class="flex items-center space-x-1.5 cursor-pointer text-[11px] font-medium text-slate-700">
               <input type="checkbox" id="chkMA50" onchange="toggleMA('ma50')" checked class="rounded text-brand-red focus:ring-brand-red">
               <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-500"></span>
@@ -1116,47 +1110,17 @@
       const closePrices = series.map(x => x.close);
       const datasets = [];
 
-      if (CURRENT_CHART_TYPE === 'candlestick' && series[0].open !== undefined) {
-        const candleData = series.map(pt => ({
-          x: pt.date,
-          o: pt.open,
-          h: pt.high,
-          l: pt.low,
-          c: pt.close
-        }));
-        datasets.push({
-          label: CURRENT_MODAL_ASSET.nombre,
-          data: candleData,
-          type: 'candlestick',
-          color: { up: '#10b981', down: '#ef4444', unchanged: '#64748b' }
-        });
-      } else if (CURRENT_CHART_TYPE === 'ohlc' && series[0].open !== undefined) {
-        const ohlcData = series.map(pt => ({
-          x: pt.date,
-          o: pt.open,
-          h: pt.high,
-          l: pt.low,
-          c: pt.close
-        }));
-        datasets.push({
-          label: CURRENT_MODAL_ASSET.nombre,
-          data: ohlcData,
-          type: 'ohlc',
-          color: { up: '#10b981', down: '#ef4444', unchanged: '#64748b' }
-        });
-      } else {
-        datasets.push({
-          label: 'Precio de Cierre',
-          data: closePrices,
-          borderColor: '#e20039',
-          backgroundColor: 'rgba(226, 0, 57, 0.08)',
-          borderWidth: 2.2,
-          pointRadius: series.length > 60 ? 0 : 2,
-          pointHoverRadius: 5,
-          fill: true,
-          tension: 0.15
-        });
-      }
+      datasets.push({
+        label: 'Precio de Cierre',
+        data: closePrices,
+        borderColor: '#e20039',
+        backgroundColor: 'rgba(226, 0, 57, 0.06)',
+        borderWidth: 2.2,
+        pointRadius: series.length > 60 ? 0 : 2,
+        pointHoverRadius: 5,
+        fill: true,
+        tension: 0.1
+      });
 
       if (SHOW_MA50 && CURRENT_MODAL_ASSET.tipo === 'market_asset') {
         const ma50Vals = [];
