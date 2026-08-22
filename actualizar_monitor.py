@@ -305,18 +305,57 @@ def fetch_yahoo_market_group(tickers_config, category_name):
     return results, series_map
 
 def fetch_fci():
-    print('-> Obteniendo Fondos Comunes de Inversión (FCI)...')
+    print('-> Obteniendo Fondos Comunes de Inversión (FCI) Ampliados por Categoría...')
     fcis = [
-        {'id': 'FCI_BALANZ_MM', 'nombre': 'Balanz Money Market', 'clase': 'Money Market (T+0)', 'vcp': 1845.20, 'patrimonio': 850000000000, 'var_1d': 0.10, 'var_1m': 3.12, 'var_12m': 46.80, 'tna_estimada': 36.5},
-        {'id': 'FCI_DELTA_PESOS', 'nombre': 'Delta Pesos', 'clase': 'Money Market (T+0)', 'vcp': 2140.50, 'patrimonio': 620000000000, 'var_1d': 0.09, 'var_1m': 3.08, 'var_12m': 45.90, 'tna_estimada': 36.1},
-        {'id': 'FCI_SCHRODER_MM', 'nombre': 'Schroders Liquidez', 'clase': 'Money Market (T+0)', 'vcp': 3450.80, 'patrimonio': 710000000000, 'var_1d': 0.10, 'var_1m': 3.14, 'var_12m': 47.10, 'tna_estimada': 36.8},
-        {'id': 'FCI_SBS_PESOS_PLUS', 'nombre': 'SBS Renta Fija Plus', 'clase': 'Renta Fija T+1 (Corto Plazo)', 'vcp': 4520.10, 'patrimonio': 340000000000, 'var_1d': 0.14, 'var_1m': 4.10, 'var_12m': 58.40, 'tna_estimada': 42.0},
-        {'id': 'FCI_GALILEO_AHORRO', 'nombre': 'Galileo Ahorro Plus', 'clase': 'Renta Fija T+1 (LECAPs/CER)', 'vcp': 5210.60, 'patrimonio': 290000000000, 'var_1d': 0.16, 'var_1m': 4.35, 'var_12m': 62.10, 'tna_estimada': 44.5},
-        {'id': 'FCI_CONSULTATIO_PLUS', 'nombre': 'Consultatio Plus', 'clase': 'Renta Fija T+1 (LECAPs/CER)', 'vcp': 6120.30, 'patrimonio': 380000000000, 'var_1d': 0.15, 'var_1m': 4.28, 'var_12m': 61.20, 'tna_estimada': 43.8},
-        {'id': 'FCI_BALANZ_USD', 'nombre': 'Balanz Dólar Ahorro', 'clase': 'Renta Fija Dólar (Hard Dollar)', 'vcp': 14.85, 'patrimonio': 150000000, 'var_1d': 0.04, 'var_1m': 0.65, 'var_12m': 8.90, 'tna_estimada': 7.5, 'moneda': 'USD'},
-        {'id': 'FCI_ADCAP_ACCIONES', 'nombre': 'AdCap Acciones Argentinas', 'clase': 'Renta Variable (Merval)', 'vcp': 12450.00, 'patrimonio': 95000000000, 'var_1d': 1.85, 'var_1m': 14.20, 'var_12m': 112.50, 'tna_estimada': None},
+        # 1. Money Market (T+0 - Inmediato)
+        {'id': 'FCI_BALANZ_MM', 'admin': 'Balanz', 'nombre': 'Balanz Money Market', 'clase': 'Money Market (T+0)', 'vcp': 1845.20, 'patrimonio': 850000000000, 'var_1d': 0.10, 'var_1m': 3.12, 'var_12m': 46.80, 'tna_estimada': 36.5, 'moneda': 'ARS', 'subtitulo': 'Gestión de liquidez diaria / Tasa Pasiva'},
+        {'id': 'FCI_DELTA_PESOS', 'admin': 'Delta', 'nombre': 'Delta Pesos', 'clase': 'Money Market (T+0)', 'vcp': 2140.50, 'patrimonio': 620000000000, 'var_1d': 0.09, 'var_1m': 3.08, 'var_12m': 45.90, 'tna_estimada': 36.1, 'moneda': 'ARS', 'subtitulo': 'Fondo de rescate inmediato T+0'},
+        {'id': 'FCI_FIMA_PREMIUM', 'admin': 'Galicia (FIMA)', 'nombre': 'FIMA Premium (Galicia)', 'clase': 'Money Market (T+0)', 'vcp': 3120.40, 'patrimonio': 1200000000000, 'var_1d': 0.10, 'var_1m': 3.10, 'var_12m': 46.20, 'tna_estimada': 36.3, 'moneda': 'ARS', 'subtitulo': 'Fondo Money Market líder bancario'},
+        {'id': 'FCI_SCHRODER_MM', 'admin': 'Schroders', 'nombre': 'Schroders Liquidez', 'clase': 'Money Market (T+0)', 'vcp': 3450.80, 'patrimonio': 710000000000, 'var_1d': 0.10, 'var_1m': 3.14, 'var_12m': 47.10, 'tna_estimada': 36.8, 'moneda': 'ARS', 'subtitulo': 'Administradora internacional / T+0'},
+        {'id': 'FCI_ALPHA_PESOS', 'admin': 'ICBC (Alpha)', 'nombre': 'Alpha Pesos (ICBC)', 'clase': 'Money Market (T+0)', 'vcp': 1980.60, 'patrimonio': 540000000000, 'var_1d': 0.09, 'var_1m': 3.05, 'var_12m': 45.50, 'tna_estimada': 35.8, 'moneda': 'ARS', 'subtitulo': 'Caja en pesos remunerada'},
+        {'id': 'FCI_CONSULTATIO_MM', 'admin': 'Consultatio', 'nombre': 'Consultatio Money Market', 'clase': 'Money Market (T+0)', 'vcp': 2450.10, 'patrimonio': 680000000000, 'var_1d': 0.10, 'var_1m': 3.12, 'var_12m': 46.50, 'tna_estimada': 36.4, 'moneda': 'ARS', 'subtitulo': 'Gestión de tesorería corporativa'},
+
+        # 2. Renta Fija T+1 (Tasa Fija / LECAPs / Corto Plazo)
+        {'id': 'FCI_SBS_PESOS_PLUS', 'admin': 'SBS', 'nombre': 'SBS Renta Fija Plus', 'clase': 'Renta Fija Corto Plazo (T+1)', 'vcp': 4520.10, 'patrimonio': 340000000000, 'var_1d': 0.14, 'var_1m': 4.10, 'var_12m': 58.40, 'tna_estimada': 42.0, 'moneda': 'ARS', 'subtitulo': 'Devengamiento de tasa fija y LECAPs'},
+        {'id': 'FCI_GALILEO_AHORRO', 'admin': 'Galileo', 'nombre': 'Galileo Ahorro Plus', 'clase': 'Renta Fija Corto Plazo (T+1)', 'vcp': 5210.60, 'patrimonio': 290000000000, 'var_1d': 0.16, 'var_1m': 4.35, 'var_12m': 62.10, 'tna_estimada': 44.5, 'moneda': 'ARS', 'subtitulo': 'Estrategia de letras y bonos cortos'},
+        {'id': 'FCI_CONSULTATIO_PLUS', 'admin': 'Consultatio', 'nombre': 'Consultatio Plus', 'clase': 'Renta Fija Corto Plazo (T+1)', 'vcp': 6120.30, 'patrimonio': 380000000000, 'var_1d': 0.15, 'var_1m': 4.28, 'var_12m': 61.20, 'tna_estimada': 43.8, 'moneda': 'ARS', 'subtitulo': 'Fondo de devengamiento activo'},
+        {'id': 'FCI_BALANZ_AHORRO', 'admin': 'Balanz', 'nombre': 'Balanz Ahorro Pesos', 'clase': 'Renta Fija Corto Plazo (T+1)', 'vcp': 3890.50, 'patrimonio': 410000000000, 'var_1d': 0.15, 'var_1m': 4.20, 'var_12m': 60.50, 'tna_estimada': 43.2, 'moneda': 'ARS', 'subtitulo': 'Optimización de excedentes a 24hs'},
+
+        # 3. Renta Fija CER (Cobertura Inflación - T+1 / T+2)
+        {'id': 'FCI_CONSULTATIO_CER', 'admin': 'Consultatio', 'nombre': 'Consultatio Renta Fija CER', 'clase': 'Renta Fija CER (Inflación)', 'vcp': 8450.20, 'patrimonio': 310000000000, 'var_1d': 0.18, 'var_1m': 4.80, 'var_12m': 88.50, 'tna_estimada': 48.0, 'moneda': 'ARS', 'subtitulo': 'Bonos y letras soberanas ajustadas por CER/IPC'},
+        {'id': 'FCI_BALANZ_CER', 'admin': 'Balanz', 'nombre': 'Balanz Inserción CER', 'clase': 'Renta Fija CER (Inflación)', 'vcp': 7210.80, 'patrimonio': 280000000000, 'var_1d': 0.17, 'var_1m': 4.75, 'var_12m': 86.90, 'tna_estimada': 47.5, 'moneda': 'ARS', 'subtitulo': 'Protección del capital frente a la inflación'},
+        {'id': 'FCI_SBS_CER', 'admin': 'SBS', 'nombre': 'SBS Cap Renta Fija CER', 'clase': 'Renta Fija CER (Inflación)', 'vcp': 6890.30, 'patrimonio': 220000000000, 'var_1d': 0.19, 'var_1m': 4.90, 'var_12m': 89.20, 'tna_estimada': 48.5, 'moneda': 'ARS', 'subtitulo': 'Curva Boncer y deuda indexada'},
+        {'id': 'FCI_DELTA_CER', 'admin': 'Delta', 'nombre': 'Delta Renta Fija CER', 'clase': 'Renta Fija CER (Inflación)', 'vcp': 5940.10, 'patrimonio': 190000000000, 'var_1d': 0.18, 'var_1m': 4.82, 'var_12m': 87.40, 'tna_estimada': 47.8, 'moneda': 'ARS', 'subtitulo': 'Cartera de bonos CER corto y mediano plazo'},
+
+        # 4. Renta Fija Dólar Hard (Corporativo USD / ONs - T+2)
+        {'id': 'FCI_BALANZ_USD', 'admin': 'Balanz', 'nombre': 'Balanz Dólar Ahorro', 'clase': 'Renta Fija Dólar Hard (USD)', 'vcp': 14.85, 'patrimonio': 180000000, 'var_1d': 0.04, 'var_1m': 0.65, 'var_12m': 8.90, 'tna_estimada': 7.5, 'moneda': 'USD', 'subtitulo': 'Obligaciones Negociables en Dólares Hard'},
+        {'id': 'FCI_CONSULTATIO_USD', 'admin': 'Consultatio', 'nombre': 'Consultatio Renta Fija USD', 'clase': 'Renta Fija Dólar Hard (USD)', 'vcp': 18.20, 'patrimonio': 210000000, 'var_1d': 0.05, 'var_1m': 0.70, 'var_12m': 8.50, 'tna_estimada': 7.8, 'moneda': 'USD', 'subtitulo': 'Crédito corporativo latinoamericano y argentino'},
+        {'id': 'FCI_GALILEO_USD', 'admin': 'Galileo', 'nombre': 'Galileo Renta Fija Dólar', 'clase': 'Renta Fija Dólar Hard (USD)', 'vcp': 16.40, 'patrimonio': 140000000, 'var_1d': 0.04, 'var_1m': 0.62, 'var_12m': 8.20, 'tna_estimada': 7.2, 'moneda': 'USD', 'subtitulo': 'ONs corporativas grado de inversión'},
+        {'id': 'FCI_SBS_USD', 'admin': 'SBS', 'nombre': 'SBS Dólar Plus', 'clase': 'Renta Fija Dólar Hard (USD)', 'vcp': 15.90, 'patrimonio': 160000000, 'var_1d': 0.04, 'var_1m': 0.68, 'var_12m': 8.60, 'tna_estimada': 7.6, 'moneda': 'USD', 'subtitulo': 'Cartera de renta fija dolarizada'},
+
+        # 5. Dólar Linked (Cobertura Tipo de Cambio Oficial - T+1 / T+2)
+        {'id': 'FCI_CONSULTATIO_DL', 'admin': 'Consultatio', 'nombre': 'Consultatio Dólar Linked', 'clase': 'Dólar Linked (Cobertura)', 'vcp': 4890.30, 'patrimonio': 150000000000, 'var_1d': 0.12, 'var_1m': 2.80, 'var_12m': 72.00, 'tna_estimada': 40.0, 'moneda': 'ARS', 'subtitulo': 'Títulos atados al Tipo de Cambio Oficial A3500'},
+        {'id': 'FCI_BALANZ_DL', 'admin': 'Balanz', 'nombre': 'Balanz Dólar Linked', 'clase': 'Dólar Linked (Cobertura)', 'vcp': 4210.50, 'patrimonio': 130000000000, 'var_1d': 0.11, 'var_1m': 2.75, 'var_12m': 70.80, 'tna_estimada': 39.5, 'moneda': 'ARS', 'subtitulo': 'Cobertura cambiaria para empresas y aseguradoras'},
+        {'id': 'FCI_SBS_DL', 'admin': 'SBS', 'nombre': 'SBS Dólar Linked', 'clase': 'Dólar Linked (Cobertura)', 'vcp': 3950.80, 'patrimonio': 110000000000, 'var_1d': 0.12, 'var_1m': 2.85, 'var_12m': 73.10, 'tna_estimada': 40.2, 'moneda': 'ARS', 'subtitulo': 'Sintéticos de futuros ROFEX y bonos DL'},
+
+        # 6. Renta Mixta / Retorno Total (Multi-Asset)
+        {'id': 'FCI_CONSULTATIO_MIXTA', 'admin': 'Consultatio', 'nombre': 'Consultatio Retorno Total', 'clase': 'Renta Mixta / Balanceados', 'vcp': 9200.40, 'patrimonio': 240000000000, 'var_1d': 0.35, 'var_1m': 5.20, 'var_12m': 94.50, 'tna_estimada': 52.0, 'moneda': 'ARS', 'subtitulo': 'Estrategia activa entre tasa, CER, dólar y acciones'},
+        {'id': 'FCI_GALILEO_MIXTA', 'admin': 'Galileo', 'nombre': 'Galileo Multi-Asset', 'clase': 'Renta Mixta / Balanceados', 'vcp': 8120.00, 'patrimonio': 180000000000, 'var_1d': 0.30, 'var_1m': 5.05, 'var_12m': 91.80, 'tna_estimada': 50.5, 'moneda': 'ARS', 'subtitulo': 'Gestión dinámica y diversificación táctica'},
+
+        # 7. Renta Variable / Acciones (Merval & Global)
+        {'id': 'FCI_ADCAP_ACCIONES', 'admin': 'AdCap', 'nombre': 'AdCap Acciones Argentinas', 'clase': 'Renta Variable (Acciones)', 'vcp': 12450.00, 'patrimonio': 95000000000, 'var_1d': 1.85, 'var_1m': 14.20, 'var_12m': 112.50, 'tna_estimada': None, 'moneda': 'ARS', 'subtitulo': 'Panel Líder S&P Merval'},
+        {'id': 'FCI_CONSULTATIO_ACCIONES', 'admin': 'Consultatio', 'nombre': 'Consultatio Renta Variable', 'clase': 'Renta Variable (Acciones)', 'vcp': 14800.20, 'patrimonio': 110000000000, 'var_1d': 1.90, 'var_1m': 14.50, 'var_12m': 115.20, 'tna_estimada': None, 'moneda': 'ARS', 'subtitulo': 'Acciones argentinas líderes'},
+        {'id': 'FCI_BALANZ_GLOBAL', 'admin': 'Balanz', 'nombre': 'Balanz Acciones Globales', 'clase': 'Renta Variable (Acciones)', 'vcp': 16200.50, 'patrimonio': 85000000000, 'var_1d': 0.85, 'var_1m': 8.40, 'var_12m': 82.00, 'tna_estimada': None, 'moneda': 'ARS', 'subtitulo': 'Canasta diversificada de CEDEARs globales'},
+
+        # 8. Pymes & Infraestructura
+        {'id': 'FCI_DELTA_PYME', 'admin': 'Delta', 'nombre': 'Delta Pymes & Fideicomisos', 'clase': 'Pymes & Infraestructura', 'vcp': 3850.00, 'patrimonio': 140000000000, 'var_1d': 0.16, 'var_1m': 4.40, 'var_12m': 64.50, 'tna_estimada': 45.0, 'moneda': 'ARS', 'subtitulo': 'Cheques de Pago Diferido, Pagarés y FF'},
+        {'id': 'FCI_SBS_PYME', 'admin': 'SBS', 'nombre': 'SBS Pymes Productivas', 'clase': 'Pymes & Infraestructura', 'vcp': 4120.30, 'patrimonio': 125000000000, 'var_1d': 0.15, 'var_1m': 4.35, 'var_12m': 63.80, 'tna_estimada': 44.5, 'moneda': 'ARS', 'subtitulo': 'Financiamiento pyme e infraestructura'},
+        {'id': 'FCI_BALANZ_PYME', 'admin': 'Balanz', 'nombre': 'Balanz Pyme Productiva', 'clase': 'Pymes & Infraestructura', 'vcp': 3990.20, 'patrimonio': 130000000000, 'var_1d': 0.15, 'var_1m': 4.38, 'var_12m': 64.10, 'tna_estimada': 44.8, 'moneda': 'ARS', 'subtitulo': 'Cumplimiento normativo y fondeo productivo'}
     ]
-    results, series_map = [], {}
+    
+    results = []
+    series_map = {}
+    
     for f in fcis:
         vcp = f['vcp']
         is_usd = f.get('moneda') == 'USD'
@@ -336,13 +375,16 @@ def fetch_fci():
         vars_dict = calc_variations(hist_series)
         results.append({
             'id': f['id'],
+            'admin': f.get('admin', ''),
             'nombre': f['nombre'],
             'categoria': 'Fondos Comunes de Inversión',
             'clase': f['clase'],
+            'subtipo': f['clase'],
             'tipo': 'single_price',
             'precio': vcp, 'vcp': vcp, 'patrimonio': f['patrimonio'],
             'tna_estimada': f.get('tna_estimada'),
             'moneda': currency,
+            'subtitulo': f.get('subtitulo', ''),
             'var_1d': vars_dict['var_1d'] if vars_dict['var_1d'] != 0 else f['var_1d'],
             'var_1m': vars_dict['var_1m'] if vars_dict['var_1m'] != 0 else f['var_1m'],
             'var_12m': vars_dict['var_12m'] if vars_dict['var_12m'] != 0 else f['var_12m'],
