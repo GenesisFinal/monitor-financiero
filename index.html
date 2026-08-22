@@ -391,13 +391,13 @@
     }
 
     function renderVariationBadge(val) {
-      if (val === null || val === undefined || isNaN(val)) return '<span class="text-slate-400">-</span>';
+      if (val === null || val === undefined || isNaN(val)) return '<span class="text-slate-400 whitespace-nowrap">-</span>';
       const isPos = val > 0;
       const isNeg = val < 0;
       const colorClass = isPos ? 'text-emerald-700 bg-emerald-50 border-emerald-200' : (isNeg ? 'text-rose-700 bg-rose-50 border-rose-200' : 'text-slate-600 bg-slate-100 border-slate-200');
       const arrow = isPos ? '▲' : (isNeg ? '▼' : '•');
       const prefix = isPos ? '+' : '';
-      return `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono font-semibold border ${colorClass}">${arrow} ${prefix}${formatNumber(val, 2)}%</span>`;
+      return `<span class="inline-flex items-center justify-center whitespace-nowrap px-2 py-0.5 rounded text-[11px] font-mono font-semibold border ${colorClass} tracking-tight shrink-0">${arrow} ${prefix}${formatNumber(val, 2)}%</span>`;
     }
 
     async function loadDataset(force = false) {
@@ -626,13 +626,13 @@
             <table class="min-w-full text-xs text-left">
               <thead class="bg-slate-50/80 text-slate-500 uppercase tracking-wider font-semibold border-b border-slate-200">
                 <tr>
-                  <th class="px-4 py-3">Activo / Instrumento</th>
-                  <th class="px-4 py-3 text-right">Último Cierre</th>
-                  <th class="px-4 py-3 text-right">Var. 1D</th>
-                  <th class="px-4 py-3 text-right">Var. 1M</th>
-                  <th class="px-4 py-3 text-right">Var. 12M</th>
+                  <th class="px-4 py-3 min-w-[200px] max-w-[260px]">Activo / Instrumento</th>
+                  <th class="px-3 py-3 text-right whitespace-nowrap">Último Cierre</th>
+                  <th class="px-3 py-3 text-right whitespace-nowrap">Var. 1D</th>
+                  <th class="px-3 py-3 text-right whitespace-nowrap">Var. 1M</th>
+                  <th class="px-3 py-3 text-right whitespace-nowrap">Var. 12M</th>
                   ${renderDynamicColumnsHeaders(secKey)}
-                  <th class="px-4 py-3 text-center">Gráfico</th>
+                  <th class="px-3 py-3 text-center whitespace-nowrap">Gráfico</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-100 font-medium">
@@ -681,9 +681,9 @@
       }
       if (secKey === 'fci') {
         return `
-          <th class="px-4 py-3">Clase / Tipo</th>
-          <th class="px-4 py-3 text-right">TNA Est.</th>
-          <th class="px-4 py-3 text-right">Patrimonio</th>
+          <th class="px-3 py-3 whitespace-nowrap">Clase / Tipo</th>
+          <th class="px-3 py-3 text-right whitespace-nowrap">TNA Est.</th>
+          <th class="px-3 py-3 text-right whitespace-nowrap">Patrimonio</th>
         `;
       }
       if (secKey === 'tasas_locales') {
@@ -699,20 +699,20 @@
     function renderRowItem(secKey, item) {
       return `
         <tr class="hover:bg-slate-50/80 cursor-pointer transition-all" onclick="openChartModal('${item.id}')">
-          <td class="px-4 py-3">
-            <div class="font-bold text-slate-800 text-xs">${item.nombre}</div>
-            <div class="text-[11px] text-slate-400 font-normal">${item.symbol || item.id} ${item.subtitulo ? `&bull; ${item.subtitulo}` : ''}</div>
+          <td class="px-4 py-2.5 min-w-[200px] max-w-[260px]">
+            <div class="font-bold text-slate-800 text-xs truncate" title="${item.nombre}">${item.nombre}</div>
+            <div class="text-[11px] text-slate-400 font-normal truncate" title="${item.symbol || item.id} ${item.subtitulo || ''}">${item.symbol || item.id} ${item.subtitulo ? `&bull; ${item.subtitulo}` : ''}</div>
           </td>
-          <td class="px-4 py-3 text-right font-mono font-bold text-slate-900">
+          <td class="px-3 py-2.5 text-right font-mono font-bold text-slate-900 whitespace-nowrap">
             ${formatCurrency(item.precio, item.moneda || 'ARS', item.moneda === 'USD' && item.precio < 1 ? 4 : 2)}
           </td>
-          <td class="px-4 py-3 text-right">${renderVariationBadge(item.var_1d)}</td>
-          <td class="px-4 py-3 text-right">${renderVariationBadge(item.var_1m)}</td>
-          <td class="px-4 py-3 text-right">${renderVariationBadge(item.var_12m)}</td>
+          <td class="px-3 py-2.5 text-right whitespace-nowrap">${renderVariationBadge(item.var_1d)}</td>
+          <td class="px-3 py-2.5 text-right whitespace-nowrap">${renderVariationBadge(item.var_1m)}</td>
+          <td class="px-3 py-2.5 text-right whitespace-nowrap">${renderVariationBadge(item.var_12m)}</td>
           ${renderDynamicColumnsCells(secKey, item)}
-          <td class="px-4 py-3 text-center">
+          <td class="px-3 py-2.5 text-center whitespace-nowrap">
             <button class="p-1.5 rounded-lg bg-slate-100 hover:bg-brand-red hover:text-white text-slate-500 transition-all" title="Ver Gráfico y Análisis">
-              <i data-lucide="line-chart" class="w-4 h-4"></i>
+              <i data-lucide="line-chart" class="w-3.5 h-3.5"></i>
             </button>
           </td>
         </tr>
@@ -760,11 +760,11 @@
       if (secKey === 'fci') {
         const isUsd = item.moneda === 'USD';
         return `
-          <td class="px-4 py-3">
+          <td class="px-3 py-2.5 whitespace-nowrap">
             <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">${item.clase || '-'}</span>
           </td>
-          <td class="px-4 py-3 text-right font-mono font-bold ${isUsd ? 'text-blue-600' : 'text-emerald-600'}">${item.tna_estimada ? `${formatNumber(item.tna_estimada, 2)}%` : '-'}</td>
-          <td class="px-4 py-3 text-right font-mono text-slate-600">${formatMcap(item.patrimonio)}</td>
+          <td class="px-3 py-2.5 text-right font-mono font-bold whitespace-nowrap ${isUsd ? 'text-blue-600' : 'text-emerald-600'}">${item.tna_estimada ? `${formatNumber(item.tna_estimada, 2)}%` : '-'}</td>
+          <td class="px-3 py-2.5 text-right font-mono text-slate-600 whitespace-nowrap">${formatMcap(item.patrimonio)}</td>
         `;
       }
       if (secKey === 'tasas_locales') {
