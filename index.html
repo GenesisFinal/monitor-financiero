@@ -372,6 +372,8 @@
     let YIELD_CURVES = null;
     let ACTIVE_SECTION = 'all';
     let CURRENT_COMMODITY_FILTER = 'all';
+    let CURRENT_FCI_FILTER = 'all';
+    let CURRENT_FCI_SEARCH = '';
     let CURRENT_MODAL_ASSET = null;
     let CURRENT_TIMEFRAME = 12;
     let CURRENT_CHART_TYPE = 'line';
@@ -511,6 +513,23 @@
       renderActiveSection();
     }
 
+    function filterFCI(clase) {
+      CURRENT_FCI_FILTER = clase;
+      document.querySelectorAll('.fci-sub-tab').forEach(btn => {
+        if (btn.getAttribute('data-fci') === clase) {
+          btn.className = 'fci-sub-tab px-3 py-1 rounded-lg text-xs font-bold bg-brand-red text-white shadow-sm whitespace-nowrap';
+        } else {
+          btn.className = 'fci-sub-tab px-3 py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 whitespace-nowrap';
+        }
+      });
+      renderActiveSection();
+    }
+
+    function handleFciSearch(query) {
+      CURRENT_FCI_SEARCH = query.trim().toLowerCase();
+      renderActiveSection();
+    }
+
     function renderActiveSection() {
       if (!DATASET || !DATASET.secciones) return;
       const container = document.getElementById('modulesContainer');
@@ -536,6 +555,21 @@
         items = items.filter(x => x.subtipo === CURRENT_COMMODITY_FILTER);
       }
 
+      // Filtrado especial de FCI por categoría y buscador interno
+      if (secKey === 'fci') {
+        if (CURRENT_FCI_FILTER !== 'all') {
+          items = items.filter(x => x.clase && x.clase.toLowerCase().includes(CURRENT_FCI_FILTER.toLowerCase()));
+        }
+        if (CURRENT_FCI_SEARCH) {
+          items = items.filter(x => 
+            (x.nombre && x.nombre.toLowerCase().includes(CURRENT_FCI_SEARCH)) ||
+            (x.admin && x.admin.toLowerCase().includes(CURRENT_FCI_SEARCH)) ||
+            (x.clase && x.clase.toLowerCase().includes(CURRENT_FCI_SEARCH)) ||
+            (x.subtitulo && x.subtitulo.toLowerCase().includes(CURRENT_FCI_SEARCH))
+          );
+        }
+      }
+
       return `
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" id="section_${secKey}">
           <div class="px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/50">
@@ -555,6 +589,33 @@
                 <button onclick="filterCommodities('Energía')" data-subtipo="Energía" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Energía' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">⚡ Energía</button>
                 <button onclick="filterCommodities('Metales')" data-subtipo="Metales" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Metales' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">🪙 Metales</button>
                 <button onclick="filterCommodities('Agroindustriales & Ganadería')" data-subtipo="Agroindustriales & Ganadería" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Agroindustriales & Ganadería' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">☕ Softs / Ganadería</button>
+              </div>
+            ` : ''}
+
+            <!-- Subfiltros y Buscador Específico para Fondos Comunes (FCI) -->
+            ${secKey === 'fci' ? `
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto">
+                <div class="relative w-full sm:w-48">
+                  <input 
+                    type="text" 
+                    placeholder="Buscar fondo o administradora..." 
+                    value="${CURRENT_FCI_SEARCH}"
+                    oninput="handleFciSearch(this.value)"
+                    class="w-full pl-7 pr-2 py-1 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-red"
+                  >
+                  <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-2 top-1/2 -translate-y-1/2"></i>
+                </div>
+                <div class="flex items-center space-x-1 overflow-x-auto no-scrollbar py-1">
+                  <button onclick="filterFCI('all')" data-fci="all" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-semibold ${CURRENT_FCI_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">Todos</button>
+                  <button onclick="filterFCI('Money Market')" data-fci="Money Market" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Money Market' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">⚡ Money Market (T+0)</button>
+                  <button onclick="filterFCI('Renta Fija Corto')" data-fci="Renta Fija Corto" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Renta Fija Corto' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">📈 T+1 (Tasa Fija)</button>
+                  <button onclick="filterFCI('CER')" data-fci="CER" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'CER' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">🎯 CER (Inflación)</button>
+                  <button onclick="filterFCI('Dólar Hard')" data-fci="Dólar Hard" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Dólar Hard' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">💵 Dólar Hard (USD)</button>
+                  <button onclick="filterFCI('Dólar Linked')" data-fci="Dólar Linked" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Dólar Linked' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">🔄 Dólar Linked</button>
+                  <button onclick="filterFCI('Renta Mixta')" data-fci="Renta Mixta" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Renta Mixta' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">📊 Renta Mixta</button>
+                  <button onclick="filterFCI('Variable')" data-fci="Variable" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Variable' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">🚀 Renta Variable</button>
+                  <button onclick="filterFCI('Pymes')" data-fci="Pymes" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Pymes' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">🏭 Pymes & Infra</button>
+                </div>
               </div>
             ` : ''}
 
@@ -703,10 +764,13 @@
         `;
       }
       if (secKey === 'fci') {
+        const isUsd = item.moneda === 'USD';
         return `
-          <td class="px-4 py-3 text-slate-600">${item.clase || '-'}</td>
-          <td class="px-4 py-3 text-right font-mono text-emerald-600">${item.tna_estimada ? `${formatNumber(item.tna_estimada, 2)}%` : '-'}</td>
-          <td class="px-4 py-3 text-right font-mono text-slate-500">${formatMcap(item.patrimonio)}</td>
+          <td class="px-4 py-3">
+            <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">${item.clase || '-'}</span>
+          </td>
+          <td class="px-4 py-3 text-right font-mono font-bold ${isUsd ? 'text-blue-600' : 'text-emerald-600'}">${item.tna_estimada ? `${formatNumber(item.tna_estimada, 2)}%` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-600">${formatMcap(item.patrimonio)}</td>
         `;
       }
       if (secKey === 'tasas_locales') {
