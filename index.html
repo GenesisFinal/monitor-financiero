@@ -294,7 +294,7 @@
 
         <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-100 p-2.5 rounded-xl text-xs">
           
-          <div class="flex items-center space-x-2" id="bondMetricsToolbar">
+          <div class="items-center space-x-2" id="bondMetricsToolbar" style="display: none;">
             <span class="text-[11px] font-semibold text-slate-600 mr-1">Métrica:</span>
             <button onclick="setBondMetric('precio')" data-metric="precio" class="bond-metric-btn px-2 py-0.5 rounded bg-brand-red font-semibold text-white shadow-sm">Precio</button>
             <button onclick="setBondMetric('paridad')" data-metric="paridad" class="bond-metric-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-200">Paridad %</button>
@@ -1044,6 +1044,21 @@
 
       metricsContainer.innerHTML = mHtml;
 
+      // Control estricto de la barra de métricas: SOLO para Bonos - LECAPs
+      const bmt = document.getElementById('bondMetricsToolbar');
+      const isBondAsset = (found.categoria === 'Bonos - LECAPs');
+      if (bmt) {
+        bmt.style.display = isBondAsset ? 'flex' : 'none';
+      }
+      CURRENT_BOND_METRIC = 'precio';
+      document.querySelectorAll('.bond-metric-btn').forEach(btn => {
+        if (btn.getAttribute('data-metric') === 'precio') {
+          btn.className = 'bond-metric-btn px-2 py-0.5 rounded bg-brand-red font-semibold text-white shadow-sm';
+        } else {
+          btn.className = 'bond-metric-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-200';
+        }
+      });
+
       const isOhlc = found.tipo === 'market_asset' && found.open !== undefined;
       const typeToolbar = document.getElementById('chartTypeToolbar');
       const indicatorsToolbar = document.getElementById('indicatorsToolbar');
@@ -1144,7 +1159,7 @@
       let chartColor = '#e20039';
       let chartBg = 'rgba(226, 0, 57, 0.06)';
 
-      const isBond = CURRENT_MODAL_ASSET.categoria && CURRENT_MODAL_ASSET.categoria.includes('Bono');
+      const isBond = (CURRENT_MODAL_ASSET.categoria === 'Bonos - LECAPs');
       
       if (isBond && CURRENT_BOND_METRIC === 'paridad' && CURRENT_MODAL_ASSET.paridad_pct) {
         chartLabel = 'Paridad Bursátil (%)';
