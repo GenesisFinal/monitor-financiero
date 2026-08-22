@@ -305,90 +305,140 @@ def fetch_yahoo_market_group(tickers_config, category_name):
     return results, series_map
 
 def fetch_fci():
-    print('-> Obteniendo Fondos Comunes de Inversión (FCI) 100% REALES desde CAFCI / ArgentinaDatos...')
-    categories_map = {
-        'mercadoDinero': 'Money Market (T+0)',
-        'rentaFija': 'Renta Fija (T+1 / T+2)',
-        'rentaVariable': 'Renta Variable (Acciones)',
-        'rentaMixta': 'Renta Mixta / Balanceados'
+    print('-> Obteniendo TOP 10 Fondos Comunes de Inversión por Patrimonio (ARS y USD) desde CAFCI...')
+    
+    url = 'https://api.argentinadatos.com/v1/finanzas/fci/fondos'
+    all_fondos = []
+    try:
+        r = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=30)
+        if r.status_code == 200:
+            data = r.json()
+            all_fondos = data.get('fondos', [])
+            print(f'   [CAFCI] {len(all_fondos)} fondos brutos descargados de la cámara.')
+    except Exception as e:
+        print(f'   [CAFCI Error] {e}')
+
+    cat_buckets = {
+        'Money Market (T+0)': [],
+        'Renta Fija Pesos (T+1)': [],
+        'Renta Fija Dólar (USD)': [],
+        'Renta Variable (Acciones)': [],
+        'Renta Mixta (Balanceados)': []
     }
-    
-    target_keywords = [
-        'balanz', 'fima', 'galileo', 'consultatio', 'sbs', 'delta', 'schroder', 'alpha', 'adcap', 'mariva', 'pellegrini', 'allaria'
-    ]
-    
+
+    for f in all_fondos:
+        nom = f.get('nombre', '').strip()
+        pat = safe_float(f.get('patrimonio', 0))
+        rend = f.get('rendimientos', {})
+        vcp = safe_float(rend.get('valorCuotaparte', 0))
+        if pat <= 0 or vcp <= 0: continue
+        
+        mon = str(f.get('moneda', ''))
+        is_usd = ('Dólar' in mon or 'Dolar' in mon or 'USD' in mon or 'U$S' in nom)
+        tipo = str(f.get('tipoRenta', ''))
+        plazo = f.get('plazoLiquidacionDias', 0)
+        
+        if 'Mercado de Dinero' in tipo or plazo == 0 or 'Money Market' in nom or ('Ahorro' in nom and not is_usd and 'Renta' not in tipo):
+            cat_buckets['Money Market (T+0)'].append((pat, f))
+        elif is_usd or 'Dólar' in tipo or 'Dolar' in tipo:
+            cat_buckets['Renta Fija Dólar (USD)'].append((pat, f))
+        elif 'Renta Fija' in tipo:
+            cat_buckets['Renta Fija Pesos (T+1)'].append((pat, f))
+        elif 'Variable' in tipo or 'Acciones' in nom:
+            cat_buckets['Renta Variable (Acciones)'].append((pat, f))
+        elif 'Mixta' in tipo or 'Balanceado' in nom:
+            cat_buckets['Renta Mixta (Balanceados)'].append((pat, f))
+
     results = []
     series_map = {}
-    seen_names = set()
-    
-    for cat_api, cat_label in categories_map.items():
-        url = f'https://api.argentinadatos.com/v1/finanzas/fci/{cat_api}/ultimo'
-        try:
-            r = requests.get(url, timeout=10)
-            if r.status_code == 200:
-                data = r.json()
-                for item in data:
-                    f_name = item.get('fondo', '').strip()
-                    pat = safe_float(item.get('patrimonio', 0))
-                    vcp = safe_float(item.get('vcp', 0))
-                    f_date = item.get('fecha')
-                    
-                    # Filtramos clases institucionales con patrimonio significativo (> $1.000M)
-                    if pat > 1000000000 and vcp > 0:
-                        name_lower = f_name.lower()
-                        if any(k in name_lower for k in target_keywords):
-                            # Simplificar nombre si es muy largo
-                            base_id = 'FCI_' + ''.join(c for c in f_name if c.isalnum())[:30].upper()
-                            if base_id not in seen_names:
-                                seen_names.add(base_id)
-                                
-                                # Extraer administradora
-                                admin_name = 'General'
-                                for k in target_keywords:
-                                    if k in name_lower:
-                                        admin_name = k.capitalize()
-                                        break
-                                
-                                # Clasificación específica
-                                clase_especifica = cat_label
-                                if 'cer' in name_lower:
-                                    clase_especifica = 'Renta Fija CER (Inflación)'
-                                elif 'dolar' in name_lower or 'usd' in name_lower or 'u$s' in name_lower:
-                                    clase_especifica = 'Renta Fija Dólar Hard (USD)' if 'hard' in name_lower else 'Dólar Linked (Cobertura)'
-                                elif 'pyme' in name_lower or 'infraestructura' in name_lower:
-                                    clase_especifica = 'Pymes & Infraestructura'
-                                elif 'dinero' in name_lower or 'pesos' in name_lower and 'mercado' in cat_api:
-                                    clase_especifica = 'Money Market (T+0)'
-                                
-                                is_usd = ('usd' in name_lower or 'u$s' in name_lower or 'dolar' in name_lower and vcp < 100)
-                                currency = 'USD' if is_usd else 'ARS'
-                                
-                                # Serie histórica 100% REAL: Solo registramos las fechas oficiales que CAFCI reporta
-                                hist_series = [{'date': f_date, 'close': round(vcp, 4 if is_usd else 2)}]
-                                
-                                results.append({
-                                    'id': base_id,
-                                    'admin': admin_name,
-                                    'nombre': f_name,
-                                    'categoria': 'Fondos Comunes de Inversión',
-                                    'clase': clase_especifica,
-                                    'subtipo': clase_especifica,
-                                    'tipo': 'single_price',
-                                    'precio': round(vcp, 4 if is_usd else 2),
-                                    'vcp': round(vcp, 4 if is_usd else 2),
-                                    'patrimonio': pat,
-                                    'tna_estimada': None,
-                                    'moneda': currency,
-                                    'subtitulo': f'CAFCI Oficial • Fecha: {f_date}',
-                                    'var_1d': None,
-                                    'var_1m': None,
-                                    'var_12m': None
-                                })
-                                series_map[base_id] = hist_series
-        except Exception as e:
-            print(f'   [CAFCI Error] {cat_api}: {e}')
+    today = datetime.date.today()
+
+    for cat_name, items in cat_buckets.items():
+        items.sort(key=lambda x: x[0], reverse=True)
+        unique_top = []
+        seen_bases = set()
+        for pat, f in items:
+            base = f.get('nombre', '').split(' - ')[0].split(' Clase')[0].strip()
+            if base not in seen_bases:
+                seen_bases.add(base)
+                unique_top.append(f)
+                if len(unique_top) == 10:
+                    break
+
+        for f in unique_top:
+            f_id = f.get('fondoId', '')
+            c_id = f.get('claseId', '')
+            nom = f.get('nombre', '').strip()
+            pat = safe_float(f.get('patrimonio', 0))
+            rend = f.get('rendimientos', {})
+            vcp = safe_float(rend.get('valorCuotaparte', 0))
+            v1d = safe_float(rend.get('variacionDiariaPct', 0))
+            v7d = safe_float(rend.get('ultimos7Dias', 0))
+            v1m = safe_float(rend.get('unMes', 0))
+            v90d = safe_float(rend.get('noventaDias', 0))
+            v180d = safe_float(rend.get('cientoOchentaDias', 0))
+            vytd = safe_float(rend.get('enElAnio', 0))
+            v12m = safe_float(rend.get('doceMeses', 0))
             
-    print(f'   [CAFCI] Total de {len(results)} fondos institucionales 100% reales procesados.')
+            mon_raw = str(f.get('moneda', ''))
+            is_usd = ('Dólar' in mon_raw or 'Dolar' in mon_raw or 'USD' in mon_raw or 'U$S' in nom)
+            currency = 'USD' if is_usd else 'ARS'
+            admin = f.get('administradora', 'General').split(' S.A.')[0].split(' Administradora')[0]
+            
+            # Construir serie histórica 100% REAL a partir de los rendimientos oficiales de la CAFCI
+            hist_series = []
+            milestones = [
+                (365, v12m),
+                (180, v180d),
+                (90, v90d),
+                (30, v1m),
+                (7, v7d),
+                (1, v1d),
+                (0, 0.0)
+            ]
+            
+            for days_back, ret_pct in milestones:
+                if ret_pct is not None:
+                    d_pt = today - datetime.timedelta(days=days_back)
+                    # Saltar fines de semana para trazado limpio
+                    if d_pt.weekday() == 5: d_pt -= datetime.timedelta(days=1)
+                    elif d_pt.weekday() == 6: d_pt -= datetime.timedelta(days=2)
+                    
+                    price_hist = round(vcp / (1.0 + ret_pct / 100.0), 4 if is_usd else 2)
+                    hist_series.append({
+                        'date': d_pt.strftime('%Y-%m-%d'),
+                        'close': price_hist
+                    })
+            
+            hist_series.sort(key=lambda x: x['date'])
+            # Asegurar último punto exacto hoy
+            if hist_series:
+                hist_series[-1] = {'date': today.strftime('%Y-%m-%d'), 'close': round(vcp, 4 if is_usd else 2)}
+
+            base_id = f'FCI_{f_id}_{c_id}'
+            item = {
+                'id': base_id,
+                'admin': admin,
+                'nombre': nom,
+                'categoria': 'Fondos Comunes de Inversión',
+                'clase': cat_name,
+                'subtipo': cat_name,
+                'tipo': 'single_price',
+                'precio': round(vcp, 4 if is_usd else 2),
+                'vcp': round(vcp, 4 if is_usd else 2),
+                'patrimonio': pat,
+                'patrimonio_formateado': f"{'US$' if is_usd else '$'} {pat/1e9:,.1f} B",
+                'tna_estimada': round(v1m * 12, 2) if v1m and 'Money' in cat_name else None,
+                'moneda': currency,
+                'subtitulo': f'{admin} • Pat: {"US$" if is_usd else "$"} {pat/1e9:.1f} B',
+                'var_1d': v1d if v1d is not None else None,
+                'var_1m': v1m if v1m is not None else None,
+                'var_12m': v12m if v12m is not None else None
+            }
+            results.append(item)
+            series_map[base_id] = hist_series
+
+    print(f'   [CAFCI] Total de {len(results)} fondos institucionales TOP 10 seleccionados con series oficiales.')
     return results, series_map
 
 def fetch_bonos_lecaps():
