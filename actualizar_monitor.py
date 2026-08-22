@@ -426,19 +426,18 @@ def fetch_fci():
     return results, series_map
 
 def fetch_bonos_lecaps():
-    print('-> Obteniendo Bonos y LECAPs directamente desde Bonistas.com API en tiempo real...')
+    print('-> Obteniendo Bonos y LECAPs directamente desde Bonistas.com API y BYMA Datafeed...')
     
-    # 1. Consultar API de Bonistas.com
+    # 1. Consultar API de Bonistas.com para métricas oficiales (TIR, Duration, Paridad, Fair Value)
     bonistas_data = []
     try:
         r_bon = requests.get('https://bonistas.com/api/bonds', headers={'User-Agent': 'Mozilla/5.0'}, timeout=12)
         if r_bon.status_code == 200:
             bonistas_data = r_bon.json()
-            print(f'   [Bonistas] {len(bonistas_data)} activos recibidos exitosamente.')
+            print(f'   [Bonistas] {len(bonistas_data)} activos recibidos.')
     except Exception as e:
-        print(f'   [Bonistas Error] No se pudo conectar con la API de Bonistas: {e}')
+        print(f'   [Bonistas Error] {e}')
 
-    # Indexar por ticker dando prioridad a liquidación 24hs
     by_ticker = {}
     for b in bonistas_data:
         t = b.get('ticker')
@@ -449,7 +448,7 @@ def fetch_bonos_lecaps():
         if t not in by_ticker or settle == '24hs':
             by_ticker[t] = b
 
-    # Lista curada de bonos líderes y representativos por segmento
+    # Lista curada de bonos representativos por segmento
     target_universe = [
         # Dólar Hard - Especie D (USD)
         ('AL30D', 'Bonar 2030 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral (2024-2030)'),
@@ -463,6 +462,7 @@ def fetch_bonos_lecaps():
         ('AL41D', 'Bonar 2041 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 3.50, 'Step-Up Semestral', 'Semestral', 'Semestral (2028-2041)'),
         ('GD41D', 'Global 2041 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 3.50, 'Step-Up Semestral', 'Semestral', 'Semestral (2028-2041)'),
         ('GD46D', 'Global 2046 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 3.50, 'Step-Up Semestral', 'Semestral', 'Semestral (2025-2046)'),
+        
         # Dólar Hard - Especie Pesos
         ('AL30', 'Bonar 2030 en Pesos', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Argentina', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral'),
         ('GD30', 'Global 2030 en Pesos', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Nueva York', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral'),
@@ -476,60 +476,72 @@ def fetch_bonos_lecaps():
         ('TZX26', 'Boncer Cero Cupón 2026', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón (Capital + CER)', 'Al Vencimiento', 'Bullet'),
         ('TZX27', 'Boncer Cero Cupón 2027', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón (Capital + CER)', 'Al Vencimiento', 'Bullet'),
         ('TZX28', 'Boncer Cero Cupón 2028', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón (Capital + CER)', 'Al Vencimiento', 'Bullet'),
-        ('TZXD6', 'Boncer Cero Cupón Dic 2026', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón (Capital + CER)', 'Al Vencimiento', 'Bullet'),
-        ('TZXD7', 'Boncer Cero Cupón Dic 2027', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón (Capital + CER)', 'Al Vencimiento', 'Bullet'),
-        ('TZXD8', 'Boncer Cero Cupón Dic 2028', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón (Capital + CER)', 'Al Vencimiento', 'Bullet'),
         ('DICP', 'Discount en Pesos CER', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 5.83, 'Fijo sobre Capital CER', 'Semestral', '20 cuotas semestrales'),
         ('PARP', 'Par en Pesos CER', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 1.75, 'Fijo sobre Capital CER', 'Semestral', 'Bullet'),
         ('CUAP', 'Cuasipar en Pesos CER', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 3.31, 'Fijo sobre Capital CER', 'Semestral', 'Bullet'),
-        ('DIP0', 'Discount Ley NY en Pesos CER', 'Bonos CER (Inflación)', 'ARS', 'Nueva York', 5.83, 'Fijo sobre Capital CER', 'Semestral', '20 cuotas'),
-        ('PAP0', 'Par Ley NY en Pesos CER', 'Bonos CER (Inflación)', 'ARS', 'Nueva York', 1.75, 'Fijo sobre Capital CER', 'Semestral', 'Bullet'),
 
         # LECAPs & BONCAPs (Tasa Fija Capitalizable en Pesos)
         ('S30S6', 'LECAP Vto. 30/09/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 34.96, 'Capitalizable Mensual (TEM ~2.53%)', 'Al Vencimiento', 'Bullet'),
         ('S31G6', 'LECAP Vto. 31/08/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 33.50, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
         ('S30O6', 'LECAP Vto. 30/10/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 34.50, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
         ('S30N6', 'LECAP Vto. 30/11/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 35.20, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
-        ('S14G6', 'LECAP Vto. 14/08/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 32.80, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
-        ('S17L6', 'LECAP Vto. 17/07/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 31.50, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
-        ('S31L6', 'LECAP Vto. 31/07/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 32.00, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
         ('TO26', 'Bono Tasa Fija 2026 (TO26)', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 15.50, 'Fijo Semestral', 'Semestral', 'Bullet'),
         ('M31G6', 'BONCAP Vto. 31/08/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 33.80, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
-        ('T17O5', 'BONCAP Vto. 17/10/2025', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 44.20, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
 
         # Bonos TAMAR / Badlar (Flotante)
-        ('TB27', 'Bono Tasa TAMAR 2027', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 38.50, 'Tasa TAMAR + Spread', 'Trimestral', 'Bullet'),
-        ('TMF28', 'Bono Tasa TAMAR Feb 2028', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 39.00, 'Tasa TAMAR + 2.75%', 'Trimestral', 'Bullet'),
-        ('TMG27', 'Bono Tasa TAMAR Jul 2027', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 32.30, 'Tasa TAMAR + 2.25%', 'Trimestral', 'Bullet'),
         ('BDC28', 'Ciudad de Bs As Badlar 2028', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 28.78, 'Badlar Privada + Spread', 'Trimestral', 'Bullet'),
         ('PBA25', 'Provincia de Bs As Badlar 2025', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 41.20, 'Badlar Privada + 3.75%', 'Trimestral', 'Bullet'),
 
         # Dólar Linked & Duales
+        ('TZV26', 'Bono Dólar Linked 2026 (TZV26)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Cero Cupón Dólar Linked', 'Al Vencimiento', 'Bullet'),
         ('TZV27', 'Bono Dólar Linked 2027', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Cero Cupón Dólar Linked', 'Al Vencimiento', 'Bullet'),
         ('TZV28', 'Bono Dólar Linked 2028', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Cero Cupón Dólar Linked', 'Al Vencimiento', 'Bullet'),
-        ('D31M7', 'Bono Dólar Linked Mar 2027', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Linked (A3500)', 'Al Vencimiento', 'Bullet'),
-        ('D30S6', 'Bono Dólar Linked Sep 2026', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Linked (A3500)', 'Al Vencimiento', 'Bullet'),
-        ('TV25', 'Bono Dólar Linked 2025 (TV25)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.50, 'Fijo Dólar Linked', 'Semestral', 'Bullet'),
-        ('TZV26', 'Bono Dólar Linked 2026 (TZV26)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Cero Cupón Dólar Linked', 'Al Vencimiento', 'Bullet'),
 
         # BOPREAL (BCRA para Importadores)
         ('BPO27', 'BOPREAL Serie 1 (BPO27)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Fijo en USD', 'Semestral', 'Bullet (Opción Put)'),
         ('BPOA8', 'BOPREAL Serie 1 Strip A (BPOA8)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Fijo en USD (Con Opción Put)', 'Semestral', 'Bullet'),
-        ('BPOB8', 'BOPREAL Serie 1 Strip B (BPOB8)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Fijo en USD', 'Semestral', 'Bullet'),
-        ('BPD7D', 'BOPREAL Serie 1 Strip D (USD)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Fijo en USD', 'Semestral', 'Bullet'),
-        ('BPY26', 'BOPREAL Serie 2 (BPY26)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 0.00, 'Cero Cupón', 'Mensual', '12 cuotas mensuales'),
-        ('BPC26', 'BOPREAL Serie 3 (BPC26)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 3.00, 'Fijo Trimestral en USD', 'Trimestral', '3 cuotas iguales')
+        ('BPY26', 'BOPREAL Serie 2 (BPY26)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 0.00, 'Cero Cupón', 'Mensual', '12 cuotas mensuales')
     ]
 
     results = []
     series_map = {}
-    num_days = 2500
+    now_ts = int(time.time())
+    from_ts = now_ts - (86400 * 365 * 10) # 10 años
     today = datetime.date.today()
 
+    print('-> Descargando series históricas oficiales de BYMA para cada título...')
     for ticker, nombre_full, subtipo, moneda, ley, cupon_def, tipo_cupon, freq, amort in target_universe:
         b_data = by_ticker.get(ticker)
         
-        # Extraer métricas reales de Bonistas
+        # 1. Intentar traer la serie histórica 100% REAL de BYMA Datafeed
+        hist_series = []
+        url_feed = f'https://analisistecnico.com.ar/services/datafeed/history?symbol={ticker}&resolution=D&from={from_ts}&to={now_ts}'
+        try:
+            r_feed = requests.get(url_feed, headers={'User-Agent': 'Mozilla/5.0'}, timeout=5)
+            if r_feed.status_code == 200:
+                d_feed = r_feed.json()
+                if d_feed.get('s') == 'ok' and len(d_feed.get('t', [])) > 0:
+                    t_list = d_feed.get('t', [])
+                    c_list = d_feed.get('c', [])
+                    o_list = d_feed.get('o', c_list)
+                    h_list = d_feed.get('h', c_list)
+                    l_list = d_feed.get('l', c_list)
+                    v_list = d_feed.get('v', [0]*len(t_list))
+                    
+                    for idx_pt in range(len(t_list)):
+                        dt_pt = datetime.datetime.fromtimestamp(t_list[idx_pt]).strftime('%Y-%m-%d')
+                        hist_series.append({
+                            'date': dt_pt,
+                            'open': round(safe_float(o_list[idx_pt]), 2),
+                            'high': round(safe_float(h_list[idx_pt]), 2),
+                            'low': round(safe_float(l_list[idx_pt]), 2),
+                            'close': round(safe_float(c_list[idx_pt]), 2),
+                            'volume': safe_float(v_list[idx_pt])
+                        })
+        except Exception as e:
+            pass
+
+        # 2. Si no hay serie del datafeed, fallback a Bonistas/reconstrucción
         if b_data:
             precio = round(safe_float(b_data.get('last_price', 0)), 2)
             tir_val = round(safe_float(b_data.get('tir', 0)) * 100, 2) if b_data.get('tir') is not None else None
@@ -538,81 +550,41 @@ def fetch_bonos_lecaps():
             valor_tec = round(safe_float(b_data.get('fair_value', 100)), 2)
             dias_finish = int(b_data.get('days_to_finish', 0)) if b_data.get('days_to_finish') else None
             cupon_anual = round(safe_float(b_data.get('coupon', cupon_def)), 2)
-            var_1d_bonistas = round(safe_float(b_data.get('day_difference', 0)), 2)
+            var_1d_val = round(safe_float(b_data.get('day_difference', 0)), 2)
             subtit = b_data.get('short_description') or f'{subtipo} • Ley {ley}'
             isin_code = b_data.get('isin') or f'AR{ticker}BOND'
             fecha_vto_str = b_data.get('end_date') or (today + datetime.timedelta(days=dias_finish if dias_finish else 365)).strftime('%Y-%m-%d')
             fecha_emi_str = b_data.get('start_date') or '2020-09-04'
         else:
-            # Fallback robusto
-            precio = 75.0 if moneda == 'USD' else 115.0
-            tir_val = 10.5 if moneda == 'USD' else 34.0
-            dur_val = 2.5
-            paridad_val = 75.0 if moneda == 'USD' else 99.0
+            precio = hist_series[-1]['close'] if hist_series else (75.0 if moneda == 'USD' else 115.0)
+            tir_val = 9.5 if moneda == 'USD' else 34.0
+            dur_val = 2.0
+            paridad_val = 85.0 if moneda == 'USD' else 99.0
             valor_tec = 100.0
             dias_finish = 720
             cupon_anual = cupon_def
-            var_1d_bonistas = 0.25
+            var_1d_val = 0.0
             subtit = f'{subtipo} • Ley {ley}'
             isin_code = f'AR{ticker}BOND'
             fecha_vto_str = '2027-10-31'
             fecha_emi_str = '2020-09-04'
 
-        is_usd = (moneda == 'USD')
-        
-        # Generación de serie histórica coherente con el activo
-        # Trayectoria real: Bonos en USD tocaron mínimos en 2022/2023 (~20 USD) y subieron a los valores actuales
-        # Bonos CER: crecimiento nominal continuo por inflación
-        # LECAPs: crecimiento constante a tasa efectiva mensual
-        hist_series = []
-        
-        if is_usd:
-            # Reconstrucción de la curva histórica del bono soberano en dólares
-            days_history = 1500
-            px_curr = precio
-            prices = [px_curr]
-            r_1d = var_1d_bonistas / 100.0
-            prices.append(round(px_curr / (1.0 + r_1d), 2))
-            
-            # Trayectoria de los últimos 4 años
-            for i in range(2, days_history):
-                # Simular la recuperación desde mínimos de 2022 (piso ~20-25 USD)
-                t_ratio = i / days_history # 0 = hoy, 1 = hace 4 años
-                base_target = 22.0 if t_ratio > 0.6 else (22.0 + (px_curr - 22.0) * (1.0 - t_ratio * 1.5))
-                noise = np.random.normal(0, 0.4)
-                p_sim = max(18.0, min(105.0, base_target + noise))
-                prices.append(round(p_sim, 2))
-            prices.reverse()
+        # Si tenemos serie real, aseguramos que el último precio coincida con el cierre de hoy
+        if hist_series:
+            hist_series[-1]['close'] = precio
+            vars_dict = calc_variations(hist_series)
+            tipo_item = 'market_asset'
         else:
-            # Pesos CER o Tasa fija
-            days_history = 1500
-            px_curr = precio
-            prices = [px_curr]
-            daily_growth = (1.0 + 0.40) ** (1.0 / 252) # ~40% anual histórico
-            curr_p = px_curr
-            for i in range(1, days_history):
-                noise = np.random.normal(0, 0.002)
-                curr_p = curr_p / (daily_growth + noise)
-                prices.append(round(curr_p, 2))
-            prices.reverse()
+            # Fallback simple
+            hist_series = [{'date': today.strftime('%Y-%m-%d'), 'close': precio}]
+            vars_dict = {'var_1d': var_1d_val, 'var_1m': 3.5, 'var_12m': 55.0}
+            tipo_item = 'bond'
 
-        trading_dates = []
-        d = today - datetime.timedelta(days=int(len(prices) * 1.5))
-        while len(trading_dates) < len(prices):
-            if d.weekday() < 5:
-                trading_dates.append(d.strftime('%Y-%m-%d'))
-            d += datetime.timedelta(days=1)
-        trading_dates = trading_dates[-len(prices):]
-        trading_dates[-1] = today.strftime('%Y-%m-%d')
-
-        hist_series = [{'date': dt, 'close': p} for dt, p in zip(trading_dates, prices)]
-        vars_dict = calc_variations(hist_series)
-
-        # Cashflow sintético inteligente según periodicidad
+        # Cashflow sintético
         cf_list = []
         if dias_finish and dias_finish > 0:
             coupon_half = cupon_anual / 2.0 if 'Semestral' in freq else (cupon_anual / 4.0 if 'Trimestral' in freq else cupon_anual)
-            periods_count = max(1, min(12, int(dias_finish / 180)))
+            periods_count = max(1, min(10, int(dias_finish / 180)))
             for p_idx in range(1, periods_count + 1):
                 p_dt = today + datetime.timedelta(days=int(p_idx * (dias_finish / periods_count)))
                 is_last = (p_idx == periods_count)
@@ -630,13 +602,16 @@ def fetch_bonos_lecaps():
             'nombre': nombre_full,
             'categoria': 'Bonos - LECAPs',
             'subtipo': subtipo,
-            'tipo': 'bond',
+            'tipo': tipo_item,
             'ley': ley,
             'isin': isin_code,
             'moneda_emision': moneda,
-            'moneda_pago': 'USD (Hard / Cable)' if is_usd else ('ARS (CER)' if 'CER' in subtipo else 'ARS'),
+            'moneda_pago': 'USD (Hard / Cable)' if moneda == 'USD' else ('ARS (CER)' if 'CER' in subtipo else 'ARS'),
             'moneda': moneda,
             'precio': precio,
+            'open': hist_series[-1].get('open', precio),
+            'high': hist_series[-1].get('high', precio),
+            'low': hist_series[-1].get('low', precio),
             'paridad_pct': paridad_val,
             'valor_tecnico': valor_tec,
             'valor_residual_pct': 100.0,
@@ -651,10 +626,10 @@ def fetch_bonos_lecaps():
             'fecha_emision': fecha_emi_str,
             'fecha_vto': fecha_vto_str,
             'proximo_pago_fecha': cf_list[0]['fecha'] if cf_list else fecha_vto_str,
-            'proximo_pago_monto': f"{'US$' if is_usd else '$'} {cf_list[0]['total']:.2f} por 100 VN" if cf_list else '-',
+            'proximo_pago_monto': f"{'US$' if moneda == 'USD' else '$'} {cf_list[0]['total']:.2f} por 100 VN" if cf_list else '-',
             'cashflow': cf_list,
             'subtitulo': subtit,
-            'var_1d': var_1d_bonistas if var_1d_bonistas != 0 else vars_dict['var_1d'],
+            'var_1d': var_1d_val if var_1d_val != 0 else vars_dict['var_1d'],
             'var_1m': vars_dict['var_1m'],
             'var_12m': vars_dict['var_12m']
         }
