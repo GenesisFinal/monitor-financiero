@@ -385,33 +385,49 @@ def fetch_fci():
             currency = 'USD' if is_usd else 'ARS'
             admin = f.get('administradora', 'General').split(' S.A.')[0].split(' Administradora')[0]
             
-            # Construir serie histórica 100% REAL a partir de los rendimientos oficiales de la CAFCI
+            # Construir serie histórica continua basada en los hitos oficiales de la CAFCI
+            # Hitos oficiales: (dias_atras, rendimiento_acumulado_pct)
+            m_days = [0, 1, 7, 30, 90, 180, 365]
+            m_rets = [0.0, v1d, v7d, v1m, v90d, v180d, v12m]
+            
+            # Calcular VCP en cada hito oficial
+            m_vcps = [vcp / (1.0 + r / 100.0) if r is not None else vcp for r in m_rets]
+            
+            # Generar serie de días hábiles de los últimos 365 días (hasta 12M / 60M)
             hist_series = []
-            milestones = [
-                (365, v12m),
-                (180, v180d),
-                (90, v90d),
-                (30, v1m),
-                (7, v7d),
-                (1, v1d),
-                (0, 0.0)
-            ]
+            cur_d = today - datetime.timedelta(days=365)
             
-            for days_back, ret_pct in milestones:
-                if ret_pct is not None:
-                    d_pt = today - datetime.timedelta(days=days_back)
-                    # Saltar fines de semana para trazado limpio
-                    if d_pt.weekday() == 5: d_pt -= datetime.timedelta(days=1)
-                    elif d_pt.weekday() == 6: d_pt -= datetime.timedelta(days=2)
+            while cur_d <= today:
+                if cur_d.weekday() < 5: # Días hábiles lunes a viernes
+                    d_back = (today - cur_d).days
                     
-                    price_hist = round(vcp / (1.0 + ret_pct / 100.0), 4 if is_usd else 2)
+                    # Interpolar exactamente entre los hitos oficiales de CAFCI
+                    if d_back >= 365:
+                        p_val = m_vcps[6]
+                    elif d_back >= 180:
+                        frac = (d_back - 180) / (365 - 180)
+                        p_val = m_vcps[5] * (1 - frac) + m_vcps[6] * frac
+                    elif d_back >= 90:
+                        frac = (d_back - 90) / (180 - 90)
+                        p_val = m_vcps[4] * (1 - frac) + m_vcps[5] * frac
+                    elif d_back >= 30:
+                        frac = (d_back - 30) / (90 - 30)
+                        p_val = m_vcps[3] * (1 - frac) + m_vcps[4] * frac
+                    elif d_back >= 7:
+                        frac = (d_back - 7) / (30 - 7)
+                        p_val = m_vcps[2] * (1 - frac) + m_vcps[3] * frac
+                    elif d_back >= 1:
+                        frac = (d_back - 1) / (7 - 1)
+                        p_val = m_vcps[1] * (1 - frac) + m_vcps[2] * frac
+                    else:
+                        p_val = m_vcps[0]
+                        
                     hist_series.append({
-                        'date': d_pt.strftime('%Y-%m-%d'),
-                        'close': price_hist
+                        'date': cur_d.strftime('%Y-%m-%d'),
+                        'close': round(p_val, 4 if is_usd else 2)
                     })
+                cur_d += datetime.timedelta(days=1)
             
-            hist_series.sort(key=lambda x: x['date'])
-            # Asegurar último punto exacto hoy
             if hist_series:
                 hist_series[-1] = {'date': today.strftime('%Y-%m-%d'), 'close': round(vcp, 4 if is_usd else 2)}
 
@@ -438,7 +454,7 @@ def fetch_fci():
             results.append(item)
             series_map[base_id] = hist_series
 
-    print(f'   [CAFCI] Total de {len(results)} fondos institucionales TOP 10 seleccionados con series oficiales.')
+    print(f'   [CAFCI] Total de {len(results)} fondos institucionales TOP 10 seleccionados con series continuas.')
     return results, series_map
 
 def fetch_bonos_lecaps():
