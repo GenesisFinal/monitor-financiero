@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor Financiero | La Segunda Seguros</title>
+  
+  <!-- Google Fonts: Sora -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Chart.js & Plugins for Financial Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@0.1.1/dist/chartjs-chart-financial.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Sora', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              red: '#e20039',
+              darkred: '#b91f38',
+              lightred: '#f42c4b',
+              accentred: '#ff4c60',
+              dark: '#1e222d',
+              charcoal: '#30302d',
+              gray: '#64748b',
+              light: '#f8fafc',
+              border: '#e2e8f0',
+              positive: '#10b981',
+              negative: '#ef4444',
+              amber: '#f59e0b',
+              blue: '#3b82f6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body { font-family: 'Sora', sans-serif; }
+    .num { font-family: 'JetBrains Mono', monospace; }
+    
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    
+    /* Mosaic visual pattern based on brandbook */
+    .brand-mosaic-bar {
+      display: flex;
+      height: 4px;
+      width: 100%;
+    }
+    .mosaic-seg-1 { background-color: #e20039; width: 45%; }
+    .mosaic-seg-2 { background-color: #b91f38; width: 25%; }
+    .mosaic-seg-3 { background-color: #f42c4b; width: 20%; }
+    .mosaic-seg-4 { background-color: #ff4c60; width: 10%; }
+
+    .tab-active {
+      background-color: #e20039 !important;
+      color: #ffffff !important;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(226, 0, 57, 0.25);
+    }
+  </style>
+</head>
+<body class="h-full bg-[#f8fafc] text-slate-800 flex flex-col antialiased selection:bg-brand-red selection:text-white">
+
+  <!-- HEADER INSTITUCIONAL -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="brand-mosaic-bar">
+      <div class="mosaic-seg-1"></div>
+      <div class="mosaic-seg-2"></div>
+      <div class="mosaic-seg-3"></div>
+      <div class="mosaic-seg-4"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Logo & Marca La Segunda -->
+        <div class="flex items-center space-x-3 sm:space-x-4">
+          <div class="flex items-center space-x-2">
+            <!-- Monograma Institucional SVG -->
+            <svg class="h-9 w-9 sm:h-11 sm:w-11" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100" height="100" rx="20" fill="#e20039"/>
+              <path d="M28 32H72V46H44V56H72V70H28V32Z" fill="white"/>
+            </svg>
+            <div>
+              <div class="flex items-baseline space-x-1.5">
+                <span class="font-extrabold text-xl sm:text-2xl text-slate-900 tracking-tight">la segunda</span>
+                <span class="text-xs font-semibold uppercase tracking-widest text-brand-red">Seguros</span>
+              </div>
+              <p class="text-[11px] sm:text-xs text-slate-500 font-medium tracking-wide">Monitor Financiero & Mercados</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Búsqueda Rápida & Estado de Actualización -->
+        <div class="flex items-center space-x-2 sm:space-x-4">
+          
+          <!-- Buscador Global -->
+          <div class="relative hidden md:block w-64">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input 
+              type="text" 
+              id="globalSearchInput" 
+              placeholder="Buscar activo (ej: AL30, GGAL, S&P)..." 
+              class="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-100 border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-red/50 focus:bg-white transition-all"
+              oninput="handleGlobalSearch(this.value)"
+            >
+          </div>
+
+          <!-- Status Indicator -->
+          <div class="flex items-center bg-slate-100/90 border border-slate-200 rounded-full px-3 py-1 text-xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
+            <span id="updateTimeBadge" class="text-slate-600 font-medium text-[11px] sm:text-xs">Cargando datos...</span>
+          </div>
+
+          <!-- Botón de Actualizar / Refrescar -->
+          <button 
+            onclick="loadDataset(true)" 
+            title="Recargar datos"
+            class="p-2 rounded-full bg-slate-100 hover:bg-brand-red hover:text-white text-slate-600 border border-slate-200 transition-all"
+          >
+            <i data-lucide="refresh-cw" id="refreshIcon" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Barra de Navegación por Secciones (Horizontal Scrollable) -->
+    <div class="border-t border-slate-100 bg-white/95 backdrop-blur overflow-x-auto no-scrollbar">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex space-x-1 py-2" id="sectionNavTabs">
+          <!-- Dynamically populated or static fast tabs -->
+          <button onclick="selectSection('all')" data-sec="all" class="sec-tab tab-active px-3 py-1.5 rounded-lg text-xs whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+            <span>Resumen General</span>
+          </button>
+          <button onclick="selectSection('dolar')" data-sec="dolar" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="dollar-sign" class="w-3.5 h-3.5"></i>
+            <span>Dólar</span>
+          </button>
+          <button onclick="selectSection('indices_mundiales')" data-sec="indices_mundiales" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+            <span>Índices Mundiales</span>
+          </button>
+          <button onclick="selectSection('divisas')" data-sec="divisas" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="repeat" class="w-3.5 h-3.5"></i>
+            <span>Divisas</span>
+          </button>
+          <button onclick="selectSection('commodities')" data-sec="commodities" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+            <span>Commodities</span>
+          </button>
+          <button onclick="selectSection('tasas_internacionales')" data-sec="tasas_internacionales" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+            <span>Tasas Internacionales</span>
+          </button>
+          <button onclick="selectSection('tasas_locales')" data-sec="tasas_locales" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="landmark" class="w-3.5 h-3.5"></i>
+            <span>Tasas Locales</span>
+          </button>
+          <button onclick="selectSection('fci')" data-sec="fci" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="pie-chart" class="w-3.5 h-3.5"></i>
+            <span>FCI</span>
+          </button>
+          <button onclick="selectSection('bonos_lecaps')" data-sec="bonos_lecaps" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>Bonos & LECAPs</span>
+          </button>
+          <button onclick="selectSection('ons')" data-sec="ons" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="briefcase" class="w-3.5 h-3.5"></i>
+            <span>ONs</span>
+          </button>
+          <button onclick="selectSection('curvas_rendimiento')" data-sec="curvas_rendimiento" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5 bg-rose-50 text-brand-red border border-rose-200">
+            <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+            <span>Curvas de Rendimiento</span>
+          </button>
+          <button onclick="selectSection('acciones_mundiales')" data-sec="acciones_mundiales" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i>
+            <span>Acciones Mundiales</span>
+          </button>
+          <button onclick="selectSection('cedears')" data-sec="cedears" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+            <span>CEDEARs</span>
+          </button>
+          <button onclick="selectSection('acciones_argentinas')" data-sec="acciones_argentinas" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+            <span>Acciones Argentinas</span>
+          </button>
+          <button onclick="selectSection('criptomonedas')" data-sec="criptomonedas" class="sec-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition-all flex items-center space-x-1.5">
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+            <span>Criptomonedas</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+    
+    <!-- Hero / Top Banner -->
+    <div id="heroSection" class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+        <svg class="w-80 h-80" viewBox="0 0 100 100" fill="currentColor">
+          <rect width="100" height="100" rx="20"/>
+          <path d="M28 32H72V46H44V56H72V70H28V32Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="relative z-10 max-w-3xl">
+        <div class="inline-flex items-center space-x-2 bg-white/10 px-3 py-1 rounded-full text-xs font-medium text-rose-300 mb-3 backdrop-blur-sm border border-white/10">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+          <span>La Segunda Seguros &bull; Área Financiera</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Monitor Financiero Institucional</h1>
+        <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+          Tablero integral de seguimiento y análisis de cotizaciones, rendimientos, medias móviles y curvas de mercado local e internacional.
+        </p>
+      </div>
+      
+      <!-- Key Highlights Ribbon -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-slate-700/60" id="quickHighlightsRibbon">
+        <!-- Dynamically injected: Dolar Blue, MEP, CCL, S&P 500 -->
+      </div>
+    </div>
+
+    <!-- SECCIÓN CONTENEDORA DE MÓDULOS -->
+    <div id="modulesContainer" class="space-y-10">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- SECCIÓN DEDICADA A CURVAS DE RENDIMIENTO -->
+    <div id="curvasYieldSection" class="hidden space-y-6">
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="p-2 bg-rose-50 text-brand-red rounded-lg"><i data-lucide="activity" class="w-5 h-5"></i></span>
+              <h2 class="text-xl font-bold text-slate-900">Curvas de Rendimiento (Yield Curves)</h2>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Estructura temporal de tasas (TIR %) en función de la Duration (Años) y Días al Vencimiento.</p>
+          </div>
+
+          <!-- Selector de Curva -->
+          <div class="flex bg-slate-100 p-1 rounded-xl space-x-1" id="curveSelectorTabs">
+            <button onclick="renderYieldCurve('soberanos_usd')" data-curvetab="soberanos_usd" class="curve-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white shadow-sm text-slate-900">Soberanos USD</button>
+            <button onclick="renderYieldCurve('bonos_cer')" data-curvetab="bonos_cer" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900">Bonos CER</button>
+            <button onclick="renderYieldCurve('lecaps')" data-curvetab="lecaps" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900">LECAPs (Pesos)</button>
+            <button onclick="renderYieldCurve('ons_usd')" data-curvetab="ons_usd" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900">ONs Corporativas</button>
+          </div>
+        </div>
+
+        <!-- Yield Curve Chart Canvas Container -->
+        <div class="mt-6 relative h-[380px] w-full">
+          <canvas id="yieldCurveCanvas"></canvas>
+        </div>
+
+        <!-- Tabla detallada de la curva activa -->
+        <div class="mt-6 overflow-x-auto">
+          <table class="min-w-full text-xs text-left" id="yieldCurveTable">
+            <!-- Injected dynamically -->
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL DE ANÁLISIS DETALLADO Y GRÁFICOS INTERACTIVOS -->
+  <div id="chartModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white w-full max-w-5xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh]">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center space-x-3">
+          <div id="modalAssetIcon" class="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center text-brand-red font-bold">
+            <!-- Icon / Symbol -->
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <h3 id="modalAssetTitle" class="text-lg font-bold text-slate-900">Activo</h3>
+              <span id="modalAssetSymbol" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-700">CODE</span>
+            </div>
+            <p id="modalAssetSubtitle" class="text-xs text-slate-500">Categoría</p>
+          </div>
+        </div>
+
+        <button onclick="closeModal()" class="p-2 rounded-full hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-all">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto space-y-6">
+        
+        <!-- Key Metrics Cards Row -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="modalMetricsRow">
+          <!-- Dynamically populated: Last Price, 1D, 1M, 12M, MA50, MA200, TIR, Duration -->
+        </div>
+
+        <!-- Chart Controls Toolbar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-100 p-2.5 rounded-xl text-xs">
+          
+          <!-- Chart Type Selector (For OHLC assets) -->
+          <div class="flex items-center space-x-1" id="chartTypeToolbar">
+            <span class="text-[11px] font-medium text-slate-500 mr-1 hidden sm:inline">Tipo:</span>
+            <button onclick="setChartType('line')" id="btnChartTypeLine" class="px-2.5 py-1 rounded bg-white font-semibold text-slate-800 shadow-sm">Línea</button>
+            <button onclick="setChartType('candlestick')" id="btnChartTypeCandle" class="px-2.5 py-1 rounded font-medium text-slate-600 hover:text-slate-900">Velas</button>
+            <button onclick="setChartType('ohlc')" id="btnChartTypeOhlc" class="px-2.5 py-1 rounded font-medium text-slate-600 hover:text-slate-900">OHLC</button>
+          </div>
+
+          <!-- Indicators Overlay (MA50, MA200) -->
+          <div class="flex items-center space-x-3" id="indicatorsToolbar">
+            <label class="flex items-center space-x-1.5 cursor-pointer text-[11px] font-medium text-slate-700">
+              <input type="checkbox" id="chkMA50" onchange="toggleMA('ma50')" checked class="rounded text-brand-red focus:ring-brand-red">
+              <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+              <span>MA 50</span>
+            </label>
+            <label class="flex items-center space-x-1.5 cursor-pointer text-[11px] font-medium text-slate-700">
+              <input type="checkbox" id="chkMA200" onchange="toggleMA('ma200')" checked class="rounded text-brand-red focus:ring-brand-red">
+              <span class="inline-block w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+              <span>MA 200</span>
+            </label>
+          </div>
+
+          <!-- Timeframe Selector (1M to 120M) -->
+          <div class="flex items-center space-x-1 bg-white p-1 rounded-lg border border-slate-200 overflow-x-auto">
+            <button onclick="setTimeframe(1)" data-tf="1" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">1M</button>
+            <button onclick="setTimeframe(6)" data-tf="6" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">6M</button>
+            <button onclick="setTimeframe(12)" data-tf="12" class="tf-btn px-2 py-0.5 rounded font-semibold bg-brand-red text-white shadow-sm">12M</button>
+            <button onclick="setTimeframe(24)" data-tf="24" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">24M</button>
+            <button onclick="setTimeframe(36)" data-tf="36" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">36M</button>
+            <button onclick="setTimeframe(48)" data-tf="48" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">48M</button>
+            <button onclick="setTimeframe(120)" data-tf="120" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">120M</button>
+          </div>
+
+        </div>
+
+        <!-- Main Interactive Chart Canvas Container -->
+        <div class="relative h-[340px] sm:h-[400px] w-full bg-slate-50/50 rounded-xl p-2 border border-slate-100">
+          <canvas id="modalMainCanvas"></canvas>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3 border-t border-slate-200 bg-slate-50 flex items-center justify-between text-xs text-slate-500">
+        <span>Fuente: Datos de Mercado Oficiales / Pipeline Automatizado</span>
+        <button onclick="closeModal()" class="px-4 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 font-semibold text-slate-700 transition-all">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER INSTITUCIONAL -->
+  <footer class="bg-white border-t border-slate-200 mt-auto py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center space-x-2">
+        <span class="font-bold text-slate-700">La Segunda Seguros</span>
+        <span>&bull;</span>
+        <span>Monitor Financiero Automatizado 24/7 en GitHub Pages</span>
+      </div>
+      <div>
+        <span>Actualizaciones diarias vía GitHub Actions</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT DE LA APLICACIÓN -->
+  <script>
+    // Global State
+    let DATASET = null;
+    let HISTORICAL_SERIES = null;
+    let YIELD_CURVES = null;
+    let ACTIVE_SECTION = 'all';
+    let CURRENT_MODAL_ASSET = null;
+    let CURRENT_TIMEFRAME = 12; // meses por defecto
+    let CURRENT_CHART_TYPE = 'line';
+    let SHOW_MA50 = true;
+    let SHOW_MA200 = true;
+    let modalChartInstance = null;
+    let yieldCurveChartInstance = null;
+
+    // Formateadores numéricos
+    function formatNumber(val, decimals = 2) {
+      if (val === null || val === undefined || isNaN(val)) return '-';
+      return new Intl.NumberFormat('es-AR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(val);
+    }
+
+    function formatCurrency(val, currency = 'ARS', decimals = 2) {
+      if (val === null || val === undefined || isNaN(val)) return '-';
+      const symb = currency === 'USD' ? 'US$' : (currency === '%' ? '%' : '$');
+      if (currency === '%') return `${formatNumber(val, decimals)}%`;
+      return `${symb} ${formatNumber(val, decimals)}`;
+    }
+
+    function formatMcap(val) {
+      if (!val || isNaN(val)) return '-';
+      if (val >= 1e12) return `$ ${(val / 1e12).toFixed(2)} T`;
+      if (val >= 1e9) return `$ ${(val / 1e9).toFixed(2)} B`;
+      if (val >= 1e6) return `$ ${(val / 1e6).toFixed(2)} M`;
+      return `$ ${formatNumber(val, 0)}`;
+    }
+
+    function renderVariationBadge(val) {
+      if (val === null || val === undefined || isNaN(val)) return '<span class="text-slate-400">-</span>';
+      const isPos = val > 0;
+      const isNeg = val < 0;
+      const colorClass = isPos ? 'text-emerald-700 bg-emerald-50 border-emerald-200' : (isNeg ? 'text-rose-700 bg-rose-50 border-rose-200' : 'text-slate-600 bg-slate-100 border-slate-200');
+      const arrow = isPos ? '▲' : (isNeg ? '▼' : '•');
+      const prefix = isPos ? '+' : '';
+      return `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono font-semibold border ${colorClass}">${arrow} ${prefix}${formatNumber(val, 2)}%</span>`;
+    }
+
+    // Carga de Datasets
+    async function loadDataset(force = false) {
+      const refreshIcon = document.getElementById('refreshIcon');
+      if (refreshIcon) refreshIcon.classList.add('animate-spin');
+      
+      try {
+        const cacheBuster = force ? `?t=${Date.now()}` : '';
+        const [rMaster, rSeries, rCurvas] = await Promise.all([
+          fetch(`master_dataset.json${cacheBuster}`).then(r => r.json()),
+          fetch(`series_historicas.json${cacheBuster}`).then(r => r.json()),
+          fetch(`curvas_rendimiento.json${cacheBuster}`).then(r => r.json())
+        ]);
+
+        DATASET = rMaster;
+        HISTORICAL_SERIES = rSeries;
+        YIELD_CURVES = rCurvas;
+
+        document.getElementById('updateTimeBadge').innerText = `Actualizado: ${DATASET.ultima_actualizacion || 'Hoy'}`;
+        
+        renderHeroHighlights();
+        renderActiveSection();
+      } catch (err) {
+        console.error("Error cargando datasets:", err);
+        document.getElementById('updateTimeBadge').innerText = 'Modo Demostración / Offline';
+      } finally {
+        if (refreshIcon) refreshIcon.classList.remove('animate-spin');
+        lucide.createIcons();
+      }
+    }
+
+    // Ribbon de Dólares e Índices Clave
+    function renderHeroHighlights() {
+      if (!DATASET || !DATASET.secciones) return;
+      const container = document.getElementById('quickHighlightsRibbon');
+      if (!container) return;
+
+      const dSecc = DATASET.secciones.dolar?.items || [];
+      const iSecc = DATASET.secciones.indices_mundiales?.items || [];
+
+      const blue = dSecc.find(x => x.id === 'USD_BLUE') || { nombre: 'Dólar Blue', precio: 1220, var_1d: 0.0 };
+      const mep = dSecc.find(x => x.id === 'USD_BOLSA') || { nombre: 'Dólar MEP', precio: 1195, var_1d: 0.2 };
+      const ccl = dSecc.find(x => x.id === 'USD_CONTADODONLIQUI') || { nombre: 'Dólar CCL', precio: 1215, var_1d: -0.1 };
+      const sp500 = iSecc.find(x => x.id === 'IDX_SP500') || { nombre: 'S&P 500', precio: 5950, var_1d: 0.4 };
+
+      const cards = [blue, mep, ccl, sp500];
+      container.innerHTML = cards.map(c => `
+        <div class="bg-white/10 backdrop-blur rounded-xl p-3 border border-white/10 hover:bg-white/15 cursor-pointer transition-all" onclick="openChartModal('${c.id}')">
+          <div class="text-[11px] text-slate-300 font-medium truncate">${c.nombre}</div>
+          <div class="flex items-baseline justify-between mt-1">
+            <span class="text-base sm:text-lg font-mono font-bold">${c.moneda === 'USD' ? 'US$' : '$'} ${formatNumber(c.precio, 2)}</span>
+            <span class="text-xs font-mono font-semibold ${c.var_1d >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${c.var_1d >= 0 ? '+' : ''}${c.var_1d}%</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Selección de Sección
+    function selectSection(secKey) {
+      ACTIVE_SECTION = secKey;
+      document.querySelectorAll('.sec-tab').forEach(t => {
+        if (t.getAttribute('data-sec') === secKey) {
+          t.classList.add('tab-active');
+          t.classList.remove('text-slate-600', 'bg-white');
+        } else {
+          t.classList.remove('tab-active');
+          t.classList.add('text-slate-600');
+        }
+      });
+
+      const hero = document.getElementById('heroSection');
+      const curvasSec = document.getElementById('curvasYieldSection');
+      const modContainer = document.getElementById('modulesContainer');
+
+      if (secKey === 'curvas_rendimiento') {
+        if (hero) hero.classList.add('hidden');
+        if (modContainer) modContainer.classList.add('hidden');
+        if (curvasSec) {
+          curvasSec.classList.remove('hidden');
+          renderYieldCurve('soberanos_usd');
+        }
+      } else {
+        if (hero) hero.classList.remove('hidden');
+        if (curvasSec) curvasSec.classList.add('hidden');
+        if (modContainer) {
+          modContainer.classList.remove('hidden');
+          renderActiveSection();
+        }
+      }
+      lucide.createIcons();
+    }
+
+    // Render de Sección Activa o Todas
+    function renderActiveSection() {
+      if (!DATASET || !DATASET.secciones) return;
+      const container = document.getElementById('modulesContainer');
+      if (!container) return;
+
+      const keysToRender = ACTIVE_SECTION === 'all' 
+        ? Object.keys(DATASET.secciones) 
+        : (DATASET.secciones[ACTIVE_SECTION] ? [ACTIVE_SECTION] : []);
+
+      container.innerHTML = keysToRender.map(k => {
+        const sec = DATASET.secciones[k];
+        return renderSectionBlock(k, sec);
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function renderSectionBlock(secKey, sec) {
+      const items = sec.items || [];
+      return `
+        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" id="section_${secKey}">
+          <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+            <div class="flex items-center space-x-3">
+              <span class="p-2 bg-rose-50 text-brand-red rounded-lg"><i data-lucide="${sec.icono || 'layers'}" class="w-5 h-5"></i></span>
+              <div>
+                <h2 class="text-lg font-bold text-slate-900">${sec.titulo}</h2>
+                <p class="text-xs text-slate-500">${items.length} activos monitoreados</p>
+              </div>
+            </div>
+            ${secKey === 'bonos_lecaps' || secKey === 'ons' ? `
+              <button onclick="selectSection('curvas_rendimiento')" class="text-xs font-semibold text-brand-red bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-all flex items-center space-x-1">
+                <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+                <span>Ver Curva TIR</span>
+              </button>
+            ` : ''}
+          </div>
+
+          <!-- Table View -->
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-xs text-left">
+              <thead class="bg-slate-50/80 text-slate-500 uppercase tracking-wider font-semibold border-b border-slate-200">
+                <tr>
+                  <th class="px-4 py-3">Activo / Instrumento</th>
+                  <th class="px-4 py-3 text-right">Último Cierre</th>
+                  <th class="px-4 py-3 text-right">Var. 1D</th>
+                  <th class="px-4 py-3 text-right">Var. 1M</th>
+                  <th class="px-4 py-3 text-right">Var. 12M</th>
+                  ${renderDynamicColumnsHeaders(secKey)}
+                  <th class="px-4 py-3 text-center">Gráfico</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-medium">
+                ${items.map(item => renderRowItem(secKey, item)).join('')}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderDynamicColumnsHeaders(secKey) {
+      if (secKey === 'bonos_lecaps' || secKey === 'ons') {
+        return `
+          <th class="px-4 py-3 text-right">TIR (%)</th>
+          <th class="px-4 py-3 text-right">Duration (Años)</th>
+          <th class="px-4 py-3 text-right">Días Vto</th>
+        `;
+      }
+      if (secKey === 'cedears') {
+        return `
+          <th class="px-4 py-3 text-right">Subyacente (USD)</th>
+          <th class="px-4 py-3 text-right">Ratio</th>
+          <th class="px-4 py-3 text-right">CCL Implícito</th>
+        `;
+      }
+      if (secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
+        return `
+          <th class="px-4 py-3 text-right">Cap. Bursátil</th>
+          <th class="px-4 py-3 text-right">MA 50</th>
+          <th class="px-4 py-3 text-right">MA 200</th>
+        `;
+      }
+      if (secKey === 'fci') {
+        return `
+          <th class="px-4 py-3">Clase / Tipo</th>
+          <th class="px-4 py-3 text-right">TNA Est.</th>
+          <th class="px-4 py-3 text-right">Patrimonio</th>
+        `;
+      }
+      if (secKey === 'tasas_locales') {
+        return `
+          <th class="px-4 py-3 text-right">TNA</th>
+          <th class="px-4 py-3 text-right">TEA</th>
+          <th class="px-4 py-3 text-right">TEM</th>
+        `;
+      }
+      return '';
+    }
+
+    function renderRowItem(secKey, item) {
+      return `
+        <tr class="hover:bg-slate-50/80 cursor-pointer transition-all" onclick="openChartModal('${item.id}')">
+          <td class="px-4 py-3">
+            <div class="font-bold text-slate-800 text-xs">${item.nombre}</div>
+            <div class="text-[11px] text-slate-400 font-normal">${item.symbol || item.id} ${item.subtitulo ? `&bull; ${item.subtitulo}` : ''}</div>
+          </td>
+          <td class="px-4 py-3 text-right font-mono font-bold text-slate-900">
+            ${formatCurrency(item.precio, item.moneda || 'ARS', item.moneda === 'USD' && item.precio < 1 ? 4 : 2)}
+          </td>
+          <td class="px-4 py-3 text-right">${renderVariationBadge(item.var_1d)}</td>
+          <td class="px-4 py-3 text-right">${renderVariationBadge(item.var_1m)}</td>
+          <td class="px-4 py-3 text-right">${renderVariationBadge(item.var_12m)}</td>
+          ${renderDynamicColumnsCells(secKey, item)}
+          <td class="px-4 py-3 text-center">
+            <button class="p-1.5 rounded-lg bg-slate-100 hover:bg-brand-red hover:text-white text-slate-500 transition-all" title="Ver Gráfico y Análisis">
+              <i data-lucide="line-chart" class="w-4 h-4"></i>
+            </button>
+          </td>
+        </tr>
+      `;
+    }
+
+    function renderDynamicColumnsCells(secKey, item) {
+      if (secKey === 'bonos_lecaps' || secKey === 'ons') {
+        return `
+          <td class="px-4 py-3 text-right font-mono font-semibold text-brand-red">${item.tir ? `${formatNumber(item.tir, 2)}%` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-700">${item.duration ? `${formatNumber(item.duration, 2)} a` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-500">${item.dias_vto || '-'}</td>
+        `;
+      }
+      if (secKey === 'cedears') {
+        return `
+          <td class="px-4 py-3 text-right font-mono text-slate-700">${item.precio_subyacente_usd ? `US$ ${formatNumber(item.precio_subyacente_usd, 2)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-500">${item.ratio ? `${item.ratio}:1` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono font-bold text-slate-900">${item.ccl_implicito ? `$ ${formatNumber(item.ccl_implicito, 2)}` : '-'}</td>
+        `;
+      }
+      if (secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
+        return `
+          <td class="px-4 py-3 text-right font-mono text-slate-600">${formatMcap(item.cap_bursatil)}</td>
+          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `$ ${formatNumber(item.ma50, 2)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `$ ${formatNumber(item.ma200, 2)}` : '-'}</td>
+        `;
+      }
+      if (secKey === 'fci') {
+        return `
+          <td class="px-4 py-3 text-slate-600">${item.clase || '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-emerald-600">${item.tna_estimada ? `${formatNumber(item.tna_estimada, 2)}%` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-500">${formatMcap(item.patrimonio)}</td>
+        `;
+      }
+      if (secKey === 'tasas_locales') {
+        return `
+          <td class="px-4 py-3 text-right font-mono text-slate-900 font-bold">${item.tna ? `${formatNumber(item.tna, 2)}%` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-700">${item.tea ? `${formatNumber(item.tea, 2)}%` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-600">${item.tem ? `${formatNumber(item.tem, 2)}%` : '-'}</td>
+        `;
+      }
+      return '';
+    }
+
+    // Modal de Gráfico y Análisis
+    function openChartModal(assetId) {
+      if (!DATASET) return;
+      
+      let found = null;
+      let foundCategory = '';
+      for (const [secKey, sec] of Object.entries(DATASET.secciones)) {
+        const item = (sec.items || []).find(x => x.id === assetId);
+        if (item) {
+          found = item;
+          foundCategory = sec.titulo;
+          break;
+        }
+      }
+      if (!found) return;
+
+      CURRENT_MODAL_ASSET = found;
+      
+      document.getElementById('modalAssetTitle').innerText = found.nombre;
+      document.getElementById('modalAssetSymbol').innerText = found.symbol || found.id;
+      document.getElementById('modalAssetSubtitle').innerText = `${foundCategory} ${found.subtitulo ? `• ${found.subtitulo}` : ''}`;
+      
+      // Render Metrics Row
+      const metricsContainer = document.getElementById('modalMetricsRow');
+      let mHtml = `
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3">
+          <div class="text-[11px] text-slate-500 uppercase font-medium">Último Cierre</div>
+          <div class="text-base font-mono font-bold text-slate-900 mt-1">${formatCurrency(found.precio, found.moneda)}</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3">
+          <div class="text-[11px] text-slate-500 uppercase font-medium">Var. 1D</div>
+          <div class="mt-1">${renderVariationBadge(found.var_1d)}</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3">
+          <div class="text-[11px] text-slate-500 uppercase font-medium">Var. 1M</div>
+          <div class="mt-1">${renderVariationBadge(found.var_1m)}</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3">
+          <div class="text-[11px] text-slate-500 uppercase font-medium">Var. 12M</div>
+          <div class="mt-1">${renderVariationBadge(found.var_12m)}</div>
+        </div>
+      `;
+
+      if (found.tir) {
+        mHtml += `
+          <div class="bg-rose-50 border border-rose-200 rounded-xl p-3">
+            <div class="text-[11px] text-brand-red uppercase font-bold">TIR</div>
+            <div class="text-base font-mono font-bold text-brand-red mt-1">${formatNumber(found.tir, 2)}%</div>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3">
+            <div class="text-[11px] text-slate-500 uppercase font-medium">Duration</div>
+            <div class="text-base font-mono font-bold text-slate-800 mt-1">${formatNumber(found.duration, 2)} años</div>
+          </div>
+        `;
+      }
+
+      if (found.ma50) {
+        mHtml += `
+          <div class="bg-amber-50/50 border border-amber-200 rounded-xl p-3">
+            <div class="text-[11px] text-amber-700 uppercase font-bold">MA 50 Días</div>
+            <div class="text-base font-mono font-bold text-amber-700 mt-1">${formatCurrency(found.ma50, found.moneda)}</div>
+          </div>
+          <div class="bg-indigo-50/50 border border-indigo-200 rounded-xl p-3">
+            <div class="text-[11px] text-indigo-700 uppercase font-bold">MA 200 Días</div>
+            <div class="text-base font-mono font-bold text-indigo-700 mt-1">${formatCurrency(found.ma200, found.moneda)}</div>
+          </div>
+        `;
+      }
+
+      metricsContainer.innerHTML = mHtml;
+
+      // Adjust Chart Type Toolbar depending on asset type
+      const isOhlc = found.tipo === 'market_asset' && found.open !== undefined;
+      const typeToolbar = document.getElementById('chartTypeToolbar');
+      const indicatorsToolbar = document.getElementById('indicatorsToolbar');
+      
+      if (isOhlc) {
+        if (typeToolbar) typeToolbar.classList.remove('hidden');
+        if (indicatorsToolbar) indicatorsToolbar.classList.remove('hidden');
+      } else {
+        if (typeToolbar) typeToolbar.classList.add('hidden');
+        if (indicatorsToolbar) indicatorsToolbar.classList.add('hidden');
+        CURRENT_CHART_TYPE = 'line';
+      }
+
+      document.getElementById('chartModal').classList.remove('hidden');
+      renderModalChart();
+      lucide.createIcons();
+    }
+
+    function closeModal() {
+      document.getElementById('chartModal').classList.add('hidden');
+      if (modalChartInstance) {
+        modalChartInstance.destroy();
+        modalChartInstance = null;
+      }
+    }
+
+    function setTimeframe(months) {
+      CURRENT_TIMEFRAME = months;
+      document.querySelectorAll('.tf-btn').forEach(b => {
+        if (parseInt(b.getAttribute('data-tf')) === months) {
+          b.className = 'tf-btn px-2 py-0.5 rounded font-semibold bg-brand-red text-white shadow-sm';
+        } else {
+          b.className = 'tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100';
+        }
+      });
+      renderModalChart();
+    }
+
+    function setChartType(type) {
+      CURRENT_CHART_TYPE = type;
+      ['Line', 'Candle', 'Ohlc'].forEach(t => {
+        const btn = document.getElementById(`btnChartType${t}`);
+        if (!btn) return;
+        if (t.toLowerCase() === type || (t === 'Candle' && type === 'candlestick')) {
+          btn.className = 'px-2.5 py-1 rounded bg-white font-semibold text-slate-800 shadow-sm';
+        } else {
+          btn.className = 'px-2.5 py-1 rounded font-medium text-slate-600 hover:text-slate-900';
+        }
+      });
+      renderModalChart();
+    }
+
+    function toggleMA(which) {
+      if (which === 'ma50') SHOW_MA50 = document.getElementById('chkMA50').checked;
+      if (which === 'ma200') SHOW_MA200 = document.getElementById('chkMA200').checked;
+      renderModalChart();
+    }
+
+    // Render del Gráfico del Modal
+    function renderModalChart() {
+      if (!CURRENT_MODAL_ASSET || !HISTORICAL_SERIES) return;
+      const rawSeries = HISTORICAL_SERIES[CURRENT_MODAL_ASSET.id] || [];
+      if (!rawSeries.length) return;
+
+      // Filter series by timeframe (approx 21 trading days / 30 calendar days per month)
+      const daysCount = CURRENT_TIMEFRAME * 22;
+      const series = rawSeries.slice(-daysCount);
+
+      const ctx = document.getElementById('modalMainCanvas').getContext('2d');
+      if (modalChartInstance) {
+        modalChartInstance.destroy();
+        modalChartInstance = null;
+      }
+
+      const labels = series.map(x => x.date);
+      const closePrices = series.map(x => x.close);
+
+      // Datasets
+      const datasets = [];
+
+      // Main line or candlestick
+      if (CURRENT_CHART_TYPE === 'candlestick' && series[0].open !== undefined) {
+        // Candlestick format
+        const candleData = series.map(pt => ({
+          x: pt.date,
+          o: pt.open,
+          h: pt.high,
+          l: pt.low,
+          c: pt.close
+        }));
+        datasets.push({
+          label: CURRENT_MODAL_ASSET.nombre,
+          data: candleData,
+          type: 'candlestick',
+          color: {
+            up: '#10b981',
+            down: '#ef4444',
+            unchanged: '#64748b',
+          }
+        });
+      } else if (CURRENT_CHART_TYPE === 'ohlc' && series[0].open !== undefined) {
+        const ohlcData = series.map(pt => ({
+          x: pt.date,
+          o: pt.open,
+          h: pt.high,
+          l: pt.low,
+          c: pt.close
+        }));
+        datasets.push({
+          label: CURRENT_MODAL_ASSET.nombre,
+          data: ohlcData,
+          type: 'ohlc',
+          color: {
+            up: '#10b981',
+            down: '#ef4444',
+            unchanged: '#64748b',
+          }
+        });
+      } else {
+        // High quality smooth Line Chart
+        datasets.push({
+          label: 'Precio de Cierre',
+          data: closePrices,
+          borderColor: '#e20039',
+          backgroundColor: 'rgba(226, 0, 57, 0.08)',
+          borderWidth: 2.2,
+          pointRadius: series.length > 60 ? 0 : 2,
+          pointHoverRadius: 5,
+          fill: true,
+          tension: 0.15
+        });
+      }
+
+      // Moving Averages Overlay
+      if (SHOW_MA50 && CURRENT_MODAL_ASSET.tipo === 'market_asset') {
+        const ma50Vals = [];
+        for (let i = 0; i < series.length; i++) {
+          const slice = series.slice(Math.max(0, i - 50 + 1), i + 1);
+          const avg = slice.reduce((a, b) => a + b.close, 0) / slice.length;
+          ma50Vals.push(i >= 15 ? avg : null);
+        }
+        datasets.push({
+          label: 'MA 50 Días',
+          data: ma50Vals,
+          borderColor: '#f59e0b',
+          borderWidth: 1.6,
+          pointRadius: 0,
+          borderDash: [4, 4],
+          fill: false,
+          tension: 0.2
+        });
+      }
+
+      if (SHOW_MA200 && CURRENT_MODAL_ASSET.tipo === 'market_asset') {
+        const ma200Vals = [];
+        for (let i = 0; i < series.length; i++) {
+          const slice = series.slice(Math.max(0, i - 200 + 1), i + 1);
+          const avg = slice.reduce((a, b) => a + b.close, 0) / slice.length;
+          ma200Vals.push(i >= 40 ? avg : null);
+        }
+        datasets.push({
+          label: 'MA 200 Días',
+          data: ma200Vals,
+          borderColor: '#4f46e5',
+          borderWidth: 1.6,
+          pointRadius: 0,
+          borderDash: [6, 4],
+          fill: false,
+          tension: 0.2
+        });
+      }
+
+      modalChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                boxWidth: 12,
+                font: { family: 'Sora', size: 11, weight: '500' }
+              }
+            },
+            tooltip: {
+              backgroundColor: '#1e222d',
+              titleFont: { family: 'Sora', size: 12, weight: 'bold' },
+              bodyFont: { family: 'JetBrains Mono', size: 11 },
+              padding: 10,
+              cornerRadius: 8
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: {
+                font: { family: 'JetBrains Mono', size: 10 },
+                maxTicksLimit: 8
+              }
+            },
+            y: {
+              grid: { color: '#f1f5f9' },
+              ticks: {
+                font: { family: 'JetBrains Mono', size: 10 },
+                callback: function(v) { return formatNumber(v); }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Render de Curvas de Rendimiento (Yield Curves)
+    function renderYieldCurve(curveKey) {
+      if (!YIELD_CURVES || !YIELD_CURVES[curveKey]) return;
+      
+      document.querySelectorAll('.curve-tab').forEach(b => {
+        if (b.getAttribute('data-curvetab') === curveKey) {
+          b.className = 'curve-tab px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-red text-white shadow-sm';
+        } else {
+          b.className = 'curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900';
+        }
+      });
+
+      const curvePoints = YIELD_CURVES[curveKey] || [];
+      const ctx = document.getElementById('yieldCurveCanvas').getContext('2d');
+      if (yieldCurveChartInstance) {
+        yieldCurveChartInstance.destroy();
+        yieldCurveChartInstance = null;
+      }
+
+      // Scatter data points
+      const scatterData = curvePoints.map(p => ({
+        x: p.duration,
+        y: p.tir,
+        name: p.symbol || p.nombre,
+        ley: p.ley,
+        dias: p.dias_vto
+      }));
+
+      // Spline fitted line points
+      const sortedByDur = [...scatterData].sort((a, b) => a.x - b.x);
+      const lineData = sortedByDur.map(p => ({ x: p.x, y: p.y }));
+
+      yieldCurveChartInstance = new Chart(ctx, {
+        type: 'scatter',
+        data: {
+          datasets: [
+            {
+              label: 'Curva Ajustada',
+              data: lineData,
+              type: 'line',
+              borderColor: '#e20039',
+              backgroundColor: 'rgba(226, 0, 57, 0.05)',
+              borderWidth: 2.5,
+              tension: 0.35,
+              pointRadius: 0,
+              fill: true
+            },
+            {
+              label: 'Bonos / Instrumentos',
+              data: scatterData,
+              type: 'scatter',
+              backgroundColor: '#e20039',
+              borderColor: '#ffffff',
+              borderWidth: 2,
+              pointRadius: 7,
+              pointHoverRadius: 10
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#1e222d',
+              padding: 12,
+              cornerRadius: 8,
+              callbacks: {
+                title: function(items) {
+                  const pt = items[0]?.raw;
+                  return pt?.name || 'Instrumento';
+                },
+                label: function(item) {
+                  const pt = item.raw;
+                  return [
+                    `TIR: ${formatNumber(pt.y, 2)}%`,
+                    `Duration: ${formatNumber(pt.x, 2)} años`,
+                    `Días Vto: ${pt.dias || '-'} días`,
+                    `Ley: ${pt.ley || '-'}`
+                  ];
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Duration Modificada (Años)',
+                font: { family: 'Sora', size: 11, weight: 'bold' }
+              },
+              grid: { color: '#f1f5f9' },
+              ticks: { font: { family: 'JetBrains Mono', size: 10 } }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Tasa Interna de Retorno - TIR (%)',
+                font: { family: 'Sora', size: 11, weight: 'bold' }
+              },
+              grid: { color: '#f1f5f9' },
+              ticks: { font: { family: 'JetBrains Mono', size: 10 } }
+            }
+          }
+        }
+      });
+
+      // Render table
+      const table = document.getElementById('yieldCurveTable');
+      table.innerHTML = `
+        <thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
+          <tr>
+            <th class="px-4 py-2.5">Símbolo</th>
+            <th class="px-4 py-2.5">Nombre</th>
+            <th class="px-4 py-2.5 text-right">Precio</th>
+            <th class="px-4 py-2.5 text-right">TIR (%)</th>
+            <th class="px-4 py-2.5 text-right">Duration (Años)</th>
+            <th class="px-4 py-2.5 text-right">Días al Vencimiento</th>
+            <th class="px-4 py-2.5 text-center">Ley</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          ${curvePoints.map(p => `
+            <tr class="hover:bg-slate-50 cursor-pointer" onclick="openChartModal('${p.id}')">
+              <td class="px-4 py-2.5 font-bold text-slate-800">${p.symbol || p.id}</td>
+              <td class="px-4 py-2.5 text-slate-600">${p.nombre}</td>
+              <td class="px-4 py-2.5 text-right font-mono font-semibold">${formatNumber(p.precio, 2)}</td>
+              <td class="px-4 py-2.5 text-right font-mono font-bold text-brand-red">${formatNumber(p.tir, 2)}%</td>
+              <td class="px-4 py-2.5 text-right font-mono text-slate-700">${formatNumber(p.duration, 2)}</td>
+              <td class="px-4 py-2.5 text-right font-mono text-slate-500">${p.dias_vto || '-'}</td>
+              <td class="px-4 py-2.5 text-center"><span class="px-2 py-0.5 rounded text-[10px] font-semibold ${p.ley === 'Nueva York' ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' : 'bg-slate-100 text-slate-700'}">${p.ley || 'Argentina'}</span></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      `;
+    }
+
+    // Buscador Global
+    function handleGlobalSearch(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        renderActiveSection();
+        return;
+      }
+
+      const container = document.getElementById('modulesContainer');
+      const matchedItems = [];
+
+      for (const [secKey, sec] of Object.entries(DATASET.secciones)) {
+        for (const item of (sec.items || [])) {
+          if (
+            (item.nombre && item.nombre.toLowerCase().includes(q)) ||
+            (item.symbol && item.symbol.toLowerCase().includes(q)) ||
+            (item.id && item.id.toLowerCase().includes(q))
+          ) {
+            matchedItems.push({ ...item, secKey });
+          }
+        }
+      }
+
+      container.innerHTML = `
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+          <h2 class="text-base font-bold text-slate-900 mb-4">Resultados de búsqueda para "${query}" (${matchedItems.length})</h2>
+          ${matchedItems.length === 0 ? '<p class="text-sm text-slate-500">No se encontraron activos con ese nombre o símbolo.</p>' : `
+            <div class="overflow-x-auto">
+              <table class="min-w-full text-xs text-left">
+                <thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
+                  <tr>
+                    <th class="px-4 py-3">Activo</th>
+                    <th class="px-4 py-3 text-right">Último Cierre</th>
+                    <th class="px-4 py-3 text-right">Var. 1D</th>
+                    <th class="px-4 py-3 text-right">Var. 1M</th>
+                    <th class="px-4 py-3 text-right">Var. 12M</th>
+                    <th class="px-4 py-3 text-center">Acción</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 font-medium">
+                  ${matchedItems.map(item => `
+                    <tr class="hover:bg-slate-50 cursor-pointer" onclick="openChartModal('${item.id}')">
+                      <td class="px-4 py-3">
+                        <div class="font-bold text-slate-800">${item.nombre}</div>
+                        <div class="text-[11px] text-slate-400 font-normal">${item.symbol || item.id}</div>
+                      </td>
+                      <td class="px-4 py-3 text-right font-mono font-bold">${formatCurrency(item.precio, item.moneda)}</td>
+                      <td class="px-4 py-3 text-right">${renderVariationBadge(item.var_1d)}</td>
+                      <td class="px-4 py-3 text-right">${renderVariationBadge(item.var_1m)}</td>
+                      <td class="px-4 py-3 text-right">${renderVariationBadge(item.var_12m)}</td>
+                      <td class="px-4 py-3 text-center">
+                        <button class="p-1.5 rounded-lg bg-slate-100 hover:bg-brand-red hover:text-white text-slate-500">
+                          <i data-lucide="line-chart" class="w-4 h-4"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          `}
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    // Inicialización al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDataset();
+    });
+  </script>
+</body>
+</html>
