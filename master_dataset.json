@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-08-22 18:57:27",
+  "ultima_actualizacion": "2026-08-22 19:10:34",
   "fecha_cierre": "2026-08-22",
   "secciones": {
     "dolar": {
@@ -115,7 +115,7 @@
           "compra": 1582.95,
           "venta": 1590.9,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-08-22 18:57:27",
+          "fecha_actualizacion": "2026-08-22 19:10:34",
           "var_1d": 0.15,
           "var_1m": 3.2,
           "var_12m": 42.5
@@ -1814,13 +1814,16 @@
           "nombre": "Bonar 2030 USD",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARAL30DBOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 55.02,
+          "open": 55.21,
+          "high": 55.49,
+          "low": 55.02,
           "paridad_pct": 85.89,
           "valor_tecnico": 64.06,
           "valor_residual_pct": 100.0,
@@ -1881,9 +1884,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - vto. 07/2030",
-          "var_1d": 0.0,
-          "var_1m": 2.23,
-          "var_12m": 18.04
+          "var_1d": -0.24,
+          "var_1m": -3.39,
+          "var_12m": -8.83
         },
         {
           "id": "BONO_GD30D",
@@ -1891,13 +1894,16 @@
           "nombre": "Global 2030 USD",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Nueva York",
           "isin": "ARGD30DBOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 57.01,
+          "open": 57.34,
+          "high": 57.65,
+          "low": 57.01,
           "paridad_pct": 88.99,
           "valor_tecnico": 64.06,
           "valor_residual_pct": 100.0,
@@ -1958,9 +1964,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2030",
-          "var_1d": 0.0,
-          "var_1m": 1.24,
-          "var_12m": 18.85
+          "var_1d": -0.04,
+          "var_1m": -2.41,
+          "var_12m": -8.48
         },
         {
           "id": "BONO_AL29D",
@@ -1968,13 +1974,16 @@
           "nombre": "Bonar 2029 USD",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARAL29DBOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 53.35,
+          "open": 53.6,
+          "high": 54.02,
+          "low": 53.0,
           "paridad_pct": 88.81,
           "valor_tecnico": 60.08,
           "valor_residual_pct": 100.0,
@@ -2023,9 +2032,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - 1.00% - vto. 07/2029",
-          "var_1d": 0.0,
-          "var_1m": 2.4,
-          "var_12m": 16.94
+          "var_1d": 0.28,
+          "var_1m": -3.67,
+          "var_12m": -15.47
         },
         {
           "id": "BONO_GD29D",
@@ -2033,13 +2042,16 @@
           "nombre": "Global 2029 USD",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Nueva York",
           "isin": "ARGD29DBOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 55.93,
+          "open": 55.52,
+          "high": 56.22,
+          "low": 55.51,
           "paridad_pct": 93.1,
           "valor_tecnico": 60.08,
           "valor_residual_pct": 100.0,
@@ -2088,9 +2100,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley NY - 1.00% - vto. 07/2029",
-          "var_1d": 0.0,
-          "var_1m": 1.05,
-          "var_12m": 16.55
+          "var_1d": 0.45,
+          "var_1m": -0.13,
+          "var_12m": -25.46
         },
         {
           "id": "BONO_AL35D",
@@ -2098,13 +2110,16 @@
           "nombre": "Bonar 2035 USD",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARAL35DBOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 75.29,
+          "open": 73.8,
+          "high": 75.58,
+          "low": 73.58,
           "paridad_pct": 74.9,
           "valor_tecnico": 100.52,
           "valor_residual_pct": 100.0,
@@ -2118,35 +2133,29 @@
           "dias_vto": 3242,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2035-07-09",
-          "proximo_pago_fecha": "2027-05-19",
+          "proximo_pago_fecha": "2027-07-12",
           "proximo_pago_monto": "US$ 1.03 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-05-19",
+              "fecha": "2027-07-12",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-02-13",
+              "fecha": "2028-05-31",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-11-09",
+              "fecha": "2029-04-20",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2029-08-06",
-              "renta": 1.03,
-              "amort": 0.0,
-              "total": 1.03
-            },
-            {
-              "fecha": "2030-05-03",
+              "fecha": "2030-03-10",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
@@ -2158,31 +2167,25 @@
               "total": 1.03
             },
             {
-              "fecha": "2031-10-26",
+              "fecha": "2031-12-19",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-07-22",
+              "fecha": "2032-11-07",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2033-04-18",
+              "fecha": "2033-09-27",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2034-01-13",
-              "renta": 1.03,
-              "amort": 0.0,
-              "total": 1.03
-            },
-            {
-              "fecha": "2034-10-10",
+              "fecha": "2034-08-17",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
@@ -2195,9 +2198,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - vto. 07/2035",
-          "var_1d": 0.0,
-          "var_1m": 0.91,
-          "var_12m": 22.82
+          "var_1d": 2.32,
+          "var_1m": -7.44,
+          "var_12m": 14.88
         },
         {
           "id": "BONO_GD35D",
@@ -2205,13 +2208,16 @@
           "nombre": "Global 2035 USD",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Nueva York",
           "isin": "ARGD35DBOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 79.89,
+          "open": 78.07,
+          "high": 80.05,
+          "low": 78.07,
           "paridad_pct": 79.48,
           "valor_tecnico": 100.52,
           "valor_residual_pct": 100.0,
@@ -2225,35 +2231,29 @@
           "dias_vto": 3242,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2035-07-09",
-          "proximo_pago_fecha": "2027-05-19",
+          "proximo_pago_fecha": "2027-07-12",
           "proximo_pago_monto": "US$ 1.03 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-05-19",
+              "fecha": "2027-07-12",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-02-13",
+              "fecha": "2028-05-31",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-11-09",
+              "fecha": "2029-04-20",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2029-08-06",
-              "renta": 1.03,
-              "amort": 0.0,
-              "total": 1.03
-            },
-            {
-              "fecha": "2030-05-03",
+              "fecha": "2030-03-10",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
@@ -2265,31 +2265,25 @@
               "total": 1.03
             },
             {
-              "fecha": "2031-10-26",
+              "fecha": "2031-12-19",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-07-22",
+              "fecha": "2032-11-07",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2033-04-18",
+              "fecha": "2033-09-27",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2034-01-13",
-              "renta": 1.03,
-              "amort": 0.0,
-              "total": 1.03
-            },
-            {
-              "fecha": "2034-10-10",
+              "fecha": "2034-08-17",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
@@ -2302,9 +2296,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2035",
-          "var_1d": 0.0,
-          "var_1m": 1.46,
-          "var_12m": 24.11
+          "var_1d": 2.34,
+          "var_1m": -4.09,
+          "var_12m": 19.78
         },
         {
           "id": "BONO_AL38D",
@@ -2319,7 +2313,10 @@
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 75.0,
-          "paridad_pct": 75.0,
+          "open": 75.0,
+          "high": 75.0,
+          "low": 75.0,
+          "paridad_pct": 85.0,
           "valor_tecnico": 100.0,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 1.06,
@@ -2327,8 +2324,8 @@
           "tipo_cupon": "Step-Up Semestral",
           "frecuencia_pago": "Semestral",
           "amortizacion": "Semestral (2027-2038)",
-          "tir": 10.5,
-          "duration": 2.5,
+          "tir": 9.5,
+          "duration": 2.0,
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
@@ -2361,9 +2358,9 @@
             }
           ],
           "subtitulo": "Soberanos Dólar Hard (AL/GD) • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 1.17,
-          "var_12m": 20.97
+          "var_1d": 0.0,
+          "var_1m": 3.5,
+          "var_12m": 55.0
         },
         {
           "id": "BONO_GD38D",
@@ -2371,13 +2368,16 @@
           "nombre": "Global 2038 USD",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Nueva York",
           "isin": "ARGD38DBOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 83.5,
+          "open": 82.93,
+          "high": 84.06,
+          "low": 82.93,
           "paridad_pct": 82.98,
           "valor_tecnico": 100.62,
           "valor_residual_pct": 100.0,
@@ -2391,35 +2391,29 @@
           "dias_vto": 4158,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2038-01-09",
-          "proximo_pago_fecha": "2027-08-03",
+          "proximo_pago_fecha": "2027-10-11",
           "proximo_pago_monto": "US$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-08-03",
+              "fecha": "2027-10-11",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2028-07-15",
+              "fecha": "2028-11-30",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2029-06-26",
+              "fecha": "2030-01-20",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2030-06-08",
-              "renta": 1.25,
-              "amort": 0.0,
-              "total": 1.25
-            },
-            {
-              "fecha": "2031-05-20",
+              "fecha": "2031-03-12",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
@@ -2431,31 +2425,25 @@
               "total": 1.25
             },
             {
-              "fecha": "2033-04-12",
+              "fecha": "2033-06-20",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2034-03-25",
+              "fecha": "2034-08-10",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2035-03-06",
+              "fecha": "2035-09-30",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2036-02-16",
-              "renta": 1.25,
-              "amort": 0.0,
-              "total": 1.25
-            },
-            {
-              "fecha": "2037-01-27",
+              "fecha": "2036-11-19",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
@@ -2468,9 +2456,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 01/2038",
-          "var_1d": 0.0,
-          "var_1m": 1.54,
-          "var_12m": 22.4
+          "var_1d": 1.27,
+          "var_1m": -4.35,
+          "var_12m": 17.19
         },
         {
           "id": "BONO_AL41D",
@@ -2478,13 +2466,16 @@
           "nombre": "Bonar 2041 USD",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARAL41DBOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 69.96,
+          "open": 68.13,
+          "high": 70.26,
+          "low": 68.13,
           "paridad_pct": 69.66,
           "valor_tecnico": 100.44,
           "valor_residual_pct": 100.0,
@@ -2498,35 +2489,29 @@
           "dias_vto": 5434,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2041-07-09",
-          "proximo_pago_fecha": "2027-11-17",
+          "proximo_pago_fecha": "2028-02-16",
           "proximo_pago_monto": "US$ 0.88 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-11-17",
+              "fecha": "2028-02-16",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2029-02-12",
+              "fecha": "2029-08-12",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2030-05-11",
+              "fecha": "2031-02-07",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2031-08-07",
-              "renta": 0.875,
-              "amort": 0.0,
-              "total": 0.875
-            },
-            {
-              "fecha": "2032-11-02",
+              "fecha": "2032-08-03",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
@@ -2538,31 +2523,25 @@
               "total": 0.875
             },
             {
-              "fecha": "2035-04-26",
+              "fecha": "2035-07-26",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2036-07-22",
+              "fecha": "2037-01-19",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2037-10-18",
+              "fecha": "2038-07-17",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2039-01-14",
-              "renta": 0.875,
-              "amort": 0.0,
-              "total": 0.875
-            },
-            {
-              "fecha": "2040-04-11",
+              "fecha": "2040-01-11",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
@@ -2575,9 +2554,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - vto. 07/2041",
-          "var_1d": 0.0,
-          "var_1m": 1.95,
-          "var_12m": 20.43
+          "var_1d": 1.58,
+          "var_1m": -8.85,
+          "var_12m": 16.29
         },
         {
           "id": "BONO_GD41D",
@@ -2585,13 +2564,16 @@
           "nombre": "Global 2041 USD",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Nueva York",
           "isin": "ARGD41DBOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 74.2,
+          "open": 73.29,
+          "high": 74.55,
+          "low": 73.19,
           "paridad_pct": 73.88,
           "valor_tecnico": 100.44,
           "valor_residual_pct": 100.0,
@@ -2605,35 +2587,29 @@
           "dias_vto": 5434,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2041-07-09",
-          "proximo_pago_fecha": "2027-11-17",
+          "proximo_pago_fecha": "2028-02-16",
           "proximo_pago_monto": "US$ 0.88 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-11-17",
+              "fecha": "2028-02-16",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2029-02-12",
+              "fecha": "2029-08-12",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2030-05-11",
+              "fecha": "2031-02-07",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2031-08-07",
-              "renta": 0.875,
-              "amort": 0.0,
-              "total": 0.875
-            },
-            {
-              "fecha": "2032-11-02",
+              "fecha": "2032-08-03",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
@@ -2645,31 +2621,25 @@
               "total": 0.875
             },
             {
-              "fecha": "2035-04-26",
+              "fecha": "2035-07-26",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2036-07-22",
+              "fecha": "2037-01-19",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2037-10-18",
+              "fecha": "2038-07-17",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2039-01-14",
-              "renta": 0.875,
-              "amort": 0.0,
-              "total": 0.875
-            },
-            {
-              "fecha": "2040-04-11",
+              "fecha": "2040-01-11",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
@@ -2682,9 +2652,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2041",
-          "var_1d": 0.0,
-          "var_1m": 1.38,
-          "var_12m": 22.36
+          "var_1d": 1.76,
+          "var_1m": -5.04,
+          "var_12m": 20.43
         },
         {
           "id": "BONO_GD46D",
@@ -2692,13 +2662,16 @@
           "nombre": "Global 2046 USD",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Nueva York",
           "isin": "ARGD46DBOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 67.5,
+          "open": 65.9,
+          "high": 68.14,
+          "low": 65.9,
           "paridad_pct": 73.87,
           "valor_tecnico": 91.38,
           "valor_residual_pct": 100.0,
@@ -2712,35 +2685,29 @@
           "dias_vto": 7260,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2046-07-09",
-          "proximo_pago_fecha": "2028-04-18",
+          "proximo_pago_fecha": "2028-08-17",
           "proximo_pago_monto": "US$ 0.94 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2028-04-18",
+              "fecha": "2028-08-17",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2029-12-14",
+              "fecha": "2030-08-13",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2031-08-11",
+              "fecha": "2032-08-08",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2033-04-07",
-              "renta": 0.94,
-              "amort": 0.0,
-              "total": 0.94
-            },
-            {
-              "fecha": "2034-12-03",
+              "fecha": "2034-08-04",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
@@ -2752,31 +2719,25 @@
               "total": 0.94
             },
             {
-              "fecha": "2038-03-27",
+              "fecha": "2038-07-26",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2039-11-22",
+              "fecha": "2040-07-21",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2041-07-19",
+              "fecha": "2042-07-17",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2043-03-16",
-              "renta": 0.94,
-              "amort": 0.0,
-              "total": 0.94
-            },
-            {
-              "fecha": "2044-11-10",
+              "fecha": "2044-07-12",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
@@ -2789,9 +2750,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2046",
-          "var_1d": 0.0,
-          "var_1m": 1.05,
-          "var_12m": 20.95
+          "var_1d": 0.75,
+          "var_1m": -6.37,
+          "var_12m": 5.63
         },
         {
           "id": "BONO_AL30",
@@ -2799,13 +2760,16 @@
           "nombre": "Bonar 2030 en Pesos",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARAL30BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 84460.0,
+          "open": 84200.0,
+          "high": 84700.0,
+          "low": 84200.0,
           "paridad_pct": 85.89,
           "valor_tecnico": 64.06,
           "valor_residual_pct": 100.0,
@@ -2866,9 +2830,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - vto. 07/2030",
-          "var_1d": 0.12,
-          "var_1m": 2.6,
-          "var_12m": 43.78
+          "var_1d": 0.45,
+          "var_1m": -2.02,
+          "var_12m": 5.05
         },
         {
           "id": "BONO_GD30",
@@ -2876,13 +2840,16 @@
           "nombre": "Global 2030 en Pesos",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Nueva York",
           "isin": "ARGD30BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 88100.0,
+          "open": 87300.0,
+          "high": 88100.0,
+          "low": 87290.0,
           "paridad_pct": 88.99,
           "valor_tecnico": 64.06,
           "valor_residual_pct": 100.0,
@@ -2943,9 +2910,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2030",
-          "var_1d": 0.28,
-          "var_1m": 1.98,
-          "var_12m": 43.74
+          "var_1d": 1.1,
+          "var_1m": -0.16,
+          "var_12m": 5.76
         },
         {
           "id": "BONO_AL35",
@@ -2953,13 +2920,16 @@
           "nombre": "Bonar 2035 en Pesos",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARAL35BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 115300.0,
+          "open": 113000.0,
+          "high": 115620.0,
+          "low": 112900.0,
           "paridad_pct": 74.72,
           "valor_tecnico": 100.52,
           "valor_residual_pct": 100.0,
@@ -2973,35 +2943,29 @@
           "dias_vto": 3242,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2035-07-09",
-          "proximo_pago_fecha": "2027-05-19",
+          "proximo_pago_fecha": "2027-07-12",
           "proximo_pago_monto": "$ 1.03 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-05-19",
+              "fecha": "2027-07-12",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-02-13",
+              "fecha": "2028-05-31",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-11-09",
+              "fecha": "2029-04-20",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2029-08-06",
-              "renta": 1.03,
-              "amort": 0.0,
-              "total": 1.03
-            },
-            {
-              "fecha": "2030-05-03",
+              "fecha": "2030-03-10",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
@@ -3013,31 +2977,25 @@
               "total": 1.03
             },
             {
-              "fecha": "2031-10-26",
+              "fecha": "2031-12-19",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-07-22",
+              "fecha": "2032-11-07",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2033-04-18",
+              "fecha": "2033-09-27",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2034-01-13",
-              "renta": 1.03,
-              "amort": 0.0,
-              "total": 1.03
-            },
-            {
-              "fecha": "2034-10-10",
+              "fecha": "2034-08-17",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
@@ -3050,9 +3008,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - vto. 07/2035",
-          "var_1d": 0.04,
-          "var_1m": 2.4,
-          "var_12m": 39.24
+          "var_1d": 2.13,
+          "var_1m": -6.01,
+          "var_12m": 31.74
         },
         {
           "id": "BONO_GD35",
@@ -3060,13 +3018,16 @@
           "nombre": "Global 2035 en Pesos",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Soberanos Dólar Hard (AL/GD)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Nueva York",
           "isin": "ARGD35BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 122150.0,
+          "open": 119910.0,
+          "high": 122500.0,
+          "low": 119910.0,
           "paridad_pct": 78.64,
           "valor_tecnico": 100.52,
           "valor_residual_pct": 100.0,
@@ -3080,35 +3041,29 @@
           "dias_vto": 3242,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2035-07-09",
-          "proximo_pago_fecha": "2027-05-19",
+          "proximo_pago_fecha": "2027-07-12",
           "proximo_pago_monto": "$ 1.03 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-05-19",
+              "fecha": "2027-07-12",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-02-13",
+              "fecha": "2028-05-31",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-11-09",
+              "fecha": "2029-04-20",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2029-08-06",
-              "renta": 1.03,
-              "amort": 0.0,
-              "total": 1.03
-            },
-            {
-              "fecha": "2030-05-03",
+              "fecha": "2030-03-10",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
@@ -3120,31 +3075,25 @@
               "total": 1.03
             },
             {
-              "fecha": "2031-10-26",
+              "fecha": "2031-12-19",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-07-22",
+              "fecha": "2032-11-07",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2033-04-18",
+              "fecha": "2033-09-27",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2034-01-13",
-              "renta": 1.03,
-              "amort": 0.0,
-              "total": 1.03
-            },
-            {
-              "fecha": "2034-10-10",
+              "fecha": "2034-08-17",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
@@ -3157,9 +3106,9 @@
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2035",
-          "var_1d": -0.33,
-          "var_1m": 1.75,
-          "var_12m": 34.45
+          "var_1d": 1.87,
+          "var_1m": -3.05,
+          "var_12m": 37.48
         },
         {
           "id": "BONO_TX26",
@@ -3167,13 +3116,16 @@
           "nombre": "Boncer 2026 (TX26)",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARTX26BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS (CER)",
           "moneda": "ARS",
           "precio": 727.5,
+          "open": 725.0,
+          "high": 730.0,
+          "low": 725.0,
           "paridad_pct": 99.38,
           "valor_tecnico": 732.07,
           "valor_residual_pct": 100.0,
@@ -3198,9 +3150,9 @@
             }
           ],
           "subtitulo": "Bono CER - vto. 11/2026",
-          "var_1d": -0.04,
-          "var_1m": 2.51,
-          "var_12m": 35.87
+          "var_1d": 0.23,
+          "var_1m": 1.62,
+          "var_12m": -50.24
         },
         {
           "id": "BONO_TX28",
@@ -3208,13 +3160,16 @@
           "nombre": "Boncer 2028 (TX28)",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARTX28BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS (CER)",
           "moneda": "ARS",
           "precio": 1707.0,
+          "open": 1685.0,
+          "high": 1725.0,
+          "low": 1685.0,
           "paridad_pct": 93.2,
           "valor_tecnico": 1831.49,
           "valor_residual_pct": 100.0,
@@ -3257,9 +3212,9 @@
             }
           ],
           "subtitulo": "Bono CER - vto. 11/2028",
-          "var_1d": 0.37,
-          "var_1m": 3.8,
-          "var_12m": 37.28
+          "var_1d": 0.29,
+          "var_1m": 0.23,
+          "var_12m": 8.66
         },
         {
           "id": "BONO_T2X5",
@@ -3267,13 +3222,16 @@
           "nombre": "Boncer 2025 (T2X5)",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ART2X5BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS (CER)",
           "moneda": "ARS",
-          "precio": 115.0,
+          "precio": 664.16,
+          "open": 664.2,
+          "high": 664.5,
+          "low": 663.31,
           "paridad_pct": 99.0,
           "valor_tecnico": 100.0,
           "valor_residual_pct": 100.0,
@@ -3283,7 +3241,7 @@
           "frecuencia_pago": "Semestral",
           "amortizacion": "Bullet",
           "tir": 34.0,
-          "duration": 2.5,
+          "duration": 2.0,
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
@@ -3316,9 +3274,9 @@
             }
           ],
           "subtitulo": "Bonos CER (Inflación) • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 4.4,
-          "var_12m": 48.44
+          "var_1d": 0.11,
+          "var_1m": 5.47,
+          "var_12m": 355.84
         },
         {
           "id": "BONO_TZX26",
@@ -3326,13 +3284,16 @@
           "nombre": "Boncer Cero Cupón 2026",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARTZX26BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS (CER)",
           "moneda": "ARS",
-          "precio": 115.0,
+          "precio": 394.65,
+          "open": 391.35,
+          "high": 394.8,
+          "low": 391.35,
           "paridad_pct": 99.0,
           "valor_tecnico": 100.0,
           "valor_residual_pct": 100.0,
@@ -3342,7 +3303,7 @@
           "frecuencia_pago": "Al Vencimiento",
           "amortizacion": "Bullet",
           "tir": 34.0,
-          "duration": 2.5,
+          "duration": 2.0,
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
@@ -3375,9 +3336,9 @@
             }
           ],
           "subtitulo": "Bonos CER (Inflación) • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 4.56,
-          "var_12m": 38.89
+          "var_1d": 0.0,
+          "var_1m": 0.0,
+          "var_12m": 255.22
         },
         {
           "id": "BONO_TZX27",
@@ -3385,13 +3346,16 @@
           "nombre": "Boncer Cero Cupón 2027",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARTZX27BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS (CER)",
           "moneda": "ARS",
           "precio": 386.25,
+          "open": 392.95,
+          "high": 395.0,
+          "low": 383.45,
           "paridad_pct": 94.34,
           "valor_tecnico": 409.41,
           "valor_residual_pct": 100.0,
@@ -3416,9 +3380,9 @@
             }
           ],
           "subtitulo": "Bono CER - vto. 06/2027",
-          "var_1d": 0.4,
-          "var_1m": 0.82,
-          "var_12m": 33.77
+          "var_1d": 0.3,
+          "var_1m": -0.05,
+          "var_12m": 230.13
         },
         {
           "id": "BONO_TZX28",
@@ -3426,13 +3390,16 @@
           "nombre": "Boncer Cero Cupón 2028",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARTZX28BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS (CER)",
           "moneda": "ARS",
           "precio": 345.9,
+          "open": 344.2,
+          "high": 348.9,
+          "low": 343.65,
           "paridad_pct": 84.49,
           "valor_tecnico": 409.41,
           "valor_residual_pct": 100.0,
@@ -3469,156 +3436,9 @@
             }
           ],
           "subtitulo": "Bono CER - vto. 06/2028",
-          "var_1d": 0.3,
-          "var_1m": 3.03,
-          "var_12m": 37.06
-        },
-        {
-          "id": "BONO_TZXD6",
-          "symbol": "TZXD6",
-          "nombre": "Boncer Cero Cupón Dic 2026",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARTZXD6BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS (CER)",
-          "moneda": "ARS",
-          "precio": 297.9,
-          "paridad_pct": 98.42,
-          "valor_tecnico": 302.68,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.0,
-          "cupon_anual_pct": 0.0,
-          "tipo_cupon": "Cero Cupón (Capital + CER)",
-          "frecuencia_pago": "Al Vencimiento",
-          "amortizacion": "Bullet",
-          "tir": 5.28,
-          "duration": 0.29,
-          "dias_vto": 113,
-          "fecha_emision": "2024-03-15",
-          "fecha_vto": "2026-12-15",
-          "proximo_pago_fecha": "2026-12-13",
-          "proximo_pago_monto": "$ 100.00 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2026-12-13",
-              "renta": 0.0,
-              "amort": 100.0,
-              "total": 100.0
-            }
-          ],
-          "subtitulo": "Bono CER - vto. 12/2026",
-          "var_1d": 0.14,
-          "var_1m": 2.98,
-          "var_12m": 38.22
-        },
-        {
-          "id": "BONO_TZXD7",
-          "symbol": "TZXD7",
-          "nombre": "Boncer Cero Cupón Dic 2027",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARTZXD7BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS (CER)",
-          "moneda": "ARS",
-          "precio": 272.25,
-          "paridad_pct": 89.95,
-          "valor_tecnico": 302.68,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.0,
-          "cupon_anual_pct": 0.0,
-          "tipo_cupon": "Cero Cupón (Capital + CER)",
-          "frecuencia_pago": "Al Vencimiento",
-          "amortizacion": "Bullet",
-          "tir": 8.43,
-          "duration": 1.21,
-          "dias_vto": 478,
-          "fecha_emision": "2024-03-15",
-          "fecha_vto": "2027-12-15",
-          "proximo_pago_fecha": "2027-04-18",
-          "proximo_pago_monto": "$ 0.00 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-04-18",
-              "renta": 0.0,
-              "amort": 0.0,
-              "total": 0.0
-            },
-            {
-              "fecha": "2027-12-13",
-              "renta": 0.0,
-              "amort": 100.0,
-              "total": 100.0
-            }
-          ],
-          "subtitulo": "Bono CER - vto. 12/2027",
-          "var_1d": 0.34,
-          "var_1m": 4.64,
-          "var_12m": 42.32
-        },
-        {
-          "id": "BONO_TZXD8",
-          "symbol": "TZXD8",
-          "nombre": "Boncer Cero Cupón Dic 2028",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARTZXD8BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS (CER)",
-          "moneda": "ARS",
-          "precio": 83.85,
-          "paridad_pct": 80.9,
-          "valor_tecnico": 103.65,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.0,
-          "cupon_anual_pct": 0.0,
-          "tipo_cupon": "Cero Cupón (Capital + CER)",
-          "frecuencia_pago": "Al Vencimiento",
-          "amortizacion": "Bullet",
-          "tir": 9.61,
-          "duration": 2.11,
-          "dias_vto": 844,
-          "fecha_emision": "2026-06-30",
-          "fecha_vto": "2028-12-15",
-          "proximo_pago_fecha": "2027-03-21",
-          "proximo_pago_monto": "$ 0.00 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-03-21",
-              "renta": 0.0,
-              "amort": 0.0,
-              "total": 0.0
-            },
-            {
-              "fecha": "2027-10-18",
-              "renta": 0.0,
-              "amort": 0.0,
-              "total": 0.0
-            },
-            {
-              "fecha": "2028-05-16",
-              "renta": 0.0,
-              "amort": 0.0,
-              "total": 0.0
-            },
-            {
-              "fecha": "2028-12-13",
-              "renta": 0.0,
-              "amort": 100.0,
-              "total": 100.0
-            }
-          ],
-          "subtitulo": "Bono CER - vto. 12/2028",
-          "var_1d": 0.12,
-          "var_1m": 2.31,
-          "var_12m": 36.14
+          "var_1d": 0.49,
+          "var_1m": 0.2,
+          "var_12m": 120.88
         },
         {
           "id": "BONO_DICP",
@@ -3626,13 +3446,16 @@
           "nombre": "Discount en Pesos CER",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARDICPBOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS (CER)",
           "moneda": "ARS",
           "precio": 47360.0,
+          "open": 47230.0,
+          "high": 47690.0,
+          "low": 46750.0,
           "paridad_pct": 87.43,
           "valor_tecnico": 54169.83,
           "valor_residual_pct": 100.0,
@@ -3646,86 +3469,74 @@
           "dias_vto": 2688,
           "fecha_emision": "2003-12-31",
           "fecha_vto": "2033-12-31",
-          "proximo_pago_fecha": "2027-04-03",
-          "proximo_pago_monto": "$ 791.01 por 100 VN",
+          "proximo_pago_fecha": "2027-05-17",
+          "proximo_pago_monto": "$ 792.68 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-03",
+              "fecha": "2027-05-17",
               "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
+              "amort": 10.0,
+              "total": 792.68
             },
             {
-              "fecha": "2027-11-13",
+              "fecha": "2028-02-10",
               "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
+              "amort": 10.0,
+              "total": 792.68
             },
             {
-              "fecha": "2028-06-24",
+              "fecha": "2028-11-05",
               "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
+              "amort": 10.0,
+              "total": 792.68
             },
             {
-              "fecha": "2029-02-03",
+              "fecha": "2029-08-01",
               "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2029-09-15",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
+              "amort": 10.0,
+              "total": 792.68
             },
             {
               "fecha": "2030-04-27",
               "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
+              "amort": 10.0,
+              "total": 792.68
             },
             {
-              "fecha": "2030-12-07",
+              "fecha": "2031-01-20",
               "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
+              "amort": 10.0,
+              "total": 792.68
             },
             {
-              "fecha": "2031-07-19",
+              "fecha": "2031-10-16",
               "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
+              "amort": 10.0,
+              "total": 792.68
             },
             {
-              "fecha": "2032-02-28",
+              "fecha": "2032-07-11",
               "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
+              "amort": 10.0,
+              "total": 792.68
             },
             {
-              "fecha": "2032-10-09",
+              "fecha": "2033-04-06",
               "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2033-05-21",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
+              "amort": 10.0,
+              "total": 792.68
             },
             {
               "fecha": "2033-12-31",
               "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
+              "amort": 10.0,
+              "total": 792.68
             }
           ],
           "subtitulo": "Bono CER - vto. 12/2033",
-          "var_1d": 0.34,
-          "var_1m": 4.29,
-          "var_12m": 41.5
+          "var_1d": 0.28,
+          "var_1m": -2.87,
+          "var_12m": 30.13
         },
         {
           "id": "BONO_PARP",
@@ -3733,13 +3544,16 @@
           "nombre": "Par en Pesos CER",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARPARPBOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS (CER)",
           "moneda": "ARS",
           "precio": 34670.0,
+          "open": 34105.0,
+          "high": 34800.0,
+          "low": 34105.0,
           "paridad_pct": 61.06,
           "valor_tecnico": 56780.22,
           "valor_residual_pct": 100.0,
@@ -3753,35 +3567,29 @@
           "dias_vto": 4512,
           "fecha_emision": "2003-12-31",
           "fecha_vto": "2038-12-31",
-          "proximo_pago_fecha": "2027-09-02",
+          "proximo_pago_fecha": "2027-11-16",
           "proximo_pago_monto": "$ 249.49 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-09-02",
+              "fecha": "2027-11-16",
               "renta": 249.485,
               "amort": 0.0,
               "total": 249.485
             },
             {
-              "fecha": "2028-09-12",
+              "fecha": "2029-02-09",
               "renta": 249.485,
               "amort": 0.0,
               "total": 249.485
             },
             {
-              "fecha": "2029-09-23",
+              "fecha": "2030-05-06",
               "renta": 249.485,
               "amort": 0.0,
               "total": 249.485
             },
             {
-              "fecha": "2030-10-04",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2031-10-15",
+              "fecha": "2031-07-31",
               "renta": 249.485,
               "amort": 0.0,
               "total": 249.485
@@ -3793,31 +3601,25 @@
               "total": 249.485
             },
             {
-              "fecha": "2033-11-05",
+              "fecha": "2034-01-19",
               "renta": 249.485,
               "amort": 0.0,
               "total": 249.485
             },
             {
-              "fecha": "2034-11-16",
+              "fecha": "2035-04-15",
               "renta": 249.485,
               "amort": 0.0,
               "total": 249.485
             },
             {
-              "fecha": "2035-11-27",
+              "fecha": "2036-07-09",
               "renta": 249.485,
               "amort": 0.0,
               "total": 249.485
             },
             {
-              "fecha": "2036-12-07",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2037-12-18",
+              "fecha": "2037-10-03",
               "renta": 249.485,
               "amort": 0.0,
               "total": 249.485
@@ -3830,9 +3632,9 @@
             }
           ],
           "subtitulo": "Bono CER - vto. 12/2038",
-          "var_1d": 0.15,
-          "var_1m": 2.55,
-          "var_12m": 39.88
+          "var_1d": 1.23,
+          "var_1m": -7.16,
+          "var_12m": 62.01
         },
         {
           "id": "BONO_CUAP",
@@ -3840,13 +3642,16 @@
           "nombre": "Cuasipar en Pesos CER",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARCUAPBOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS (CER)",
           "moneda": "ARS",
           "precio": 42330.0,
+          "open": 42550.0,
+          "high": 42550.0,
+          "low": 41560.0,
           "paridad_pct": 53.8,
           "valor_tecnico": 78678.95,
           "valor_residual_pct": 100.0,
@@ -3860,35 +3665,29 @@
           "dias_vto": 7071,
           "fecha_emision": "2003-12-31",
           "fecha_vto": "2045-12-31",
-          "proximo_pago_fecha": "2028-04-02",
+          "proximo_pago_fecha": "2028-07-29",
           "proximo_pago_monto": "$ 647.85 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2028-04-02",
+              "fecha": "2028-07-29",
               "renta": 647.85,
               "amort": 0.0,
               "total": 647.85
             },
             {
-              "fecha": "2029-11-12",
+              "fecha": "2030-07-06",
               "renta": 647.85,
               "amort": 0.0,
               "total": 647.85
             },
             {
-              "fecha": "2031-06-24",
+              "fecha": "2032-06-12",
               "renta": 647.85,
               "amort": 0.0,
               "total": 647.85
             },
             {
-              "fecha": "2033-02-03",
-              "renta": 647.85,
-              "amort": 0.0,
-              "total": 647.85
-            },
-            {
-              "fecha": "2034-09-15",
+              "fecha": "2034-05-20",
               "renta": 647.85,
               "amort": 0.0,
               "total": 647.85
@@ -3900,31 +3699,25 @@
               "total": 647.85
             },
             {
-              "fecha": "2037-12-06",
+              "fecha": "2038-04-03",
               "renta": 647.85,
               "amort": 0.0,
               "total": 647.85
             },
             {
-              "fecha": "2039-07-19",
+              "fecha": "2040-03-10",
               "renta": 647.85,
               "amort": 0.0,
               "total": 647.85
             },
             {
-              "fecha": "2041-02-27",
+              "fecha": "2042-02-15",
               "renta": 647.85,
               "amort": 0.0,
               "total": 647.85
             },
             {
-              "fecha": "2042-10-09",
-              "renta": 647.85,
-              "amort": 0.0,
-              "total": 647.85
-            },
-            {
-              "fecha": "2044-05-20",
+              "fecha": "2044-01-23",
               "renta": 647.85,
               "amort": 0.0,
               "total": 647.85
@@ -3937,223 +3730,9 @@
             }
           ],
           "subtitulo": "Bono CER - vto. 12/2045",
-          "var_1d": 0.25,
-          "var_1m": 3.4,
-          "var_12m": 42.88
-        },
-        {
-          "id": "BONO_DIP0",
-          "symbol": "DIP0",
-          "nombre": "Discount Ley NY en Pesos CER",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
-          "ley": "Nueva York",
-          "isin": "ARDIP0BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS (CER)",
-          "moneda": "ARS",
-          "precio": 47750.0,
-          "paridad_pct": 88.15,
-          "valor_tecnico": 54169.83,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 391.34,
-          "cupon_anual_pct": 1565.36,
-          "tipo_cupon": "Fijo sobre Capital CER",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "20 cuotas",
-          "tir": 10.04,
-          "duration": 3.05,
-          "dias_vto": 2688,
-          "fecha_emision": "2003-12-31",
-          "fecha_vto": "2033-12-31",
-          "proximo_pago_fecha": "2027-04-03",
-          "proximo_pago_monto": "$ 791.01 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-04-03",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2027-11-13",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2028-06-24",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2029-02-03",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2029-09-15",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2030-04-27",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2030-12-07",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2031-07-19",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2032-02-28",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2032-10-09",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2033-05-21",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            },
-            {
-              "fecha": "2033-12-31",
-              "renta": 782.68,
-              "amort": 8.33,
-              "total": 791.013
-            }
-          ],
-          "subtitulo": "Bono CER - vto. 12/2033",
-          "var_1d": 0.34,
-          "var_1m": 1.95,
-          "var_12m": 36.28
-        },
-        {
-          "id": "BONO_PAP0",
-          "symbol": "PAP0",
-          "nombre": "Par Ley NY en Pesos CER",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Bonos CER (Inflación)",
-          "tipo": "bond",
-          "ley": "Nueva York",
-          "isin": "ARPAP0BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS (CER)",
-          "moneda": "ARS",
-          "precio": 36500.0,
-          "paridad_pct": 64.28,
-          "valor_tecnico": 56780.22,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 124.74,
-          "cupon_anual_pct": 498.97,
-          "tipo_cupon": "Fijo sobre Capital CER",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet",
-          "tir": 9.05,
-          "duration": 6.26,
-          "dias_vto": 4512,
-          "fecha_emision": "2003-12-31",
-          "fecha_vto": "2038-12-31",
-          "proximo_pago_fecha": "2027-09-02",
-          "proximo_pago_monto": "$ 249.49 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-09-02",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2028-09-12",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2029-09-23",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2030-10-04",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2031-10-15",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2032-10-25",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2033-11-05",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2034-11-16",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2035-11-27",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2036-12-07",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2037-12-18",
-              "renta": 249.485,
-              "amort": 0.0,
-              "total": 249.485
-            },
-            {
-              "fecha": "2038-12-29",
-              "renta": 249.485,
-              "amort": 100.0,
-              "total": 349.485
-            }
-          ],
-          "subtitulo": "Bono CER - vto. 12/2038",
-          "var_1d": -0.15,
-          "var_1m": 2.2,
-          "var_12m": 36.09
+          "var_1d": -0.39,
+          "var_1m": -9.96,
+          "var_12m": 59.11
         },
         {
           "id": "BONO_S30S6",
@@ -4161,13 +3740,16 @@
           "nombre": "LECAP Vto. 30/09/2026",
           "categoria": "Bonos - LECAPs",
           "subtipo": "LECAPs & BONCAPs (Tasa Fija)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARS30S6BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 114.64,
+          "open": 114.6,
+          "high": 114.85,
+          "low": 114.32,
           "paridad_pct": 100.31,
           "valor_tecnico": 114.28,
           "valor_residual_pct": 100.0,
@@ -4192,9 +3774,9 @@
             }
           ],
           "subtitulo": "Bono Tasa Fija ARS - 34.96% - vto. 09/2026",
-          "var_1d": -0.05,
-          "var_1m": 3.47,
-          "var_12m": 34.21
+          "var_1d": 0.32,
+          "var_1m": 1.78,
+          "var_12m": 4.36
         },
         {
           "id": "BONO_S31G6",
@@ -4202,13 +3784,16 @@
           "nombre": "LECAP Vto. 31/08/2026",
           "categoria": "Bonos - LECAPs",
           "subtipo": "LECAPs & BONCAPs (Tasa Fija)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARS31G6BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 126.49,
+          "open": 126.33,
+          "high": 126.68,
+          "low": 126.33,
           "paridad_pct": 100.06,
           "valor_tecnico": 126.41,
           "valor_residual_pct": 100.0,
@@ -4233,9 +3818,9 @@
             }
           ],
           "subtitulo": "Bono Tasa Fija ARS - 34.49% - vto. 08/2026",
-          "var_1d": 0.23,
-          "var_1m": 2.93,
-          "var_12m": 38.29
+          "var_1d": 0.2,
+          "var_1m": 1.86,
+          "var_12m": 4.19
         },
         {
           "id": "BONO_S30O6",
@@ -4243,13 +3828,16 @@
           "nombre": "LECAP Vto. 30/10/2026",
           "categoria": "Bonos - LECAPs",
           "subtipo": "LECAPs & BONCAPs (Tasa Fija)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARS30O6BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 129.31,
+          "open": 129.5,
+          "high": 129.8,
+          "low": 128.71,
           "paridad_pct": 100.38,
           "valor_tecnico": 128.81,
           "valor_residual_pct": 100.0,
@@ -4274,9 +3862,9 @@
             }
           ],
           "subtitulo": "Bono Tasa Fija ARS - 35.28% - vto. 10/2026",
-          "var_1d": 0.19,
-          "var_1m": 3.86,
-          "var_12m": 38.3
+          "var_1d": 0.39,
+          "var_1m": 1.62,
+          "var_12m": 3.66
         },
         {
           "id": "BONO_S30N6",
@@ -4284,13 +3872,16 @@
           "nombre": "LECAP Vto. 30/11/2026",
           "categoria": "Bonos - LECAPs",
           "subtipo": "LECAPs & BONCAPs (Tasa Fija)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARS30N6BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 121.44,
+          "open": 121.4,
+          "high": 121.7,
+          "low": 121.04,
           "paridad_pct": 99.89,
           "valor_tecnico": 121.57,
           "valor_residual_pct": 100.0,
@@ -4315,186 +3906,9 @@
             }
           ],
           "subtitulo": "Bono Tasa Fija ARS - 31.37% - vto. 11/2026",
-          "var_1d": 0.12,
-          "var_1m": 4.0,
-          "var_12m": 46.05
-        },
-        {
-          "id": "BONO_S14G6",
-          "symbol": "S14G6",
-          "nombre": "LECAP Vto. 14/08/2026",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "LECAPs & BONCAPs (Tasa Fija)",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARS14G6BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 115.0,
-          "paridad_pct": 99.0,
-          "valor_tecnico": 100.0,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 8.2,
-          "cupon_anual_pct": 32.8,
-          "tipo_cupon": "Capitalizable Mensual",
-          "frecuencia_pago": "Al Vencimiento",
-          "amortizacion": "Bullet",
-          "tir": 34.0,
-          "duration": 2.5,
-          "dias_vto": 720,
-          "fecha_emision": "2020-09-04",
-          "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-02-18",
-          "proximo_pago_monto": "$ 32.80 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-02-18",
-              "renta": 32.8,
-              "amort": 0.0,
-              "total": 32.8
-            },
-            {
-              "fecha": "2027-08-17",
-              "renta": 32.8,
-              "amort": 0.0,
-              "total": 32.8
-            },
-            {
-              "fecha": "2028-02-13",
-              "renta": 32.8,
-              "amort": 0.0,
-              "total": 32.8
-            },
-            {
-              "fecha": "2028-08-11",
-              "renta": 32.8,
-              "amort": 100.0,
-              "total": 132.8
-            }
-          ],
-          "subtitulo": "LECAPs & BONCAPs (Tasa Fija) • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 2.9,
-          "var_12m": 44.44
-        },
-        {
-          "id": "BONO_S17L6",
-          "symbol": "S17L6",
-          "nombre": "LECAP Vto. 17/07/2026",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "LECAPs & BONCAPs (Tasa Fija)",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARS17L6BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 115.0,
-          "paridad_pct": 99.0,
-          "valor_tecnico": 100.0,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 7.88,
-          "cupon_anual_pct": 31.5,
-          "tipo_cupon": "Capitalizable Mensual",
-          "frecuencia_pago": "Al Vencimiento",
-          "amortizacion": "Bullet",
-          "tir": 34.0,
-          "duration": 2.5,
-          "dias_vto": 720,
-          "fecha_emision": "2020-09-04",
-          "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-02-18",
-          "proximo_pago_monto": "$ 31.50 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-02-18",
-              "renta": 31.5,
-              "amort": 0.0,
-              "total": 31.5
-            },
-            {
-              "fecha": "2027-08-17",
-              "renta": 31.5,
-              "amort": 0.0,
-              "total": 31.5
-            },
-            {
-              "fecha": "2028-02-13",
-              "renta": 31.5,
-              "amort": 0.0,
-              "total": 31.5
-            },
-            {
-              "fecha": "2028-08-11",
-              "renta": 31.5,
-              "amort": 100.0,
-              "total": 131.5
-            }
-          ],
-          "subtitulo": "LECAPs & BONCAPs (Tasa Fija) • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 3.67,
-          "var_12m": 38.92
-        },
-        {
-          "id": "BONO_S31L6",
-          "symbol": "S31L6",
-          "nombre": "LECAP Vto. 31/07/2026",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "LECAPs & BONCAPs (Tasa Fija)",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARS31L6BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 115.0,
-          "paridad_pct": 99.0,
-          "valor_tecnico": 100.0,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 8.0,
-          "cupon_anual_pct": 32.0,
-          "tipo_cupon": "Capitalizable Mensual",
-          "frecuencia_pago": "Al Vencimiento",
-          "amortizacion": "Bullet",
-          "tir": 34.0,
-          "duration": 2.5,
-          "dias_vto": 720,
-          "fecha_emision": "2020-09-04",
-          "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-02-18",
-          "proximo_pago_monto": "$ 32.00 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-02-18",
-              "renta": 32.0,
-              "amort": 0.0,
-              "total": 32.0
-            },
-            {
-              "fecha": "2027-08-17",
-              "renta": 32.0,
-              "amort": 0.0,
-              "total": 32.0
-            },
-            {
-              "fecha": "2028-02-13",
-              "renta": 32.0,
-              "amort": 0.0,
-              "total": 32.0
-            },
-            {
-              "fecha": "2028-08-11",
-              "renta": 32.0,
-              "amort": 100.0,
-              "total": 132.0
-            }
-          ],
-          "subtitulo": "LECAPs & BONCAPs (Tasa Fija) • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 3.58,
-          "var_12m": 47.38
+          "var_1d": 0.38,
+          "var_1m": 1.5,
+          "var_12m": 3.68
         },
         {
           "id": "BONO_TO26",
@@ -4502,13 +3916,16 @@
           "nombre": "Bono Tasa Fija 2026 (TO26)",
           "categoria": "Bonos - LECAPs",
           "subtipo": "LECAPs & BONCAPs (Tasa Fija)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARTO26BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 104.0,
+          "open": 103.05,
+          "high": 104.2,
+          "low": 103.05,
           "paridad_pct": 98.61,
           "valor_tecnico": 105.47,
           "valor_residual_pct": 100.0,
@@ -4533,9 +3950,9 @@
             }
           ],
           "subtitulo": "Bono Tasa Fija ARS - 15.50% - vto. 10/2026",
-          "var_1d": 0.03,
-          "var_1m": 2.96,
-          "var_12m": 40.67
+          "var_1d": 0.63,
+          "var_1m": 1.81,
+          "var_12m": 22.71
         },
         {
           "id": "BONO_M31G6",
@@ -4543,13 +3960,16 @@
           "nombre": "BONCAP Vto. 31/08/2026",
           "categoria": "Bonos - LECAPs",
           "subtipo": "LECAPs & BONCAPs (Tasa Fija)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARM31G6BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 129.31,
+          "open": 128.35,
+          "high": 129.35,
+          "low": 128.35,
           "paridad_pct": 100.07,
           "valor_tecnico": 129.23,
           "valor_residual_pct": 100.0,
@@ -4574,215 +3994,9 @@
             }
           ],
           "subtitulo": "Bono TAMAR - vto. 08/2026",
-          "var_1d": 0.08,
-          "var_1m": 3.56,
-          "var_12m": 42.26
-        },
-        {
-          "id": "BONO_T17O5",
-          "symbol": "T17O5",
-          "nombre": "BONCAP Vto. 17/10/2025",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "LECAPs & BONCAPs (Tasa Fija)",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ART17O5BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 115.0,
-          "paridad_pct": 99.0,
-          "valor_tecnico": 100.0,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 11.05,
-          "cupon_anual_pct": 44.2,
-          "tipo_cupon": "Capitalizable Mensual",
-          "frecuencia_pago": "Al Vencimiento",
-          "amortizacion": "Bullet",
-          "tir": 34.0,
-          "duration": 2.5,
-          "dias_vto": 720,
-          "fecha_emision": "2020-09-04",
-          "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-02-18",
-          "proximo_pago_monto": "$ 44.20 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-02-18",
-              "renta": 44.2,
-              "amort": 0.0,
-              "total": 44.2
-            },
-            {
-              "fecha": "2027-08-17",
-              "renta": 44.2,
-              "amort": 0.0,
-              "total": 44.2
-            },
-            {
-              "fecha": "2028-02-13",
-              "renta": 44.2,
-              "amort": 0.0,
-              "total": 44.2
-            },
-            {
-              "fecha": "2028-08-11",
-              "renta": 44.2,
-              "amort": 100.0,
-              "total": 144.2
-            }
-          ],
-          "subtitulo": "LECAPs & BONCAPs (Tasa Fija) • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 2.13,
-          "var_12m": 41.02
-        },
-        {
-          "id": "BONO_TB27",
-          "symbol": "TB27",
-          "nombre": "Bono Tasa TAMAR 2027",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Bonos TAMAR / Badlar",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARTB27BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 0.01,
-          "paridad_pct": 0.02,
-          "valor_tecnico": 50.02,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.51,
-          "cupon_anual_pct": 2.03,
-          "tipo_cupon": "Tasa TAMAR + Spread",
-          "frecuencia_pago": "Trimestral",
-          "amortizacion": "Bullet",
-          "tir": 0.0,
-          "duration": 4158.15,
-          "dias_vto": 456,
-          "fecha_emision": "2022-11-23",
-          "fecha_vto": "2027-11-23",
-          "proximo_pago_fecha": "2027-04-07",
-          "proximo_pago_monto": "$ 0.51 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-04-07",
-              "renta": 0.507,
-              "amort": 0.0,
-              "total": 0.507
-            },
-            {
-              "fecha": "2027-11-21",
-              "renta": 0.507,
-              "amort": 100.0,
-              "total": 100.507
-            }
-          ],
-          "subtitulo": "Bono BADLAR - vto. 11/2027",
-          "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0
-        },
-        {
-          "id": "BONO_TMF28",
-          "symbol": "TMF28",
-          "nombre": "Bono Tasa TAMAR Feb 2028",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Bonos TAMAR / Badlar",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARTMF28BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 106.5,
-          "paridad_pct": 93.07,
-          "valor_tecnico": 114.43,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 18.74,
-          "cupon_anual_pct": 74.96,
-          "tipo_cupon": "Tasa TAMAR + 2.75%",
-          "frecuencia_pago": "Trimestral",
-          "amortizacion": "Bullet",
-          "tir": 39.03,
-          "duration": 1.08,
-          "dias_vto": 550,
-          "fecha_emision": "2026-04-15",
-          "fecha_vto": "2028-02-25",
-          "proximo_pago_fecha": "2027-02-21",
-          "proximo_pago_monto": "$ 18.74 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-02-21",
-              "renta": 18.74,
-              "amort": 0.0,
-              "total": 18.74
-            },
-            {
-              "fecha": "2027-08-23",
-              "renta": 18.74,
-              "amort": 0.0,
-              "total": 18.74
-            },
-            {
-              "fecha": "2028-02-23",
-              "renta": 18.74,
-              "amort": 100.0,
-              "total": 118.74
-            }
-          ],
-          "subtitulo": "Bono TAMAR - vto. 02/2028",
-          "var_1d": 0.29,
-          "var_1m": 3.45,
-          "var_12m": 42.74
-        },
-        {
-          "id": "BONO_TMG27",
-          "symbol": "TMG27",
-          "nombre": "Bono Tasa TAMAR Jul 2027",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Bonos TAMAR / Badlar",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARTMG27BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 114.3,
-          "paridad_pct": 99.66,
-          "valor_tecnico": 114.7,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 13.01,
-          "cupon_anual_pct": 52.05,
-          "tipo_cupon": "Tasa TAMAR + 2.25%",
-          "frecuencia_pago": "Trimestral",
-          "amortizacion": "Bullet",
-          "tir": 32.31,
-          "duration": 0.77,
-          "dias_vto": 372,
-          "fecha_emision": "2026-03-31",
-          "fecha_vto": "2027-08-31",
-          "proximo_pago_fecha": "2027-02-24",
-          "proximo_pago_monto": "$ 13.01 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-02-24",
-              "renta": 13.012,
-              "amort": 0.0,
-              "total": 13.012
-            },
-            {
-              "fecha": "2027-08-29",
-              "renta": 13.012,
-              "amort": 100.0,
-              "total": 113.013
-            }
-          ],
-          "subtitulo": "Bono TAMAR - vto. 08/2027",
-          "var_1d": 0.23,
-          "var_1m": 1.27,
-          "var_12m": 42.68
+          "var_1d": 0.24,
+          "var_1m": 1.98,
+          "var_12m": 4.7
         },
         {
           "id": "BONO_BDC28",
@@ -4790,13 +4004,16 @@
           "nombre": "Ciudad de Bs As Badlar 2028",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos TAMAR / Badlar",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARBDC28BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 101.0,
+          "open": 98.0,
+          "high": 101.0,
+          "low": 98.0,
           "paridad_pct": 100.85,
           "valor_tecnico": 100.15,
           "valor_residual_pct": 100.0,
@@ -4833,9 +4050,9 @@
             }
           ],
           "subtitulo": "Bono BADLAR - vto. 02/2028",
-          "var_1d": 0.36,
-          "var_1m": 4.23,
-          "var_12m": 44.2
+          "var_1d": -4.27,
+          "var_1m": -1.89,
+          "var_12m": -10.14
         },
         {
           "id": "BONO_PBA25",
@@ -4843,13 +4060,16 @@
           "nombre": "Provincia de Bs As Badlar 2025",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Bonos TAMAR / Badlar",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARPBA25BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
-          "precio": 115.0,
+          "precio": 106.8,
+          "open": 107.65,
+          "high": 107.75,
+          "low": 106.1,
           "paridad_pct": 99.0,
           "valor_tecnico": 100.0,
           "valor_residual_pct": 100.0,
@@ -4859,7 +4079,7 @@
           "frecuencia_pago": "Trimestral",
           "amortizacion": "Bullet",
           "tir": 34.0,
-          "duration": 2.5,
+          "duration": 2.0,
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
@@ -4892,9 +4112,71 @@
             }
           ],
           "subtitulo": "Bonos TAMAR / Badlar • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 2.45,
-          "var_12m": 32.38
+          "var_1d": 2.69,
+          "var_1m": 4.2,
+          "var_12m": -2.91
+        },
+        {
+          "id": "BONO_TZV26",
+          "symbol": "TZV26",
+          "nombre": "Bono Dólar Linked 2026 (TZV26)",
+          "categoria": "Bonos - LECAPs",
+          "subtipo": "Dólar Linked & Duales",
+          "tipo": "market_asset",
+          "ley": "Argentina",
+          "isin": "ARTZV26BOND",
+          "moneda_emision": "ARS",
+          "moneda_pago": "ARS",
+          "moneda": "ARS",
+          "precio": 147610.0,
+          "open": 147500.0,
+          "high": 147680.0,
+          "low": 147400.0,
+          "paridad_pct": 99.0,
+          "valor_tecnico": 100.0,
+          "valor_residual_pct": 100.0,
+          "intereses_corridos": 0.0,
+          "cupon_anual_pct": 0.0,
+          "tipo_cupon": "Cero Cupón Dólar Linked",
+          "frecuencia_pago": "Al Vencimiento",
+          "amortizacion": "Bullet",
+          "tir": 34.0,
+          "duration": 2.0,
+          "dias_vto": 720,
+          "fecha_emision": "2020-09-04",
+          "fecha_vto": "2027-10-31",
+          "proximo_pago_fecha": "2027-02-18",
+          "proximo_pago_monto": "$ 0.00 por 100 VN",
+          "cashflow": [
+            {
+              "fecha": "2027-02-18",
+              "renta": 0.0,
+              "amort": 0.0,
+              "total": 0.0
+            },
+            {
+              "fecha": "2027-08-17",
+              "renta": 0.0,
+              "amort": 0.0,
+              "total": 0.0
+            },
+            {
+              "fecha": "2028-02-13",
+              "renta": 0.0,
+              "amort": 0.0,
+              "total": 0.0
+            },
+            {
+              "fecha": "2028-08-11",
+              "renta": 0.0,
+              "amort": 100.0,
+              "total": 100.0
+            }
+          ],
+          "subtitulo": "Dólar Linked & Duales • Ley Argentina",
+          "var_1d": 0.0,
+          "var_1m": 0.0,
+          "var_12m": 53.51
         },
         {
           "id": "BONO_TZV27",
@@ -4902,13 +4184,16 @@
           "nombre": "Bono Dólar Linked 2027",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Dólar Linked & Duales",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARTZV27BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 146750.0,
+          "open": 147050.0,
+          "high": 147500.0,
+          "low": 146210.0,
           "paridad_pct": 97.99,
           "valor_tecnico": 100.0,
           "valor_residual_pct": 100.0,
@@ -4933,9 +4218,9 @@
             }
           ],
           "subtitulo": "Bono DL (sin cupón) - vto. 06/2027",
-          "var_1d": -0.02,
-          "var_1m": 1.94,
-          "var_12m": 40.35
+          "var_1d": -0.2,
+          "var_1m": 1.63,
+          "var_12m": 5.23
         },
         {
           "id": "BONO_TZV28",
@@ -4943,13 +4228,16 @@
           "nombre": "Bono Dólar Linked 2028",
           "categoria": "Bonos - LECAPs",
           "subtipo": "Dólar Linked & Duales",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARTZV28BOND",
           "moneda_emision": "ARS",
           "moneda_pago": "ARS",
           "moneda": "ARS",
           "precio": 123590.0,
+          "open": 124000.0,
+          "high": 124980.0,
+          "low": 122500.0,
           "paridad_pct": 82.53,
           "valor_tecnico": 100.0,
           "valor_residual_pct": 100.0,
@@ -4986,209 +4274,9 @@
             }
           ],
           "subtitulo": "Bono DL (sin cupón) - vto. 06/2028",
-          "var_1d": 0.67,
-          "var_1m": 4.23,
-          "var_12m": 42.81
-        },
-        {
-          "id": "BONO_D31M7",
-          "symbol": "D31M7",
-          "nombre": "Bono Dólar Linked Mar 2027",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Dólar Linked & Duales",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARD31M7BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 146000.0,
-          "paridad_pct": 97.49,
-          "valor_tecnico": 100.0,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.0,
-          "cupon_anual_pct": 0.0,
-          "tipo_cupon": "Dólar Linked (A3500)",
-          "frecuencia_pago": "Al Vencimiento",
-          "amortizacion": "Bullet",
-          "tir": 4.32,
-          "duration": 0.58,
-          "dias_vto": 219,
-          "fecha_emision": "2026-05-29",
-          "fecha_vto": "2027-03-31",
-          "proximo_pago_fecha": "2027-03-29",
-          "proximo_pago_monto": "$ 100.00 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-03-29",
-              "renta": 0.0,
-              "amort": 100.0,
-              "total": 100.0
-            }
-          ],
-          "subtitulo": "Bono DL (sin cupón) - vto. 03/2027",
-          "var_1d": 0.08,
-          "var_1m": 2.29,
-          "var_12m": 38.87
-        },
-        {
-          "id": "BONO_D30S6",
-          "symbol": "D30S6",
-          "nombre": "Bono Dólar Linked Sep 2026",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Dólar Linked & Duales",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARD30S6BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 148800.0,
-          "paridad_pct": 99.36,
-          "valor_tecnico": 100.0,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.0,
-          "cupon_anual_pct": 0.0,
-          "tipo_cupon": "Dólar Linked (A3500)",
-          "frecuencia_pago": "Al Vencimiento",
-          "amortizacion": "Bullet",
-          "tir": 6.5,
-          "duration": 0.1,
-          "dias_vto": 37,
-          "fecha_emision": "2026-03-16",
-          "fecha_vto": "2026-09-30",
-          "proximo_pago_fecha": "2026-09-28",
-          "proximo_pago_monto": "$ 100.00 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2026-09-28",
-              "renta": 0.0,
-              "amort": 100.0,
-              "total": 100.0
-            }
-          ],
-          "subtitulo": "Bono DL (sin cupón) - vto. 09/2026",
-          "var_1d": -0.14,
-          "var_1m": 3.77,
-          "var_12m": 37.27
-        },
-        {
-          "id": "BONO_TV25",
-          "symbol": "TV25",
-          "nombre": "Bono Dólar Linked 2025 (TV25)",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Dólar Linked & Duales",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARTV25BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 115.0,
-          "paridad_pct": 99.0,
-          "valor_tecnico": 100.0,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.12,
-          "cupon_anual_pct": 0.5,
-          "tipo_cupon": "Fijo Dólar Linked",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet",
-          "tir": 34.0,
-          "duration": 2.5,
-          "dias_vto": 720,
-          "fecha_emision": "2020-09-04",
-          "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-02-18",
-          "proximo_pago_monto": "$ 0.25 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-02-18",
-              "renta": 0.25,
-              "amort": 0.0,
-              "total": 0.25
-            },
-            {
-              "fecha": "2027-08-17",
-              "renta": 0.25,
-              "amort": 0.0,
-              "total": 0.25
-            },
-            {
-              "fecha": "2028-02-13",
-              "renta": 0.25,
-              "amort": 0.0,
-              "total": 0.25
-            },
-            {
-              "fecha": "2028-08-11",
-              "renta": 0.25,
-              "amort": 100.0,
-              "total": 100.25
-            }
-          ],
-          "subtitulo": "Dólar Linked & Duales • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 2.32,
-          "var_12m": 35.26
-        },
-        {
-          "id": "BONO_TZV26",
-          "symbol": "TZV26",
-          "nombre": "Bono Dólar Linked 2026 (TZV26)",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "Dólar Linked & Duales",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARTZV26BOND",
-          "moneda_emision": "ARS",
-          "moneda_pago": "ARS",
-          "moneda": "ARS",
-          "precio": 115.0,
-          "paridad_pct": 99.0,
-          "valor_tecnico": 100.0,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.0,
-          "cupon_anual_pct": 0.0,
-          "tipo_cupon": "Cero Cupón Dólar Linked",
-          "frecuencia_pago": "Al Vencimiento",
-          "amortizacion": "Bullet",
-          "tir": 34.0,
-          "duration": 2.5,
-          "dias_vto": 720,
-          "fecha_emision": "2020-09-04",
-          "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-02-18",
-          "proximo_pago_monto": "$ 0.00 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-02-18",
-              "renta": 0.0,
-              "amort": 0.0,
-              "total": 0.0
-            },
-            {
-              "fecha": "2027-08-17",
-              "renta": 0.0,
-              "amort": 0.0,
-              "total": 0.0
-            },
-            {
-              "fecha": "2028-02-13",
-              "renta": 0.0,
-              "amort": 0.0,
-              "total": 0.0
-            },
-            {
-              "fecha": "2028-08-11",
-              "renta": 0.0,
-              "amort": 100.0,
-              "total": 100.0
-            }
-          ],
-          "subtitulo": "Dólar Linked & Duales • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 3.17,
-          "var_12m": 38.64
+          "var_1d": -0.33,
+          "var_1m": -2.14,
+          "var_12m": -2.22
         },
         {
           "id": "BONO_BPO27",
@@ -5196,14 +4284,17 @@
           "nombre": "BOPREAL Serie 1 (BPO27)",
           "categoria": "Bonos - LECAPs",
           "subtipo": "BOPREAL (BCRA)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARBPO27BOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
-          "precio": 75.0,
-          "paridad_pct": 75.0,
+          "precio": 69850.0,
+          "open": 71000.0,
+          "high": 71000.0,
+          "low": 69260.0,
+          "paridad_pct": 85.0,
           "valor_tecnico": 100.0,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 1.25,
@@ -5211,8 +4302,8 @@
           "tipo_cupon": "Fijo en USD",
           "frecuencia_pago": "Semestral",
           "amortizacion": "Bullet (Opción Put)",
-          "tir": 10.5,
-          "duration": 2.5,
+          "tir": 9.5,
+          "duration": 2.0,
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
@@ -5245,9 +4336,9 @@
             }
           ],
           "subtitulo": "BOPREAL (BCRA) • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 2.43,
-          "var_12m": 21.85
+          "var_1d": -0.36,
+          "var_1m": -19.62,
+          "var_12m": -21.34
         },
         {
           "id": "BONO_BPOA8",
@@ -5255,13 +4346,16 @@
           "nombre": "BOPREAL Serie 1 Strip A (BPOA8)",
           "categoria": "Bonos - LECAPs",
           "subtipo": "BOPREAL (BCRA)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARBPOA8BOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
           "precio": 141180.0,
+          "open": 139490.0,
+          "high": 141180.0,
+          "low": 137810.0,
           "paridad_pct": 91.1,
           "valor_tecnico": 100.95,
           "valor_residual_pct": 100.0,
@@ -5304,115 +4398,9 @@
             }
           ],
           "subtitulo": "BOPREAL USD - vto. 10/2028",
-          "var_1d": 0.0,
-          "var_1m": 134357.14,
-          "var_12m": 134357.14
-        },
-        {
-          "id": "BONO_BPOB8",
-          "symbol": "BPOB8",
-          "nombre": "BOPREAL Serie 1 Strip B (BPOB8)",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "BOPREAL (BCRA)",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARBPOB8BOND",
-          "moneda_emision": "USD",
-          "moneda_pago": "USD (Hard / Cable)",
-          "moneda": "USD",
-          "precio": 140600.0,
-          "paridad_pct": 90.73,
-          "valor_tecnico": 100.95,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.38,
-          "cupon_anual_pct": 1.5,
-          "tipo_cupon": "Fijo en USD",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet",
-          "tir": 7.87,
-          "duration": 2.03,
-          "dias_vto": 799,
-          "fecha_emision": "2025-06-24",
-          "fecha_vto": "2028-10-31",
-          "proximo_pago_fecha": "2027-03-09",
-          "proximo_pago_monto": "US$ 0.75 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-03-09",
-              "renta": 0.75,
-              "amort": 0.0,
-              "total": 0.75
-            },
-            {
-              "fecha": "2027-09-25",
-              "renta": 0.75,
-              "amort": 0.0,
-              "total": 0.75
-            },
-            {
-              "fecha": "2028-04-12",
-              "renta": 0.75,
-              "amort": 0.0,
-              "total": 0.75
-            },
-            {
-              "fecha": "2028-10-29",
-              "renta": 0.75,
-              "amort": 100.0,
-              "total": 100.75
-            }
-          ],
-          "subtitulo": "BOPREAL USD - vto. 10/2028",
-          "var_1d": 0.0,
-          "var_1m": 133804.76,
-          "var_12m": 133804.76
-        },
-        {
-          "id": "BONO_BPD7D",
-          "symbol": "BPD7D",
-          "nombre": "BOPREAL Serie 1 Strip D (USD)",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "BOPREAL (BCRA)",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARBPD7DBOND",
-          "moneda_emision": "USD",
-          "moneda_pago": "USD (Hard / Cable)",
-          "moneda": "USD",
-          "precio": 102.8,
-          "paridad_pct": 101.2,
-          "valor_tecnico": 101.58,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.62,
-          "cupon_anual_pct": 2.5,
-          "tipo_cupon": "Fijo en USD",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet",
-          "tir": 3.68,
-          "duration": 0.9,
-          "dias_vto": 434,
-          "fecha_emision": "2024-01-05",
-          "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-03-27",
-          "proximo_pago_monto": "US$ 1.25 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-03-27",
-              "renta": 1.25,
-              "amort": 0.0,
-              "total": 1.25
-            },
-            {
-              "fecha": "2027-10-30",
-              "renta": 1.25,
-              "amort": 100.0,
-              "total": 101.25
-            }
-          ],
-          "subtitulo": "BOPREAL USD - vto. 10/2027",
-          "var_1d": 0.0,
-          "var_1m": 1.67,
-          "var_12m": 24.82
+          "var_1d": 2.37,
+          "var_1m": 0.23,
+          "var_12m": 38.41
         },
         {
           "id": "BONO_BPY26",
@@ -5420,14 +4408,17 @@
           "nombre": "BOPREAL Serie 2 (BPY26)",
           "categoria": "Bonos - LECAPs",
           "subtipo": "BOPREAL (BCRA)",
-          "tipo": "bond",
+          "tipo": "market_asset",
           "ley": "Argentina",
           "isin": "ARBPY26BOND",
           "moneda_emision": "USD",
           "moneda_pago": "USD (Hard / Cable)",
           "moneda": "USD",
-          "precio": 75.0,
-          "paridad_pct": 75.0,
+          "precio": 56000.0,
+          "open": 54000.0,
+          "high": 60400.0,
+          "low": 53120.0,
+          "paridad_pct": 85.0,
           "valor_tecnico": 100.0,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 0.0,
@@ -5435,8 +4426,8 @@
           "tipo_cupon": "Cero Cupón",
           "frecuencia_pago": "Mensual",
           "amortizacion": "12 cuotas mensuales",
-          "tir": 10.5,
-          "duration": 2.5,
+          "tir": 9.5,
+          "duration": 2.0,
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
@@ -5469,68 +4460,9 @@
             }
           ],
           "subtitulo": "BOPREAL (BCRA) • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 0.23,
-          "var_12m": 22.41
-        },
-        {
-          "id": "BONO_BPC26",
-          "symbol": "BPC26",
-          "nombre": "BOPREAL Serie 3 (BPC26)",
-          "categoria": "Bonos - LECAPs",
-          "subtipo": "BOPREAL (BCRA)",
-          "tipo": "bond",
-          "ley": "Argentina",
-          "isin": "ARBPC26BOND",
-          "moneda_emision": "USD",
-          "moneda_pago": "USD (Hard / Cable)",
-          "moneda": "USD",
-          "precio": 75.0,
-          "paridad_pct": 75.0,
-          "valor_tecnico": 100.0,
-          "valor_residual_pct": 100.0,
-          "intereses_corridos": 0.75,
-          "cupon_anual_pct": 3.0,
-          "tipo_cupon": "Fijo Trimestral en USD",
-          "frecuencia_pago": "Trimestral",
-          "amortizacion": "3 cuotas iguales",
-          "tir": 10.5,
-          "duration": 2.5,
-          "dias_vto": 720,
-          "fecha_emision": "2020-09-04",
-          "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-02-18",
-          "proximo_pago_monto": "US$ 25.75 por 100 VN",
-          "cashflow": [
-            {
-              "fecha": "2027-02-18",
-              "renta": 0.75,
-              "amort": 25.0,
-              "total": 25.75
-            },
-            {
-              "fecha": "2027-08-17",
-              "renta": 0.75,
-              "amort": 25.0,
-              "total": 25.75
-            },
-            {
-              "fecha": "2028-02-13",
-              "renta": 0.75,
-              "amort": 25.0,
-              "total": 25.75
-            },
-            {
-              "fecha": "2028-08-11",
-              "renta": 0.75,
-              "amort": 25.0,
-              "total": 25.75
-            }
-          ],
-          "subtitulo": "BOPREAL (BCRA) • Ley Argentina",
-          "var_1d": 0.25,
-          "var_1m": 2.39,
-          "var_12m": 21.14
+          "var_1d": 0.0,
+          "var_1m": 0.0,
+          "var_12m": -56.92
         }
       ]
     },
@@ -5553,9 +4485,9 @@
           "cupon": 8.5,
           "ley": "Nueva York",
           "vto": "2026-07-28",
-          "var_1d": 0.32,
-          "var_1m": 0.5,
-          "var_12m": 3.69
+          "var_1d": -0.13,
+          "var_1m": 0.71,
+          "var_12m": 3.58
         },
         {
           "id": "ON_YCA6O",
@@ -5572,9 +4504,9 @@
           "cupon": 8.75,
           "ley": "Nueva York",
           "vto": "2029-06-30",
-          "var_1d": 0.15,
-          "var_1m": 0.85,
-          "var_12m": 3.7
+          "var_1d": -0.14,
+          "var_1m": 0.77,
+          "var_12m": 3.46
         },
         {
           "id": "ON_PAMPO",
@@ -5591,9 +4523,9 @@
           "cupon": 9.12,
           "ley": "Nueva York",
           "vto": "2026-12-08",
-          "var_1d": 0.41,
-          "var_1m": 1.07,
-          "var_12m": 4.02
+          "var_1d": 0.2,
+          "var_1m": 0.75,
+          "var_12m": 3.57
         },
         {
           "id": "ON_PAE27",
@@ -5610,9 +4542,9 @@
           "cupon": 8.5,
           "ley": "Nueva York",
           "vto": "2027-04-30",
-          "var_1d": 0.41,
-          "var_1m": 1.26,
-          "var_12m": 3.39
+          "var_1d": 0.12,
+          "var_1m": 1.14,
+          "var_12m": 3.68
         },
         {
           "id": "ON_TLC1O",
@@ -5629,9 +4561,9 @@
           "cupon": 8.0,
           "ley": "Nueva York",
           "vto": "2026-08-18",
-          "var_1d": -0.47,
-          "var_1m": 1.24,
-          "var_12m": 3.33
+          "var_1d": -0.28,
+          "var_1m": 0.61,
+          "var_12m": 3.34
         },
         {
           "id": "ON_VSC3O",
@@ -5648,9 +4580,9 @@
           "cupon": 7.95,
           "ley": "Nueva York",
           "vto": "2027-06-20",
-          "var_1d": -0.13,
-          "var_1m": 0.98,
-          "var_12m": 3.46
+          "var_1d": 0.15,
+          "var_1m": 1.25,
+          "var_12m": 3.82
         },
         {
           "id": "ON_CS38O",
@@ -5667,9 +4599,9 @@
           "cupon": 8.0,
           "ley": "Argentina",
           "vto": "2026-03-12",
-          "var_1d": -0.03,
-          "var_1m": 0.96,
-          "var_12m": 3.36
+          "var_1d": 0.06,
+          "var_1m": 0.83,
+          "var_12m": 3.77
         },
         {
           "id": "ON_CP17O",
@@ -5686,9 +4618,9 @@
           "cupon": 8.75,
           "ley": "Nueva York",
           "vto": "2027-09-02",
-          "var_1d": 0.62,
-          "var_1m": 1.31,
-          "var_12m": 3.69
+          "var_1d": -0.29,
+          "var_1m": 0.83,
+          "var_12m": 3.47
         }
       ]
     },
@@ -6469,17 +5401,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 76899.2734,
+          "precio": 77080.5078,
           "open": 78326.9688,
           "high": 78767.3438,
           "low": 76628.1719,
           "moneda": "USD",
-          "cap_bursatil": 1543909933056,
-          "ma50": 64857.66,
-          "ma200": 68979.92,
-          "var_1d": -1.83,
-          "var_1m": 22.52,
-          "var_12m": -14.84,
+          "cap_bursatil": 1547826757632,
+          "ma50": 64861.28,
+          "ma200": 68980.83,
+          "var_1d": -1.6,
+          "var_1m": 22.81,
+          "var_12m": -14.64,
           "subtitulo": "Criptomoneda Líder / Reserva Digital"
         },
         {
@@ -6489,17 +5421,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2409.0,
+          "precio": 2417.8201,
           "open": 2515.2744,
           "high": 2527.4084,
           "low": 2395.3418,
           "moneda": "USD",
-          "cap_bursatil": 290566144000,
-          "ma50": 1906.56,
-          "ma200": 2005.32,
-          "var_1d": -4.23,
-          "var_1m": 30.68,
-          "var_12m": -22.71,
+          "cap_bursatil": 292011638784,
+          "ma50": 1906.74,
+          "ma200": 2005.37,
+          "var_1d": -3.87,
+          "var_1m": 31.16,
+          "var_12m": -22.42,
           "subtitulo": "Contratos Inteligentes / Web3"
         },
         {
@@ -6509,17 +5441,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 92.92,
+          "precio": 93.49,
           "open": 93.6614,
           "high": 101.6464,
           "low": 91.6316,
           "moneda": "USD",
-          "cap_bursatil": 54192037888,
-          "ma50": 77.1,
+          "cap_bursatil": 54378217472,
+          "ma50": 77.11,
           "ma200": 81.13,
-          "var_1d": -0.78,
-          "var_1m": 29.3,
-          "var_12m": -30.27,
+          "var_1d": -0.17,
+          "var_1m": 30.09,
+          "var_12m": -29.84,
           "subtitulo": "Blockchain de Alta Velocidad"
         },
         {
@@ -6529,17 +5461,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 692.88,
+          "precio": 695.61,
           "open": 686.9454,
           "high": 724.8462,
           "low": 683.4969,
           "moneda": "USD",
-          "cap_bursatil": 92282773504,
-          "ma50": 590.33,
-          "ma200": 615.21,
-          "var_1d": 0.86,
-          "var_1m": 20.51,
-          "var_12m": -22.79,
+          "cap_bursatil": 92527337472,
+          "ma50": 590.39,
+          "ma200": 615.23,
+          "var_1d": 1.26,
+          "var_1m": 20.98,
+          "var_12m": -22.49,
           "subtitulo": "Ecosistema BNB Chain"
         },
         {
@@ -6549,17 +5481,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.4568,
+          "precio": 1.4659,
           "open": 1.4536,
           "high": 1.6801,
           "low": 1.4289,
           "moneda": "USD",
-          "cap_bursatil": 91472625664,
+          "cap_bursatil": 91932983296,
           "ma50": 1.09,
           "ma200": 1.27,
-          "var_1d": 0.21,
-          "var_1m": 37.47,
-          "var_12m": -28.02,
+          "var_1d": 0.83,
+          "var_1m": 38.33,
+          "var_12m": -27.57,
           "subtitulo": "Pagos y Liquidaciones"
         },
         {
@@ -6569,17 +5501,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.2241,
+          "precio": 0.2262,
           "open": 0.2292,
           "high": 0.2569,
           "low": 0.2187,
           "moneda": "USD",
-          "cap_bursatil": 8194233856,
+          "cap_bursatil": 8288479232,
           "ma50": 0.18,
           "ma200": 0.22,
-          "var_1d": -2.23,
-          "var_1m": 28.65,
-          "var_12m": -45.49,
+          "var_1d": -1.31,
+          "var_1m": 29.85,
+          "var_12m": -44.98,
           "subtitulo": "Blockchain Proof of Stake"
         },
         {
@@ -6589,17 +5521,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0917,
+          "precio": 0.0923,
           "open": 0.0916,
           "high": 0.0998,
           "low": 0.088,
           "moneda": "USD",
-          "cap_bursatil": 15746743296,
+          "cap_bursatil": 15816374272,
           "ma50": 0.07,
           "ma200": 0.09,
-          "var_1d": 0.11,
-          "var_1m": 32.71,
-          "var_12m": -34.12,
+          "var_1d": 0.76,
+          "var_1m": 33.57,
+          "var_12m": -33.69,
           "subtitulo": "Moneda Digital Memética"
         },
         {
@@ -6609,17 +5541,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.9999,
+          "precio": 0.9998,
           "open": 0.9998,
           "high": 1.0002,
           "low": 0.9996,
           "moneda": "USD",
-          "cap_bursatil": 183198826496,
+          "cap_bursatil": 183204020224,
           "ma50": 1.0,
           "ma200": 1.0,
-          "var_1d": 0.0,
-          "var_1m": 0.08,
-          "var_12m": -0.04,
+          "var_1d": -0.01,
+          "var_1m": 0.07,
+          "var_12m": -0.05,
           "subtitulo": "Stablecoin Dólar"
         }
       ]
