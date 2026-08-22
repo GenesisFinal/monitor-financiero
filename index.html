@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es" class="h-full bg-slate-50">
 <head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Monitor Financiero | La Segunda Seguros</title>
@@ -572,7 +575,7 @@
 
       if (secKey === 'fci') {
         if (CURRENT_FCI_FILTER !== 'all') {
-          items = items.filter(x => x.clase && x.clase.toLowerCase().includes(CURRENT_FCI_FILTER.toLowerCase()));
+          items = items.filter(x => (x.clase && x.clase.toLowerCase().includes(CURRENT_FCI_FILTER.toLowerCase())) || (x.subtipo && x.subtipo.toLowerCase().includes(CURRENT_FCI_FILTER.toLowerCase())));
         }
         if (CURRENT_FCI_SEARCH) {
           items = items.filter(x => 
