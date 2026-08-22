@@ -245,6 +245,7 @@ def fetch_yahoo_market_group(tickers_config, category_name):
                             'symbol': sym,
                             'nombre': item['name'],
                             'categoria': category_name,
+                            'subtipo': item.get('subtipo', ''),
                             'tipo': 'market_asset',
                             'precio': last_close,
                             'open': last_pt.get('open'),
@@ -471,14 +472,33 @@ CONFIG_DIVISAS = [
 ]
 
 CONFIG_COMMODITIES = [
-    {'symbol': 'GC=F', 'name': 'Oro (Gold Futures)', 'id': 'COMM_ORO', 'currency': 'USD', 'subtitulo': 'Metales Preciosos - Oz t'},
-    {'symbol': 'SI=F', 'name': 'Plata (Silver Futures)', 'id': 'COMM_PLATA', 'currency': 'USD', 'subtitulo': 'Metales Preciosos - Oz t'},
-    {'symbol': 'HG=F', 'name': 'Cobre (Copper Futures)', 'id': 'COMM_COBRE', 'currency': 'USD', 'subtitulo': 'Metales Industriales - Lb'},
-    {'symbol': 'CL=F', 'name': 'Petróleo WTI (Crude Oil)', 'id': 'COMM_WTI', 'currency': 'USD', 'subtitulo': 'Energía - Barril'},
-    {'symbol': 'BZ=F', 'name': 'Petróleo Brent (Brent Oil)', 'id': 'COMM_BRENT', 'currency': 'USD', 'subtitulo': 'Energía - Barril'},
-    {'symbol': 'ZS=F', 'name': 'Soja (Soybean Futures)', 'id': 'COMM_SOJA', 'currency': 'USD', 'subtitulo': 'Granos - Bushel / Tonelada'},
-    {'symbol': 'ZC=F', 'name': 'Maíz (Corn Futures)', 'id': 'COMM_MAIZ', 'currency': 'USD', 'subtitulo': 'Granos - Bushel'},
-    {'symbol': 'ZW=F', 'name': 'Trigo (Wheat Futures)', 'id': 'COMM_TRIGO', 'currency': 'USD', 'subtitulo': 'Granos - Bushel'},
+    # 1. Granos y Oleaginosas (Agro)
+    {'symbol': 'ZS=F', 'name': 'Soja (Soybeans)', 'id': 'COMM_SOJA', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'CBOT - Bushel (US$)'},
+    {'symbol': 'ZM=F', 'name': 'Harina de Soja (Soybean Meal)', 'id': 'COMM_HARINA_SOJA', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'CBOT - Tonelada Corta'},
+    {'symbol': 'ZL=F', 'name': 'Aceite de Soja (Soybean Oil)', 'id': 'COMM_ACEITE_SOJA', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'CBOT - Libras (Centavos US$)'},
+    {'symbol': 'ZC=F', 'name': 'Maíz (Corn)', 'id': 'COMM_MAIZ', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'CBOT - Bushel (US$)'},
+    {'symbol': 'ZW=F', 'name': 'Trigo Chicago (Wheat)', 'id': 'COMM_TRIGO', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'CBOT - Bushel (US$)'},
+    {'symbol': 'KE=F', 'name': 'Trigo Kansas (KC Wheat)', 'id': 'COMM_TRIGO_KANSAS', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'KCBT - Trigo Duro Proteico'},
+    
+    # 2. Energía
+    {'symbol': 'CL=F', 'name': 'Petróleo WTI (Crude Oil)', 'id': 'COMM_WTI', 'subtipo': 'Energía', 'currency': 'USD', 'subtitulo': 'NYMEX - Barril (US$)'},
+    {'symbol': 'BZ=F', 'name': 'Petróleo Brent (Brent Oil)', 'id': 'COMM_BRENT', 'subtipo': 'Energía', 'currency': 'USD', 'subtitulo': 'ICE - Barril (US$)'},
+    {'symbol': 'NG=F', 'name': 'Gas Natural (Henry Hub)', 'id': 'COMM_GAS_NATURAL', 'subtipo': 'Energía', 'currency': 'USD', 'subtitulo': 'NYMEX - MMBtu (US$)'},
+    {'symbol': 'RB=F', 'name': 'Gasolina RBOB (Gasoline)', 'id': 'COMM_GASOLINA', 'subtipo': 'Energía', 'currency': 'USD', 'subtitulo': 'NYMEX - Galón (US$)'},
+    {'symbol': 'HO=F', 'name': 'Heating Oil / Diésel', 'id': 'COMM_DIESEL', 'subtipo': 'Energía', 'currency': 'USD', 'subtitulo': 'NYMEX - Galón (US$)'},
+    
+    # 3. Metales (Preciosos e Industriales)
+    {'symbol': 'GC=F', 'name': 'Oro (Gold Futures)', 'id': 'COMM_ORO', 'subtipo': 'Metales', 'currency': 'USD', 'subtitulo': 'COMEX - Onza Troy (US$)'},
+    {'symbol': 'SI=F', 'name': 'Plata (Silver Futures)', 'id': 'COMM_PLATA', 'subtipo': 'Metales', 'currency': 'USD', 'subtitulo': 'COMEX - Onza Troy (US$)'},
+    {'symbol': 'PL=F', 'name': 'Platino (Platinum)', 'id': 'COMM_PLATINO', 'subtipo': 'Metales', 'currency': 'USD', 'subtitulo': 'NYMEX - Onza Troy (US$)'},
+    {'symbol': 'HG=F', 'name': 'Cobre (Copper Futures)', 'id': 'COMM_COBRE', 'subtipo': 'Metales', 'currency': 'USD', 'subtitulo': 'COMEX - Libra (US$)'},
+    
+    # 4. Agroindustriales & Ganadería (Softs & Livestock)
+    {'symbol': 'KC=F', 'name': 'Café Arábica (Coffee)', 'id': 'COMM_CAFE', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'USD', 'subtitulo': 'ICE - Libra (Centavos US$)'},
+    {'symbol': 'CC=F', 'name': 'Cacao (Cocoa)', 'id': 'COMM_CACAO', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'USD', 'subtitulo': 'ICE - Tonelada Métrica'},
+    {'symbol': 'SB=F', 'name': 'Azúcar Nº 11 (Sugar)', 'id': 'COMM_AZUCAR', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'USD', 'subtitulo': 'ICE - Libra (Centavos US$)'},
+    {'symbol': 'CT=F', 'name': 'Algodón (Cotton)', 'id': 'COMM_ALGODON', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'USD', 'subtitulo': 'ICE - Libra (Centavos US$)'},
+    {'symbol': 'LE=F', 'name': 'Ganado Vacuno en Pie (Live Cattle)', 'id': 'COMM_GANADO', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'USD', 'subtitulo': 'CME - Libra (Centavos US$)'},
 ]
 
 CONFIG_TASAS_INT = [
