@@ -55,13 +55,11 @@
     body { font-family: 'Sora', sans-serif; }
     .num { font-family: 'JetBrains Mono', monospace; }
     
-    /* Custom Scrollbars */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     
-    /* Mosaic visual pattern based on brandbook */
     .brand-mosaic-bar {
       display: flex;
       height: 4px;
@@ -97,7 +95,6 @@
         <!-- Logo & Marca La Segunda -->
         <div class="flex items-center space-x-3 sm:space-x-4">
           <div class="flex items-center space-x-2">
-            <!-- Monograma Institucional SVG -->
             <svg class="h-9 w-9 sm:h-11 sm:w-11" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="100" height="100" rx="20" fill="#e20039"/>
               <path d="M28 32H72V46H44V56H72V70H28V32Z" fill="white"/>
@@ -115,25 +112,22 @@
         <!-- Búsqueda Rápida & Estado de Actualización -->
         <div class="flex items-center space-x-2 sm:space-x-4">
           
-          <!-- Buscador Global -->
           <div class="relative hidden md:block w-64">
             <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
             <input 
               type="text" 
               id="globalSearchInput" 
-              placeholder="Buscar activo (ej: AL30, GGAL, S&P)..." 
+              placeholder="Buscar activo (ej: Soja, AL30, GGAL)..." 
               class="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-100 border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-red/50 focus:bg-white transition-all"
               oninput="handleGlobalSearch(this.value)"
             >
           </div>
 
-          <!-- Status Indicator -->
           <div class="flex items-center bg-slate-100/90 border border-slate-200 rounded-full px-3 py-1 text-xs">
             <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
             <span id="updateTimeBadge" class="text-slate-600 font-medium text-[11px] sm:text-xs">Cargando datos...</span>
           </div>
 
-          <!-- Botón de Actualizar / Refrescar -->
           <button 
             onclick="loadDataset(true)" 
             title="Recargar datos"
@@ -146,11 +140,10 @@
       </div>
     </div>
 
-    <!-- Barra de Navegación por Secciones (Horizontal Scrollable) -->
+    <!-- Barra de Navegación por Secciones -->
     <div class="border-t border-slate-100 bg-white/95 backdrop-blur overflow-x-auto no-scrollbar">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="flex space-x-1 py-2" id="sectionNavTabs">
-          <!-- Dynamically populated or static fast tabs -->
           <button onclick="selectSection('all')" data-sec="all" class="sec-tab tab-active px-3 py-1.5 rounded-lg text-xs whitespace-nowrap transition-all flex items-center space-x-1.5">
             <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
             <span>Resumen General</span>
@@ -240,13 +233,11 @@
       
       <!-- Key Highlights Ribbon -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-slate-700/60" id="quickHighlightsRibbon">
-        <!-- Dynamically injected: Dolar Blue, MEP, CCL, S&P 500 -->
       </div>
     </div>
 
     <!-- SECCIÓN CONTENEDORA DE MÓDULOS -->
     <div id="modulesContainer" class="space-y-10">
-      <!-- Injected via JavaScript -->
     </div>
 
     <!-- SECCIÓN DEDICADA A CURVAS DE RENDIMIENTO -->
@@ -261,7 +252,6 @@
             <p class="text-xs text-slate-500 mt-1">Estructura temporal de tasas (TIR %) en función de la Duration (Años) y Días al Vencimiento.</p>
           </div>
 
-          <!-- Selector de Curva -->
           <div class="flex bg-slate-100 p-1 rounded-xl space-x-1" id="curveSelectorTabs">
             <button onclick="renderYieldCurve('soberanos_usd')" data-curvetab="soberanos_usd" class="curve-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white shadow-sm text-slate-900">Soberanos USD</button>
             <button onclick="renderYieldCurve('bonos_cer')" data-curvetab="bonos_cer" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900">Bonos CER</button>
@@ -270,15 +260,12 @@
           </div>
         </div>
 
-        <!-- Yield Curve Chart Canvas Container -->
         <div class="mt-6 relative h-[380px] w-full">
           <canvas id="yieldCurveCanvas"></canvas>
         </div>
 
-        <!-- Tabla detallada de la curva activa -->
         <div class="mt-6 overflow-x-auto">
           <table class="min-w-full text-xs text-left" id="yieldCurveTable">
-            <!-- Injected dynamically -->
           </table>
         </div>
       </div>
@@ -294,7 +281,6 @@
       <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
         <div class="flex items-center space-x-3">
           <div id="modalAssetIcon" class="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center text-brand-red font-bold">
-            <!-- Icon / Symbol -->
           </div>
           <div>
             <div class="flex items-center space-x-2">
@@ -313,15 +299,11 @@
       <!-- Modal Body -->
       <div class="p-6 overflow-y-auto space-y-6">
         
-        <!-- Key Metrics Cards Row -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="modalMetricsRow">
-          <!-- Dynamically populated: Last Price, 1D, 1M, 12M, MA50, MA200, TIR, Duration -->
         </div>
 
-        <!-- Chart Controls Toolbar -->
         <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-100 p-2.5 rounded-xl text-xs">
           
-          <!-- Chart Type Selector (For OHLC assets) -->
           <div class="flex items-center space-x-1" id="chartTypeToolbar">
             <span class="text-[11px] font-medium text-slate-500 mr-1 hidden sm:inline">Tipo:</span>
             <button onclick="setChartType('line')" id="btnChartTypeLine" class="px-2.5 py-1 rounded bg-white font-semibold text-slate-800 shadow-sm">Línea</button>
@@ -329,7 +311,6 @@
             <button onclick="setChartType('ohlc')" id="btnChartTypeOhlc" class="px-2.5 py-1 rounded font-medium text-slate-600 hover:text-slate-900">OHLC</button>
           </div>
 
-          <!-- Indicators Overlay (MA50, MA200) -->
           <div class="flex items-center space-x-3" id="indicatorsToolbar">
             <label class="flex items-center space-x-1.5 cursor-pointer text-[11px] font-medium text-slate-700">
               <input type="checkbox" id="chkMA50" onchange="toggleMA('ma50')" checked class="rounded text-brand-red focus:ring-brand-red">
@@ -343,7 +324,6 @@
             </label>
           </div>
 
-          <!-- Timeframe Selector (1M to 120M) -->
           <div class="flex items-center space-x-1 bg-white p-1 rounded-lg border border-slate-200 overflow-x-auto">
             <button onclick="setTimeframe(1)" data-tf="1" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">1M</button>
             <button onclick="setTimeframe(6)" data-tf="6" class="tf-btn px-2 py-0.5 rounded font-medium text-slate-600 hover:bg-slate-100">6M</button>
@@ -356,7 +336,6 @@
 
         </div>
 
-        <!-- Main Interactive Chart Canvas Container -->
         <div class="relative h-[340px] sm:h-[400px] w-full bg-slate-50/50 rounded-xl p-2 border border-slate-100">
           <canvas id="modalMainCanvas"></canvas>
         </div>
@@ -388,20 +367,19 @@
 
   <!-- SCRIPT DE LA APLICACIÓN -->
   <script>
-    // Global State
     let DATASET = null;
     let HISTORICAL_SERIES = null;
     let YIELD_CURVES = null;
     let ACTIVE_SECTION = 'all';
+    let CURRENT_COMMODITY_FILTER = 'all';
     let CURRENT_MODAL_ASSET = null;
-    let CURRENT_TIMEFRAME = 12; // meses por defecto
+    let CURRENT_TIMEFRAME = 12;
     let CURRENT_CHART_TYPE = 'line';
     let SHOW_MA50 = true;
     let SHOW_MA200 = true;
     let modalChartInstance = null;
     let yieldCurveChartInstance = null;
 
-    // Formateadores numéricos
     function formatNumber(val, decimals = 2) {
       if (val === null || val === undefined || isNaN(val)) return '-';
       return new Intl.NumberFormat('es-AR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(val);
@@ -409,8 +387,9 @@
 
     function formatCurrency(val, currency = 'ARS', decimals = 2) {
       if (val === null || val === undefined || isNaN(val)) return '-';
-      const symb = currency === 'USD' ? 'US$' : (currency === '%' ? '%' : '$');
+      const symb = currency === 'USD' ? 'US$' : (currency === '%' ? '%' : (currency === 'Pts' ? 'Pts' : '$'));
       if (currency === '%') return `${formatNumber(val, decimals)}%`;
+      if (currency === 'Pts') return `${formatNumber(val, decimals)}`;
       return `${symb} ${formatNumber(val, decimals)}`;
     }
 
@@ -432,7 +411,6 @@
       return `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono font-semibold border ${colorClass}">${arrow} ${prefix}${formatNumber(val, 2)}%</span>`;
     }
 
-    // Carga de Datasets
     async function loadDataset(force = false) {
       const refreshIcon = document.getElementById('refreshIcon');
       if (refreshIcon) refreshIcon.classList.add('animate-spin');
@@ -462,7 +440,6 @@
       }
     }
 
-    // Ribbon de Dólares e Índices Clave
     function renderHeroHighlights() {
       if (!DATASET || !DATASET.secciones) return;
       const container = document.getElementById('quickHighlightsRibbon');
@@ -474,21 +451,20 @@
       const blue = dSecc.find(x => x.id === 'USD_BLUE') || { nombre: 'Dólar Blue', precio: 1220, var_1d: 0.0 };
       const mep = dSecc.find(x => x.id === 'USD_BOLSA') || { nombre: 'Dólar MEP', precio: 1195, var_1d: 0.2 };
       const ccl = dSecc.find(x => x.id === 'USD_CONTADODONLIQUI') || { nombre: 'Dólar CCL', precio: 1215, var_1d: -0.1 };
-      const sp500 = iSecc.find(x => x.id === 'IDX_SP500') || { nombre: 'S&P 500', precio: 5950, var_1d: 0.4 };
+      const merv = iSecc.find(x => x.id === 'IDX_MERVAL_ARS') || iSecc.find(x => x.id === 'IDX_SP500') || { nombre: 'S&P Merval', precio: 2250000, var_1d: 1.5 };
 
-      const cards = [blue, mep, ccl, sp500];
+      const cards = [blue, mep, ccl, merv];
       container.innerHTML = cards.map(c => `
         <div class="bg-white/10 backdrop-blur rounded-xl p-3 border border-white/10 hover:bg-white/15 cursor-pointer transition-all" onclick="openChartModal('${c.id}')">
           <div class="text-[11px] text-slate-300 font-medium truncate">${c.nombre}</div>
           <div class="flex items-baseline justify-between mt-1">
-            <span class="text-base sm:text-lg font-mono font-bold">${c.moneda === 'USD' ? 'US$' : '$'} ${formatNumber(c.precio, 2)}</span>
+            <span class="text-base sm:text-lg font-mono font-bold">${c.moneda === 'USD' ? 'US$' : (c.moneda === 'Pts' ? '' : '$')} ${formatNumber(c.precio, 2)}</span>
             <span class="text-xs font-mono font-semibold ${c.var_1d >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${c.var_1d >= 0 ? '+' : ''}${c.var_1d}%</span>
           </div>
         </div>
       `).join('');
     }
 
-    // Selección de Sección
     function selectSection(secKey) {
       ACTIVE_SECTION = secKey;
       document.querySelectorAll('.sec-tab').forEach(t => {
@@ -523,7 +499,18 @@
       lucide.createIcons();
     }
 
-    // Render de Sección Activa o Todas
+    function filterCommodities(subtipo) {
+      CURRENT_COMMODITY_FILTER = subtipo;
+      document.querySelectorAll('.comm-sub-tab').forEach(btn => {
+        if (btn.getAttribute('data-subtipo') === subtipo) {
+          btn.className = 'comm-sub-tab px-3 py-1 rounded-lg text-xs font-bold bg-brand-red text-white shadow-sm';
+        } else {
+          btn.className = 'comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100';
+        }
+      });
+      renderActiveSection();
+    }
+
     function renderActiveSection() {
       if (!DATASET || !DATASET.secciones) return;
       const container = document.getElementById('modulesContainer');
@@ -542,10 +529,16 @@
     }
 
     function renderSectionBlock(secKey, sec) {
-      const items = sec.items || [];
+      let items = sec.items || [];
+      
+      // Filtrado especial de commodities por subsegmento
+      if (secKey === 'commodities' && CURRENT_COMMODITY_FILTER !== 'all') {
+        items = items.filter(x => x.subtipo === CURRENT_COMMODITY_FILTER);
+      }
+
       return `
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" id="section_${secKey}">
-          <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+          <div class="px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/50">
             <div class="flex items-center space-x-3">
               <span class="p-2 bg-rose-50 text-brand-red rounded-lg"><i data-lucide="${sec.icono || 'layers'}" class="w-5 h-5"></i></span>
               <div>
@@ -553,8 +546,20 @@
                 <p class="text-xs text-slate-500">${items.length} activos monitoreados</p>
               </div>
             </div>
+
+            <!-- Subfiltros específicos para Commodities -->
+            ${secKey === 'commodities' ? `
+              <div class="flex items-center space-x-1 overflow-x-auto no-scrollbar py-1">
+                <button onclick="filterCommodities('all')" data-subtipo="all" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-semibold ${CURRENT_COMMODITY_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">Todos</button>
+                <button onclick="filterCommodities('Granos y Oleaginosas')" data-subtipo="Granos y Oleaginosas" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Granos y Oleaginosas' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">🌾 Granos</button>
+                <button onclick="filterCommodities('Energía')" data-subtipo="Energía" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Energía' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">⚡ Energía</button>
+                <button onclick="filterCommodities('Metales')" data-subtipo="Metales" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Metales' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">🪙 Metales</button>
+                <button onclick="filterCommodities('Agroindustriales & Ganadería')" data-subtipo="Agroindustriales & Ganadería" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Agroindustriales & Ganadería' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">☕ Softs / Ganadería</button>
+              </div>
+            ` : ''}
+
             ${secKey === 'bonos_lecaps' || secKey === 'ons' ? `
-              <button onclick="selectSection('curvas_rendimiento')" class="text-xs font-semibold text-brand-red bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-all flex items-center space-x-1">
+              <button onclick="selectSection('curvas_rendimiento')" class="text-xs font-semibold text-brand-red bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-all flex items-center space-x-1 self-start sm:self-auto">
                 <i data-lucide="activity" class="w-3.5 h-3.5"></i>
                 <span>Ver Curva TIR</span>
               </button>
@@ -599,7 +604,14 @@
           <th class="px-4 py-3 text-right">CCL Implícito</th>
         `;
       }
-      if (secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
+      if (secKey === 'commodities') {
+        return `
+          <th class="px-4 py-3">Segmento</th>
+          <th class="px-4 py-3 text-right">MA 50</th>
+          <th class="px-4 py-3 text-right">MA 200</th>
+        `;
+      }
+      if (secKey === 'indices_mundiales' || secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
         return `
           <th class="px-4 py-3 text-right">Cap. Bursátil</th>
           <th class="px-4 py-3 text-right">MA 50</th>
@@ -661,7 +673,15 @@
           <td class="px-4 py-3 text-right font-mono font-bold text-slate-900">${item.ccl_implicito ? `$ ${formatNumber(item.ccl_implicito, 2)}` : '-'}</td>
         `;
       }
-      if (secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
+      if (secKey === 'commodities') {
+        const segColor = item.subtipo === 'Granos y Oleaginosas' ? 'bg-amber-50 text-amber-800 border-amber-200' : (item.subtipo === 'Energía' ? 'bg-rose-50 text-rose-800 border-rose-200' : (item.subtipo === 'Metales' ? 'bg-blue-50 text-blue-800 border-blue-200' : 'bg-emerald-50 text-emerald-800 border-emerald-200'));
+        return `
+          <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[10px] font-semibold border ${segColor}">${item.subtipo || 'General'}</span></td>
+          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `$ ${formatNumber(item.ma50, 2)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `$ ${formatNumber(item.ma200, 2)}` : '-'}</td>
+        `;
+      }
+      if (secKey === 'indices_mundiales' || secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
         return `
           <td class="px-4 py-3 text-right font-mono text-slate-600">${formatMcap(item.cap_bursatil)}</td>
           <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `$ ${formatNumber(item.ma50, 2)}` : '-'}</td>
@@ -685,7 +705,6 @@
       return '';
     }
 
-    // Modal de Gráfico y Análisis
     function openChartModal(assetId) {
       if (!DATASET) return;
       
@@ -705,9 +724,8 @@
       
       document.getElementById('modalAssetTitle').innerText = found.nombre;
       document.getElementById('modalAssetSymbol').innerText = found.symbol || found.id;
-      document.getElementById('modalAssetSubtitle').innerText = `${foundCategory} ${found.subtitulo ? `• ${found.subtitulo}` : ''}`;
+      document.getElementById('modalAssetSubtitle').innerText = `${foundCategory} ${found.subtipo ? `• ${found.subtipo}` : ''} ${found.subtitulo ? `• ${found.subtitulo}` : ''}`;
       
-      // Render Metrics Row
       const metricsContainer = document.getElementById('modalMetricsRow');
       let mHtml = `
         <div class="bg-slate-50 border border-slate-200 rounded-xl p-3">
@@ -756,7 +774,6 @@
 
       metricsContainer.innerHTML = mHtml;
 
-      // Adjust Chart Type Toolbar depending on asset type
       const isOhlc = found.tipo === 'market_asset' && found.open !== undefined;
       const typeToolbar = document.getElementById('chartTypeToolbar');
       const indicatorsToolbar = document.getElementById('indicatorsToolbar');
@@ -815,13 +832,11 @@
       renderModalChart();
     }
 
-    // Render del Gráfico del Modal
     function renderModalChart() {
       if (!CURRENT_MODAL_ASSET || !HISTORICAL_SERIES) return;
       const rawSeries = HISTORICAL_SERIES[CURRENT_MODAL_ASSET.id] || [];
       if (!rawSeries.length) return;
 
-      // Filter series by timeframe (approx 21 trading days / 30 calendar days per month)
       const daysCount = CURRENT_TIMEFRAME * 22;
       const series = rawSeries.slice(-daysCount);
 
@@ -833,13 +848,9 @@
 
       const labels = series.map(x => x.date);
       const closePrices = series.map(x => x.close);
-
-      // Datasets
       const datasets = [];
 
-      // Main line or candlestick
       if (CURRENT_CHART_TYPE === 'candlestick' && series[0].open !== undefined) {
-        // Candlestick format
         const candleData = series.map(pt => ({
           x: pt.date,
           o: pt.open,
@@ -851,11 +862,7 @@
           label: CURRENT_MODAL_ASSET.nombre,
           data: candleData,
           type: 'candlestick',
-          color: {
-            up: '#10b981',
-            down: '#ef4444',
-            unchanged: '#64748b',
-          }
+          color: { up: '#10b981', down: '#ef4444', unchanged: '#64748b' }
         });
       } else if (CURRENT_CHART_TYPE === 'ohlc' && series[0].open !== undefined) {
         const ohlcData = series.map(pt => ({
@@ -869,14 +876,9 @@
           label: CURRENT_MODAL_ASSET.nombre,
           data: ohlcData,
           type: 'ohlc',
-          color: {
-            up: '#10b981',
-            down: '#ef4444',
-            unchanged: '#64748b',
-          }
+          color: { up: '#10b981', down: '#ef4444', unchanged: '#64748b' }
         });
       } else {
-        // High quality smooth Line Chart
         datasets.push({
           label: 'Precio de Cierre',
           data: closePrices,
@@ -890,7 +892,6 @@
         });
       }
 
-      // Moving Averages Overlay
       if (SHOW_MA50 && CURRENT_MODAL_ASSET.tipo === 'market_asset') {
         const ma50Vals = [];
         for (let i = 0; i < series.length; i++) {
@@ -938,18 +939,12 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          interaction: {
-            mode: 'index',
-            intersect: false,
-          },
+          interaction: { mode: 'index', intersect: false },
           plugins: {
             legend: {
               display: true,
               position: 'top',
-              labels: {
-                boxWidth: 12,
-                font: { family: 'Sora', size: 11, weight: '500' }
-              }
+              labels: { boxWidth: 12, font: { family: 'Sora', size: 11, weight: '500' } }
             },
             tooltip: {
               backgroundColor: '#1e222d',
@@ -962,10 +957,7 @@
           scales: {
             x: {
               grid: { display: false },
-              ticks: {
-                font: { family: 'JetBrains Mono', size: 10 },
-                maxTicksLimit: 8
-              }
+              ticks: { font: { family: 'JetBrains Mono', size: 10 }, maxTicksLimit: 8 }
             },
             y: {
               grid: { color: '#f1f5f9' },
@@ -979,7 +971,6 @@
       });
     }
 
-    // Render de Curvas de Rendimiento (Yield Curves)
     function renderYieldCurve(curveKey) {
       if (!YIELD_CURVES || !YIELD_CURVES[curveKey]) return;
       
@@ -998,7 +989,6 @@
         yieldCurveChartInstance = null;
       }
 
-      // Scatter data points
       const scatterData = curvePoints.map(p => ({
         x: p.duration,
         y: p.tir,
@@ -1007,7 +997,6 @@
         dias: p.dias_vto
       }));
 
-      // Spline fitted line points
       const sortedByDur = [...scatterData].sort((a, b) => a.x - b.x);
       const lineData = sortedByDur.map(p => ({ x: p.x, y: p.y }));
 
@@ -1048,10 +1037,7 @@
               padding: 12,
               cornerRadius: 8,
               callbacks: {
-                title: function(items) {
-                  const pt = items[0]?.raw;
-                  return pt?.name || 'Instrumento';
-                },
+                title: function(items) { return items[0]?.raw?.name || 'Instrumento'; },
                 label: function(item) {
                   const pt = item.raw;
                   return [
@@ -1066,20 +1052,12 @@
           },
           scales: {
             x: {
-              title: {
-                display: true,
-                text: 'Duration Modificada (Años)',
-                font: { family: 'Sora', size: 11, weight: 'bold' }
-              },
+              title: { display: true, text: 'Duration Modificada (Años)', font: { family: 'Sora', size: 11, weight: 'bold' } },
               grid: { color: '#f1f5f9' },
               ticks: { font: { family: 'JetBrains Mono', size: 10 } }
             },
             y: {
-              title: {
-                display: true,
-                text: 'Tasa Interna de Retorno - TIR (%)',
-                font: { family: 'Sora', size: 11, weight: 'bold' }
-              },
+              title: { display: true, text: 'Tasa Interna de Retorno - TIR (%)', font: { family: 'Sora', size: 11, weight: 'bold' } },
               grid: { color: '#f1f5f9' },
               ticks: { font: { family: 'JetBrains Mono', size: 10 } }
             }
@@ -1087,7 +1065,6 @@
         }
       });
 
-      // Render table
       const table = document.getElementById('yieldCurveTable');
       table.innerHTML = `
         <thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
@@ -1117,7 +1094,6 @@
       `;
     }
 
-    // Buscador Global
     function handleGlobalSearch(query) {
       const q = query.trim().toLowerCase();
       if (!q) {
@@ -1183,7 +1159,6 @@
       lucide.createIcons();
     }
 
-    // Inicialización al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
       loadDataset();
     });
