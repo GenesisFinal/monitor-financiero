@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-08-22 17:14:32",
+  "ultima_actualizacion": "2026-08-22 17:58:37",
   "fecha_cierre": "2026-08-22",
   "secciones": {
     "dolar": {
@@ -111,11 +111,11 @@
           "nombre": "Dólar Cripto (USDT)",
           "categoria": "Dólar",
           "tipo": "single_price",
-          "precio": 1588.1,
-          "compra": 1580.16,
-          "venta": 1588.1,
+          "precio": 1590.2,
+          "compra": 1582.25,
+          "venta": 1590.2,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-08-22 17:14:32",
+          "fecha_actualizacion": "2026-08-22 17:58:37",
           "var_1d": 0.15,
           "var_1m": 3.2,
           "var_12m": 42.5
@@ -1294,9 +1294,9 @@
           "tna_estimada": 36.5,
           "moneda": "ARS",
           "subtitulo": "Gestión de liquidez diaria / Tasa Pasiva",
-          "var_1d": 225.27,
-          "var_1m": 236.29,
-          "var_12m": 381.78
+          "var_1d": 0.1,
+          "var_1m": 3.12,
+          "var_12m": 46.8
         },
         {
           "id": "FCI_DELTA_PESOS",
@@ -1312,9 +1312,9 @@
           "tna_estimada": 36.1,
           "moneda": "ARS",
           "subtitulo": "Fondo de rescate inmediato T+0",
-          "var_1d": 233.86,
-          "var_1m": 241.77,
-          "var_12m": 393.63
+          "var_1d": 0.09,
+          "var_1m": 3.08,
+          "var_12m": 45.9
         },
         {
           "id": "FCI_FIMA_PREMIUM",
@@ -1330,9 +1330,9 @@
           "tna_estimada": 36.3,
           "moneda": "ARS",
           "subtitulo": "Fondo Money Market líder bancario",
-          "var_1d": 220.29,
-          "var_1m": 229.79,
-          "var_12m": 385.11
+          "var_1d": 0.1,
+          "var_1m": 3.1,
+          "var_12m": 46.2
         },
         {
           "id": "FCI_SCHRODER_MM",
@@ -1348,9 +1348,9 @@
           "tna_estimada": 36.8,
           "moneda": "ARS",
           "subtitulo": "Administradora internacional / T+0",
-          "var_1d": 216.6,
-          "var_1m": 226.86,
-          "var_12m": 382.63
+          "var_1d": 0.1,
+          "var_1m": 3.14,
+          "var_12m": 47.1
         },
         {
           "id": "FCI_ALPHA_PESOS",
@@ -1366,9 +1366,9 @@
           "tna_estimada": 35.8,
           "moneda": "ARS",
           "subtitulo": "Caja en pesos remunerada",
-          "var_1d": 220.59,
-          "var_1m": 229.32,
-          "var_12m": 380.95
+          "var_1d": 0.09,
+          "var_1m": 3.05,
+          "var_12m": 45.5
         },
         {
           "id": "FCI_CONSULTATIO_MM",
@@ -1384,9 +1384,9 @@
           "tna_estimada": 36.4,
           "moneda": "ARS",
           "subtitulo": "Gestión de tesorería corporativa",
-          "var_1d": 202.81,
-          "var_1m": 209.7,
-          "var_12m": 353.29
+          "var_1d": 0.1,
+          "var_1m": 3.12,
+          "var_12m": 46.5
         },
         {
           "id": "FCI_SBS_PESOS_PLUS",
@@ -1402,9 +1402,9 @@
           "tna_estimada": 42.0,
           "moneda": "ARS",
           "subtitulo": "Devengamiento de tasa fija y LECAPs",
-          "var_1d": 214.02,
-          "var_1m": 222.67,
-          "var_12m": 380.29
+          "var_1d": 0.14,
+          "var_1m": 4.1,
+          "var_12m": 58.4
         },
         {
           "id": "FCI_GALILEO_AHORRO",
@@ -1420,9 +1420,9 @@
           "tna_estimada": 44.5,
           "moneda": "ARS",
           "subtitulo": "Estrategia de letras y bonos cortos",
-          "var_1d": 216.78,
-          "var_1m": 228.71,
-          "var_12m": 377.08
+          "var_1d": 0.16,
+          "var_1m": 4.35,
+          "var_12m": 62.1
         },
         {
           "id": "FCI_CONSULTATIO_PLUS",
@@ -1438,9 +1438,9 @@
           "tna_estimada": 43.8,
           "moneda": "ARS",
           "subtitulo": "Fondo de devengamiento activo",
-          "var_1d": 201.12,
-          "var_1m": 211.82,
-          "var_12m": 351.73
+          "var_1d": 0.15,
+          "var_1m": 4.28,
+          "var_12m": 61.2
         },
         {
           "id": "FCI_BALANZ_AHORRO",
@@ -1456,9 +1456,9 @@
           "tna_estimada": 43.2,
           "moneda": "ARS",
           "subtitulo": "Optimización de excedentes a 24hs",
-          "var_1d": 221.04,
-          "var_1m": 233.67,
-          "var_12m": 384.48
+          "var_1d": 0.15,
+          "var_1m": 4.2,
+          "var_12m": 60.5
         },
         {
           "id": "FCI_CONSULTATIO_CER",
@@ -1474,9 +1474,9 @@
           "tna_estimada": 48.0,
           "moneda": "ARS",
           "subtitulo": "Bonos y letras soberanas ajustadas por CER/IPC",
-          "var_1d": 219.03,
-          "var_1m": 230.12,
-          "var_12m": 376.33
+          "var_1d": 0.18,
+          "var_1m": 4.8,
+          "var_12m": 88.5
         },
         {
           "id": "FCI_BALANZ_CER",
@@ -1492,9 +1492,9 @@
           "tna_estimada": 47.5,
           "moneda": "ARS",
           "subtitulo": "Protección del capital frente a la inflación",
-          "var_1d": 205.08,
-          "var_1m": 217.68,
-          "var_12m": 365.01
+          "var_1d": 0.17,
+          "var_1m": 4.75,
+          "var_12m": 86.9
         },
         {
           "id": "FCI_SBS_CER",
@@ -1510,9 +1510,9 @@
           "tna_estimada": 48.5,
           "moneda": "ARS",
           "subtitulo": "Curva Boncer y deuda indexada",
-          "var_1d": 221.08,
-          "var_1m": 230.31,
-          "var_12m": 377.81
+          "var_1d": 0.19,
+          "var_1m": 4.9,
+          "var_12m": 89.2
         },
         {
           "id": "FCI_DELTA_CER",
@@ -1528,9 +1528,9 @@
           "tna_estimada": 47.8,
           "moneda": "ARS",
           "subtitulo": "Cartera de bonos CER corto y mediano plazo",
-          "var_1d": 221.19,
-          "var_1m": 233.71,
-          "var_12m": 389.0
+          "var_1d": 0.18,
+          "var_1m": 4.82,
+          "var_12m": 87.4
         },
         {
           "id": "FCI_BALANZ_USD",
@@ -1546,9 +1546,9 @@
           "tna_estimada": 7.5,
           "moneda": "USD",
           "subtitulo": "Obligaciones Negociables en Dólares Hard",
-          "var_1d": 27.52,
-          "var_1m": 28.5,
-          "var_12m": 36.65
+          "var_1d": 0.04,
+          "var_1m": 0.65,
+          "var_12m": 8.9
         },
         {
           "id": "FCI_CONSULTATIO_USD",
@@ -1564,9 +1564,9 @@
           "tna_estimada": 7.8,
           "moneda": "USD",
           "subtitulo": "Crédito corporativo latinoamericano y argentino",
-          "var_1d": 25.73,
-          "var_1m": 26.59,
-          "var_12m": 36.76
+          "var_1d": 0.05,
+          "var_1m": 0.7,
+          "var_12m": 8.5
         },
         {
           "id": "FCI_GALILEO_USD",
@@ -1582,9 +1582,9 @@
           "tna_estimada": 7.2,
           "moneda": "USD",
           "subtitulo": "ONs corporativas grado de inversión",
-          "var_1d": 25.02,
-          "var_1m": 25.96,
-          "var_12m": 34.7
+          "var_1d": 0.04,
+          "var_1m": 0.62,
+          "var_12m": 8.2
         },
         {
           "id": "FCI_SBS_USD",
@@ -1600,9 +1600,9 @@
           "tna_estimada": 7.6,
           "moneda": "USD",
           "subtitulo": "Cartera de renta fija dolarizada",
-          "var_1d": 26.85,
-          "var_1m": 27.37,
-          "var_12m": 36.07
+          "var_1d": 0.04,
+          "var_1m": 0.68,
+          "var_12m": 8.6
         },
         {
           "id": "FCI_CONSULTATIO_DL",
@@ -1618,9 +1618,9 @@
           "tna_estimada": 40.0,
           "moneda": "ARS",
           "subtitulo": "Títulos atados al Tipo de Cambio Oficial A3500",
-          "var_1d": 221.94,
-          "var_1m": 232.2,
-          "var_12m": 383.07
+          "var_1d": 0.12,
+          "var_1m": 2.8,
+          "var_12m": 72.0
         },
         {
           "id": "FCI_BALANZ_DL",
@@ -1636,9 +1636,9 @@
           "tna_estimada": 39.5,
           "moneda": "ARS",
           "subtitulo": "Cobertura cambiaria para empresas y aseguradoras",
-          "var_1d": 209.32,
-          "var_1m": 218.33,
-          "var_12m": 363.15
+          "var_1d": 0.11,
+          "var_1m": 2.75,
+          "var_12m": 70.8
         },
         {
           "id": "FCI_SBS_DL",
@@ -1654,9 +1654,9 @@
           "tna_estimada": 40.2,
           "moneda": "ARS",
           "subtitulo": "Sintéticos de futuros ROFEX y bonos DL",
-          "var_1d": 223.1,
-          "var_1m": 234.41,
-          "var_12m": 387.78
+          "var_1d": 0.12,
+          "var_1m": 2.85,
+          "var_12m": 73.1
         },
         {
           "id": "FCI_CONSULTATIO_MIXTA",
@@ -1672,9 +1672,9 @@
           "tna_estimada": 52.0,
           "moneda": "ARS",
           "subtitulo": "Estrategia activa entre tasa, CER, dólar y acciones",
-          "var_1d": 221.72,
-          "var_1m": 233.44,
-          "var_12m": 378.54
+          "var_1d": 0.35,
+          "var_1m": 5.2,
+          "var_12m": 94.5
         },
         {
           "id": "FCI_GALILEO_MIXTA",
@@ -1690,9 +1690,9 @@
           "tna_estimada": 50.5,
           "moneda": "ARS",
           "subtitulo": "Gestión dinámica y diversificación táctica",
-          "var_1d": 219.96,
-          "var_1m": 232.04,
-          "var_12m": 374.89
+          "var_1d": 0.3,
+          "var_1m": 5.05,
+          "var_12m": 91.8
         },
         {
           "id": "FCI_ADCAP_ACCIONES",
@@ -1708,9 +1708,9 @@
           "tna_estimada": null,
           "moneda": "ARS",
           "subtitulo": "Panel Líder S&P Merval",
-          "var_1d": 198.7,
-          "var_1m": 208.0,
-          "var_12m": 349.21
+          "var_1d": 1.85,
+          "var_1m": 14.2,
+          "var_12m": 112.5
         },
         {
           "id": "FCI_CONSULTATIO_ACCIONES",
@@ -1726,9 +1726,9 @@
           "tna_estimada": null,
           "moneda": "ARS",
           "subtitulo": "Acciones argentinas líderes",
-          "var_1d": 238.07,
-          "var_1m": 249.1,
-          "var_12m": 400.62
+          "var_1d": 1.9,
+          "var_1m": 14.5,
+          "var_12m": 115.2
         },
         {
           "id": "FCI_BALANZ_GLOBAL",
@@ -1744,9 +1744,9 @@
           "tna_estimada": null,
           "moneda": "ARS",
           "subtitulo": "Canasta diversificada de CEDEARs globales",
-          "var_1d": 221.06,
-          "var_1m": 230.35,
-          "var_12m": 377.38
+          "var_1d": 0.85,
+          "var_1m": 8.4,
+          "var_12m": 82.0
         },
         {
           "id": "FCI_DELTA_PYME",
@@ -1762,9 +1762,9 @@
           "tna_estimada": 45.0,
           "moneda": "ARS",
           "subtitulo": "Cheques de Pago Diferido, Pagarés y FF",
-          "var_1d": 222.45,
-          "var_1m": 231.28,
-          "var_12m": 379.91
+          "var_1d": 0.16,
+          "var_1m": 4.4,
+          "var_12m": 64.5
         },
         {
           "id": "FCI_SBS_PYME",
@@ -1780,9 +1780,9 @@
           "tna_estimada": 44.5,
           "moneda": "ARS",
           "subtitulo": "Financiamiento pyme e infraestructura",
-          "var_1d": 217.36,
-          "var_1m": 227.38,
-          "var_12m": 380.45
+          "var_1d": 0.15,
+          "var_1m": 4.35,
+          "var_12m": 63.8
         },
         {
           "id": "FCI_BALANZ_PYME",
@@ -1798,9 +1798,9 @@
           "tna_estimada": 44.8,
           "moneda": "ARS",
           "subtitulo": "Cumplimiento normativo y fondeo productivo",
-          "var_1d": 206.71,
-          "var_1m": 217.18,
-          "var_12m": 364.57
+          "var_1d": 0.15,
+          "var_1m": 4.38,
+          "var_12m": 64.1
         }
       ]
     },
@@ -1824,9 +1824,9 @@
           "tem": null,
           "vto": "2030-07-09",
           "ley": "Argentina",
-          "var_1d": 0.16,
-          "var_1m": 2.51,
-          "var_12m": 10.82
+          "var_1d": -0.39,
+          "var_1m": 2.41,
+          "var_12m": 11.35
         },
         {
           "id": "BONO_GD30",
@@ -1844,9 +1844,9 @@
           "tem": null,
           "vto": "2030-07-09",
           "ley": "Nueva York",
-          "var_1d": -0.72,
-          "var_1m": 1.61,
-          "var_12m": 9.83
+          "var_1d": 0.44,
+          "var_1m": 2.06,
+          "var_12m": 9.73
         },
         {
           "id": "BONO_AL35",
@@ -1864,9 +1864,9 @@
           "tem": null,
           "vto": "2035-07-09",
           "ley": "Argentina",
-          "var_1d": 0.42,
-          "var_1m": 1.98,
-          "var_12m": 10.09
+          "var_1d": -0.33,
+          "var_1m": 2.43,
+          "var_12m": 11.09
         },
         {
           "id": "BONO_GD35",
@@ -1884,9 +1884,9 @@
           "tem": null,
           "vto": "2035-07-09",
           "ley": "Nueva York",
-          "var_1d": -0.94,
-          "var_1m": 1.93,
-          "var_12m": 9.84
+          "var_1d": -0.02,
+          "var_1m": 1.98,
+          "var_12m": 10.78
         },
         {
           "id": "BONO_AE38",
@@ -1904,9 +1904,9 @@
           "tem": null,
           "vto": "2038-01-09",
           "ley": "Argentina",
-          "var_1d": -0.19,
-          "var_1m": 2.21,
-          "var_12m": 10.52
+          "var_1d": 0.29,
+          "var_1m": 2.66,
+          "var_12m": 11.41
         },
         {
           "id": "BONO_GD38",
@@ -1924,9 +1924,9 @@
           "tem": null,
           "vto": "2038-01-09",
           "ley": "Nueva York",
-          "var_1d": -0.03,
-          "var_1m": 1.85,
-          "var_12m": 10.69
+          "var_1d": -0.34,
+          "var_1m": 1.59,
+          "var_12m": 10.77
         },
         {
           "id": "BONO_GD46",
@@ -1944,9 +1944,9 @@
           "tem": null,
           "vto": "2046-07-09",
           "ley": "Nueva York",
-          "var_1d": -0.24,
-          "var_1m": 2.18,
-          "var_12m": 11.23
+          "var_1d": -0.31,
+          "var_1m": 2.62,
+          "var_12m": 10.1
         },
         {
           "id": "BONO_TX26",
@@ -1964,9 +1964,9 @@
           "tem": null,
           "vto": "2026-11-09",
           "ley": "Argentina",
-          "var_1d": 0.23,
-          "var_1m": 2.89,
-          "var_12m": 10.44
+          "var_1d": -0.22,
+          "var_1m": 2.62,
+          "var_12m": 10.01
         },
         {
           "id": "BONO_TX28",
@@ -1984,9 +1984,9 @@
           "tem": null,
           "vto": "2028-11-09",
           "ley": "Argentina",
-          "var_1d": -0.9,
-          "var_1m": 2.83,
-          "var_12m": 10.66
+          "var_1d": 0.05,
+          "var_1m": 2.51,
+          "var_12m": 8.87
         },
         {
           "id": "BONO_T2X5",
@@ -2004,9 +2004,9 @@
           "tem": null,
           "vto": "2025-11-05",
           "ley": "Argentina",
-          "var_1d": 0.2,
-          "var_1m": 2.65,
-          "var_12m": 11.26
+          "var_1d": 0.33,
+          "var_1m": 1.64,
+          "var_12m": 9.23
         },
         {
           "id": "BONO_DICP",
@@ -2024,9 +2024,9 @@
           "tem": null,
           "vto": "2033-12-31",
           "ley": "Argentina",
-          "var_1d": -0.08,
-          "var_1m": 3.16,
-          "var_12m": 11.0
+          "var_1d": 0.15,
+          "var_1m": 2.93,
+          "var_12m": 11.23
         },
         {
           "id": "LECAP_S31M5",
@@ -2044,9 +2044,9 @@
           "tem": 2.75,
           "vto": "2025-03-31",
           "ley": "Argentina",
-          "var_1d": 0.36,
-          "var_1m": 2.72,
-          "var_12m": 11.63
+          "var_1d": -0.06,
+          "var_1m": 2.31,
+          "var_12m": 10.09
         },
         {
           "id": "LECAP_S28A5",
@@ -2064,9 +2064,9 @@
           "tem": 2.79,
           "vto": "2025-04-28",
           "ley": "Argentina",
-          "var_1d": 0.46,
-          "var_1m": 2.83,
-          "var_12m": 10.12
+          "var_1d": -0.01,
+          "var_1m": 1.72,
+          "var_12m": 9.89
         },
         {
           "id": "LECAP_S30Y5",
@@ -2084,9 +2084,9 @@
           "tem": 2.83,
           "vto": "2025-05-30",
           "ley": "Argentina",
-          "var_1d": 0.48,
-          "var_1m": 2.8,
-          "var_12m": 10.05
+          "var_1d": 0.11,
+          "var_1m": 1.56,
+          "var_12m": 10.53
         },
         {
           "id": "LECAP_S18J5",
@@ -2104,9 +2104,9 @@
           "tem": 2.87,
           "vto": "2025-07-18",
           "ley": "Argentina",
-          "var_1d": -0.63,
-          "var_1m": 1.48,
-          "var_12m": 9.9
+          "var_1d": -0.66,
+          "var_1m": 1.98,
+          "var_12m": 10.69
         },
         {
           "id": "LECAP_S15A5",
@@ -2124,9 +2124,9 @@
           "tem": 2.91,
           "vto": "2025-08-15",
           "ley": "Argentina",
-          "var_1d": 0.96,
-          "var_1m": 2.63,
-          "var_12m": 10.09
+          "var_1d": -0.15,
+          "var_1m": 1.99,
+          "var_12m": 10.11
         },
         {
           "id": "LECAP_S31O5",
@@ -2144,9 +2144,9 @@
           "tem": 2.96,
           "vto": "2025-10-31",
           "ley": "Argentina",
-          "var_1d": -0.44,
-          "var_1m": 2.58,
-          "var_12m": 10.97
+          "var_1d": -0.34,
+          "var_1m": 1.66,
+          "var_12m": 9.33
         }
       ]
     },
@@ -2169,9 +2169,9 @@
           "cupon": 8.5,
           "ley": "Nueva York",
           "vto": "2026-07-28",
-          "var_1d": 0.21,
-          "var_1m": 0.73,
-          "var_12m": 3.42
+          "var_1d": -0.15,
+          "var_1m": 1.44,
+          "var_12m": 3.49
         },
         {
           "id": "ON_YCA6O",
@@ -2188,9 +2188,9 @@
           "cupon": 8.75,
           "ley": "Nueva York",
           "vto": "2029-06-30",
-          "var_1d": -0.11,
-          "var_1m": 1.06,
-          "var_12m": 3.54
+          "var_1d": -0.02,
+          "var_1m": 0.86,
+          "var_12m": 3.6
         },
         {
           "id": "ON_PAMPO",
@@ -2207,9 +2207,9 @@
           "cupon": 9.12,
           "ley": "Nueva York",
           "vto": "2026-12-08",
-          "var_1d": 0.13,
-          "var_1m": 1.14,
-          "var_12m": 3.36
+          "var_1d": 0.28,
+          "var_1m": 0.68,
+          "var_12m": 3.74
         },
         {
           "id": "ON_PAE27",
@@ -2226,9 +2226,9 @@
           "cupon": 8.5,
           "ley": "Nueva York",
           "vto": "2027-04-30",
-          "var_1d": -0.05,
-          "var_1m": 1.21,
-          "var_12m": 3.99
+          "var_1d": 0.15,
+          "var_1m": 0.8,
+          "var_12m": 3.48
         },
         {
           "id": "ON_TLC1O",
@@ -2245,9 +2245,9 @@
           "cupon": 8.0,
           "ley": "Nueva York",
           "vto": "2026-08-18",
-          "var_1d": 0.13,
-          "var_1m": 0.99,
-          "var_12m": 3.83
+          "var_1d": 0.03,
+          "var_1m": 1.28,
+          "var_12m": 3.8
         },
         {
           "id": "ON_VSC3O",
@@ -2264,9 +2264,9 @@
           "cupon": 7.95,
           "ley": "Nueva York",
           "vto": "2027-06-20",
-          "var_1d": 0.11,
-          "var_1m": 0.75,
-          "var_12m": 4.17
+          "var_1d": -0.21,
+          "var_1m": 0.36,
+          "var_12m": 3.6
         },
         {
           "id": "ON_CS38O",
@@ -2283,9 +2283,9 @@
           "cupon": 8.0,
           "ley": "Argentina",
           "vto": "2026-03-12",
-          "var_1d": 0.17,
-          "var_1m": 0.99,
-          "var_12m": 3.9
+          "var_1d": -0.07,
+          "var_1m": 0.92,
+          "var_12m": 3.42
         },
         {
           "id": "ON_CP17O",
@@ -2302,9 +2302,9 @@
           "cupon": 8.75,
           "ley": "Nueva York",
           "vto": "2027-09-02",
-          "var_1d": 0.17,
+          "var_1d": -0.17,
           "var_1m": 0.81,
-          "var_12m": 4.07
+          "var_12m": 3.35
         }
       ]
     },
@@ -3085,17 +3085,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 77406.9688,
+          "precio": 77312.2109,
           "open": 78326.9688,
           "high": 78767.3438,
           "low": 76628.1719,
           "moneda": "USD",
-          "cap_bursatil": 1554467913728,
-          "ma50": 64867.81,
-          "ma200": 68982.46,
-          "var_1d": -1.18,
-          "var_1m": 23.33,
-          "var_12m": -14.28,
+          "cap_bursatil": 1550934474752,
+          "ma50": 64865.92,
+          "ma200": 68981.99,
+          "var_1d": -1.31,
+          "var_1m": 23.18,
+          "var_12m": -14.38,
           "subtitulo": "Criptomoneda Líder / Reserva Digital"
         },
         {
@@ -3105,17 +3105,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2440.6899,
+          "precio": 2431.5,
           "open": 2515.2744,
           "high": 2527.4084,
           "low": 2395.3418,
           "moneda": "USD",
-          "cap_bursatil": 294785777664,
-          "ma50": 1907.19,
-          "ma200": 2005.48,
-          "var_1d": -2.97,
-          "var_1m": 32.4,
-          "var_12m": -21.69,
+          "cap_bursatil": 293285101568,
+          "ma50": 1907.01,
+          "ma200": 2005.43,
+          "var_1d": -3.33,
+          "var_1m": 31.9,
+          "var_12m": -21.98,
           "subtitulo": "Contratos Inteligentes / Web3"
         },
         {
@@ -3125,17 +3125,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 94.68,
+          "precio": 94.38,
           "open": 93.6614,
           "high": 101.6464,
           "low": 91.6316,
           "moneda": "USD",
-          "cap_bursatil": 55232569344,
+          "cap_bursatil": 55077629952,
           "ma50": 77.13,
-          "ma200": 81.14,
-          "var_1d": 1.1,
-          "var_1m": 31.74,
-          "var_12m": -28.94,
+          "ma200": 81.13,
+          "var_1d": 0.78,
+          "var_1m": 31.33,
+          "var_12m": -29.17,
           "subtitulo": "Blockchain de Alta Velocidad"
         },
         {
@@ -3145,17 +3145,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 699.34,
+          "precio": 697.69,
           "open": 686.9454,
           "high": 724.8462,
           "low": 683.4969,
           "moneda": "USD",
-          "cap_bursatil": 93098844160,
-          "ma50": 590.46,
-          "ma200": 615.25,
-          "var_1d": 1.8,
-          "var_1m": 21.63,
-          "var_12m": -22.07,
+          "cap_bursatil": 93077168128,
+          "ma50": 590.43,
+          "ma200": 615.24,
+          "var_1d": 1.56,
+          "var_1m": 21.35,
+          "var_12m": -22.26,
           "subtitulo": "Ecosistema BNB Chain"
         },
         {
@@ -3165,17 +3165,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.5095,
+          "precio": 1.5015,
           "open": 1.4536,
           "high": 1.6801,
           "low": 1.4289,
           "moneda": "USD",
-          "cap_bursatil": 94785429504,
+          "cap_bursatil": 94152941568,
           "ma50": 1.09,
           "ma200": 1.28,
-          "var_1d": 3.83,
-          "var_1m": 42.45,
-          "var_12m": -25.42,
+          "var_1d": 3.28,
+          "var_1m": 41.69,
+          "var_12m": -25.82,
           "subtitulo": "Pagos y Liquidaciones"
         },
         {
@@ -3185,17 +3185,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.2329,
+          "precio": 0.2306,
           "open": 0.2292,
           "high": 0.2569,
           "low": 0.2187,
           "moneda": "USD",
-          "cap_bursatil": 8514327552,
+          "cap_bursatil": 8430343680,
           "ma50": 0.18,
           "ma200": 0.22,
-          "var_1d": 1.61,
-          "var_1m": 33.7,
-          "var_12m": -43.35,
+          "var_1d": 0.61,
+          "var_1m": 32.38,
+          "var_12m": -43.91,
           "subtitulo": "Blockchain Proof of Stake"
         },
         {
@@ -3205,17 +3205,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0949,
+          "precio": 0.0943,
           "open": 0.0916,
           "high": 0.0998,
           "low": 0.088,
           "moneda": "USD",
-          "cap_bursatil": 14713315328,
+          "cap_bursatil": 16212605952,
           "ma50": 0.07,
           "ma200": 0.09,
-          "var_1d": 3.6,
-          "var_1m": 37.34,
-          "var_12m": -31.82,
+          "var_1d": 2.95,
+          "var_1m": 36.47,
+          "var_12m": -32.26,
           "subtitulo": "Moneda Digital Memética"
         },
         {
@@ -3225,17 +3225,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.9999,
+          "precio": 0.9998,
           "open": 0.9998,
           "high": 1.0002,
           "low": 0.9996,
           "moneda": "USD",
-          "cap_bursatil": 183233380352,
+          "cap_bursatil": 183214260224,
           "ma50": 1.0,
           "ma200": 1.0,
-          "var_1d": 0.0,
-          "var_1m": 0.08,
-          "var_12m": -0.04,
+          "var_1d": -0.01,
+          "var_1m": 0.07,
+          "var_12m": -0.05,
           "subtitulo": "Stablecoin Dólar"
         }
       ]
