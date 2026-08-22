@@ -580,8 +580,29 @@
           items = items.filter(x => {
             const cLow = (x.clase || '').toLowerCase();
             const sLow = (x.subtipo || '').toLowerCase();
-            if (fLow.includes('tasa') || fLow.includes('t+1')) {
-              return cLow.includes('tasa') || cLow.includes('pesos') || sLow.includes('tasa');
+            if (fLow === 'tasa fija' || fLow === 't+1' || fLow === 'renta fija corto') {
+              return cLow.includes('tasa fija') || cLow.includes('pesos (tasa');
+            }
+            if (fLow === 'hard' || fLow === 'dólar hard' || fLow === 'dolar hard') {
+              return cLow.includes('hard') || cLow.includes('dólar hard') || cLow.includes('dolar hard');
+            }
+            if (fLow === 'linked' || fLow === 'dólar linked' || fLow === 'dolar linked') {
+              return cLow.includes('linked');
+            }
+            if (fLow === 'cer') {
+              return cLow.includes('cer') || cLow.includes('inflación') || cLow.includes('inflacion');
+            }
+            if (fLow === 'money market') {
+              return cLow.includes('money market') || cLow.includes('t+0');
+            }
+            if (fLow === 'variable') {
+              return cLow.includes('variable') || cLow.includes('acciones');
+            }
+            if (fLow === 'mixta') {
+              return cLow.includes('mixta') || cLow.includes('balanceados');
+            }
+            if (fLow === 'pymes') {
+              return cLow.includes('pyme') || cLow.includes('infraestructura');
             }
             return cLow.includes(fLow) || sLow.includes(fLow);
           });
