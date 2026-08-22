@@ -239,11 +239,14 @@
             <p class="text-xs text-slate-500 mt-1">Estructura temporal de tasas (TIR %) en función de la Duration (Años) y Días al Vencimiento.</p>
           </div>
 
-          <div class="flex bg-slate-100 p-1 rounded-xl space-x-1" id="curveSelectorTabs">
-            <button onclick="renderYieldCurve('soberanos_usd')" data-curvetab="soberanos_usd" class="curve-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white shadow-sm text-slate-900">Soberanos USD</button>
-            <button onclick="renderYieldCurve('bonos_cer')" data-curvetab="bonos_cer" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900">Bonos CER</button>
-            <button onclick="renderYieldCurve('lecaps')" data-curvetab="lecaps" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900">LECAPs (Pesos)</button>
-            <button onclick="renderYieldCurve('ons_usd')" data-curvetab="ons_usd" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900">ONs Corporativas</button>
+          <div class="flex flex-wrap gap-1 bg-slate-100 p-1 rounded-xl" id="curveSelectorTabs">
+            <button onclick="renderYieldCurve('soberanos_usd')" data-curvetab="soberanos_usd" class="curve-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white shadow-sm text-slate-900 whitespace-nowrap">💵 Soberanos USD</button>
+            <button onclick="renderYieldCurve('bonos_cer')" data-curvetab="bonos_cer" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 whitespace-nowrap">🎯 Bonos CER</button>
+            <button onclick="renderYieldCurve('lecaps')" data-curvetab="lecaps" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 whitespace-nowrap">📈 LECAPs & Tasa Fija</button>
+            <button onclick="renderYieldCurve('tamar_badlar')" data-curvetab="tamar_badlar" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 whitespace-nowrap">🏛️ TAMAR / Badlar</button>
+            <button onclick="renderYieldCurve('dolar_linked')" data-curvetab="dolar_linked" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 whitespace-nowrap">🔄 Dólar Linked</button>
+            <button onclick="renderYieldCurve('bopreal')" data-curvetab="bopreal" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 whitespace-nowrap">🏦 BOPREAL (BCRA)</button>
+            <button onclick="renderYieldCurve('ons_usd')" data-curvetab="ons_usd" class="curve-tab px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 whitespace-nowrap">🏢 ONs Corporativas</button>
           </div>
         </div>
 
@@ -361,6 +364,9 @@
     let CURRENT_COMMODITY_FILTER = 'all';
     let CURRENT_FCI_FILTER = 'all';
     let CURRENT_FCI_SEARCH = '';
+    let CURRENT_BONOS_FILTER = 'all';
+    let CURRENT_BONOS_SEARCH = '';
+    let EXPANDED_BONO_ID = null;
     let CURRENT_MODAL_ASSET = null;
     let CURRENT_TIMEFRAME = 12;
     let CURRENT_CHART_TYPE = 'line';
@@ -500,6 +506,29 @@
       renderActiveSection();
     }
 
+    function filterBonos(subtipo) {
+      CURRENT_BONOS_FILTER = subtipo;
+      document.querySelectorAll('.bonos-sub-tab').forEach(btn => {
+        if (btn.getAttribute('data-subtipo') === subtipo) {
+          btn.className = 'bonos-sub-tab px-2.5 py-1 rounded-lg text-xs font-semibold bg-brand-red text-white shadow-sm whitespace-nowrap';
+        } else {
+          btn.className = 'bonos-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 bg-white border border-slate-200 whitespace-nowrap';
+        }
+      });
+      renderActiveSection();
+    }
+
+    function handleBonosSearch(query) {
+      CURRENT_BONOS_SEARCH = query.trim().toLowerCase();
+      renderActiveSection();
+    }
+
+    function toggleBonoDetail(event, bonoId) {
+      event.stopPropagation();
+      EXPANDED_BONO_ID = (EXPANDED_BONO_ID === bonoId) ? null : bonoId;
+      renderActiveSection();
+    }
+
     function filterFCI(clase) {
       CURRENT_FCI_FILTER = clase;
       document.querySelectorAll('.fci-sub-tab').forEach(btn => {
@@ -555,6 +584,21 @@
         }
       }
 
+      if (secKey === 'bonos_lecaps') {
+        if (CURRENT_BONOS_FILTER !== 'all') {
+          items = items.filter(x => x.subtipo && x.subtipo.toLowerCase().includes(CURRENT_BONOS_FILTER.toLowerCase()));
+        }
+        if (CURRENT_BONOS_SEARCH) {
+          items = items.filter(x => 
+            (x.nombre && x.nombre.toLowerCase().includes(CURRENT_BONOS_SEARCH)) ||
+            (x.symbol && x.symbol.toLowerCase().includes(CURRENT_BONOS_SEARCH)) ||
+            (x.subtipo && x.subtipo.toLowerCase().includes(CURRENT_BONOS_SEARCH)) ||
+            (x.ley && x.ley.toLowerCase().includes(CURRENT_BONOS_SEARCH)) ||
+            (x.isin && x.isin.toLowerCase().includes(CURRENT_BONOS_SEARCH))
+          );
+        }
+      }
+
       return `
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" id="section_${secKey}">
           
@@ -585,7 +629,25 @@
                   </div>
                 ` : ''}
 
-                ${secKey === 'bonos_lecaps' || secKey === 'ons' ? `
+                ${secKey === 'bonos_lecaps' ? `
+                  <div class="relative w-full sm:w-56">
+                    <input 
+                      type="text" 
+                      placeholder="Buscar ticker o ley (ej: AL30, CER)..." 
+                      value="${CURRENT_BONOS_SEARCH}"
+                      oninput="handleBonosSearch(this.value)"
+                      class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all"
+                    >
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+                  </div>
+                  <button onclick="selectSection('curvas_rendimiento')" class="text-xs font-semibold text-brand-red bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-all flex items-center space-x-1 shrink-0">
+                    <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+                    <span class="hidden sm:inline">Ver Curva TIR</span>
+                    <span class="sm:hidden">Curvas</span>
+                  </button>
+                ` : ''}
+
+                ${secKey === 'ons' ? `
                   <button onclick="selectSection('curvas_rendimiento')" class="text-xs font-semibold text-brand-red bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-all flex items-center space-x-1">
                     <i data-lucide="activity" class="w-3.5 h-3.5"></i>
                     <span>Ver Curva TIR</span>
@@ -602,6 +664,18 @@
                 <button onclick="filterCommodities('Energía')" data-subtipo="Energía" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Energía' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">⚡ Energía</button>
                 <button onclick="filterCommodities('Metales')" data-subtipo="Metales" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Metales' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🪙 Metales</button>
                 <button onclick="filterCommodities('Agroindustriales & Ganadería')" data-subtipo="Agroindustriales & Ganadería" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Agroindustriales & Ganadería' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">☕ Softs / Ganadería</button>
+              </div>
+            ` : ''}
+
+            ${secKey === 'bonos_lecaps' ? `
+              <div class="flex flex-wrap gap-1.5 pt-2.5 border-t border-slate-200/60 items-center">
+                <button onclick="filterBonos('all')" data-subtipo="all" class="bonos-sub-tab px-2.5 py-1 rounded-lg text-xs font-semibold ${CURRENT_BONOS_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">Todos</button>
+                <button onclick="filterBonos('Soberanos Dólar Hard')" data-subtipo="Soberanos Dólar Hard" class="bonos-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_BONOS_FILTER === 'Soberanos Dólar Hard' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">💵 Dólar Hard (AL/GD)</button>
+                <button onclick="filterBonos('CER')" data-subtipo="CER" class="bonos-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_BONOS_FILTER === 'CER' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🎯 Bonos CER (Inflación)</button>
+                <button onclick="filterBonos('LECAP')" data-subtipo="LECAP" class="bonos-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_BONOS_FILTER === 'LECAP' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">📈 LECAPs & Tasa Fija</button>
+                <button onclick="filterBonos('TAMAR')" data-subtipo="TAMAR" class="bonos-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_BONOS_FILTER === 'TAMAR' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🏛️ TAMAR / Badlar</button>
+                <button onclick="filterBonos('Dólar Linked')" data-subtipo="Dólar Linked" class="bonos-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_BONOS_FILTER === 'Dólar Linked' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🔄 Dólar Linked & Duales</button>
+                <button onclick="filterBonos('BOPREAL')" data-subtipo="BOPREAL" class="bonos-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_BONOS_FILTER === 'BOPREAL' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🏦 BOPREAL (BCRA)</button>
               </div>
             ` : ''}
 
@@ -697,11 +771,17 @@
     }
 
     function renderRowItem(secKey, item) {
-      return `
-        <tr class="hover:bg-slate-50/80 cursor-pointer transition-all" onclick="openChartModal('${item.id}')">
+      const isExpanded = (secKey === 'bonos_lecaps' || secKey === 'ons') && EXPANDED_BONO_ID === item.id;
+      const isBond = secKey === 'bonos_lecaps' || secKey === 'ons';
+
+      let rowHtml = `
+        <tr class="hover:bg-slate-50/90 cursor-pointer transition-all ${isExpanded ? 'bg-rose-50/30' : ''}" onclick="${isBond ? `toggleBonoDetail(event, '${item.id}')` : `openChartModal('${item.id}')`}">
           <td class="px-4 py-2.5 min-w-[200px] max-w-[260px]">
-            <div class="font-bold text-slate-800 text-xs truncate" title="${item.nombre}">${item.nombre}</div>
-            <div class="text-[11px] text-slate-400 font-normal truncate" title="${item.symbol || item.id} ${item.subtitulo || ''}">${item.symbol || item.id} ${item.subtitulo ? `&bull; ${item.subtitulo}` : ''}</div>
+            <div class="flex items-center space-x-1.5">
+              ${isBond ? `<i data-lucide="${isExpanded ? 'chevron-down' : 'chevron-right'}" class="w-3.5 h-3.5 text-brand-red shrink-0 transition-transform"></i>` : ''}
+              <div class="font-bold text-slate-800 text-xs truncate" title="${item.nombre}">${item.nombre}</div>
+            </div>
+            <div class="text-[11px] text-slate-400 font-normal truncate pl-${isBond ? '5' : '0'}" title="${item.symbol || item.id} ${item.subtitulo || ''}">${item.symbol || item.id} ${item.subtitulo ? `&bull; ${item.subtitulo}` : ''}</div>
           </td>
           <td class="px-3 py-2.5 text-right font-mono font-bold text-slate-900 whitespace-nowrap">
             ${formatCurrency(item.precio, item.moneda || 'ARS', item.moneda === 'USD' && item.precio < 1 ? 4 : 2)}
@@ -710,13 +790,127 @@
           <td class="px-3 py-2.5 text-right whitespace-nowrap">${renderVariationBadge(item.var_1m)}</td>
           <td class="px-3 py-2.5 text-right whitespace-nowrap">${renderVariationBadge(item.var_12m)}</td>
           ${renderDynamicColumnsCells(secKey, item)}
-          <td class="px-3 py-2.5 text-center whitespace-nowrap">
+          <td class="px-3 py-2.5 text-center whitespace-nowrap" onclick="event.stopPropagation(); openChartModal('${item.id}')">
             <button class="p-1.5 rounded-lg bg-slate-100 hover:bg-brand-red hover:text-white text-slate-500 transition-all" title="Ver Gráfico y Análisis">
               <i data-lucide="line-chart" class="w-3.5 h-3.5"></i>
             </button>
           </td>
         </tr>
       `;
+
+      if (isExpanded) {
+        rowHtml += `
+          <tr class="bg-slate-50/70 border-b-2 border-brand-red/30">
+            <td colspan="10" class="p-4 sm:p-5">
+              <div class="bg-white rounded-xl p-4 sm:p-5 border border-slate-200 shadow-sm space-y-4">
+                
+                <!-- Encabezado de la Ficha Técnica -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-1 rounded-lg bg-brand-red text-white text-xs font-mono font-bold">${item.symbol || item.id}</span>
+                    <span class="font-bold text-slate-900 text-sm">${item.nombre}</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold ${item.ley === 'Nueva York' ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' : 'bg-slate-100 text-slate-700'}">${item.ley || 'Argentina'}</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs text-slate-500">ISIN: <span class="font-mono font-bold text-slate-700">${item.isin || '-'}</span></span>
+                    <button onclick="openChartModal('${item.id}')" class="px-3 py-1 rounded-lg text-xs font-semibold bg-rose-50 text-brand-red hover:bg-brand-red hover:text-white border border-rose-200 transition-all flex items-center space-x-1">
+                      <i data-lucide="line-chart" class="w-3.5 h-3.5"></i>
+                      <span>Ver Gráfico</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Grid de Ficha Técnica (Estilo Bonistas.com) -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 text-xs">
+                  <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase">Paridad Bursátil</div>
+                    <div class="text-sm font-mono font-bold text-slate-900 mt-0.5">${item.paridad_pct ? `${formatNumber(item.paridad_pct, 2)}%` : '-'}</div>
+                  </div>
+                  <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase">TIR Anual</div>
+                    <div class="text-sm font-mono font-bold text-brand-red mt-0.5">${item.tir ? `${formatNumber(item.tir, 2)}%` : '-'}</div>
+                  </div>
+                  <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase">Duration Modificada</div>
+                    <div class="text-sm font-mono font-bold text-slate-800 mt-0.5">${item.duration ? `${formatNumber(item.duration, 2)} años` : '-'}</div>
+                  </div>
+                  <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase">Días al Vencimiento</div>
+                    <div class="text-sm font-mono font-bold text-slate-800 mt-0.5">${item.dias_vto || '-'} días</div>
+                  </div>
+                  <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase">Valor Técnico</div>
+                    <div class="text-sm font-mono font-bold text-slate-800 mt-0.5">${formatNumber(item.valor_tecnico, 2)}</div>
+                  </div>
+                  <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase">Valor Residual</div>
+                    <div class="text-sm font-mono font-bold text-slate-800 mt-0.5">${item.valor_residual_pct ? `${formatNumber(item.valor_residual_pct, 1)}%` : '100%'}</div>
+                  </div>
+                  <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase">Intereses Corridos</div>
+                    <div class="text-sm font-mono font-bold text-slate-800 mt-0.5">${formatNumber(item.intereses_corridos, 2)}</div>
+                  </div>
+                  <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase">Cupón Anual</div>
+                    <div class="text-sm font-mono font-bold text-slate-800 mt-0.5">${item.cupon_anual_pct ? `${formatNumber(item.cupon_anual_pct, 2)}%` : '0.00%'}</div>
+                  </div>
+                  <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 sm:col-span-2">
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase">Tipo de Cupón & Frecuencia</div>
+                    <div class="text-xs font-semibold text-slate-800 mt-0.5">${item.tipo_cupon || 'Fijo'} &bull; ${item.frecuencia_pago || 'Semestral'}</div>
+                  </div>
+                  <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 sm:col-span-2">
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase">Esquema de Amortización</div>
+                    <div class="text-xs font-semibold text-slate-800 mt-0.5">${item.amortizacion || 'Bullet al Vencimiento'}</div>
+                  </div>
+                </div>
+
+                <!-- Próximo Pago y Cronograma de Cashflow -->
+                <div class="pt-3 border-t border-slate-100">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center space-x-2">
+                      <span class="font-bold text-slate-800 text-xs">Cronograma de Flujo de Fondos (Cashflow Futuro)</span>
+                      <span class="text-[11px] text-slate-500">(Valores por cada 100 VN)</span>
+                    </div>
+                    ${item.proximo_pago_fecha ? `
+                      <span class="text-[11px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-medium">
+                        Próximo Pago: <strong>${item.proximo_pago_fecha}</strong> (${item.proximo_pago_monto || '-'})
+                      </span>
+                    ` : ''}
+                  </div>
+
+                  ${item.cashflow && item.cashflow.length > 0 ? `
+                    <div class="overflow-x-auto">
+                      <table class="min-w-full text-xs text-left bg-slate-50 rounded-lg overflow-hidden border border-slate-200">
+                        <thead class="bg-slate-100 text-slate-600 font-semibold border-b border-slate-200 text-[11px]">
+                          <tr>
+                            <th class="px-3 py-1.5">Fecha de Pago</th>
+                            <th class="px-3 py-1.5 text-right">Renta (Cupón)</th>
+                            <th class="px-3 py-1.5 text-right">Amortización (Capital)</th>
+                            <th class="px-3 py-1.5 text-right font-bold text-slate-900">Flujo Total</th>
+                          </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200/60 font-mono">
+                          ${item.cashflow.map(cf => `
+                            <tr>
+                              <td class="px-3 py-1.5 font-sans font-medium text-slate-800">${cf.fecha}</td>
+                              <td class="px-3 py-1.5 text-right text-slate-600">${formatNumber(cf.renta, 3)}</td>
+                              <td class="px-3 py-1.5 text-right text-slate-600">${formatNumber(cf.amort, 2)}</td>
+                              <td class="px-3 py-1.5 text-right font-bold text-emerald-700">${formatNumber(cf.total, 3)}</td>
+                            </tr>
+                          `).join('')}
+                        </tbody>
+                      </table>
+                    </div>
+                  ` : '<p class="text-xs text-slate-400 italic">No hay cronograma de pagos futuros registrado.</p>'}
+                </div>
+
+              </div>
+            </td>
+          </tr>
+        `;
+      }
+
+      return rowHtml;
     }
 
     function renderDynamicColumnsCells(secKey, item) {
