@@ -576,7 +576,15 @@
 
       if (secKey === 'fci') {
         if (CURRENT_FCI_FILTER !== 'all') {
-          items = items.filter(x => (x.clase && x.clase.toLowerCase().includes(CURRENT_FCI_FILTER.toLowerCase())) || (x.subtipo && x.subtipo.toLowerCase().includes(CURRENT_FCI_FILTER.toLowerCase())));
+          const fLow = CURRENT_FCI_FILTER.toLowerCase();
+          items = items.filter(x => {
+            const cLow = (x.clase || '').toLowerCase();
+            const sLow = (x.subtipo || '').toLowerCase();
+            if (fLow.includes('tasa') || fLow.includes('t+1')) {
+              return cLow.includes('tasa') || cLow.includes('pesos') || sLow.includes('tasa');
+            }
+            return cLow.includes(fLow) || sLow.includes(fLow);
+          });
         }
         if (CURRENT_FCI_SEARCH) {
           items = items.filter(x => 
