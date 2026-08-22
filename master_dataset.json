@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-08-22 19:28:55",
+  "ultima_actualizacion": "2026-08-22 19:37:54",
   "fecha_cierre": "2026-08-22",
   "secciones": {
     "dolar": {
@@ -115,7 +115,7 @@
           "compra": 1583.05,
           "venta": 1591.0,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-08-22 19:28:55",
+          "fecha_actualizacion": "2026-08-22 19:37:54",
           "var_1d": 0.15,
           "var_1m": 3.2,
           "var_12m": 42.5
@@ -4913,9 +4913,9 @@
           "cupon": 8.5,
           "ley": "Nueva York",
           "vto": "2026-07-28",
-          "var_1d": 0.25,
-          "var_1m": 0.72,
-          "var_12m": 3.81
+          "var_1d": -0.17,
+          "var_1m": 0.74,
+          "var_12m": 3.73
         },
         {
           "id": "ON_YCA6O",
@@ -4932,9 +4932,9 @@
           "cupon": 8.75,
           "ley": "Nueva York",
           "vto": "2029-06-30",
-          "var_1d": 0.05,
-          "var_1m": 0.96,
-          "var_12m": 3.49
+          "var_1d": -0.03,
+          "var_1m": 1.08,
+          "var_12m": 3.94
         },
         {
           "id": "ON_PAMPO",
@@ -4951,9 +4951,9 @@
           "cupon": 9.12,
           "ley": "Nueva York",
           "vto": "2026-12-08",
-          "var_1d": -0.12,
-          "var_1m": 0.75,
-          "var_12m": 3.58
+          "var_1d": -0.27,
+          "var_1m": 0.69,
+          "var_12m": 3.56
         },
         {
           "id": "ON_PAE27",
@@ -4970,9 +4970,9 @@
           "cupon": 8.5,
           "ley": "Nueva York",
           "vto": "2027-04-30",
-          "var_1d": -0.18,
-          "var_1m": 0.88,
-          "var_12m": 3.6
+          "var_1d": 0.27,
+          "var_1m": 0.89,
+          "var_12m": 3.66
         },
         {
           "id": "ON_TLC1O",
@@ -4989,9 +4989,9 @@
           "cupon": 8.0,
           "ley": "Nueva York",
           "vto": "2026-08-18",
-          "var_1d": 0.05,
-          "var_1m": 0.87,
-          "var_12m": 3.39
+          "var_1d": 0.07,
+          "var_1m": 0.76,
+          "var_12m": 3.77
         },
         {
           "id": "ON_VSC3O",
@@ -5008,9 +5008,9 @@
           "cupon": 7.95,
           "ley": "Nueva York",
           "vto": "2027-06-20",
-          "var_1d": 0.09,
-          "var_1m": 1.15,
-          "var_12m": 3.35
+          "var_1d": -0.05,
+          "var_1m": 0.8,
+          "var_12m": 3.69
         },
         {
           "id": "ON_CS38O",
@@ -5027,9 +5027,9 @@
           "cupon": 8.0,
           "ley": "Argentina",
           "vto": "2026-03-12",
-          "var_1d": -0.18,
-          "var_1m": 1.14,
-          "var_12m": 3.74
+          "var_1d": 0.03,
+          "var_1m": 0.91,
+          "var_12m": 3.77
         },
         {
           "id": "ON_CP17O",
@@ -5046,9 +5046,9 @@
           "cupon": 8.75,
           "ley": "Nueva York",
           "vto": "2027-09-02",
-          "var_1d": 0.28,
-          "var_1m": 0.42,
-          "var_12m": 3.34
+          "var_1d": 0.16,
+          "var_1m": 0.77,
+          "var_12m": 3.8
         }
       ]
     },
@@ -5829,17 +5829,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 77037.0078,
+          "precio": 76971.0078,
           "open": 78326.9688,
           "high": 78767.3438,
           "low": 76628.1719,
           "moneda": "USD",
-          "cap_bursatil": 1548131237888,
-          "ma50": 64860.41,
-          "ma200": 68980.61,
-          "var_1d": -1.66,
-          "var_1m": 22.74,
-          "var_12m": -14.69,
+          "cap_bursatil": 1545040166912,
+          "ma50": 64859.09,
+          "ma200": 68980.28,
+          "var_1d": -1.74,
+          "var_1m": 22.64,
+          "var_12m": -14.76,
           "subtitulo": "Criptomoneda Líder / Reserva Digital"
         },
         {
@@ -5849,17 +5849,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2421.77,
+          "precio": 2413.9199,
           "open": 2515.2744,
           "high": 2527.4084,
           "low": 2395.3418,
           "moneda": "USD",
-          "cap_bursatil": 292602445824,
-          "ma50": 1906.81,
-          "ma200": 2005.39,
-          "var_1d": -3.72,
-          "var_1m": 31.37,
-          "var_12m": -22.3,
+          "cap_bursatil": 291361783808,
+          "ma50": 1906.66,
+          "ma200": 2005.35,
+          "var_1d": -4.03,
+          "var_1m": 30.95,
+          "var_12m": -22.55,
           "subtitulo": "Contratos Inteligentes / Web3"
         },
         {
@@ -5869,17 +5869,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 93.85,
+          "precio": 93.81,
           "open": 93.6614,
           "high": 101.6464,
           "low": 91.6316,
           "moneda": "USD",
-          "cap_bursatil": 54713782272,
+          "cap_bursatil": 54697660416,
           "ma50": 77.12,
           "ma200": 81.13,
-          "var_1d": 0.21,
-          "var_1m": 30.59,
-          "var_12m": -29.57,
+          "var_1d": 0.17,
+          "var_1m": 30.53,
+          "var_12m": -29.6,
           "subtitulo": "Blockchain de Alta Velocidad"
         },
         {
@@ -5889,17 +5889,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 696.21,
+          "precio": 694.6,
           "open": 686.9454,
           "high": 724.8462,
           "low": 683.4969,
           "moneda": "USD",
-          "cap_bursatil": 92709519360,
-          "ma50": 590.4,
-          "ma200": 615.23,
-          "var_1d": 1.35,
-          "var_1m": 21.09,
-          "var_12m": -22.42,
+          "cap_bursatil": 92648767488,
+          "ma50": 590.37,
+          "ma200": 615.22,
+          "var_1d": 1.11,
+          "var_1m": 20.81,
+          "var_12m": -22.6,
           "subtitulo": "Ecosistema BNB Chain"
         },
         {
@@ -5909,17 +5909,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.4697,
+          "precio": 1.4712,
           "open": 1.4536,
           "high": 1.6801,
           "low": 1.4289,
           "moneda": "USD",
-          "cap_bursatil": 92150161408,
+          "cap_bursatil": 92193669120,
           "ma50": 1.09,
           "ma200": 1.27,
-          "var_1d": 1.09,
-          "var_1m": 38.69,
-          "var_12m": -27.39,
+          "var_1d": 1.2,
+          "var_1m": 38.83,
+          "var_12m": -27.31,
           "subtitulo": "Pagos y Liquidaciones"
         },
         {
@@ -5929,17 +5929,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.2268,
+          "precio": 0.2267,
           "open": 0.2292,
           "high": 0.2569,
           "low": 0.2187,
           "moneda": "USD",
-          "cap_bursatil": 8308838400,
+          "cap_bursatil": 8316892160,
           "ma50": 0.18,
           "ma200": 0.22,
-          "var_1d": -1.05,
-          "var_1m": 30.2,
-          "var_12m": -44.83,
+          "var_1d": -1.09,
+          "var_1m": 30.14,
+          "var_12m": -44.86,
           "subtitulo": "Blockchain Proof of Stake"
         },
         {
@@ -5954,7 +5954,7 @@
           "high": 0.0998,
           "low": 0.088,
           "moneda": "USD",
-          "cap_bursatil": 15814798336,
+          "cap_bursatil": 15791504384,
           "ma50": 0.07,
           "ma200": 0.09,
           "var_1d": 0.66,
@@ -5974,7 +5974,7 @@
           "high": 1.0002,
           "low": 0.9996,
           "moneda": "USD",
-          "cap_bursatil": 183209312256,
+          "cap_bursatil": 183190241280,
           "ma50": 1.0,
           "ma200": 1.0,
           "var_1d": 0.0,
