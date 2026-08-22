@@ -210,18 +210,15 @@
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
     
     <!-- Hero / Top Banner Compacto -->
-    <div id="heroSection" class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-xl px-4 py-3.5 text-white shadow-md relative overflow-hidden">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
-        <div class="flex items-center space-x-2.5">
-          <span class="p-1.5 bg-brand-red rounded-lg text-white"><i data-lucide="trending-up" class="w-4 h-4"></i></span>
-          <div>
-            <h1 class="text-sm sm:text-base font-bold tracking-tight text-white">Monitor Financiero Institucional</h1>
-            <p class="text-[11px] text-slate-300">Cotizaciones de cierre, variaciones, medias móviles y curvas de rendimiento</p>
-          </div>
+    <div id="heroSection" class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-xl px-3.5 py-2.5 text-white shadow-md relative overflow-hidden">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
+        <div class="flex items-center space-x-2 shrink-0">
+          <span class="p-1 bg-brand-red rounded-lg text-white"><i data-lucide="trending-up" class="w-3.5 h-3.5"></i></span>
+          <span class="text-xs sm:text-sm font-bold tracking-tight text-white whitespace-nowrap">Monitor Financiero</span>
         </div>
         
         <!-- Key Highlights Compact Ribbon -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full md:w-auto" id="quickHighlightsRibbon">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full flex-1" id="quickHighlightsRibbon">
         </div>
       </div>
     </div>
@@ -446,21 +443,25 @@
       const dSecc = DATASET.secciones.dolar?.items || [];
       const iSecc = DATASET.secciones.indices_mundiales?.items || [];
 
-      const blue = dSecc.find(x => x.id === 'USD_BLUE') || { nombre: 'Dólar Blue', precio: 1220, var_1d: 0.0 };
-      const mep = dSecc.find(x => x.id === 'USD_BOLSA') || { nombre: 'Dólar MEP', precio: 1195, var_1d: 0.2 };
+      const blue = dSecc.find(x => x.id === 'USD_BLUE') || { nombre: 'Dólar Blue', precio: 1550, var_1d: 0.0 };
+      const mep = dSecc.find(x => x.id === 'USD_BOLSA') || { nombre: 'Dólar MEP', precio: 1545.3, var_1d: 0.0 };
       const ccl = dSecc.find(x => x.id === 'USD_CONTADODONLIQUI') || { nombre: 'Dólar CCL', precio: 1215, var_1d: -0.1 };
-      const merv = iSecc.find(x => x.id === 'IDX_MERVAL_ARS') || iSecc.find(x => x.id === 'IDX_SP500') || { nombre: 'S&P Merval', precio: 2250000, var_1d: 1.5 };
+      const merv = iSecc.find(x => x.id === 'IDX_MERVAL_ARS') || { nombre: 'S&P Merval', precio: 2913184, var_1d: 1.29 };
 
       const cards = [blue, mep, ccl, merv];
-      container.innerHTML = cards.map(c => `
-        <div class="bg-white/10 backdrop-blur rounded-xl p-3 border border-white/10 hover:bg-white/15 cursor-pointer transition-all" onclick="openChartModal('${c.id}')">
-          <div class="text-[11px] text-slate-300 font-medium truncate">${c.nombre}</div>
-          <div class="flex items-baseline justify-between mt-1">
-            <span class="text-base sm:text-lg font-mono font-bold">${c.moneda === 'USD' ? 'US$' : (c.moneda === 'Pts' ? '' : '$')} ${formatNumber(c.precio, 2)}</span>
-            <span class="text-xs font-mono font-semibold ${c.var_1d >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${c.var_1d >= 0 ? '+' : ''}${c.var_1d}%</span>
+      container.innerHTML = cards.map(c => {
+        const isUp = (c.var_1d >= 0);
+        const prefix = c.moneda === 'USD' ? 'US$' : (c.moneda === 'Pts' ? '' : '$');
+        return `
+          <div class="bg-white/10 backdrop-blur rounded-lg px-2.5 py-1.5 border border-white/10 hover:bg-white/15 cursor-pointer transition-all min-w-0" onclick="openChartModal('${c.id}')">
+            <div class="text-[10px] text-slate-300 font-medium truncate">${c.nombre}</div>
+            <div class="flex items-center justify-between gap-1.5 mt-0.5 whitespace-nowrap">
+              <span class="text-xs sm:text-sm font-mono font-bold text-white whitespace-nowrap">${prefix} ${formatNumber(c.precio, 2)}</span>
+              <span class="text-[11px] font-mono font-semibold ${isUp ? 'text-emerald-400' : 'text-rose-400'} shrink-0">${isUp ? '+' : ''}${c.var_1d}%</span>
+            </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     function selectSection(secKey) {
