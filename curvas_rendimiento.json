@@ -1,0 +1,276 @@
+{
+  "soberanos_usd": [
+    {
+      "id": "BONO_AL30",
+      "symbol": "AL30D",
+      "nombre": "Bono AL30 (Bonares 2030)",
+      "tir": 12.85,
+      "duration": 2.35,
+      "dias_vto": 1610,
+      "precio": 68.5,
+      "ley": "Argentina"
+    },
+    {
+      "id": "BONO_GD30",
+      "symbol": "GD30D",
+      "nombre": "Bono GD30 (Globales 2030)",
+      "tir": 11.45,
+      "duration": 2.4,
+      "dias_vto": 1610,
+      "precio": 73.2,
+      "ley": "Nueva York"
+    },
+    {
+      "id": "BONO_AL35",
+      "symbol": "AL35D",
+      "nombre": "Bono AL35 (Bonares 2035)",
+      "tir": 13.2,
+      "duration": 4.8,
+      "dias_vto": 3435,
+      "precio": 59.8,
+      "ley": "Argentina"
+    },
+    {
+      "id": "BONO_GD35",
+      "symbol": "GD35D",
+      "nombre": "Bono GD35 (Globales 2035)",
+      "tir": 12.3,
+      "duration": 4.9,
+      "dias_vto": 3435,
+      "precio": 63.4,
+      "ley": "Nueva York"
+    },
+    {
+      "id": "BONO_AE38",
+      "symbol": "AE38D",
+      "nombre": "Bono AE38 (Bonares 2038)",
+      "tir": 13.5,
+      "duration": 5.2,
+      "dias_vto": 4530,
+      "precio": 62.1,
+      "ley": "Argentina"
+    },
+    {
+      "id": "BONO_GD38",
+      "symbol": "GD38D",
+      "nombre": "Bono GD38 (Globales 2038)",
+      "tir": 12.1,
+      "duration": 5.35,
+      "dias_vto": 4530,
+      "precio": 67.8,
+      "ley": "Nueva York"
+    },
+    {
+      "id": "BONO_GD46",
+      "symbol": "GD46D",
+      "nombre": "Bono GD46 (Globales 2046)",
+      "tir": 12.9,
+      "duration": 6.8,
+      "dias_vto": 7450,
+      "precio": 61.5,
+      "ley": "Nueva York"
+    }
+  ],
+  "bonos_cer": [
+    {
+      "id": "BONO_T2X5",
+      "symbol": "T2X5",
+      "nombre": "Bono Boncer 2025 (T2X5)",
+      "tir": 5.9,
+      "duration": 0.45,
+      "dias_vto": 130,
+      "precio": 1890.2,
+      "ley": "Argentina"
+    },
+    {
+      "id": "BONO_TX26",
+      "symbol": "TX26",
+      "nombre": "Bono Boncer 2026 (TX26)",
+      "tir": 7.4,
+      "duration": 1.15,
+      "dias_vto": 420,
+      "precio": 1680.5,
+      "ley": "Argentina"
+    },
+    {
+      "id": "BONO_TX28",
+      "symbol": "TX28",
+      "nombre": "Bono Boncer 2028 (TX28)",
+      "tir": 8.8,
+      "duration": 2.6,
+      "dias_vto": 980,
+      "precio": 1420.0,
+      "ley": "Argentina"
+    },
+    {
+      "id": "BONO_DICP",
+      "symbol": "DICP",
+      "nombre": "Bono Discount CER (DICP)",
+      "tir": 9.2,
+      "duration": 4.1,
+      "dias_vto": 2680,
+      "precio": 41200.0,
+      "ley": "Argentina"
+    }
+  ],
+  "lecaps": [
+    {
+      "id": "LECAP_S31M5",
+      "symbol": "S31M5",
+      "nombre": "LECAP Marzo 2025 (S31M5)",
+      "tir": 38.5,
+      "duration": 0.1,
+      "dias_vto": 38,
+      "precio": 138.4,
+      "ley": "Argentina"
+    },
+    {
+      "id": "LECAP_S28A5",
+      "symbol": "S28A5",
+      "nombre": "LECAP Abril 2025 (S28A5)",
+      "tir": 39.1,
+      "duration": 0.18,
+      "dias_vto": 66,
+      "precio": 134.2,
+      "ley": "Argentina"
+    },
+    {
+      "id": "LECAP_S30Y5",
+      "symbol": "S30Y5",
+      "nombre": "LECAP Mayo 2025 (S30Y5)",
+      "tir": 39.8,
+      "duration": 0.26,
+      "dias_vto": 98,
+      "precio": 130.1,
+      "ley": "Argentina"
+    },
+    {
+      "id": "LECAP_S18J5",
+      "symbol": "S18J5",
+      "nombre": "LECAP Julio 2025 (S18J5)",
+      "tir": 40.5,
+      "duration": 0.38,
+      "dias_vto": 148,
+      "precio": 124.8,
+      "ley": "Argentina"
+    },
+    {
+      "id": "LECAP_S15A5",
+      "symbol": "S15A5",
+      "nombre": "LECAP Agosto 2025 (S15A5)",
+      "tir": 41.2,
+      "duration": 0.46,
+      "dias_vto": 176,
+      "precio": 120.5,
+      "ley": "Argentina"
+    },
+    {
+      "id": "LECAP_S31O5",
+      "symbol": "S31O5",
+      "nombre": "LECAP Octubre 2025 (S31O5)",
+      "tir": 42.0,
+      "duration": 0.65,
+      "dias_vto": 252,
+      "precio": 114.2,
+      "ley": "Argentina"
+    }
+  ],
+  "ons_usd": [
+    {
+      "id": "ON_CS38O",
+      "symbol": "CS38O",
+      "nombre": "Cresud 2026 Clase 38 (CS38O)",
+      "emisor": "CRESUD",
+      "tir": 7.8,
+      "duration": 1.3,
+      "dias_vto": 490,
+      "precio": 101.4,
+      "cupon": 8.0,
+      "ley": "Argentina"
+    },
+    {
+      "id": "ON_YMCXO",
+      "symbol": "YMCXO",
+      "nombre": "YPF 2026 Clase 16 (YMCXO)",
+      "emisor": "YPF S.A.",
+      "tir": 7.65,
+      "duration": 1.45,
+      "dias_vto": 580,
+      "precio": 103.5,
+      "cupon": 8.5,
+      "ley": "Nueva York"
+    },
+    {
+      "id": "ON_TLC1O",
+      "symbol": "TLC1O",
+      "nombre": "Telecom 2026 Clase 5 (TLC1O)",
+      "emisor": "Telecom Argentina",
+      "tir": 7.45,
+      "duration": 1.55,
+      "dias_vto": 610,
+      "precio": 102.1,
+      "cupon": 8.0,
+      "ley": "Nueva York"
+    },
+    {
+      "id": "ON_PAMPO",
+      "symbol": "MGC9O",
+      "nombre": "Pampa Energia 2026 Clase 9 (MGC9O)",
+      "emisor": "Pampa Energia",
+      "tir": 6.85,
+      "duration": 1.7,
+      "dias_vto": 640,
+      "precio": 104.2,
+      "cupon": 9.12,
+      "ley": "Nueva York"
+    },
+    {
+      "id": "ON_PAE27",
+      "symbol": "PNDCO",
+      "nombre": "PAE 2027 Clase 11 (PNDCO)",
+      "emisor": "PAE (Pan American Energy)",
+      "tir": 6.4,
+      "duration": 2.1,
+      "dias_vto": 880,
+      "precio": 105.8,
+      "cupon": 8.5,
+      "ley": "Nueva York"
+    },
+    {
+      "id": "ON_VSC3O",
+      "symbol": "VSC3O",
+      "nombre": "Vista Energy 2027 Clase 3 (VSC3O)",
+      "emisor": "Vista Energy",
+      "tir": 7.1,
+      "duration": 2.25,
+      "dias_vto": 920,
+      "precio": 103.9,
+      "cupon": 7.95,
+      "ley": "Nueva York"
+    },
+    {
+      "id": "ON_CP17O",
+      "symbol": "CP17O",
+      "nombre": "Genneia 2027 Clase 17 (CP17O)",
+      "emisor": "Genneia",
+      "tir": 7.3,
+      "duration": 2.3,
+      "dias_vto": 940,
+      "precio": 102.8,
+      "cupon": 8.75,
+      "ley": "Nueva York"
+    },
+    {
+      "id": "ON_YCA6O",
+      "symbol": "YCA6O",
+      "nombre": "YPF 2029 Clase 39 (YCA6O)",
+      "emisor": "YPF S.A.",
+      "tir": 8.9,
+      "duration": 3.4,
+      "dias_vto": 1520,
+      "precio": 98.2,
+      "cupon": 8.75,
+      "ley": "Nueva York"
+    }
+  ]
+}
