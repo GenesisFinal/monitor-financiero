@@ -534,15 +534,13 @@
       lucide.createIcons();
     }
 
-    function renderSectionBlock(secKey, sec) {
+        function renderSectionBlock(secKey, sec) {
       let items = sec.items || [];
       
-      // Filtrado especial de commodities por subsegmento
       if (secKey === 'commodities' && CURRENT_COMMODITY_FILTER !== 'all') {
         items = items.filter(x => x.subtipo === CURRENT_COMMODITY_FILTER);
       }
 
-      // Filtrado especial de FCI por categoría y buscador interno
       if (secKey === 'fci') {
         if (CURRENT_FCI_FILTER !== 'all') {
           items = items.filter(x => x.clase && x.clase.toLowerCase().includes(CURRENT_FCI_FILTER.toLowerCase()));
@@ -559,59 +557,68 @@
 
       return `
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" id="section_${secKey}">
-          <div class="px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/50">
-            <div class="flex items-center space-x-3">
-              <span class="p-2 bg-rose-50 text-brand-red rounded-lg"><i data-lucide="${sec.icono || 'layers'}" class="w-5 h-5"></i></span>
-              <div>
-                <h2 class="text-lg font-bold text-slate-900">${sec.titulo}</h2>
-                <p class="text-xs text-slate-500">${items.length} activos monitoreados</p>
+          
+          <!-- Encabezado de Sección -->
+          <div class="px-5 py-4 border-b border-slate-100 bg-slate-50/60 flex flex-col gap-3">
+            
+            <!-- Fila 1: Título y Buscador / Acciones -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-center space-x-3">
+                <span class="p-2 bg-rose-50 text-brand-red rounded-lg"><i data-lucide="${sec.icono || 'layers'}" class="w-5 h-5"></i></span>
+                <div>
+                  <h2 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">${sec.titulo}</h2>
+                  <p class="text-xs text-slate-500 font-medium">${items.length} activos monitoreados</p>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-2">
+                ${secKey === 'fci' ? `
+                  <div class="relative w-full sm:w-64">
+                    <input 
+                      type="text" 
+                      placeholder="Buscar fondo o administradora..." 
+                      value="${CURRENT_FCI_SEARCH}"
+                      oninput="handleFciSearch(this.value)"
+                      class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all"
+                    >
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+                  </div>
+                ` : ''}
+
+                ${secKey === 'bonos_lecaps' || secKey === 'ons' ? `
+                  <button onclick="selectSection('curvas_rendimiento')" class="text-xs font-semibold text-brand-red bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-all flex items-center space-x-1">
+                    <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+                    <span>Ver Curva TIR</span>
+                  </button>
+                ` : ''}
               </div>
             </div>
 
-            <!-- Subfiltros específicos para Commodities -->
+            <!-- Fila 2: Subfiltros y Selectores (Específicos para Commodities y FCI) -->
             ${secKey === 'commodities' ? `
-              <div class="flex items-center space-x-1 overflow-x-auto no-scrollbar py-1">
-                <button onclick="filterCommodities('all')" data-subtipo="all" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-semibold ${CURRENT_COMMODITY_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">Todos</button>
-                <button onclick="filterCommodities('Granos y Oleaginosas')" data-subtipo="Granos y Oleaginosas" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Granos y Oleaginosas' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">🌾 Granos</button>
-                <button onclick="filterCommodities('Energía')" data-subtipo="Energía" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Energía' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">⚡ Energía</button>
-                <button onclick="filterCommodities('Metales')" data-subtipo="Metales" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Metales' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">🪙 Metales</button>
-                <button onclick="filterCommodities('Agroindustriales & Ganadería')" data-subtipo="Agroindustriales & Ganadería" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Agroindustriales & Ganadería' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'}">☕ Softs / Ganadería</button>
+              <div class="flex items-center space-x-1 overflow-x-auto no-scrollbar pt-2 border-t border-slate-200/60">
+                <button onclick="filterCommodities('all')" data-subtipo="all" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-semibold ${CURRENT_COMMODITY_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">Todos</button>
+                <button onclick="filterCommodities('Granos y Oleaginosas')" data-subtipo="Granos y Oleaginosas" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Granos y Oleaginosas' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🌾 Granos y Oleaginosas</button>
+                <button onclick="filterCommodities('Energía')" data-subtipo="Energía" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Energía' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">⚡ Energía</button>
+                <button onclick="filterCommodities('Metales')" data-subtipo="Metales" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Metales' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🪙 Metales</button>
+                <button onclick="filterCommodities('Agroindustriales & Ganadería')" data-subtipo="Agroindustriales & Ganadería" class="comm-sub-tab px-3 py-1 rounded-lg text-xs font-medium ${CURRENT_COMMODITY_FILTER === 'Agroindustriales & Ganadería' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">☕ Softs / Ganadería</button>
               </div>
             ` : ''}
 
-            <!-- Subfiltros y Buscador Específico para Fondos Comunes (FCI) -->
             ${secKey === 'fci' ? `
-              <div class="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto">
-                <div class="relative w-full sm:w-48">
-                  <input 
-                    type="text" 
-                    placeholder="Buscar fondo o administradora..." 
-                    value="${CURRENT_FCI_SEARCH}"
-                    oninput="handleFciSearch(this.value)"
-                    class="w-full pl-7 pr-2 py-1 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-red"
-                  >
-                  <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-2 top-1/2 -translate-y-1/2"></i>
-                </div>
-                <div class="flex items-center space-x-1 overflow-x-auto no-scrollbar py-1">
-                  <button onclick="filterFCI('all')" data-fci="all" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-semibold ${CURRENT_FCI_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">Todos</button>
-                  <button onclick="filterFCI('Money Market')" data-fci="Money Market" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Money Market' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">⚡ Money Market (T+0)</button>
-                  <button onclick="filterFCI('Renta Fija Corto')" data-fci="Renta Fija Corto" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Renta Fija Corto' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">📈 T+1 (Tasa Fija)</button>
-                  <button onclick="filterFCI('CER')" data-fci="CER" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'CER' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">🎯 CER (Inflación)</button>
-                  <button onclick="filterFCI('Dólar Hard')" data-fci="Dólar Hard" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Dólar Hard' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">💵 Dólar Hard (USD)</button>
-                  <button onclick="filterFCI('Dólar Linked')" data-fci="Dólar Linked" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Dólar Linked' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">🔄 Dólar Linked</button>
-                  <button onclick="filterFCI('Renta Mixta')" data-fci="Renta Mixta" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Renta Mixta' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">📊 Renta Mixta</button>
-                  <button onclick="filterFCI('Variable')" data-fci="Variable" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Variable' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">🚀 Renta Variable</button>
-                  <button onclick="filterFCI('Pymes')" data-fci="Pymes" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Pymes' ? 'bg-brand-red text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:text-slate-900'} whitespace-nowrap">🏭 Pymes & Infra</button>
-                </div>
+              <div class="flex flex-wrap gap-1.5 pt-2.5 border-t border-slate-200/60 items-center">
+                <button onclick="filterFCI('all')" data-fci="all" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-semibold ${CURRENT_FCI_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">Todos</button>
+                <button onclick="filterFCI('Money Market')" data-fci="Money Market" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Money Market' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">⚡ Money Market (T+0)</button>
+                <button onclick="filterFCI('Renta Fija Corto')" data-fci="Renta Fija Corto" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Renta Fija Corto' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">📈 T+1 (Tasa Fija)</button>
+                <button onclick="filterFCI('CER')" data-fci="CER" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'CER' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🎯 CER (Inflación)</button>
+                <button onclick="filterFCI('Dólar Hard')" data-fci="Dólar Hard" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Dólar Hard' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">💵 Dólar Hard (USD)</button>
+                <button onclick="filterFCI('Dólar Linked')" data-fci="Dólar Linked" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Dólar Linked' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🔄 Dólar Linked</button>
+                <button onclick="filterFCI('Renta Mixta')" data-fci="Renta Mixta" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Renta Mixta' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">📊 Renta Mixta</button>
+                <button onclick="filterFCI('Variable')" data-fci="Variable" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Variable' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🚀 Renta Variable</button>
+                <button onclick="filterFCI('Pymes')" data-fci="Pymes" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Pymes' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🏭 Pymes & Infra</button>
               </div>
             ` : ''}
 
-            ${secKey === 'bonos_lecaps' || secKey === 'ons' ? `
-              <button onclick="selectSection('curvas_rendimiento')" class="text-xs font-semibold text-brand-red bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-all flex items-center space-x-1 self-start sm:self-auto">
-                <i data-lucide="activity" class="w-3.5 h-3.5"></i>
-                <span>Ver Curva TIR</span>
-              </button>
-            ` : ''}
           </div>
 
           <!-- Table View -->
