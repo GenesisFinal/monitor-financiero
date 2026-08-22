@@ -1138,7 +1138,8 @@
       const datasets = [];
 
       let chartData = series.map(x => x.close);
-      let chartLabel = 'Precio de Cierre';
+      const isFCI = (CURRENT_MODAL_ASSET.categoria === 'Fondos Comunes de Inversión');
+      let chartLabel = isFCI ? 'Valor de Cuotaparte (VCP)' : 'Precio de Cierre';
       let chartColor = '#e20039';
       let chartBg = 'rgba(226, 0, 57, 0.06)';
 
