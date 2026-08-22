@@ -611,7 +611,13 @@
           <th class="px-4 py-3 text-right">MA 200</th>
         `;
       }
-      if (secKey === 'indices_mundiales' || secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
+      if (secKey === 'indices_mundiales') {
+        return `
+          <th class="px-4 py-3 text-right">MA 50</th>
+          <th class="px-4 py-3 text-right">MA 200</th>
+        `;
+      }
+      if (secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
         return `
           <th class="px-4 py-3 text-right">Cap. Bursátil</th>
           <th class="px-4 py-3 text-right">MA 50</th>
@@ -681,11 +687,19 @@
           <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `$ ${formatNumber(item.ma200, 2)}` : '-'}</td>
         `;
       }
-      if (secKey === 'indices_mundiales' || secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
+      if (secKey === 'indices_mundiales') {
+        const symb = item.moneda === 'Pts' ? '' : (item.moneda === 'USD' ? 'US$ ' : (item.moneda === 'EUR' ? '€ ' : (item.moneda === 'GBP' ? '£ ' : (item.moneda === 'JPY' ? '¥ ' : '$ '))));
+        return `
+          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `${symb}${formatNumber(item.ma50, 2)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `${symb}${formatNumber(item.ma200, 2)}` : '-'}</td>
+        `;
+      }
+      if (secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
+        const symb = item.moneda === 'USD' ? 'US$ ' : '$ ';
         return `
           <td class="px-4 py-3 text-right font-mono text-slate-600">${formatMcap(item.cap_bursatil)}</td>
-          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `$ ${formatNumber(item.ma50, 2)}` : '-'}</td>
-          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `$ ${formatNumber(item.ma200, 2)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `${symb}${formatNumber(item.ma50, 2)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `${symb}${formatNumber(item.ma200, 2)}` : '-'}</td>
         `;
       }
       if (secKey === 'fci') {
