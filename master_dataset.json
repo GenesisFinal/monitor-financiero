@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-08-23 10:20:18",
+  "ultima_actualizacion": "2026-08-23 10:35:01",
   "fecha_cierre": "2026-08-23",
   "secciones": {
     "dolar": {
@@ -115,7 +115,7 @@
           "compra": 1582.85,
           "venta": 1590.8,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-08-23 10:20:18",
+          "fecha_actualizacion": "2026-08-23 10:35:01",
           "var_1d": 0.15,
           "var_1m": 3.2,
           "var_12m": 42.5
@@ -8505,9 +8505,9 @@
           "cupon": 8.5,
           "ley": "Nueva York",
           "vto": "2026-07-28",
-          "var_1d": -0.09,
-          "var_1m": 0.99,
-          "var_12m": 4.33
+          "var_1d": 0.13,
+          "var_1m": 0.61,
+          "var_12m": 3.99
         },
         {
           "id": "ON_YCA6O",
@@ -8524,9 +8524,9 @@
           "cupon": 8.75,
           "ley": "Nueva York",
           "vto": "2029-06-30",
-          "var_1d": -0.06,
-          "var_1m": 0.99,
-          "var_12m": 3.78
+          "var_1d": 0.31,
+          "var_1m": 0.96,
+          "var_12m": 3.38
         },
         {
           "id": "ON_PAMPO",
@@ -8543,9 +8543,9 @@
           "cupon": 9.12,
           "ley": "Nueva York",
           "vto": "2026-12-08",
-          "var_1d": -0.03,
-          "var_1m": 1.08,
-          "var_12m": 3.68
+          "var_1d": -0.16,
+          "var_1m": 0.93,
+          "var_12m": 3.51
         },
         {
           "id": "ON_PAE27",
@@ -8562,9 +8562,9 @@
           "cupon": 8.5,
           "ley": "Nueva York",
           "vto": "2027-04-30",
-          "var_1d": -0.25,
-          "var_1m": 0.54,
-          "var_12m": 3.76
+          "var_1d": -0.46,
+          "var_1m": 1.26,
+          "var_12m": 3.57
         },
         {
           "id": "ON_TLC1O",
@@ -8581,9 +8581,9 @@
           "cupon": 8.0,
           "ley": "Nueva York",
           "vto": "2026-08-18",
-          "var_1d": 0.25,
-          "var_1m": 0.81,
-          "var_12m": 3.59
+          "var_1d": -0.37,
+          "var_1m": 1.14,
+          "var_12m": 3.63
         },
         {
           "id": "ON_VSC3O",
@@ -8600,9 +8600,9 @@
           "cupon": 7.95,
           "ley": "Nueva York",
           "vto": "2027-06-20",
-          "var_1d": -0.25,
-          "var_1m": 0.76,
-          "var_12m": 3.48
+          "var_1d": -0.1,
+          "var_1m": 0.83,
+          "var_12m": 3.6
         },
         {
           "id": "ON_CS38O",
@@ -8619,9 +8619,9 @@
           "cupon": 8.0,
           "ley": "Argentina",
           "vto": "2026-03-12",
-          "var_1d": -0.01,
-          "var_1m": 1.24,
-          "var_12m": 3.94
+          "var_1d": -0.05,
+          "var_1m": 1.16,
+          "var_12m": 3.95
         },
         {
           "id": "ON_CP17O",
@@ -8638,9 +8638,9 @@
           "cupon": 8.75,
           "ley": "Nueva York",
           "vto": "2027-09-02",
-          "var_1d": -0.02,
-          "var_1m": 0.54,
-          "var_12m": 3.75
+          "var_1d": 0.37,
+          "var_1m": 0.95,
+          "var_12m": 3.84
         }
       ]
     },
@@ -9421,17 +9421,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 77586.0078,
+          "precio": 77469.6016,
           "open": 77076.0625,
-          "high": 77568.7734,
+          "high": 77673.5078,
           "low": 75884.6797,
           "moneda": "USD",
-          "cap_bursatil": 1556923023360,
-          "ma50": 65151.29,
-          "ma200": 69003.67,
-          "var_1d": 0.65,
-          "var_1m": 22.22,
-          "var_12m": -12.01,
+          "cap_bursatil": 1553854103552,
+          "ma50": 65148.97,
+          "ma200": 69003.09,
+          "var_1d": 0.5,
+          "var_1m": 22.03,
+          "var_12m": -12.14,
           "subtitulo": "Criptomoneda Líder / Reserva Digital"
         },
         {
@@ -9441,17 +9441,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2469.72,
+          "precio": 2454.51,
           "open": 2423.2788,
-          "high": 2457.9121,
+          "high": 2471.2754,
           "low": 2366.843,
           "moneda": "USD",
-          "cap_bursatil": 296624619520,
-          "ma50": 1920.68,
-          "ma200": 2007.03,
-          "var_1d": 1.88,
-          "var_1m": 31.19,
-          "var_12m": -19.31,
+          "cap_bursatil": 296427192320,
+          "ma50": 1920.37,
+          "ma200": 2006.95,
+          "var_1d": 1.25,
+          "var_1m": 30.38,
+          "var_12m": -19.8,
           "subtitulo": "Contratos Inteligentes / Web3"
         },
         {
@@ -9461,17 +9461,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 95.28,
+          "precio": 95.0,
           "open": 93.8988,
           "high": 96.5367,
           "low": 91.9249,
           "moneda": "USD",
-          "cap_bursatil": 55489363968,
+          "cap_bursatil": 55436861440,
           "ma50": 77.39,
           "ma200": 81.15,
-          "var_1d": 1.46,
-          "var_1m": 29.72,
-          "var_12m": -26.41,
+          "var_1d": 1.16,
+          "var_1m": 29.34,
+          "var_12m": -26.63,
           "subtitulo": "Blockchain de Alta Velocidad"
         },
         {
@@ -9481,17 +9481,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 698.97,
+          "precio": 697.97,
           "open": 695.6825,
           "high": 700.6078,
           "low": 679.3317,
           "moneda": "USD",
-          "cap_bursatil": 92798861312,
-          "ma50": 592.87,
+          "cap_bursatil": 92924805120,
+          "ma50": 592.85,
           "ma200": 615.23,
-          "var_1d": 0.47,
-          "var_1m": 18.96,
-          "var_12m": -20.37,
+          "var_1d": 0.33,
+          "var_1m": 18.79,
+          "var_12m": -20.49,
           "subtitulo": "Ecosistema BNB Chain"
         },
         {
@@ -9501,17 +9501,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.5156,
+          "precio": 1.5109,
           "open": 1.4635,
-          "high": 1.5122,
+          "high": 1.5132,
           "low": 1.4387,
           "moneda": "USD",
-          "cap_bursatil": 94677917696,
+          "cap_bursatil": 94572609536,
           "ma50": 1.1,
           "ma200": 1.27,
-          "var_1d": 3.55,
-          "var_1m": 39.74,
-          "var_12m": -23.43,
+          "var_1d": 3.22,
+          "var_1m": 39.3,
+          "var_12m": -23.66,
           "subtitulo": "Pagos y Liquidaciones"
         },
         {
@@ -9521,17 +9521,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.228,
+          "precio": 0.2275,
           "open": 0.2262,
           "high": 0.2289,
           "low": 0.2141,
           "moneda": "USD",
-          "cap_bursatil": 8322541056,
+          "cap_bursatil": 8333929984,
           "ma50": 0.18,
           "ma200": 0.22,
-          "var_1d": 0.75,
-          "var_1m": 20.38,
-          "var_12m": -42.51,
+          "var_1d": 0.53,
+          "var_1m": 20.12,
+          "var_12m": -42.64,
           "subtitulo": "Blockchain Proof of Stake"
         },
         {
@@ -9541,17 +9541,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0936,
+          "precio": 0.0933,
           "open": 0.0919,
           "high": 0.0941,
           "low": 0.0891,
           "moneda": "USD",
-          "cap_bursatil": 14444379136,
+          "cap_bursatil": 14512673792,
           "ma50": 0.07,
           "ma200": 0.09,
-          "var_1d": 1.74,
-          "var_1m": 32.39,
-          "var_12m": -30.25,
+          "var_1d": 1.41,
+          "var_1m": 31.97,
+          "var_12m": -30.48,
           "subtitulo": "Moneda Digital Memética"
         },
         {
@@ -9561,17 +9561,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.9998,
+          "precio": 0.9999,
           "open": 0.9999,
           "high": 1.0001,
           "low": 0.9997,
           "moneda": "USD",
-          "cap_bursatil": 183198580736,
+          "cap_bursatil": 183207460864,
           "ma50": 1.0,
           "ma200": 1.0,
-          "var_1d": 0.0,
-          "var_1m": 0.09,
-          "var_12m": -0.04,
+          "var_1d": 0.01,
+          "var_1m": 0.1,
+          "var_12m": -0.03,
           "subtitulo": "Stablecoin Dólar"
         }
       ]
@@ -9595,7 +9595,7 @@
           "ccl_implicito": 1595.36,
           "var_1d": 0.41,
           "var_1m": 3.73,
-          "var_12m": 19.97,
+          "var_12m": 20.5,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9615,7 +9615,7 @@
           "ccl_implicito": 1592.99,
           "var_1d": 0.35,
           "var_1m": 3.1,
-          "var_12m": 25.33,
+          "var_12m": 25.7,
           "expense_ratio_pct": 0.2,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9635,7 +9635,7 @@
           "ccl_implicito": 1595.58,
           "var_1d": 0.98,
           "var_1m": 3.18,
-          "var_12m": 18.34,
+          "var_12m": 19.27,
           "expense_ratio_pct": 0.16,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9655,7 +9655,7 @@
           "ccl_implicito": 1593.55,
           "var_1d": 0.77,
           "var_1m": 2.69,
-          "var_12m": 29.06,
+          "var_12m": 30.43,
           "expense_ratio_pct": 0.19,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9675,7 +9675,7 @@
           "ccl_implicito": null,
           "var_1d": 0.53,
           "var_1m": 4.19,
-          "var_12m": 21.67,
+          "var_12m": 22.48,
           "expense_ratio_pct": 0.07,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9695,7 +9695,7 @@
           "ccl_implicito": null,
           "var_1d": 0.53,
           "var_1m": 4.19,
-          "var_12m": 21.65,
+          "var_12m": 22.44,
           "expense_ratio_pct": 0.32,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9715,7 +9715,7 @@
           "ccl_implicito": 1587.2,
           "var_1d": 0.11,
           "var_1m": 2.72,
-          "var_12m": 40.44,
+          "var_12m": 40.76,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9735,7 +9735,7 @@
           "ccl_implicito": 1594.99,
           "var_1d": 0.93,
           "var_1m": 2.96,
-          "var_12m": 8.96,
+          "var_12m": 9.6,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9755,7 +9755,7 @@
           "ccl_implicito": 1595.69,
           "var_1d": -0.17,
           "var_1m": 7.17,
-          "var_12m": 48.91,
+          "var_12m": 48.52,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9775,7 +9775,7 @@
           "ccl_implicito": 1595.15,
           "var_1d": 1.29,
           "var_1m": 8.16,
-          "var_12m": 28.59,
+          "var_12m": 30.45,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9795,7 +9795,7 @@
           "ccl_implicito": 1590.68,
           "var_1d": 0.27,
           "var_1m": -0.93,
-          "var_12m": 19.22,
+          "var_12m": 20.42,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9815,7 +9815,7 @@
           "ccl_implicito": 1590.44,
           "var_1d": 0.65,
           "var_1m": 5.71,
-          "var_12m": 1.34,
+          "var_12m": 1.18,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9835,7 +9835,7 @@
           "ccl_implicito": 1586.72,
           "var_1d": 1.15,
           "var_1m": 8.51,
-          "var_12m": 2.05,
+          "var_12m": 2.25,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9855,7 +9855,7 @@
           "ccl_implicito": 1595.53,
           "var_1d": 0.79,
           "var_1m": 3.34,
-          "var_12m": 7.16,
+          "var_12m": 9.02,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9875,7 +9875,7 @@
           "ccl_implicito": 1597.5,
           "var_1d": -2.28,
           "var_1m": -7.4,
-          "var_12m": 2.19,
+          "var_12m": 3.36,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9895,7 +9895,7 @@
           "ccl_implicito": null,
           "var_1d": 0.0,
           "var_1m": 0.29,
-          "var_12m": 10.14,
+          "var_12m": 10.69,
           "expense_ratio_pct": 0.09,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9915,7 +9915,7 @@
           "ccl_implicito": 1593.41,
           "var_1d": 0.75,
           "var_1m": 3.9,
-          "var_12m": 35.17,
+          "var_12m": 35.94,
           "expense_ratio_pct": 0.69,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9935,7 +9935,7 @@
           "ccl_implicito": 1591.56,
           "var_1d": 2.69,
           "var_1m": -3.07,
-          "var_12m": 28.05,
+          "var_12m": 27.47,
           "expense_ratio_pct": 0.58,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9955,7 +9955,7 @@
           "ccl_implicito": 1590.91,
           "var_1d": 0.53,
           "var_1m": 4.06,
-          "var_12m": -6.93,
+          "var_12m": -6.69,
           "expense_ratio_pct": 0.74,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9975,7 +9975,7 @@
           "ccl_implicito": null,
           "var_1d": -0.11,
           "var_1m": 1.48,
-          "var_12m": -26.3,
+          "var_12m": -26.55,
           "expense_ratio_pct": 0.69,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -9995,7 +9995,7 @@
           "ccl_implicito": null,
           "var_1d": 0.56,
           "var_1m": -1.38,
-          "var_12m": 13.97,
+          "var_12m": 18.05,
           "expense_ratio_pct": 0.59,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10015,7 +10015,7 @@
           "ccl_implicito": null,
           "var_1d": 0.97,
           "var_1m": 4.48,
-          "var_12m": 24.07,
+          "var_12m": 25.59,
           "expense_ratio_pct": 0.5,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10035,7 +10035,7 @@
           "ccl_implicito": null,
           "var_1d": 0.77,
           "var_1m": 5.57,
-          "var_12m": 19.17,
+          "var_12m": 20.97,
           "expense_ratio_pct": 0.11,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10055,7 +10055,7 @@
           "ccl_implicito": null,
           "var_1d": -0.35,
           "var_1m": -0.95,
-          "var_12m": -1.43,
+          "var_12m": -1.14,
           "expense_ratio_pct": 0.15,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10075,7 +10075,7 @@
           "ccl_implicito": null,
           "var_1d": -0.19,
           "var_1m": 0.31,
-          "var_12m": 0.72,
+          "var_12m": 0.92,
           "expense_ratio_pct": 0.15,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10095,7 +10095,7 @@
           "ccl_implicito": null,
           "var_1d": -0.02,
           "var_1m": 0.59,
-          "var_12m": 2.61,
+          "var_12m": 2.65,
           "expense_ratio_pct": 0.15,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10115,7 +10115,7 @@
           "ccl_implicito": null,
           "var_1d": 0.06,
           "var_1m": 0.97,
-          "var_12m": 4.38,
+          "var_12m": 4.59,
           "expense_ratio_pct": 0.49,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10135,7 +10135,7 @@
           "ccl_implicito": null,
           "var_1d": -0.13,
           "var_1m": 0.11,
-          "var_12m": 0.56,
+          "var_12m": 0.82,
           "expense_ratio_pct": 0.14,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10155,7 +10155,7 @@
           "ccl_implicito": null,
           "var_1d": 0.05,
           "var_1m": 0.64,
-          "var_12m": 5.79,
+          "var_12m": 6.21,
           "expense_ratio_pct": 0.39,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10175,7 +10175,7 @@
           "ccl_implicito": 1595.57,
           "var_1d": 1.95,
           "var_1m": 13.95,
-          "var_12m": 36.31,
+          "var_12m": 36.64,
           "expense_ratio_pct": 0.4,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10195,7 +10195,7 @@
           "ccl_implicito": 1594.71,
           "var_1d": 1.72,
           "var_1m": 20.48,
-          "var_12m": 77.48,
+          "var_12m": 79.1,
           "expense_ratio_pct": 0.5,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10215,7 +10215,7 @@
           "ccl_implicito": 1592.02,
           "var_1d": 0.07,
           "var_1m": -3.48,
-          "var_12m": 80.39,
+          "var_12m": 77.74,
           "expense_ratio_pct": 0.81,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10235,7 +10235,7 @@
           "ccl_implicito": null,
           "var_1d": -0.4,
           "var_1m": -3.4,
-          "var_12m": 91.45,
+          "var_12m": 91.26,
           "expense_ratio_pct": 0.35,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10255,7 +10255,7 @@
           "ccl_implicito": null,
           "var_1d": 2.72,
           "var_1m": 11.0,
-          "var_12m": 65.87,
+          "var_12m": 66.27,
           "expense_ratio_pct": 0.75,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10275,7 +10275,7 @@
           "ccl_implicito": 1591.46,
           "var_1d": 3.53,
           "var_1m": 16.77,
-          "var_12m": 12.66,
+          "var_12m": 13.94,
           "expense_ratio_pct": 0.75,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
@@ -10295,7 +10295,7 @@
           "ccl_implicito": 1588.83,
           "var_1d": 6.02,
           "var_1m": 19.18,
-          "var_12m": -34.07,
+          "var_12m": -30.53,
           "expense_ratio_pct": 0.25,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null
