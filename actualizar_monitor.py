@@ -825,7 +825,14 @@ def fetch_ons():
     return results, series_map
 
 def fit_yield_curve_regression(points, is_lecaps=False):
-    """Calcula la curva de regresión no lineal TIR = f(X) sobre los pares reales (X, TIR)."""
+    """
+    Ajusta exclusivamente 4 familias de regresión:
+    1. Lineal: y = a*x + b
+    2. Cuadrática (polinomio grado 2 máx): y = a*x^2 + b*x + c
+    3. Potencial: y = a*x^b
+    4. Exponencial: y = a*e^(b*x)
+    Selecciona siempre y de forma estricta la de mayor R^2.
+    """
     valid = []
     for p in points:
         x_val = p.get('dias_vto') if is_lecaps else p.get('duration')
@@ -834,30 +841,106 @@ def fit_yield_curve_regression(points, is_lecaps=False):
             valid.append((float(x_val), float(y_val)))
     
     if len(valid) < 2:
-        return []
+        return [], "Sin datos suficientes", 0.0
         
     valid.sort(key=lambda item: item[0])
-    x_sorted = np.array([item[0] for item in valid])
-    y_sorted = np.array([item[1] for item in valid])
+    x = np.array([item[0] for item in valid], dtype=float)
+    y = np.array([item[1] for item in valid], dtype=float)
+    n = len(x)
     
-    min_x = float(x_sorted[0])
-    max_x = float(x_sorted[-1])
-    
-    # Generar 40 puntos densos para un trazado perfectamente fluido
-    x_dense = np.linspace(min_x, max_x, 40)
-    bandwidth = max(0.08 if not is_lecaps else 10.0, (max_x - min_x) * 0.30)
-    
-    y_dense = []
-    for xd in x_dense:
-        weights = np.exp(-0.5 * ((x_sorted - xd) / bandwidth) ** 2)
-        if np.sum(weights) > 0:
-            yd = np.sum(weights * y_sorted) / np.sum(weights)
-        else:
-            yd = np.interp(xd, x_sorted, y_sorted)
-        y_dense.append(round(float(yd), 2))
+    y_mean = np.mean(y)
+    ss_tot = np.sum((y - y_mean) ** 2)
+    if ss_tot == 0:
+        ss_tot = 1e-7
         
-    curve_line = [{'x': round(float(xd), 2), 'y': float(yd)} for xd, yd in zip(x_dense, y_dense)]
-    return curve_line
+    min_x = float(x[0])
+    max_x = float(x[-1])
+    x_dense = np.linspace(min_x, max_x, 40)
+    
+    models = []
+    
+    # 1. Modelo Lineal: y = a*x + b
+    try:
+        p_lin = np.polyfit(x, y, 1)
+        y_pred_lin = np.polyval(p_lin, x)
+        ss_res_lin = np.sum((y - y_pred_lin) ** 2)
+        r2_lin = max(0.0, 1.0 - (ss_res_lin / ss_tot))
+        y_dense_lin = np.polyval(p_lin, x_dense)
+        models.append({
+            'name': 'Lineal',
+            'r2': float(r2_lin),
+            'y_dense': y_dense_lin
+        })
+    except Exception:
+        pass
+        
+    # 2. Modelo Cuadrático: y = a*x^2 + b*x + c (máximo grado 2)
+    if n >= 3:
+        try:
+            p_quad = np.polyfit(x, y, 2)
+            y_pred_quad = np.polyval(p_quad, x)
+            ss_res_quad = np.sum((y - y_pred_quad) ** 2)
+            r2_quad = max(0.0, 1.0 - (ss_res_quad / ss_tot))
+            y_dense_quad = np.polyval(p_quad, x_dense)
+            models.append({
+                'name': 'Cuadrática',
+                'r2': float(r2_quad),
+                'y_dense': y_dense_quad
+            })
+        except Exception:
+            pass
+            
+    # 3. Modelo Potencial: y = a * x^b (ln(y) = ln(a) + b*ln(x))
+    if np.all(x > 0) and np.all(y > 0):
+        try:
+            ln_x = np.log(x)
+            ln_y = np.log(y)
+            p_pow = np.polyfit(ln_x, ln_y, 1)
+            b_pow = p_pow[0]
+            a_pow = np.exp(p_pow[1])
+            y_pred_pow = a_pow * (x ** b_pow)
+            ss_res_pow = np.sum((y - y_pred_pow) ** 2)
+            r2_pow = max(0.0, 1.0 - (ss_res_pow / ss_tot))
+            y_dense_pow = a_pow * (x_dense ** b_pow)
+            models.append({
+                'name': 'Potencial',
+                'r2': float(r2_pow),
+                'y_dense': y_dense_pow
+            })
+        except Exception:
+            pass
+            
+    # 4. Modelo Exponencial: y = a * e^(b*x) (ln(y) = ln(a) + b*x)
+    if np.all(y > 0):
+        try:
+            ln_y = np.log(y)
+            p_exp = np.polyfit(x, ln_y, 1)
+            b_exp = p_exp[0]
+            a_exp = np.exp(p_exp[1])
+            y_pred_exp = a_exp * np.exp(b_exp * x)
+            ss_res_exp = np.sum((y - y_pred_exp) ** 2)
+            r2_exp = max(0.0, 1.0 - (ss_res_exp / ss_tot))
+            y_dense_exp = a_exp * np.exp(b_exp * x_dense)
+            models.append({
+                'name': 'Exponencial',
+                'r2': float(r2_exp),
+                'y_dense': y_dense_exp
+            })
+        except Exception:
+            pass
+            
+    if not models:
+        return [], "Sin ajuste", 0.0
+        
+    # Seleccionar siempre el modelo con mayor R^2
+    best_model = max(models, key=lambda m: m['r2'])
+    
+    curve_line = [
+        {'x': round(float(xd), 2), 'y': round(float(yd), 2)}
+        for xd, yd in zip(x_dense, best_model['y_dense'])
+    ]
+    return curve_line, best_model['name'], round(best_model['r2'], 4)
+
 
 def build_yield_curves(bonos_list, ons_list):
     print('-> Generando Curvas de Rendimiento (TIR vs Duration con Regresión Spline/Polinómica)...')
