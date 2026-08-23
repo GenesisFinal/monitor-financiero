@@ -964,9 +964,22 @@
           { id: 'blue_chips', name: '🏆 Top 10 Blue Chips' }
         ];
 
-        let filteredItems = items;
+        let filteredItems = [...items];
         if (CURRENT_CEDEARS_FILTER !== 'todos') {
           filteredItems = filteredItems.filter(x => x.tags && x.tags.includes(CURRENT_CEDEARS_FILTER));
+        }
+
+        // Ordenamiento automático según el filtro activo
+        if (CURRENT_CEDEARS_FILTER === 'day_gainers') {
+          filteredItems.sort((a, b) => (b.var_1d ?? -999) - (a.var_1d ?? -999));
+        } else if (CURRENT_CEDEARS_FILTER === 'day_losers') {
+          filteredItems.sort((a, b) => (a.var_1d ?? 999) - (b.var_1d ?? 999));
+        } else if (CURRENT_CEDEARS_FILTER === 'gainers_52w') {
+          filteredItems.sort((a, b) => (b.var_12m ?? -999) - (a.var_12m ?? -999));
+        } else if (CURRENT_CEDEARS_FILTER === 'losers_52w') {
+          filteredItems.sort((a, b) => (a.var_12m ?? 999) - (b.var_12m ?? 999));
+        } else if (CURRENT_CEDEARS_FILTER === 'top_volume') {
+          filteredItems.sort((a, b) => (b.volumen || 0) - (a.volumen || 0));
         }
         if (CURRENT_CEDEARS_SEARCH.trim() !== '') {
           const q = CURRENT_CEDEARS_SEARCH.toLowerCase();
@@ -1124,9 +1137,22 @@
           { id: 'most_actives', name: '📊 Top 10 Mayor Volumen' }
         ];
 
-        let filteredItems = items;
+        let filteredItems = [...items];
         if (CURRENT_MUNDIALES_FILTER !== 'todos') {
           filteredItems = filteredItems.filter(x => x.tags && x.tags.includes(CURRENT_MUNDIALES_FILTER));
+        }
+
+        // Ordenamiento automático según el filtro activo
+        if (CURRENT_MUNDIALES_FILTER === 'day_gainers') {
+          filteredItems.sort((a, b) => (b.var_1d ?? -999) - (a.var_1d ?? -999));
+        } else if (CURRENT_MUNDIALES_FILTER === 'day_losers') {
+          filteredItems.sort((a, b) => (a.var_1d ?? 999) - (b.var_1d ?? 999));
+        } else if (CURRENT_MUNDIALES_FILTER === 'gainers_52w') {
+          filteredItems.sort((a, b) => (b.var_12m ?? -999) - (a.var_12m ?? -999));
+        } else if (CURRENT_MUNDIALES_FILTER === 'losers_52w') {
+          filteredItems.sort((a, b) => (a.var_12m ?? 999) - (b.var_12m ?? 999));
+        } else if (CURRENT_MUNDIALES_FILTER === 'most_actives') {
+          filteredItems.sort((a, b) => (b.volumen || 0) - (a.volumen || 0));
         }
         if (CURRENT_MUNDIALES_SEARCH.trim() !== '') {
           const q = CURRENT_MUNDIALES_SEARCH.toLowerCase();
