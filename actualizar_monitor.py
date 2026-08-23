@@ -1444,9 +1444,15 @@ def main():
     master_dataset['secciones']['ons'] = {'titulo': 'ONs (Obligaciones Negociables)', 'icono': 'briefcase', 'items': ons_items}
     all_series.update(ons_series)
     
-    # 10. Acciones Mundiales
-    acc_mund_items, acc_mund_series = fetch_yahoo_market_group(CONFIG_ACCIONES_MUNDIALES, 'Acciones Mundiales')
-    master_dataset['secciones']['acciones_mundiales'] = {'titulo': 'Acciones Mundiales', 'icono': 'activity', 'items': acc_mund_items}
+    # 10. Acciones Mundiales mediante Screeners Oficiales (Top Market Cap, Subas, Bajas, 52W y Volumen)
+    acc_mund_items, acc_mund_series, active_eq_ids = fetch_acciones_mundiales_screeners()
+    master_dataset['secciones']['acciones_mundiales'] = {'titulo': 'Acciones Mundiales', 'icono': 'globe', 'items': acc_mund_items}
+    
+    # Purgar series históricas obsoletas de acciones mundiales que ya no califican hoy
+    for k in list(all_series.keys()):
+        if k.startswith('EQ_') and k not in active_eq_ids:
+            del all_series[k]
+            
     all_series.update(acc_mund_series)
     
     # 11. CEDEARs
