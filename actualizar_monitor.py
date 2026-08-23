@@ -411,12 +411,15 @@ def fetch_fci():
             pos_days = safe_float(f.get('positiveDays'))
             
             costos = f.get('costos', {})
-            costo_total = safe_float(costos.get('costoTotal')) if isinstance(costos, dict) else None
-            costo_gerente = safe_float(costos.get('honorariosSocGerente')) if isinstance(costos, dict) else None
-            costo_depo = safe_float(costos.get('honorariosSocDepositaria')) if isinstance(costos, dict) else None
+            adm_sg = safe_float(costos.get('admSG', 0)) if isinstance(costos, dict) else 0
+            adm_sd = safe_float(costos.get('admSD', 0)) if isinstance(costos, dict) else 0
+            gastos = safe_float(costos.get('gastos', 0)) if isinstance(costos, dict) else 0
+            costo_total = round(adm_sg + adm_sd + gastos, 2) if (adm_sg + adm_sd + gastos) > 0 else None
+            costo_gerente = round(adm_sg, 2) if adm_sg > 0 else None
+            costo_depo = round(adm_sd, 2) if adm_sd > 0 else None
             
             plazo_liq = f.get('plazoLiq', 1)
-            plazo_text = 'T+0 (Inmediato)' if plazo_liq == 0 else f'T+{plazo_liq} ({plazo_liq * 24} hs)'
+            plazo_text = f'T+{plazo_liq}' if plazo_liq is not None else 'T+1'
             
             # ID normalizado del fondo
             slug_id = 'FCI_' + (f.get('nombreBase') or nom).lower().replace(' ', '_').replace('-', '_').replace('.', '')
