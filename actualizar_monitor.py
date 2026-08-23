@@ -1009,18 +1009,177 @@ CONFIG_TASAS_INT = [
     {'symbol': '^TYX', 'name': 'Tasa US Treasury 30 Años', 'id': 'TASA_US30Y', 'currency': '%', 'subtitulo': 'Bono del Tesoro de EE.UU. a 30 años'},
 ]
 
-CONFIG_ACCIONES_MUNDIALES = [
-    {'symbol': 'AAPL', 'name': 'Apple Inc.', 'id': 'EQ_AAPL', 'currency': 'USD', 'subtitulo': 'Tecnología / Consumer Electronics'},
-    {'symbol': 'MSFT', 'name': 'Microsoft Corp.', 'id': 'EQ_MSFT', 'currency': 'USD', 'subtitulo': 'Tecnología / Software y Cloud'},
-    {'symbol': 'NVDA', 'name': 'NVIDIA Corp.', 'id': 'EQ_NVDA', 'currency': 'USD', 'subtitulo': 'Semiconductores e Inteligencia Artificial'},
-    {'symbol': 'GOOGL', 'name': 'Alphabet Inc. (Google)', 'id': 'EQ_GOOGL', 'currency': 'USD', 'subtitulo': 'Servicios de Internet y Publicidad'},
-    {'symbol': 'AMZN', 'name': 'Amazon.com Inc.', 'id': 'EQ_AMZN', 'currency': 'USD', 'subtitulo': 'E-Commerce y Cloud Computing (AWS)'},
-    {'symbol': 'META', 'name': 'Meta Platforms (Facebook)', 'id': 'EQ_META', 'currency': 'USD', 'subtitulo': 'Redes Sociales y Metaverso'},
-    {'symbol': 'TSLA', 'name': 'Tesla Inc.', 'id': 'EQ_TSLA', 'currency': 'USD', 'subtitulo': 'Vehículos Eléctricos y Energía'},
-    {'symbol': 'BRK-B', 'name': 'Berkshire Hathaway B', 'id': 'EQ_BRK_B', 'currency': 'USD', 'subtitulo': 'Holding Financiero y Seguros'},
-    {'symbol': 'LLY', 'name': 'Eli Lilly and Company', 'id': 'EQ_LLY', 'currency': 'USD', 'subtitulo': 'Farmacéutica y Biotecnología'},
-    {'symbol': 'AVGO', 'name': 'Broadcom Inc.', 'id': 'EQ_AVGO', 'currency': 'USD', 'subtitulo': 'Semiconductores y Conectividad'},
+MEGA_CAPS_CONFIG = [
+    {'symbol': 'NVDA', 'name': 'NVIDIA Corporation', 'sector': 'Semiconductores & IA'},
+    {'symbol': 'AAPL', 'name': 'Apple Inc.', 'sector': 'Tecnología & Hardware'},
+    {'symbol': 'MSFT', 'name': 'Microsoft Corporation', 'sector': 'Software & Cloud'},
+    {'symbol': 'AMZN', 'name': 'Amazon.com Inc.', 'sector': 'E-Commerce & AWS'},
+    {'symbol': 'GOOGL', 'name': 'Alphabet Inc. (Google)', 'sector': 'Servicios de Internet'},
+    {'symbol': 'META', 'name': 'Meta Platforms (Facebook)', 'sector': 'Redes Sociales & Metaverso'},
+    {'symbol': 'TSLA', 'name': 'Tesla Inc.', 'sector': 'Vehículos Eléctricos & IA'},
+    {'symbol': 'BRK-B', 'name': 'Berkshire Hathaway', 'sector': 'Holding Financiero & Seguros'},
+    {'symbol': 'TSM', 'name': 'Taiwan Semiconductor (TSMC)', 'sector': 'Semiconductores / Fundición'},
+    {'symbol': 'AVGO', 'name': 'Broadcom Inc.', 'sector': 'Semiconductores & Redes'},
+    {'symbol': 'JPM', 'name': 'JPMorgan Chase & Co.', 'sector': 'Banca & Servicios Financieros'},
+    {'symbol': 'V', 'name': 'Visa Inc.', 'sector': 'Pagos Digitales & Fintech'},
+    {'symbol': 'LLY', 'name': 'Eli Lilly and Company', 'sector': 'Farmacéutica & Salud'},
+    {'symbol': 'UNH', 'name': 'UnitedHealth Group', 'sector': 'Seguros & Atención Médica'},
+    {'symbol': 'WMT', 'name': 'Walmart Inc.', 'sector': 'Consumo Masivo & Retail'}
 ]
+
+EXTRA_GLOBAL_CANDIDATES = [
+    'AMD', 'INTC', 'ASML', 'BABA', 'NVO', 'SAP', 'NFLX', 'ORCL', 'CRM', 'ADBE',
+    'QCOM', 'TXN', 'SHOP', 'PLTR', 'COIN', 'MSTR', 'ARM', 'UBER', 'SNOW', 'COST',
+    'HD', 'PG', 'JNJ', 'BAC', 'CVX', 'XOM', 'MRK', 'ABBV', 'DIS', 'SHEL'
+]
+
+def get_yahoo_screener_quotes(scr_id, count=10):
+    url = f"https://query1.finance.yahoo.com/v1/finance/screener/predefined/saved?formatted=false&scrIds={scr_id}&count={count}"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+    try:
+        resp = requests.get(url, headers=headers, timeout=10)
+        if resp.status_code == 200:
+            return resp.json().get('finance', {}).get('result', [{}])[0].get('quotes', [])
+    except Exception as e:
+        print(f"   [Error fetching screener {scr_id}]: {e}")
+    return []
+
+def fetch_acciones_mundiales_screeners():
+    print('-> Obteniendo Acciones Mundiales mediante Screeners Oficiales (Top Market Cap, Subas, Bajas, 52W y Volumen)...')
+    
+    gainers_quotes = get_yahoo_screener_quotes('day_gainers', 10)
+    losers_quotes = get_yahoo_screener_quotes('day_losers', 10)
+    actives_quotes = get_yahoo_screener_quotes('most_actives', 10)
+    
+    meta_by_sym = {}
+    for item in MEGA_CAPS_CONFIG:
+        meta_by_sym[item['symbol']] = {'name': item['name'], 'subtitulo': item['sector']}
+        
+    for q in gainers_quotes + losers_quotes + actives_quotes:
+        s = q.get('symbol')
+        if s and s not in meta_by_sym:
+            name = q.get('shortName') or q.get('longName') or s
+            meta_by_sym[s] = {'name': name, 'subtitulo': q.get('quoteType', 'Acción Global')}
+            
+    mega_syms = [m['symbol'] for m in MEGA_CAPS_CONFIG]
+    gainers_syms_raw = [q.get('symbol') for q in gainers_quotes if q.get('symbol')]
+    losers_syms_raw = [q.get('symbol') for q in losers_quotes if q.get('symbol')]
+    actives_syms_raw = [q.get('symbol') for q in actives_quotes if q.get('symbol')]
+    
+    all_candidates = list(dict.fromkeys(mega_syms + gainers_syms_raw + losers_syms_raw + actives_syms_raw + EXTRA_GLOBAL_CANDIDATES))
+    
+    try:
+        df_all = yf.download(all_candidates, period="5y", interval="1d", group_by='ticker', auto_adjust=True, progress=False)
+    except Exception as e:
+        print(f"   [Error downloading stock history]: {e}")
+        df_all = pd.DataFrame()
+        
+    stock_metrics = {}
+    series_map = {}
+    
+    for sym in all_candidates:
+        df_sub = None
+        if isinstance(df_all.columns, pd.MultiIndex):
+            if sym in df_all.columns.levels[0]:
+                df_sub = df_all[sym].dropna(subset=['Close'])
+        else:
+            df_sub = df_all.dropna(subset=['Close'])
+            
+        if df_sub is not None and not df_sub.empty and len(df_sub) >= 2:
+            closes = df_sub['Close'].tolist()
+            dates = df_sub.index.strftime('%Y-%m-%d').tolist()
+            last_px = round(float(closes[-1]), 2)
+            prev_px = round(float(closes[-2]), 2)
+            var_1d = round(((last_px - prev_px) / prev_px) * 100, 2)
+            var_1m = round(((last_px - closes[-22]) / closes[-22]) * 100, 2) if len(closes) >= 22 else None
+            var_12m = round(((last_px - closes[-250]) / closes[-250]) * 100, 2) if len(closes) >= 250 else round(((last_px - closes[0]) / closes[0]) * 100, 2)
+            
+            vol = float(df_sub['Volume'].iloc[-1]) if 'Volume' in df_sub and not df_sub['Volume'].empty else 0.0
+            
+            series_pts = [
+                {'date': d, 'time': d, 'close': round(float(c), 2), 'open': round(float(c), 2), 'high': round(float(c), 2), 'low': round(float(c), 2), 'volume': 0}
+                for d, c in zip(dates, closes)
+            ]
+            
+            stock_metrics[sym] = {
+                'symbol': sym,
+                'price': last_px,
+                'var_1d': var_1d,
+                'var_1m': var_1m,
+                'var_12m': var_12m,
+                'volume': vol,
+                'series': series_pts
+            }
+            
+    # Rankings
+    top_15_mcap = [s for s in mega_syms if s in stock_metrics][:15]
+    
+    top_10_gainers_1d = [s for s in gainers_syms_raw if s in stock_metrics][:10]
+    if len(top_10_gainers_1d) < 10:
+        sorted_gainers = sorted(stock_metrics.values(), key=lambda x: x['var_1d'], reverse=True)
+        top_10_gainers_1d = [s['symbol'] for s in sorted_gainers[:10]]
+        
+    top_10_losers_1d = [s for s in losers_syms_raw if s in stock_metrics][:10]
+    if len(top_10_losers_1d) < 10:
+        sorted_losers = sorted(stock_metrics.values(), key=lambda x: x['var_1d'])
+        top_10_losers_1d = [s['symbol'] for s in sorted_losers[:10]]
+        
+    top_10_actives = [s for s in actives_syms_raw if s in stock_metrics][:10]
+    if len(top_10_actives) < 10:
+        sorted_actives = sorted(stock_metrics.values(), key=lambda x: x['volume'], reverse=True)
+        top_10_actives = [s['symbol'] for s in sorted_actives[:10]]
+        
+    valid_12m = [s for s in stock_metrics.values() if s['var_12m'] is not None]
+    top_10_gainers_52w = [s['symbol'] for s in sorted(valid_12m, key=lambda x: x['var_12m'], reverse=True)[:10]]
+    top_10_losers_52w = [s['symbol'] for s in sorted(valid_12m, key=lambda x: x['var_12m'])[:10]]
+    
+    selected_syms = list(dict.fromkeys(
+        top_15_mcap + top_10_gainers_1d + top_10_losers_1d + 
+        top_10_gainers_52w + top_10_losers_52w + top_10_actives
+    ))
+    
+    items = []
+    active_eq_ids = set()
+    
+    for sym in selected_syms:
+        m = stock_metrics.get(sym)
+        if not m: continue
+        
+        meta = meta_by_sym.get(sym, {'name': sym, 'subtitulo': 'Acción Global'})
+        eq_id = f"EQ_{sym.replace('-', '_')}"
+        active_eq_ids.add(eq_id)
+        
+        tags = []
+        if sym in top_15_mcap: tags.append('top_mcap')
+        if sym in top_10_gainers_1d: tags.append('day_gainers')
+        if sym in top_10_losers_1d: tags.append('day_losers')
+        if sym in top_10_gainers_52w: tags.append('gainers_52w')
+        if sym in top_10_losers_52w: tags.append('losers_52w')
+        if sym in top_10_actives: tags.append('most_actives')
+        
+        item = {
+            'id': eq_id,
+            'symbol': sym,
+            'nombre': meta['name'],
+            'categoria': 'Acciones Mundiales',
+            'subtitulo': meta['subtitulo'],
+            'moneda': 'USD',
+            'precio': m['price'],
+            'var_1d': m['var_1d'],
+            'var_1m': m['var_1m'],
+            'var_12m': m['var_12m'],
+            'volumen': m['volume'],
+            'tags': tags,
+            'tipo': 'market_asset'
+        }
+        items.append(item)
+        series_map[eq_id] = m['series']
+        
+    print(f"   [Acciones Mundiales] {len(items)} acciones procesadas en los 6 rankings.")
+    return items, series_map, active_eq_ids
+
 
 CONFIG_CEDEARS = [
     {'symbol': 'SPY.BA', 'name': 'CEDEAR SPDR S&P 500 (SPY)', 'id': 'CEDEAR_SPY', 'currency': 'ARS', 'subyacente_sym': 'SPY', 'ratio': 20, 'subtitulo': 'ETF S&P 500 (Ratio 20:1)'},
