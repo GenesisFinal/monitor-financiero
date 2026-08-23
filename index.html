@@ -416,23 +416,42 @@
       
       try {
         const cacheBuster = force ? `?t=${Date.now()}` : '';
-        const [rMaster, rSeries, rCurvas] = await Promise.all([
-          fetch(`master_dataset.json${cacheBuster}`).then(r => r.json()),
-          fetch(`series_historicas.json${cacheBuster}`).then(r => r.json()),
-          fetch(`curvas_rendimiento.json${cacheBuster}`).then(r => r.json())
+        
+        // 1. Cargar instantáneamente el dataset maestro y curvas (~350 KB)
+        const [rMaster, rCurvas] = await Promise.all([
+          fetch(`master_dataset.json${cacheBuster}`).then(r => {
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            return r.json();
+          }),
+          fetch(`curvas_rendimiento.json${cacheBuster}`).then(r => r.json()).catch(() => ({}))
         ]);
 
         DATASET = rMaster;
-        HISTORICAL_SERIES = rSeries;
         YIELD_CURVES = rCurvas;
 
-        document.getElementById('updateTimeBadge').innerText = `Actualizado: ${DATASET.ultima_actualizacion || 'Hoy'}`;
+        const updateEl = document.getElementById('updateTimeBadge');
+        if (updateEl) {
+          updateEl.innerText = `Actualizado: ${DATASET.ultima_actualizacion || 'Hoy'}`;
+        }
         
+        // Renderizar inmediatamente la página completa
         renderHeroHighlights();
         renderActiveSection();
+
+        // 2. Cargar series históricas en background para los gráficos del modal
+        fetch(`series_historicas.json${cacheBuster}`)
+          .then(r => r.json())
+          .then(data => {
+            HISTORICAL_SERIES = data;
+          })
+          .catch(e => {
+            console.warn("Series históricas en segundo plano:", e);
+          });
+
       } catch (err) {
         console.error("Error cargando datasets:", err);
-        document.getElementById('updateTimeBadge').innerText = 'Modo Demostración / Offline';
+        const updateEl = document.getElementById('updateTimeBadge');
+        if (updateEl) updateEl.innerText = 'Modo Demostración / Offline';
       } finally {
         if (refreshIcon) refreshIcon.classList.remove('animate-spin');
         lucide.createIcons();
@@ -1384,7 +1403,13 @@
       return '';
     }
 
-    function openChartModal(assetId) {
+    async function openChartModal(assetId) {
+      if (!HISTORICAL_SERIES) {
+        try {
+          const r = await fetch('series_historicas.json');
+          HISTORICAL_SERIES = await r.json();
+        } catch(e) {}
+      }
       if (!DATASET) return;
       
       let found = null;
