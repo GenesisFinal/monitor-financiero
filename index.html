@@ -370,6 +370,8 @@
     let CURRENT_ETF_SEARCH = '';
     let CURRENT_MUNDIALES_FILTER = 'todos';
     let CURRENT_MUNDIALES_SEARCH = '';
+    let CURRENT_CEDEARS_FILTER = 'todos';
+    let CURRENT_CEDEARS_SEARCH = '';
     let CURRENT_BONOS_FILTER = 'all';
     let CURRENT_BONOS_SEARCH = '';
     let EXPANDED_BONO_ID = null;
@@ -424,6 +426,16 @@
 
     function handleMundialesSearch(q) {
       CURRENT_MUNDIALES_SEARCH = (q || '').trim().toLowerCase();
+      renderActiveSection();
+    }
+
+    function setCedearsFilter(cat) {
+      CURRENT_CEDEARS_FILTER = cat;
+      renderActiveSection();
+    }
+
+    function handleCedearsSearch(q) {
+      CURRENT_CEDEARS_SEARCH = (q || '').trim().toLowerCase();
       renderActiveSection();
     }
 
@@ -673,6 +685,23 @@
           f.plazo_liquidacion || 'T+1',
           f.patrimonio || 0
         ]);
+      } else if (secKey === 'cedears') {
+        headers = ['Símbolo BYMA', 'Subyacente US', 'Empresa', 'Sector', 'Precio ARS', 'Precio USD', 'Ratio', 'CCL Implícito', 'Var 1D (%)', 'Var 1M (%)', 'Var 12M (%)', 'Volumen BYMA', 'Criterios de Selección'];
+        rows = items.map(c => [
+          c.symbol || '',
+          c.us_symbol || '',
+          `"${(c.nombre || '').replace(/"/g, '""')}"`,
+          `"${(c.subtitulo || '').replace(/"/g, '""')}"`,
+          c.precio ?? '',
+          c.precio_usd ?? '',
+          c.ratio ?? '',
+          c.ccl_implicito ?? '',
+          c.var_1d ?? '',
+          c.var_1m ?? '',
+          c.var_12m ?? '',
+          c.volumen || 0,
+          `"${(c.tags || []).join(', ')}"`
+        ]);
       } else if (secKey === 'acciones_mundiales') {
         headers = ['Símbolo', 'Empresa', 'Sector / Enfoque', 'Precio USD', 'Var 1D (%)', 'Var 1M (%)', 'Var 12M (%)', 'Volumen Diario', 'Criterios de Selección'];
         rows = items.map(a => [
@@ -921,6 +950,166 @@
             </div>
           `;
         }
+      // -------------------------------------------------------------
+      // SECCION PERSONALIZADA: CEDEARS (Screeners & Rankings BYMA)
+      // -------------------------------------------------------------
+      if (secKey === 'cedears') {
+        const filters = [
+          { id: 'todos', name: 'Todos los Seleccionados' },
+          { id: 'top_volume', name: '📊 Top 15 Mayor Volumen BYMA' },
+          { id: 'day_gainers', name: '🚀 Top 10 Subas del Día (ARS)' },
+          { id: 'day_losers', name: '📉 Top 10 Bajas del Día (ARS)' },
+          { id: 'gainers_52w', name: '🔥 Top 10 Subas 52W (ARS)' },
+          { id: 'losers_52w', name: '❄️ Top 10 Bajas 52W (ARS)' },
+          { id: 'blue_chips', name: '🏆 Top 10 Blue Chips' }
+        ];
+
+        let filteredItems = items;
+        if (CURRENT_CEDEARS_FILTER !== 'todos') {
+          filteredItems = filteredItems.filter(x => x.tags && x.tags.includes(CURRENT_CEDEARS_FILTER));
+        }
+        if (CURRENT_CEDEARS_SEARCH.trim() !== '') {
+          const q = CURRENT_CEDEARS_SEARCH.toLowerCase();
+          filteredItems = filteredItems.filter(x => 
+            (x.symbol && x.symbol.toLowerCase().includes(q)) || 
+            (x.us_symbol && x.us_symbol.toLowerCase().includes(q)) ||
+            (x.nombre && x.nombre.toLowerCase().includes(q)) ||
+            (x.subtitulo && x.subtitulo.toLowerCase().includes(q))
+          );
+        }
+
+        const tagLabels = {
+          'top_volume': { text: 'Más Líquido', class: 'bg-purple-50 text-purple-700 border-purple-200' },
+          'day_gainers': { text: 'Top Suba ARS', class: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+          'day_losers': { text: 'Top Baja ARS', class: 'bg-rose-50 text-rose-700 border-rose-200' },
+          'gainers_52w': { text: 'Top 52W Alcista', class: 'bg-amber-50 text-amber-700 border-amber-200' },
+          'losers_52w': { text: 'Top 52W Bajista', class: 'bg-cyan-50 text-cyan-700 border-cyan-200' },
+          'blue_chips': { text: 'Blue Chip', class: 'bg-indigo-50 text-indigo-700 border-indigo-200' }
+        };
+
+        return `
+          <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8" id="section_${secKey}">
+            
+            <!-- Cabecera de CEDEARs -->
+            <div class="px-5 py-4 border-b border-slate-100 bg-slate-50/60 flex flex-col gap-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center space-x-3">
+                  <span class="p-2 bg-rose-50 text-brand-red rounded-lg"><i data-lucide="shuffle" class="w-5 h-5"></i></span>
+                  <div>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">${sec.titulo}</h2>
+                    <p class="text-xs text-slate-500 font-medium">${filteredItems.length} CEDEARs líderes en BYMA (Screeners & Arbitraje CCL)</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                  <div class="relative w-full sm:w-64">
+                    <input 
+                      type="text" 
+                      placeholder="Buscar CEDEAR, ticker o empresa..." 
+                      value="${CURRENT_CEDEARS_SEARCH}"
+                      oninput="handleCedearsSearch(this.value)"
+                      class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all"
+                    >
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+                  </div>
+                  <button onclick="exportSectionToCSV('cedears')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-semibold text-xs transition-colors shadow-xs shrink-0" title="Exportar datos a CSV / Excel">
+                    <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500"></i>
+                    <span class="hidden sm:inline">Exportar CSV</span>
+                    <span class="sm:hidden">CSV</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Selectores de Filtro de Rankings de CEDEARs -->
+              <div class="flex items-center gap-1.5 flex-wrap pt-1">
+                ${filters.map(f => `
+                  <button 
+                    onclick="setCedearsFilter('${f.id}')" 
+                    class="px-2.5 py-1 text-[11px] font-semibold rounded-lg transition-all ${CURRENT_CEDEARS_FILTER === f.id ? 'bg-brand-red text-white shadow-xs' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}"
+                  >
+                    ${f.name}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Tabla de CEDEARs -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="border-b border-slate-200 bg-slate-50/75 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    <th class="py-3 px-4">Símbolo & Empresa</th>
+                    <th class="py-3 px-4">Sector / Enfoque</th>
+                    <th class="py-3 px-3 text-right">Precio CEDEAR (ARS)</th>
+                    <th class="py-3 px-3 text-right">Subyacente (USD)</th>
+                    <th class="py-3 px-3 text-right">CCL Implícito</th>
+                    <th class="py-3 px-3 text-right">Var 1D</th>
+                    <th class="py-3 px-3 text-right">Var 1M</th>
+                    <th class="py-3 px-3 text-right">Var 12M / 52W</th>
+                    <th class="py-3 px-3 text-right">Volumen BYMA</th>
+                    <th class="py-3 px-4 text-center">Criterios de Ranking</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 bg-white font-medium">
+                  ${filteredItems.map(item => `
+                    <tr class="hover:bg-slate-50/80 transition-colors cursor-pointer" onclick="openChartModal('${item.id}')">
+                      <td class="py-2.5 px-4">
+                        <div class="flex items-center space-x-2">
+                          <span class="font-bold text-slate-900 text-xs">${item.symbol}</span>
+                          <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-600 border border-slate-200">Ratio ${item.ratio}:1</span>
+                        </div>
+                        <div class="font-semibold text-slate-700 text-[11px] truncate max-w-[200px]">${item.nombre}</div>
+                      </td>
+                      <td class="py-2.5 px-4">
+                        <p class="text-slate-600 text-xs line-clamp-1">${item.subtitulo || 'CEDEAR'}</p>
+                        <p class="text-[10px] text-slate-400">US: ${item.us_symbol || item.symbol}</p>
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-900">
+                        ${item.precio !== null && item.precio !== undefined ? '$ ' + formatNumber(item.precio, 2) : '-'}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold text-slate-700">
+                        ${item.precio_usd !== null && item.precio_usd !== undefined ? 'US$ ' + formatNumber(item.precio_usd, 2) : '-'}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold ${item.ccl_implicito ? 'text-indigo-600' : 'text-slate-400'}">
+                        ${item.ccl_implicito !== null && item.ccl_implicito !== undefined ? formatNumber(item.ccl_implicito, 2) : '-'}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold">
+                        ${renderVariationBadgeClean(item.var_1d)}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold">
+                        ${renderVariationBadgeClean(item.var_1m)}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold">
+                        ${renderVariationBadgeClean(item.var_12m)}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono text-slate-700">
+                        ${item.volumen ? formatPatrimonioLatino(item.volumen) : '-'}
+                      </td>
+                      <td class="py-2.5 px-4 text-center">
+                        <div class="flex items-center justify-center gap-1 flex-wrap">
+                          ${(item.tags || []).map(t => {
+                            const conf = tagLabels[t] || { text: t, class: 'bg-slate-100 text-slate-700' };
+                            return `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9.5px] font-bold border ${conf.class}">${conf.text}</span>`;
+                          }).join('')}
+                        </div>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="px-5 py-3 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+              <span class="text-[11px]">Cotizaciones oficiales provistas por BYMA y Wall Street. Ratios de conversión de Banco Comafi y cálculo de CCL implícito en tiempo real.</span>
+              <button onclick="exportSectionToCSV('cedears')" class="text-brand-red font-semibold hover:underline inline-flex items-center space-x-1">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                <span>Descargar selección en CSV</span>
+              </button>
+            </div>
+          </section>
+        `;
+      }
+
       // -------------------------------------------------------------
       // SECCION PERSONALIZADA: ACCIONES MUNDIALES (Screeners & Rankings)
       // -------------------------------------------------------------
