@@ -368,6 +368,8 @@
     let CURRENT_FCI_SEARCH = '';
     let CURRENT_ETF_CATEGORY = 'todos';
     let CURRENT_ETF_SEARCH = '';
+    let CURRENT_MUNDIALES_FILTER = 'todos';
+    let CURRENT_MUNDIALES_SEARCH = '';
     let CURRENT_BONOS_FILTER = 'all';
     let CURRENT_BONOS_SEARCH = '';
     let EXPANDED_BONO_ID = null;
@@ -412,6 +414,16 @@
 
     function handleEtfSearch(q) {
       CURRENT_ETF_SEARCH = (q || '').trim().toLowerCase();
+      renderActiveSection();
+    }
+
+    function setMundialesFilter(cat) {
+      CURRENT_MUNDIALES_FILTER = cat;
+      renderActiveSection();
+    }
+
+    function handleMundialesSearch(q) {
+      CURRENT_MUNDIALES_SEARCH = (q || '').trim().toLowerCase();
       renderActiveSection();
     }
 
@@ -661,6 +673,19 @@
           f.plazo_liquidacion || 'T+1',
           f.patrimonio || 0
         ]);
+      } else if (secKey === 'acciones_mundiales') {
+        headers = ['Símbolo', 'Empresa', 'Sector / Enfoque', 'Precio USD', 'Var 1D (%)', 'Var 1M (%)', 'Var 12M (%)', 'Volumen Diario', 'Criterios de Selección'];
+        rows = items.map(a => [
+          a.symbol || '',
+          `"${(a.nombre || '').replace(/"/g, '""')}"`,
+          `"${(a.subtitulo || '').replace(/"/g, '""')}"`,
+          a.precio ?? '',
+          a.var_1d ?? '',
+          a.var_1m ?? '',
+          a.var_12m ?? '',
+          a.volumen || 0,
+          `"${(a.tags || []).join(', ')}"`
+        ]);
       } else if (secKey === 'etfs') {
         headers = ['Símbolo', 'Nombre', 'Emisor', 'Categoría', 'Precio USD', 'Precio CEDEAR (ARS)', 'CCL Implícito', 'Var 1D (%)', 'Var 1M (%)', 'Var 12M (%)', 'Expense Ratio (%)'];
         rows = items.map(e => [
@@ -896,6 +921,156 @@
             </div>
           `;
         }
+      // -------------------------------------------------------------
+      // SECCION PERSONALIZADA: ACCIONES MUNDIALES (Screeners & Rankings)
+      // -------------------------------------------------------------
+      if (secKey === 'acciones_mundiales') {
+        const filters = [
+          { id: 'todos', name: 'Todas las Seleccionadas' },
+          { id: 'top_mcap', name: '🏆 Top 15 Market Cap' },
+          { id: 'day_gainers', name: '🚀 Top 10 Subas del Día' },
+          { id: 'day_losers', name: '📉 Top 10 Bajas del Día' },
+          { id: 'gainers_52w', name: '🔥 Top 10 Subas 52W' },
+          { id: 'losers_52w', name: '❄️ Top 10 Bajas 52W' },
+          { id: 'most_actives', name: '📊 Top 10 Mayor Volumen' }
+        ];
+
+        let filteredItems = items;
+        if (CURRENT_MUNDIALES_FILTER !== 'todos') {
+          filteredItems = filteredItems.filter(x => x.tags && x.tags.includes(CURRENT_MUNDIALES_FILTER));
+        }
+        if (CURRENT_MUNDIALES_SEARCH.trim() !== '') {
+          const q = CURRENT_MUNDIALES_SEARCH.toLowerCase();
+          filteredItems = filteredItems.filter(x => 
+            (x.symbol && x.symbol.toLowerCase().includes(q)) || 
+            (x.nombre && x.nombre.toLowerCase().includes(q)) ||
+            (x.subtitulo && x.subtitulo.toLowerCase().includes(q))
+          );
+        }
+
+        const tagLabels = {
+          'top_mcap': { text: 'Mega Cap', class: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
+          'day_gainers': { text: 'Top Suba Día', class: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+          'day_losers': { text: 'Top Baja Día', class: 'bg-rose-50 text-rose-700 border-rose-200' },
+          'gainers_52w': { text: 'Top 52W Alcista', class: 'bg-amber-50 text-amber-700 border-amber-200' },
+          'losers_52w': { text: 'Top 52W Bajista', class: 'bg-cyan-50 text-cyan-700 border-cyan-200' },
+          'most_actives': { text: 'Alto Volumen', class: 'bg-purple-50 text-purple-700 border-purple-200' }
+        };
+
+        return `
+          <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8" id="section_${secKey}">
+            
+            <!-- Cabecera de Acciones Mundiales -->
+            <div class="px-5 py-4 border-b border-slate-100 bg-slate-50/60 flex flex-col gap-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center space-x-3">
+                  <span class="p-2 bg-rose-50 text-brand-red rounded-lg"><i data-lucide="globe" class="w-5 h-5"></i></span>
+                  <div>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">${sec.titulo}</h2>
+                    <p class="text-xs text-slate-500 font-medium">${filteredItems.length} acciones mundiales destacadas (Screeners Oficiales)</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                  <div class="relative w-full sm:w-64">
+                    <input 
+                      type="text" 
+                      placeholder="Buscar ticker o empresa..." 
+                      value="${CURRENT_MUNDIALES_SEARCH}"
+                      oninput="handleMundialesSearch(this.value)"
+                      class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all"
+                    >
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+                  </div>
+                  <button onclick="exportSectionToCSV('acciones_mundiales')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-semibold text-xs transition-colors shadow-xs shrink-0" title="Exportar datos a CSV / Excel">
+                    <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500"></i>
+                    <span class="hidden sm:inline">Exportar CSV</span>
+                    <span class="sm:hidden">CSV</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Selectores de Filtro de Rankings -->
+              <div class="flex items-center gap-1.5 flex-wrap pt-1">
+                ${filters.map(f => `
+                  <button 
+                    onclick="setMundialesFilter('${f.id}')" 
+                    class="px-2.5 py-1 text-[11px] font-semibold rounded-lg transition-all ${CURRENT_MUNDIALES_FILTER === f.id ? 'bg-brand-red text-white shadow-xs' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}"
+                  >
+                    ${f.name}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Tabla de Acciones Mundiales -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="border-b border-slate-200 bg-slate-50/75 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    <th class="py-3 px-4">Símbolo & Empresa</th>
+                    <th class="py-3 px-4">Sector / Enfoque</th>
+                    <th class="py-3 px-3 text-right">Precio USD</th>
+                    <th class="py-3 px-3 text-right">Var 1D</th>
+                    <th class="py-3 px-3 text-right">Var 1M</th>
+                    <th class="py-3 px-3 text-right">Var 12M / 52W</th>
+                    <th class="py-3 px-3 text-right">Volumen Diario</th>
+                    <th class="py-3 px-4 text-center">Criterios de Ranking</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 bg-white font-medium">
+                  ${filteredItems.map(item => `
+                    <tr class="hover:bg-slate-50/80 transition-colors cursor-pointer" onclick="openChartModal('${item.id}')">
+                      <td class="py-2.5 px-4">
+                        <div class="flex items-center space-x-2">
+                          <span class="font-bold text-slate-900 text-xs">${item.symbol}</span>
+                          <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-600 border border-slate-200">NYSE/NASD</span>
+                        </div>
+                        <div class="font-semibold text-slate-700 text-[11px] truncate max-w-[200px]">${item.nombre}</div>
+                      </td>
+                      <td class="py-2.5 px-4">
+                        <p class="text-slate-600 text-xs line-clamp-1">${item.subtitulo || 'Acción Global'}</p>
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-900">
+                        ${item.precio !== null && item.precio !== undefined ? 'US$ ' + formatNumber(item.precio, 2) : '-'}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold">
+                        ${renderVariationBadgeClean(item.var_1d)}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold">
+                        ${renderVariationBadgeClean(item.var_1m)}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold">
+                        ${renderVariationBadgeClean(item.var_12m)}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono text-slate-700">
+                        ${item.volumen ? formatPatrimonioLatino(item.volumen) : '-'}
+                      </td>
+                      <td class="py-2.5 px-4 text-center">
+                        <div class="flex items-center justify-center gap-1 flex-wrap">
+                          ${(item.tags || []).map(t => {
+                            const conf = tagLabels[t] || { text: t, class: 'bg-slate-100 text-slate-700' };
+                            return `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9.5px] font-bold border ${conf.class}">${conf.text}</span>`;
+                          }).join('')}
+                        </div>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="px-5 py-3 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+              <span class="text-[11px]">Screeners oficiales provistos por Wall Street / Yahoo Finance. Actualización dinámica diaria con purga automática de activos inactivos.</span>
+              <button onclick="exportSectionToCSV('acciones_mundiales')" class="text-brand-red font-semibold hover:underline inline-flex items-center space-x-1">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                <span>Descargar selección en CSV</span>
+              </button>
+            </div>
+          </section>
+        `;
+      }
+
       // -------------------------------------------------------------
       // SECCION PERSONALIZADA: ETFS (Exchange Traded Funds)
       // -------------------------------------------------------------
