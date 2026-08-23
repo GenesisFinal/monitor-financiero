@@ -550,6 +550,122 @@
       renderActiveSection();
     }
 
+        function exportSectionToCSV(secKey) {
+      if (!MASTER_DATA || !MASTER_DATA.secciones || !MASTER_DATA.secciones[secKey]) {
+        alert('No hay datos disponibles para exportar en esta sección.');
+        return;
+      }
+      const sec = MASTER_DATA.secciones[secKey];
+      let items = sec.items || [];
+      if (!items.length) {
+        alert('No hay registros para exportar.');
+        return;
+      }
+
+      // Aplicar filtros activos si corresponden
+      if (secKey === 'fci' && CURRENT_FCI_FILTER !== 'all') {
+        const fLow = CURRENT_FCI_FILTER.toLowerCase();
+        items = items.filter(x => {
+          const cLow = (x.clase || '').toLowerCase();
+          const sLow = (x.subtipo || '').toLowerCase();
+          if (fLow === 'tasa fija' || fLow === 't+1') return cLow.includes('tasa fija') || cLow.includes('pesos');
+          if (fLow === 'hard') return cLow.includes('hard') || cLow.includes('usd') || x.moneda === 'USD';
+          if (fLow === 'linked') return cLow.includes('linked') || cLow.includes('cobertura');
+          if (fLow === 'cer') return cLow.includes('cer') || cLow.includes('inflación') || cLow.includes('inflacion');
+          if (fLow === 'money market') return cLow.includes('money market') || cLow.includes('t+0');
+          if (fLow === 'variable') return cLow.includes('variable') || cLow.includes('acciones');
+          if (fLow === 'mixta') return cLow.includes('mixta') || cLow.includes('balanceados');
+          if (fLow === 'pymes') return cLow.includes('pyme') || cLow.includes('infraestructura');
+          return cLow.includes(fLow) || sLow.includes(fLow);
+        });
+      } else if (secKey === 'bonos_lecaps' && CURRENT_BONOS_FILTER !== 'all') {
+        items = items.filter(x => x.subtipo && x.subtipo.toLowerCase().includes(CURRENT_BONOS_FILTER.toLowerCase()));
+      } else if (secKey === 'commodities' && CURRENT_COMMODITY_FILTER !== 'all') {
+        items = items.filter(x => x.subtipo === CURRENT_COMMODITY_FILTER);
+      }
+
+      // Definir columnas según la sección
+      let headers = ['Activo', 'Categoría', 'Moneda', 'Precio/VCP', 'Var 1D (%)', 'Var 1M (%)', 'Var 12M (%)'];
+      let rows = [];
+
+      if (secKey === 'fci') {
+        headers = ['Fondo', 'Gestora', 'Depositaria', 'Categoría', 'Moneda', 'VCP ($)', 'Var 1D (%)', 'Var 1M (%)', 'Var 12M (%)', 'Var 24M (%)', 'Volatilidad (%)', 'Max Drawdown (%)', 'Comisión Total (%)', 'Plazo Rescate', 'Patrimonio ($)'];
+        rows = items.map(f => [
+          `"${f.nombre.replace(/"/g, '""')}"`,
+          `"${(f.admin || f.gestora || '').replace(/"/g, '""')}"`,
+          `"${(f.depositaria || '').replace(/"/g, '""')}"`,
+          `"${(f.clase || '').replace(/"/g, '""')}"`,
+          f.moneda || 'ARS',
+          f.precio || 0,
+          f.var_1d ?? '',
+          f.var_1m ?? '',
+          f.var_12m ?? '',
+          f.var_24m ?? '',
+          f.volatilidad ?? '',
+          f.max_drawdown ?? '',
+          f.costo_total ?? '',
+          f.plazo_liquidacion || 'T+1',
+          f.patrimonio || 0
+        ]);
+      } else if (secKey === 'bonos_lecaps') {
+        headers = ['Símbolo', 'Nombre', 'Tipo', 'Ley', 'Moneda', 'Precio', 'TIR (%)', 'Duration (Años)', 'Paridad (%)', 'Cupón (%)', 'Vencimiento', 'Var 1D (%)', 'Var 1M (%)'];
+        rows = items.map(b => [
+          b.symbol || b.id,
+          `"${(b.nombre || '').replace(/"/g, '""')}"`,
+          b.subtipo || b.tipo,
+          b.ley || 'Argentina',
+          b.moneda || 'USD',
+          b.precio || 0,
+          b.tir ?? '',
+          b.duration ?? '',
+          b.paridad_pct ?? '',
+          b.cupon_anual_pct ?? '',
+          b.fecha_vto || '',
+          b.var_1d ?? '',
+          b.var_1m ?? ''
+        ]);
+      } else if (secKey === 'dolar') {
+        headers = ['Tipo de Dólar', 'Compra', 'Venta', 'Var 1D (%)', 'Var 1M (%)', 'Var 12M (%)', 'Spread ($)', 'Fecha Cierre'];
+        rows = items.map(d => [
+          `"${(d.nombre || '').replace(/"/g, '""')}"`,
+          d.compra || 0,
+          d.venta || d.precio || 0,
+          d.var_1d ?? '',
+          d.var_1m ?? '',
+          d.var_12m ?? '',
+          d.spread || 0,
+          d.fecha_cierre || ''
+        ]);
+      } else {
+        rows = items.map(x => [
+          `"${(x.nombre || x.id || '').replace(/"/g, '""')}"`,
+          `"${(x.subtipo || x.categoria || '').replace(/"/g, '""')}"`,
+          x.moneda || 'ARS',
+          x.precio || 0,
+          x.var_1d ?? '',
+          x.var_1m ?? '',
+          x.var_12m ?? ''
+        ]);
+      }
+
+      // Generar archivo CSV con codificación UTF-8 BOM
+      const csvContent = '\uFEFF' + [
+        headers.join(';'),
+        ...rows.map(r => r.join(';'))
+      ].join('\r\n');
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      const today = new Date().toISOString().split('T')[0];
+      link.setAttribute('href', url);
+      link.setAttribute('download', `monitor_${secKey}_${today}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
     function renderActiveSection() {
       if (!DATASET || !DATASET.secciones) return;
       const container = document.getElementById('modulesContainer');
@@ -638,16 +754,24 @@
                     </p>
                   </div>
                 </div>
-                <div class="flex items-center space-x-1.5 overflow-x-auto pb-1" id="fciFilters">
-                  <button onclick="filterFCI('all')" data-fci="all" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-semibold ${CURRENT_FCI_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-slate-100'} whitespace-nowrap">Todos</button>
-                  <button onclick="filterFCI('Money Market')" data-fci="Money Market" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Money Market' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-slate-100'} whitespace-nowrap">⚡ Money Market (T+0)</button>
-                  <button onclick="filterFCI('CER')" data-fci="CER" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'CER' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-slate-100'} whitespace-nowrap">🎯 CER (Inflación)</button>
-                  <button onclick="filterFCI('HARD')" data-fci="HARD" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'HARD' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-slate-100'} whitespace-nowrap">💵 Dólar HARD (USD)</button>
-                  <button onclick="filterFCI('Linked')" data-fci="Linked" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Linked' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-slate-100'} whitespace-nowrap">🔄 Dólar Linked</button>
-                  <button onclick="filterFCI('Tasa Fija')" data-fci="Tasa Fija" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Tasa Fija' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-slate-100'} whitespace-nowrap">📈 T+1 Tasa Fija</button>
-                  <button onclick="filterFCI('Variable')" data-fci="Variable" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Variable' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-slate-100'} whitespace-nowrap">📊 Renta Variable (Acciones)</button>
-                  <button onclick="filterFCI('Mixta')" data-fci="Mixta" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Mixta' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-slate-100'} whitespace-nowrap">⚖️ Renta Mixta</button>
-                  <button onclick="filterFCI('Pymes')" data-fci="Pymes" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Pymes' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-slate-100'} whitespace-nowrap">🏢 Pymes & Infraestructura</button>
+                <div class="flex items-center space-x-2">
+                  <button onclick="exportSectionToCSV('fci')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-semibold text-xs transition-colors shadow-xs shrink-0">
+                    <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500"></i>
+                    <span>Exportar CSV</span>
+                  </button>
+                </div>
+              </div>
+              <div class="p-3 bg-slate-50 border-b border-slate-200">
+                <div class="flex flex-wrap items-center gap-1.5" id="fciFilters">
+                  <button onclick="filterFCI('all')" data-fci="all" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-semibold ${CURRENT_FCI_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'} whitespace-nowrap">Todos</button>
+                  <button onclick="filterFCI('Money Market')" data-fci="Money Market" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Money Market' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'} whitespace-nowrap">⚡ Money Market (T+0)</button>
+                  <button onclick="filterFCI('CER')" data-fci="CER" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'CER' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'} whitespace-nowrap">🎯 CER (Inflación)</button>
+                  <button onclick="filterFCI('HARD')" data-fci="HARD" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'HARD' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'} whitespace-nowrap">💵 Dólar HARD (USD)</button>
+                  <button onclick="filterFCI('Linked')" data-fci="Linked" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Linked' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'} whitespace-nowrap">🔄 Dólar Linked</button>
+                  <button onclick="filterFCI('Tasa Fija')" data-fci="Tasa Fija" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Tasa Fija' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'} whitespace-nowrap">📈 T+1 Tasa Fija</button>
+                  <button onclick="filterFCI('Variable')" data-fci="Variable" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Variable' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'} whitespace-nowrap">📊 Renta Variable (Acciones)</button>
+                  <button onclick="filterFCI('Mixta')" data-fci="Mixta" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Mixta' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'} whitespace-nowrap">⚖️ Renta Mixta</button>
+                  <button onclick="filterFCI('Pymes')" data-fci="Pymes" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_FCI_FILTER === 'Pymes' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'} whitespace-nowrap">🏢 Pymes & Infraestructura</button>
                 </div>
               </div>
               <div class="overflow-x-auto">
@@ -1330,21 +1454,29 @@
       let chartColor = '#e20039';
       let chartBg = 'rgba(226, 0, 57, 0.06)';
 
-      const isBond = (CURRENT_MODAL_ASSET.categoria === 'Bonos - LECAPs');
-      
-      if (isBond && CURRENT_BOND_METRIC === 'paridad' && CURRENT_MODAL_ASSET.paridad_pct) {
+      const isBond = (CURRENT_MODAL_ASSET.categoria === 'Bonos - LECAPs' || CURRENT_MODAL_ASSET.categoria === 'Obligaciones Negociables (ONs)');
+      const isMetricParidad = isBond && CURRENT_BOND_METRIC === 'paridad';
+      const isMetricTIR = isBond && CURRENT_BOND_METRIC === 'tir';
+
+      if (isMetricParidad) {
         chartLabel = 'Paridad Bursátil (%)';
         chartColor = '#0284c7';
         chartBg = 'rgba(2, 132, 199, 0.06)';
-        const vt = CURRENT_MODAL_ASSET.valor_tecnico || 100;
-        chartData = series.map(x => roundNumber((x.close / vt) * 100, 2));
-      } else if (isBond && CURRENT_BOND_METRIC === 'tir' && CURRENT_MODAL_ASSET.tir) {
+        const baseParidad = CURRENT_MODAL_ASSET.paridad_pct || 85.0;
+        const lastPx = CURRENT_MODAL_ASSET.precio || series[series.length-1].close || 1;
+        chartData = series.map(x => roundNumber(baseParidad * (x.close / Math.max(0.001, lastPx)), 2));
+      } else if (isMetricTIR) {
         chartLabel = 'TIR Estimada (%)';
-        chartColor = '#8b5cf6';
-        chartBg = 'rgba(139, 92, 246, 0.06)';
-        const baseTir = CURRENT_MODAL_ASSET.tir;
-        const lastPx = CURRENT_MODAL_ASSET.precio || 1;
-        chartData = series.map(x => roundNumber(baseTir * (lastPx / Math.max(0.01, x.close)), 2));
+        chartColor = '#10b981';
+        chartBg = 'rgba(16, 185, 129, 0.06)';
+        const baseTir = CURRENT_MODAL_ASSET.tir || 10.0;
+        const lastPx = CURRENT_MODAL_ASSET.precio || series[series.length-1].close || 1;
+        const dur = CURRENT_MODAL_ASSET.duration || 1.5;
+        chartData = series.map(x => {
+          const ratio = lastPx / Math.max(0.001, x.close);
+          const val = baseTir * Math.pow(ratio, 1 / Math.max(0.5, dur));
+          return roundNumber(Math.max(0.1, val), 2);
+        });
       }
 
       datasets.push({
@@ -1359,7 +1491,7 @@
         tension: 0.1
       });
 
-      if (SHOW_MA50 && CURRENT_MODAL_ASSET.tipo === 'market_asset') {
+      if (SHOW_MA50 && CURRENT_MODAL_ASSET.tipo === 'market_asset' && !isMetricParidad && !isMetricTIR) {
         const ma50Vals = [];
         for (let i = 0; i < series.length; i++) {
           const slice = series.slice(Math.max(0, i - 50 + 1), i + 1);
@@ -1378,7 +1510,7 @@
         });
       }
 
-      if (SHOW_MA200 && CURRENT_MODAL_ASSET.tipo === 'market_asset') {
+      if (SHOW_MA200 && CURRENT_MODAL_ASSET.tipo === 'market_asset' && !isMetricParidad && !isMetricTIR) {
         const ma200Vals = [];
         for (let i = 0; i < series.length; i++) {
           const slice = series.slice(Math.max(0, i - 200 + 1), i + 1);
@@ -1449,23 +1581,30 @@
         }
       });
 
-      const curvePoints = YIELD_CURVES[curveKey] || [];
-      const ctx = document.getElementById('yieldCurveCanvas').getContext('2d');
+      const rawCurve = YIELD_CURVES[curveKey];
+      const curvePoints = Array.isArray(rawCurve) ? rawCurve : (rawCurve.puntos || []);
+      const regressionPts = Array.isArray(rawCurve) ? [] : (rawCurve.regresion || []);
+
+      const canvasEl = document.getElementById('yieldCurveCanvas');
+      if (!canvasEl) return;
+      const ctx = canvasEl.getContext('2d');
       if (yieldCurveChartInstance) {
         yieldCurveChartInstance.destroy();
         yieldCurveChartInstance = null;
       }
 
       const scatterData = curvePoints.map(p => ({
-        x: p.duration,
+        x: p.duration !== undefined ? p.duration : (p.dias_vto ? p.dias_vto / 365.0 : 1.0),
         y: p.tir,
         name: p.symbol || p.nombre,
-        ley: p.ley,
-        dias: p.dias_vto
+        ley: p.ley || 'Argentina',
+        dias: p.dias_vto || 0,
+        precio: p.precio,
+        paridad: p.paridad
       }));
 
-      const sortedByDur = [...scatterData].sort((a, b) => a.x - b.x);
-      const lineData = sortedByDur.map(p => ({ x: p.x, y: p.y }));
+      // Si tenemos regresión calculada, la usamos; si no, ordenamos los puntos
+      const lineData = regressionPts.length > 0 ? regressionPts : [...scatterData].sort((a, b) => a.x - b.x).map(p => ({ x: p.x, y: p.y }));
 
       yieldCurveChartInstance = new Chart(ctx, {
         type: 'scatter',
