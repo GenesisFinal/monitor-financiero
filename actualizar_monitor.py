@@ -1142,7 +1142,7 @@ def fetch_etfs():
     cedear_symbols = [e['cedear_sym'] for e in CONFIG_ETFS if e.get('cedear_sym')]
     
     try:
-        df_etfs = yf.download(all_symbols, period="1y", interval="1d", group_by='ticker', progress=False)
+        df_etfs = yf.download(all_symbols, period="10y", interval="1d", group_by='ticker', progress=False)
     except Exception as e:
         print(f"   [Error downloading ETFs]: {e}")
         df_etfs = pd.DataFrame()
@@ -1183,6 +1183,8 @@ def fetch_etfs():
             if len(closes) >= 22:
                 var_1m = round(((closes[-1] - closes[-22]) / closes[-22]) * 100, 2)
             if len(closes) >= 250:
+                var_12m = round(((closes[-1] - closes[-250]) / closes[-250]) * 100, 2)
+            elif len(closes) > 0:
                 var_12m = round(((closes[-1] - closes[0]) / closes[0]) * 100, 2)
                 
             series_map[conf['id']] = [
