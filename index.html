@@ -859,6 +859,11 @@
               </div>
 
               <div class="flex items-center space-x-2">
+                <button onclick="exportSectionToCSV('${secKey}')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-semibold text-xs transition-colors shadow-xs shrink-0" title="Exportar datos a CSV / Excel">
+                  <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500"></i>
+                  <span class="hidden sm:inline">Exportar CSV</span>
+                  <span class="sm:hidden">CSV</span>
+                </button>
                 ${secKey === 'fci' ? `
                   <div class="relative w-full sm:w-64">
                     <input 
@@ -1419,6 +1424,10 @@
           btn.className = 'bond-metric-btn px-2.5 py-1 rounded font-medium text-slate-600 hover:bg-slate-200';
         }
       });
+      const indToolbar = document.getElementById('indicatorsToolbar');
+      if (indToolbar) {
+        indToolbar.style.display = (metric === 'precio') ? 'flex' : 'none';
+      }
       renderModalChart();
     }
 
@@ -1454,7 +1463,7 @@
       let chartColor = '#e20039';
       let chartBg = 'rgba(226, 0, 57, 0.06)';
 
-      const isBond = (CURRENT_MODAL_ASSET.categoria === 'Bonos - LECAPs' || CURRENT_MODAL_ASSET.categoria === 'Obligaciones Negociables (ONs)');
+      const isBond = (CURRENT_MODAL_ASSET.categoria === 'Bonos - LECAPs' || CURRENT_MODAL_ASSET.categoria === 'Obligaciones Negociables (ONs)' || CURRENT_MODAL_ASSET.paridad_pct !== undefined || CURRENT_MODAL_ASSET.tir !== undefined);
       const isMetricParidad = isBond && CURRENT_BOND_METRIC === 'paridad';
       const isMetricTIR = isBond && CURRENT_BOND_METRIC === 'tir';
 
@@ -1462,18 +1471,22 @@
         chartLabel = 'Paridad Bursátil (%)';
         chartColor = '#0284c7';
         chartBg = 'rgba(2, 132, 199, 0.06)';
-        const baseParidad = CURRENT_MODAL_ASSET.paridad_pct || 85.0;
-        const lastPx = CURRENT_MODAL_ASSET.precio || series[series.length-1].close || 1;
-        chartData = series.map(x => roundNumber(baseParidad * (x.close / Math.max(0.001, lastPx)), 2));
+        const baseParidad = parseFloat(CURRENT_MODAL_ASSET.paridad_pct) || 88.0;
+        const lastPx = parseFloat(CURRENT_MODAL_ASSET.precio) || (series.length ? series[series.length-1].close : 1);
+        chartData = series.map(x => {
+          const px = parseFloat(x.close) || lastPx;
+          return roundNumber(baseParidad * (px / Math.max(0.001, lastPx)), 2);
+        });
       } else if (isMetricTIR) {
         chartLabel = 'TIR Estimada (%)';
         chartColor = '#10b981';
         chartBg = 'rgba(16, 185, 129, 0.06)';
-        const baseTir = CURRENT_MODAL_ASSET.tir || 10.0;
-        const lastPx = CURRENT_MODAL_ASSET.precio || series[series.length-1].close || 1;
-        const dur = CURRENT_MODAL_ASSET.duration || 1.5;
+        const baseTir = parseFloat(CURRENT_MODAL_ASSET.tir) || 8.5;
+        const lastPx = parseFloat(CURRENT_MODAL_ASSET.precio) || (series.length ? series[series.length-1].close : 1);
+        const dur = parseFloat(CURRENT_MODAL_ASSET.duration) || 1.5;
         chartData = series.map(x => {
-          const ratio = lastPx / Math.max(0.001, x.close);
+          const px = parseFloat(x.close) || lastPx;
+          const ratio = lastPx / Math.max(0.001, px);
           const val = baseTir * Math.pow(ratio, 1 / Math.max(0.5, dur));
           return roundNumber(Math.max(0.1, val), 2);
         });
