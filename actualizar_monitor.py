@@ -1113,27 +1113,30 @@ def fetch_acciones_mundiales_screeners():
                 'series': series_pts
             }
             
-    # Rankings
+    # Rankings de Acciones Mundiales (ordenamiento estricto)
     top_15_mcap = [s for s in mega_syms if s in stock_metrics][:15]
     
-    top_10_gainers_1d = [s for s in gainers_syms_raw if s in stock_metrics][:10]
-    if len(top_10_gainers_1d) < 10:
-        sorted_gainers = sorted(stock_metrics.values(), key=lambda x: x['var_1d'], reverse=True)
-        top_10_gainers_1d = [s['symbol'] for s in sorted_gainers[:10]]
-        
-    top_10_losers_1d = [s for s in losers_syms_raw if s in stock_metrics][:10]
-    if len(top_10_losers_1d) < 10:
-        sorted_losers = sorted(stock_metrics.values(), key=lambda x: x['var_1d'])
-        top_10_losers_1d = [s['symbol'] for s in sorted_losers[:10]]
-        
-    top_10_actives = [s for s in actives_syms_raw if s in stock_metrics][:10]
-    if len(top_10_actives) < 10:
-        sorted_actives = sorted(stock_metrics.values(), key=lambda x: x['volume'], reverse=True)
-        top_10_actives = [s['symbol'] for s in sorted_actives[:10]]
-        
-    valid_12m = [s for s in stock_metrics.values() if s['var_12m'] is not None]
-    top_10_gainers_52w = [s['symbol'] for s in sorted(valid_12m, key=lambda x: x['var_12m'], reverse=True)[:10]]
-    top_10_losers_52w = [s['symbol'] for s in sorted(valid_12m, key=lambda x: x['var_12m'])[:10]]
+    # Subas del día (ordenadas de mayor suba a menor suba)
+    all_gainers = [s for s in stock_metrics.values() if s['var_1d'] is not None and s['var_1d'] > 0]
+    top_10_gainers_1d = [s['symbol'] for s in sorted(all_gainers, key=lambda x: x['var_1d'], reverse=True)[:10]]
+    
+    # Bajas del día (ordenadas de mayor baja a menor baja, estrictamente negativas)
+    all_losers = [s for s in stock_metrics.values() if s['var_1d'] is not None and s['var_1d'] < 0]
+    top_10_losers_1d = [s['symbol'] for s in sorted(all_losers, key=lambda x: x['var_1d'])[:10]]
+    
+    # Mayor volumen (ordenadas de mayor a menor volumen)
+    all_actives = [s for s in stock_metrics.values() if s['volume'] is not None]
+    top_10_actives = [s['symbol'] for s in sorted(all_actives, key=lambda x: x['volume'], reverse=True)[:10]]
+    
+    # 52W Subas (mayor rendimiento anual a menor, > 0)
+    valid_52w_gainers = [s for s in stock_metrics.values() if s['var_12m'] is not None and s['var_12m'] > 0]
+    top_10_gainers_52w = [s['symbol'] for s in sorted(valid_52w_gainers, key=lambda x: x['var_12m'], reverse=True)[:10]]
+    
+    # 52W Bajas / Descuentos (mayor caída anual a menor, estrictamente negativas o menores rendimientos)
+    valid_52w_losers = [s for s in stock_metrics.values() if s['var_12m'] is not None and s['var_12m'] < 0]
+    if len(valid_52w_losers) < 10:
+        valid_52w_losers = [s for s in stock_metrics.values() if s['var_12m'] is not None]
+    top_10_losers_52w = [s['symbol'] for s in sorted(valid_52w_losers, key=lambda x: x['var_12m'])[:10]]
     
     selected_syms = list(dict.fromkeys(
         top_15_mcap + top_10_gainers_1d + top_10_losers_1d + 
@@ -1311,15 +1314,31 @@ def fetch_cedears_screeners():
                 'series': series_pts
             }
             
-    # Rankings
+    # Rankings de CEDEARs (ordenamiento estricto)
     all_metrics = list(cedear_metrics.values())
-    top_15_vol = [s['symbol'] for s in sorted(all_metrics, key=lambda x: x['volumen'], reverse=True)[:15]]
-    top_10_gainers_1d = [s['symbol'] for s in sorted(all_metrics, key=lambda x: x['var_1d'], reverse=True)[:10]]
-    top_10_losers_1d = [s['symbol'] for s in sorted(all_metrics, key=lambda x: x['var_1d'])[:10]]
     
-    valid_52w = [s for s in all_metrics if s['var_12m'] is not None]
-    top_10_gainers_52w = [s['symbol'] for s in sorted(valid_52w, key=lambda x: x['var_12m'], reverse=True)[:10]]
-    top_10_losers_52w = [s['symbol'] for s in sorted(valid_52w, key=lambda x: x['var_12m'])[:10]]
+    # 1. Top 15 Mayor Volumen en BYMA (orden descendente)
+    top_15_vol = [s['symbol'] for s in sorted(all_metrics, key=lambda x: x['volumen'], reverse=True)[:15]]
+    
+    # 2. Top 10 Subas 1D en ARS (de mayor suba a menor suba, > 0)
+    all_ced_gainers = [s for s in all_metrics if s['var_1d'] is not None and s['var_1d'] > 0]
+    top_10_gainers_1d = [s['symbol'] for s in sorted(all_ced_gainers, key=lambda x: x['var_1d'], reverse=True)[:10]]
+    
+    # 3. Top 10 Bajas 1D en ARS (de mayor baja a menor baja, estrictamente < 0)
+    all_ced_losers = [s for s in all_metrics if s['var_1d'] is not None and s['var_1d'] < 0]
+    top_10_losers_1d = [s['symbol'] for s in sorted(all_ced_losers, key=lambda x: x['var_1d'])[:10]]
+    
+    # 4. Top 10 Subas 52W en ARS (de mayor rendimiento a menor, > 0)
+    valid_52w_g = [s for s in all_metrics if s['var_12m'] is not None and s['var_12m'] > 0]
+    top_10_gainers_52w = [s['symbol'] for s in sorted(valid_52w_g, key=lambda x: x['var_12m'], reverse=True)[:10]]
+    
+    # 5. Top 10 Bajas 52W en ARS (de mayor caída anual a menor, < 0 o menores variaciones)
+    valid_52w_l = [s for s in all_metrics if s['var_12m'] is not None and s['var_12m'] < 0]
+    if len(valid_52w_l) < 10:
+        valid_52w_l = [s for s in all_metrics if s['var_12m'] is not None]
+    top_10_losers_52w = [s['symbol'] for s in sorted(valid_52w_l, key=lambda x: x['var_12m'])[:10]]
+    
+    # 6. Top 10 Blue Chips Favoritas
     blue_chips_syms = [s['symbol'] for s in all_metrics if s['is_blue_chip']][:10]
     
     selected_syms = list(dict.fromkeys(
