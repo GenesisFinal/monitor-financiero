@@ -1604,12 +1604,16 @@
         yieldCurveChartInstance = null;
       }
 
+      const isLecapCurve = (curveKey === 'lecaps');
+      const xAxisTitle = isLecapCurve ? 'Plazo al Vencimiento (Días)' : 'Duration Modificada (Años)';
+
       const scatterData = curvePoints.map(p => ({
-        x: p.duration !== undefined ? p.duration : (p.dias_vto ? p.dias_vto / 365.0 : 1.0),
+        x: isLecapCurve ? (p.dias_vto || 0) : (p.duration !== undefined ? p.duration : (p.dias_vto ? p.dias_vto / 365.0 : 1.0)),
         y: p.tir,
         name: p.symbol || p.nombre,
         ley: p.ley || 'Argentina',
         dias: p.dias_vto || 0,
+        duration: p.duration,
         precio: p.precio,
         paridad: p.paridad
       }));
@@ -1628,12 +1632,12 @@
               borderColor: '#e20039',
               backgroundColor: 'rgba(226, 0, 57, 0.05)',
               borderWidth: 2.5,
-              tension: 0.35,
+              tension: 0.25,
               pointRadius: 0,
               fill: true
             },
             {
-              label: 'Bonos / Instrumentos',
+              label: 'Instrumentos',
               data: scatterData,
               type: 'scatter',
               backgroundColor: '#e20039',
@@ -1659,9 +1663,10 @@
                   const pt = item.raw;
                   return [
                     `TIR: ${formatNumber(pt.y, 2)}%`,
-                    `Duration: ${formatNumber(pt.x, 2)} años`,
-                    `Días Vto: ${pt.dias || '-'} días`,
-                    `Ley: ${pt.ley || '-'}`
+                    `Plazo: ${pt.dias ? pt.dias + ' días' : '-'}`,
+                    `Duration: ${pt.duration !== undefined ? formatNumber(pt.duration, 2) + ' años' : '-'}`,
+                    `Precio: ${pt.precio ? formatNumber(pt.precio, 2) : '-'}`,
+                    `Paridad: ${pt.paridad ? formatNumber(pt.paridad, 2) + '%' : '-'}`
                   ];
                 }
               }
@@ -1669,14 +1674,20 @@
           },
           scales: {
             x: {
-              title: { display: true, text: 'Duration Modificada (Años)', font: { family: 'Sora', size: 11, weight: 'bold' } },
+              title: { display: true, text: xAxisTitle, font: { family: 'Sora', size: 11, weight: 'bold' } },
               grid: { color: '#f1f5f9' },
-              ticks: { font: { family: 'JetBrains Mono', size: 10 } }
+              ticks: { 
+                font: { family: 'JetBrains Mono', size: 10 },
+                callback: function(v) { return isLecapCurve ? v + ' d' : formatNumber(v, 1) + ' a'; }
+              }
             },
             y: {
               title: { display: true, text: 'Tasa Interna de Retorno - TIR (%)', font: { family: 'Sora', size: 11, weight: 'bold' } },
               grid: { color: '#f1f5f9' },
-              ticks: { font: { family: 'JetBrains Mono', size: 10 } }
+              ticks: { 
+                font: { family: 'JetBrains Mono', size: 10 },
+                callback: function(v) { return formatNumber(v, 1) + '%'; }
+              }
             }
           }
         }
