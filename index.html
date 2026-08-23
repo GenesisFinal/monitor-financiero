@@ -384,6 +384,37 @@
       return new Intl.NumberFormat('es-AR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(val);
     }
 
+    function roundNumber(val, decimals = 2) {
+      if (val === null || val === undefined || isNaN(val)) return 0;
+      const factor = Math.pow(10, decimals);
+      return Math.round(Number(val) * factor) / factor;
+    }
+
+    function getVarColorClass(val) {
+      if (val === null || val === undefined || isNaN(val)) return 'text-slate-400';
+      const num = parseFloat(val);
+      if (num > 0) return 'text-emerald-700 font-bold';
+      if (num < 0) return 'text-rose-700 font-bold';
+      return 'text-slate-600 font-medium';
+    }
+
+    function formatVar(val) {
+      if (val === null || val === undefined || isNaN(val)) return '-';
+      const num = parseFloat(val);
+      const absVal = Math.abs(num).toFixed(2);
+      return `${absVal}%`;
+    }
+
+    function setEtfCategory(cat) {
+      CURRENT_ETF_CATEGORY = cat;
+      renderActiveSection();
+    }
+
+    function handleEtfSearch(q) {
+      CURRENT_ETF_SEARCH = (q || '').trim().toLowerCase();
+      renderActiveSection();
+    }
+
     function formatCurrency(val, currency = 'ARS', decimals = 2) {
       if (val === null || val === undefined || isNaN(val)) return '-';
       const symb = currency === 'USD' ? 'US$' : (currency === '%' ? '%' : (currency === 'Pts' ? 'Pts' : '$'));
