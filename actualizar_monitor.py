@@ -1132,10 +1132,8 @@ def fetch_acciones_mundiales_screeners():
     valid_52w_gainers = [s for s in stock_metrics.values() if s['var_12m'] is not None and s['var_12m'] > 0]
     top_10_gainers_52w = [s['symbol'] for s in sorted(valid_52w_gainers, key=lambda x: x['var_12m'], reverse=True)[:10]]
     
-    # 52W Bajas / Descuentos (mayor caída anual a menor, estrictamente negativas o menores rendimientos)
+    # 52W Bajas (estrictamente negativas < 0%, sin rellenar con subas)
     valid_52w_losers = [s for s in stock_metrics.values() if s['var_12m'] is not None and s['var_12m'] < 0]
-    if len(valid_52w_losers) < 10:
-        valid_52w_losers = [s for s in stock_metrics.values() if s['var_12m'] is not None]
     top_10_losers_52w = [s['symbol'] for s in sorted(valid_52w_losers, key=lambda x: x['var_12m'])[:10]]
     
     selected_syms = list(dict.fromkeys(
@@ -1332,10 +1330,8 @@ def fetch_cedears_screeners():
     valid_52w_g = [s for s in all_metrics if s['var_12m'] is not None and s['var_12m'] > 0]
     top_10_gainers_52w = [s['symbol'] for s in sorted(valid_52w_g, key=lambda x: x['var_12m'], reverse=True)[:10]]
     
-    # 5. Top 10 Bajas 52W en ARS (de mayor caída anual a menor, < 0 o menores variaciones)
+    # 5. Top Bajas 52W en ARS (estrictamente negativas < 0%, sin rellenar con subas)
     valid_52w_l = [s for s in all_metrics if s['var_12m'] is not None and s['var_12m'] < 0]
-    if len(valid_52w_l) < 10:
-        valid_52w_l = [s for s in all_metrics if s['var_12m'] is not None]
     top_10_losers_52w = [s['symbol'] for s in sorted(valid_52w_l, key=lambda x: x['var_12m'])[:10]]
     
     # 6. Top 10 Blue Chips Favoritas
