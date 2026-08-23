@@ -567,14 +567,28 @@
       lucide.createIcons();
     }
 
-        function renderSectionBlock(secKey, sec) {
+            function renderVariationBadgeClean(val) {
+      if (val === null || val === undefined) return '<span class="text-slate-400 font-mono text-xs">-</span>';
+      const num = parseFloat(val);
+      if (isNaN(num)) return '<span class="text-slate-400 font-mono text-xs">-</span>';
+      const absVal = Math.abs(num).toFixed(2);
+      if (num > 0) {
+        return `<span class="inline-block px-1.5 py-0.5 rounded text-xs font-mono font-bold text-emerald-700 bg-emerald-50">${absVal}%</span>`;
+      } else if (num < 0) {
+        return `<span class="inline-block px-1.5 py-0.5 rounded text-xs font-mono font-bold text-rose-700 bg-rose-50">${absVal}%</span>`;
+      } else {
+        return `<span class="inline-block px-1.5 py-0.5 rounded text-xs font-mono font-medium text-slate-600 bg-slate-100">0.00%</span>`;
+      }
+    }
+
+    function renderSectionBlock(secKey, sec) {
       let items = sec.items || [];
       
       if (secKey === 'commodities' && CURRENT_COMMODITY_FILTER !== 'all') {
         items = items.filter(x => x.subtipo === CURRENT_COMMODITY_FILTER);
       }
 
-                      if (secKey === 'fci') {
+                              if (secKey === 'fci') {
           let fciItems = items;
           if (CURRENT_FCI_FILTER !== 'all') {
             const fLow = CURRENT_FCI_FILTER.toLowerCase();
@@ -625,45 +639,46 @@
                 <table class="min-w-full text-xs text-left">
                   <thead class="bg-slate-100 text-slate-600 font-semibold uppercase text-[10px] border-b border-slate-200">
                     <tr>
-                      <th class="p-3">Fondo & Gestora</th>
-                      <th class="p-3 text-right">VCP ($)</th>
-                      <th class="p-3 text-right">Var. 1D</th>
-                      <th class="p-3 text-right">Var. 1M</th>
-                      <th class="p-3 text-right">Var. 12M</th>
-                      <th class="p-3 text-right">Var. 24M</th>
-                      <th class="p-3 text-right w-16" title="Volatilidad anualizada (desviación estándar de rendimientos)">Vol%</th>
-                      <th class="p-3 text-right" title="Máxima caída porcentual histórica desde su pico">Max Drawdown</th>
-                      <th class="p-3 text-center">Comisión Total</th>
-                      <th class="p-3 text-center">Plazo</th>
-                      <th class="p-3 text-right">Patrimonio</th>
+                      <th class="p-2.5">Fondo & Gestora</th>
+                      <th class="p-2.5 text-right whitespace-nowrap">VCP</th>
+                      <th class="p-2.5 text-right whitespace-nowrap">Var 1D</th>
+                      <th class="p-2.5 text-right whitespace-nowrap">Var 1M</th>
+                      <th class="p-2.5 text-right whitespace-nowrap">Var 12M</th>
+                      <th class="p-2.5 text-right whitespace-nowrap">Var 24M</th>
+                      <th class="p-2.5 text-right whitespace-nowrap w-14" title="Volatilidad anualizada (desviación estándar de rendimientos)">Vol%</th>
+                      <th class="p-2.5 text-right whitespace-nowrap" title="Máxima caída porcentual histórica desde su pico">Max Drawdown</th>
+                      <th class="p-2.5 text-center whitespace-nowrap">Comisión</th>
+                      <th class="p-2.5 text-center whitespace-nowrap">Plazo</th>
+                      <th class="p-2.5 text-right whitespace-nowrap">Patrimonio</th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-slate-100">
                     ${fciItems.map(f => {
                       const isUsd = (f.moneda === 'USD');
                       const plazoVal = f.plazo_liquidacion ? f.plazo_liquidacion.split(' ')[0] : 'T+1';
+                      const vcpFormatted = formatNumber(f.precio, isUsd ? 4 : 2);
+                      const patFormatted = f.patrimonio_formateado ? f.patrimonio_formateado.replace('$', '').replace('US$', '').trim() : '-';
                       return `
                         <tr class="hover:bg-slate-50/80 cursor-pointer transition-colors" onclick="openChartModal('${f.id}')">
-                          <td class="p-3">
-                            <div class="font-bold text-slate-900 text-[13px]">${f.nombre}</div>
-                            <div class="text-[11px] text-slate-500 flex items-center space-x-1.5 mt-0.5 flex-wrap gap-y-1">
+                          <td class="p-2.5 max-w-[280px]">
+                            <div class="font-bold text-slate-900 text-xs truncate">${f.nombre}</div>
+                            <div class="text-[10px] text-slate-500 flex items-center space-x-1.5 mt-0.5 flex-wrap gap-y-0.5">
                               <span class="font-semibold text-slate-700">${f.admin || f.gestora}</span>
                               <span>•</span>
-                              <span>${f.depositaria || 'Banco Custodio'}</span>
-                              <span class="px-1.5 py-0.2 rounded font-mono font-bold text-[9px] ${isUsd ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}">${isUsd ? 'USD' : 'ARS'}</span>
-                              ${f.calificacion && f.calificacion !== 'N/D' ? `<span class="px-1.5 py-0.2 rounded bg-amber-50 text-amber-700 font-semibold text-[9px] border border-amber-200">${f.calificacion}</span>` : ''}
+                              <span class="px-1 py-0.2 rounded font-mono font-bold text-[8.5px] ${isUsd ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}">${isUsd ? 'USD' : 'ARS'}</span>
+                              ${f.calificacion && f.calificacion !== 'N/D' ? `<span class="px-1 py-0.2 rounded bg-amber-50 text-amber-700 font-semibold text-[8.5px] border border-amber-200">${f.calificacion}</span>` : ''}
                             </div>
                           </td>
-                          <td class="p-3 text-right font-mono font-bold text-slate-900">${formatCurrency(f.precio, f.moneda)}</td>
-                          <td class="p-3 text-right font-mono">${renderVariationBadge(f.var_1d)}</td>
-                          <td class="p-3 text-right font-mono">${renderVariationBadge(f.var_1m)}</td>
-                          <td class="p-3 text-right font-mono">${renderVariationBadge(f.var_12m)}</td>
-                          <td class="p-3 text-right font-mono text-slate-700 font-semibold">${f.var_24m !== undefined && f.var_24m !== null ? renderVariationBadge(f.var_24m) : '-'}</td>
-                          <td class="p-3 text-right font-mono text-slate-600">${f.volatilidad ? f.volatilidad.toFixed(1) + '%' : '-'}</td>
-                          <td class="p-3 text-right font-mono text-rose-600 font-medium">${f.max_drawdown ? f.max_drawdown.toFixed(1) + '%' : '-'}</td>
-                          <td class="p-3 text-center"><span class="px-2 py-0.5 rounded bg-slate-100 font-mono font-semibold text-slate-700 text-[11px]">${f.costo_total ? f.costo_total.toFixed(2) + '%' : (f.costo_gerente ? (f.costo_gerente + (f.costo_depositaria || 0)).toFixed(2) + '%' : '-')}</span></td>
-                          <td class="p-3 text-center"><span class="px-2 py-0.5 rounded font-mono font-bold text-[10px] ${plazoVal === 'T+0' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}">${plazoVal}</span></td>
-                          <td class="p-3 text-right font-mono font-medium text-slate-700">${f.patrimonio_formateado || '-'}</td>
+                          <td class="p-2.5 text-right font-mono font-bold text-slate-900 whitespace-nowrap">${vcpFormatted}</td>
+                          <td class="p-2.5 text-right font-mono whitespace-nowrap">${renderVariationBadgeClean(f.var_1d)}</td>
+                          <td class="p-2.5 text-right font-mono whitespace-nowrap">${renderVariationBadgeClean(f.var_1m)}</td>
+                          <td class="p-2.5 text-right font-mono whitespace-nowrap">${renderVariationBadgeClean(f.var_12m)}</td>
+                          <td class="p-2.5 text-right font-mono text-slate-700 font-semibold whitespace-nowrap">${f.var_24m !== undefined && f.var_24m !== null ? renderVariationBadgeClean(f.var_24m) : '-'}</td>
+                          <td class="p-2.5 text-right font-mono text-slate-600 whitespace-nowrap">${f.volatilidad ? f.volatilidad.toFixed(1) + '%' : '-'}</td>
+                          <td class="p-2.5 text-right font-mono text-rose-600 font-medium whitespace-nowrap">${f.max_drawdown ? f.max_drawdown.toFixed(1) + '%' : '-'}</td>
+                          <td class="p-2.5 text-center whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-slate-100 font-mono font-semibold text-slate-700 text-[10.5px]">${f.costo_total ? f.costo_total.toFixed(2) + '%' : (f.costo_gerente ? (f.costo_gerente + (f.costo_depositaria || 0)).toFixed(2) + '%' : '-')}</span></td>
+                          <td class="p-2.5 text-center whitespace-nowrap"><span class="px-1.5 py-0.5 rounded font-mono font-bold text-[9.5px] ${plazoVal === 'T+0' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}">${plazoVal}</span></td>
+                          <td class="p-2.5 text-right font-mono font-medium text-slate-700 whitespace-nowrap">${patFormatted}</td>
                         </tr>
                       `;
                     }).join('')}
