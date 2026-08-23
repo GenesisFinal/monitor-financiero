@@ -2247,6 +2247,11 @@
         paridad: p.paridad
       }));
 
+      // Modelo y R^2 seleccionados
+      const modelName = rawCurve.modelo_seleccionado || 'Curva Ajustada';
+      const r2Score = (rawCurve.r2_score !== undefined) ? ` (R² = ${rawCurve.r2_score})` : '';
+      const curveLabel = `Curva ${modelName}${r2Score}`;
+
       // Si tenemos regresión calculada, la usamos; si no, ordenamos los puntos
       const lineData = regressionPts.length > 0 ? regressionPts : [...scatterData].sort((a, b) => a.x - b.x).map(p => ({ x: p.x, y: p.y }));
 
@@ -2255,13 +2260,13 @@
         data: {
           datasets: [
             {
-              label: 'Curva Ajustada',
+              label: curveLabel,
               data: lineData,
               type: 'line',
               borderColor: '#e20039',
               backgroundColor: 'rgba(226, 0, 57, 0.05)',
               borderWidth: 2.5,
-              tension: 0.25,
+              tension: 0.15,
               pointRadius: 0,
               fill: true
             },
