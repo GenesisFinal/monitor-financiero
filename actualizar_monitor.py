@@ -28,6 +28,19 @@ def safe_float(val, default=None):
     except:
         return default
 
+def format_patrimonio_latino(pat):
+    """Formato de escala financiera latina: M (10^6 Millones), MM (10^9 Miles de Millones), B (10^12 Billones)"""
+    if pat is None or pat <= 0:
+        return '-'
+    if pat >= 1e12:
+        return f"{pat / 1e12:,.2f} B".replace(',', 'X').replace('.', ',').replace('X', '.')
+    elif pat >= 1e9:
+        return f"{pat / 1e9:,.2f} MM".replace(',', 'X').replace('.', ',').replace('X', '.')
+    elif pat >= 1e6:
+        return f"{pat / 1e6:,.2f} M".replace(',', 'X').replace('.', ',').replace('X', '.')
+    else:
+        return f"{pat:,.0f}".replace(',', 'X').replace('.', ',').replace('X', '.')
+
 def calc_variations(series):
     if not series or len(series) < 2:
         return {'var_1d': 0.0, 'var_1m': 0.0, 'var_12m': 0.0}
