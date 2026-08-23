@@ -1017,11 +1017,13 @@ def build_yield_curves(bonos_list, ons_list):
         else:
             valid_pts = sorted([p for p in pts if p.get('duration') is not None and p['duration'] > 0], key=lambda x: x['duration'])
             
-        regression_line = fit_yield_curve_regression(valid_pts, is_lecaps=is_lecaps)
+        regression_line, best_model_name, best_r2 = fit_yield_curve_regression(valid_pts, is_lecaps=is_lecaps)
         
         final_curves[cat_k] = {
             'puntos': valid_pts,
-            'regresion': regression_line
+            'regresion': regression_line,
+            'modelo_seleccionado': best_model_name,
+            'r2_score': best_r2
         }
         print(f'   [Curva {cat_k}] {len(valid_pts)} bonos cargados, {len(regression_line)} puntos de regresión.')
         
