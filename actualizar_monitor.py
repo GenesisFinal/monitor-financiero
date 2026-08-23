@@ -558,6 +558,7 @@ def fetch_bonos_lecaps():
 
     # Lista curada de bonos representativos por segmento
     # Lista curada de bonos 100% auditados y cotejados contra Bonistas.com
+    # Lista curada de bonos 100% auditados y cotejados contra Bonistas.com
     target_universe = [
         # Soberanos Dólar Hard - Especie D (USD)
         ('AL29D', 'Bonar 2029 USD (AL29D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 1.00, 'Step-Up Semestral', 'Semestral', 'Semestral (2025-2029)'),
@@ -597,26 +598,50 @@ def fetch_bonos_lecaps():
 
         # LECAPs & Tasa Fija
         ('S31G6', 'LECAP Vto. 31/08/2026 (S31G6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 26.51, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('S15S6', 'LECAP Vto. 15/09/2026 (S15S6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 27.94, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
         ('S30S6', 'LECAP Vto. 30/09/2026 (S30S6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 27.90, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('TO26', 'Bono Tasa Fija 2026 (TO26)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 15.50, 'Fijo Semestral', 'Semestral', 'Bullet'),
         ('S30O6', 'LECAP Vto. 30/10/2026 (S30O6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 27.89, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('S13N6', 'LECAP Vto. 13/11/2026 (S13N6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 29.38, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
         ('S30N6', 'LECAP Vto. 30/11/2026 (S30N6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 28.48, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
         ('M31G6', 'BONCAP Vto. 31/08/2026 (M31G6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 29.16, 'Cupón Fijo', 'Al Vto', 'Bullet'),
-        ('TO26', 'Bono Tasa Fija 2026 (TO26)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 15.50, 'Fijo Semestral', 'Semestral', 'Bullet'),
 
         # Bonos TAMAR / Badlar
-        ('BDC28', 'Ciudad de Bs As Badlar 2028 (BDC28)', 'Bonos TAMAR / Badlar', 'ARS', 'CABA', 6.76, 'Badlar Privada + Spread', 'Trimestral', 'Bullet'),
+        ('TTS26_TAM', 'Bono TAMAR Sep-2026 (TTS26)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 32.56, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
+        ('TTD26_TAM', 'Bono TAMAR Dic-2026 (TTD26)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 30.36, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
+        ('TMF27', 'Bono TAMAR Feb-2027 (TMF27)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 30.95, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
+        ('TML27', 'Bono TAMAR Jul-2027 (TML27)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 32.39, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
+        ('TMG27', 'Bono TAMAR Ago-2027 (TMG27)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 32.31, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
+        ('TMF28', 'Bono TAMAR Feb-2028 (TMF28)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 39.03, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
+        ('BDC28', 'Ciudad de Bs As Badlar 2028 (BDC28)', 'Bonos TAMAR / Badlar', 'ARS', 'CABA', 28.78, 'Badlar Privada + Spread', 'Trimestral', 'Bullet'),
+        ('TMG28', 'Bono TAMAR Ago-2028 (TMG28)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 39.61, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
+        ('TXMJ8', 'Bono Dual TAMAR/CER Jun-2028 (TXMJ8)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 38.53, 'Dual TAMAR / CER', 'Semestral', 'Bullet'),
+        ('TXMD8', 'Bono Dual TAMAR/CER Dic-2028 (TXMD8)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 39.17, 'Dual TAMAR / CER', 'Semestral', 'Bullet'),
+        ('TXMJ9', 'Bono Dual TAMAR/CER Jun-2029 (TXMJ9)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 35.27, 'Dual TAMAR / CER', 'Semestral', 'Bullet'),
+        ('TXMD9', 'Bono Dual TAMAR/CER Dic-2029 (TXMD9)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 40.07, 'Dual TAMAR / CER', 'Semestral', 'Bullet'),
+        ('TXMJ0', 'Bono Dual TAMAR/CER Jun-2030 (TXMJ0)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 40.02, 'Dual TAMAR / CER', 'Semestral', 'Bullet'),
 
         # Dólar Linked
+        ('D31G6', 'Bono Dólar Linked Ago-2026 (D31G6)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
+        ('D30S6', 'Bono Dólar Linked Sep-2026 (D30S6)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
+        ('D31M7', 'Bono Dólar Linked Mar-2027 (D31M7)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
         ('TZV27', 'Bono Dólar Linked Jun-2027 (TZV27)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
         ('TZV28', 'Bono Dólar Linked Jun-2028 (TZV28)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
         ('TZVD8', 'Bono Dólar Linked Dic-2028 (TZVD8)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
 
         # BOPREAL (BCRA)
-        ('BPOA7', 'BOPREAL Serie 1 Strip A 2027 (BPOA7)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
-        ('BPOB7', 'BOPREAL Serie 1 Strip B 2027 (BPOB7)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
-        ('BPOC7', 'BOPREAL Serie 1 Strip C 2027 (BPOC7)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
-        ('BPOA8', 'BOPREAL Serie 1 Strip A 2028 (BPOA8)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
-        ('BPA8D', 'BOPREAL Serie 1 Strip A 2028 USD (BPA8D)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet')
+        ('BPA7D', 'BOPREAL Serie 1 Strip A 2027 USD (BPA7D)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPB7D', 'BOPREAL Serie 1 Strip B 2027 USD (BPB7D)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPC7D', 'BOPREAL Serie 1 Strip C 2027 USD (BPC7D)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPD7D', 'BOPREAL Serie 1 Strip D 2027 USD (BPD7D)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPA8D', 'BOPREAL Serie 1 Strip A 2028 USD (BPA8D)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPB8D', 'BOPREAL Serie 1 Strip B 2028 USD (BPB8D)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPOA7', 'BOPREAL Serie 1 Strip A 2027 Pesos (BPOA7)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPOB7', 'BOPREAL Serie 1 Strip B 2027 Pesos (BPOB7)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPOC7', 'BOPREAL Serie 1 Strip C 2027 Pesos (BPOC7)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPOD7', 'BOPREAL Serie 1 Strip D 2027 Pesos (BPOD7)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPOA8', 'BOPREAL Serie 1 Strip A 2028 Pesos (BPOA8)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPOB8', 'BOPREAL Serie 1 Strip B 2028 Pesos (BPOB8)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet')
     ]
 
     results = []
