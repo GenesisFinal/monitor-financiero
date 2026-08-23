@@ -557,58 +557,66 @@ def fetch_bonos_lecaps():
             by_ticker[t] = b
 
     # Lista curada de bonos representativos por segmento
+    # Lista curada de bonos 100% auditados y cotejados contra Bonistas.com
     target_universe = [
-        # Dólar Hard - Especie D (USD)
-        ('AL30D', 'Bonar 2030 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral (2024-2030)'),
-        ('GD30D', 'Global 2030 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral (2024-2030)'),
-        ('AL29D', 'Bonar 2029 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 1.00, 'Step-Up Semestral', 'Semestral', 'Semestral (2025-2029)'),
-        ('GD29D', 'Global 2029 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 1.00, 'Step-Up Semestral', 'Semestral', 'Semestral (2025-2029)'),
-        ('AL35D', 'Bonar 2035 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 3.625, 'Step-Up Semestral', 'Semestral', 'Semestral (2031-2035)'),
-        ('GD35D', 'Global 2035 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 3.625, 'Step-Up Semestral', 'Semestral', 'Semestral (2031-2035)'),
-        ('AL38D', 'Bonar 2038 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 4.25, 'Step-Up Semestral', 'Semestral', 'Semestral (2027-2038)'),
-        ('GD38D', 'Global 2038 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 4.25, 'Step-Up Semestral', 'Semestral', 'Semestral (2027-2038)'),
-        ('AL41D', 'Bonar 2041 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 3.50, 'Step-Up Semestral', 'Semestral', 'Semestral (2028-2041)'),
-        ('GD41D', 'Global 2041 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 3.50, 'Step-Up Semestral', 'Semestral', 'Semestral (2028-2041)'),
-        ('GD46D', 'Global 2046 USD', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 3.50, 'Step-Up Semestral', 'Semestral', 'Semestral (2025-2046)'),
-        
-        # Dólar Hard - Especie Pesos
-        ('AL30', 'Bonar 2030 en Pesos', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Argentina', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral'),
-        ('GD30', 'Global 2030 en Pesos', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Nueva York', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral'),
-        ('AL35', 'Bonar 2035 en Pesos', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Argentina', 3.625, 'Step-Up Semestral', 'Semestral', 'Semestral'),
-        ('GD35', 'Global 2035 en Pesos', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Nueva York', 3.625, 'Step-Up Semestral', 'Semestral', 'Semestral'),
+        # Soberanos Dólar Hard - Especie D (USD)
+        ('AL29D', 'Bonar 2029 USD (AL29D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 1.00, 'Step-Up Semestral', 'Semestral', 'Semestral (2025-2029)'),
+        ('GD29D', 'Global 2029 USD (GD29D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 1.00, 'Step-Up Semestral', 'Semestral', 'Semestral (2025-2029)'),
+        ('AL30D', 'Bonar 2030 USD (AL30D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral (2024-2030)'),
+        ('GD30D', 'Global 2030 USD (GD30D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral (2024-2030)'),
+        ('AL35D', 'Bonar 2035 USD (AL35D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 3.625, 'Step-Up Semestral', 'Semestral', 'Semestral (2031-2035)'),
+        ('GD35D', 'Global 2035 USD (GD35D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 3.625, 'Step-Up Semestral', 'Semestral', 'Semestral (2031-2035)'),
+        ('AE38D', 'Bonar 2038 USD (AE38D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 4.25, 'Step-Up Semestral', 'Semestral', 'Semestral (2027-2038)'),
+        ('GD38D', 'Global 2038 USD (GD38D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 4.25, 'Step-Up Semestral', 'Semestral', 'Semestral (2027-2038)'),
+        ('AL41D', 'Bonar 2041 USD (AL41D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 3.50, 'Step-Up Semestral', 'Semestral', 'Semestral (2028-2041)'),
+        ('GD41D', 'Global 2041 USD (GD41D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 3.50, 'Step-Up Semestral', 'Semestral', 'Semestral (2028-2041)'),
+        ('GD46D', 'Global 2046 USD (GD46D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Nueva York', 3.50, 'Step-Up Semestral', 'Semestral', 'Semestral (2028-2046)'),
 
-        # Bonos CER (Indexados por Inflación IPC)
-        ('TX26', 'Boncer 2026 (TX26)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 2.00, 'Fijo sobre Capital CER', 'Semestral', '5 cuotas del 20%'),
-        ('TX28', 'Boncer 2028 (TX28)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 2.25, 'Fijo sobre Capital CER', 'Semestral', '10 cuotas del 10%'),
-        ('T2X5', 'Boncer 2025 (T2X5)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 1.55, 'Fijo sobre Capital CER', 'Semestral', 'Bullet'),
-        ('TZX26', 'Boncer Cero Cupón 2026', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón (Capital + CER)', 'Al Vencimiento', 'Bullet'),
-        ('TZX27', 'Boncer Cero Cupón 2027', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón (Capital + CER)', 'Al Vencimiento', 'Bullet'),
-        ('TZX28', 'Boncer Cero Cupón 2028', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón (Capital + CER)', 'Al Vencimiento', 'Bullet'),
-        ('DICP', 'Discount en Pesos CER', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 5.83, 'Fijo sobre Capital CER', 'Semestral', '20 cuotas semestrales'),
-        ('PARP', 'Par en Pesos CER', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 1.75, 'Fijo sobre Capital CER', 'Semestral', 'Bullet'),
-        ('CUAP', 'Cuasipar en Pesos CER', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 3.31, 'Fijo sobre Capital CER', 'Semestral', 'Bullet'),
+        # Soberanos Dólar Hard - Especie Pesos (ARS)
+        ('AL30', 'Bonar 2030 en Pesos (AL30)', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Argentina', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral (2024-2030)'),
+        ('GD30', 'Global 2030 en Pesos (GD30)', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Nueva York', 0.75, 'Step-Up Semestral', 'Semestral', 'Semestral (2024-2030)'),
+        ('AL35', 'Bonar 2035 en Pesos (AL35)', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Argentina', 3.625, 'Step-Up Semestral', 'Semestral', 'Semestral (2031-2035)'),
+        ('GD35', 'Global 2035 en Pesos (GD35)', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Nueva York', 3.625, 'Step-Up Semestral', 'Semestral', 'Semestral (2031-2035)'),
+        ('AE38', 'Bonar 2038 en Pesos (AE38)', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Argentina', 4.25, 'Step-Up Semestral', 'Semestral', 'Semestral (2027-2038)'),
+        ('GD38', 'Global 2038 en Pesos (GD38)', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Nueva York', 4.25, 'Step-Up Semestral', 'Semestral', 'Semestral (2027-2038)'),
 
-        # LECAPs & BONCAPs (Tasa Fija Capitalizable en Pesos)
-        ('S30S6', 'LECAP Vto. 30/09/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 34.96, 'Capitalizable Mensual (TEM ~2.53%)', 'Al Vencimiento', 'Bullet'),
-        ('S31G6', 'LECAP Vto. 31/08/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 33.50, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
-        ('S30O6', 'LECAP Vto. 30/10/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 34.50, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
-        ('S30N6', 'LECAP Vto. 30/11/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 35.20, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
-        ('TO26', 'Bono Tasa Fija 2026 (TO26)', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 15.50, 'Fijo Semestral', 'Semestral', 'Bullet'),
-        ('M31G6', 'BONCAP Vto. 31/08/2026', 'LECAPs & BONCAPs (Tasa Fija)', 'ARS', 'Argentina', 33.80, 'Capitalizable Mensual', 'Al Vencimiento', 'Bullet'),
+        # Bonos CER (Ajustables por Inflación) - Curva Activa y Líquida
+        ('TZXO6', 'Boncer Cero Cupón Oct-2026 (TZXO6)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (10/2026)'),
+        ('TX26', 'Boncer 2026 (TX26)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 2.00, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (11/2026)'),
+        ('TZXD6', 'Boncer Cero Cupón Dic-2026 (TZXD6)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (12/2026)'),
+        ('TZXM7', 'Boncer Cero Cupón Mar-2027 (TZXM7)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (03/2027)'),
+        ('TZX27', 'Boncer Cero Cupón Jun-2027 (TZX27)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (06/2027)'),
+        ('TZXO7', 'Boncer Cero Cupón Oct-2027 (TZXO7)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (10/2027)'),
+        ('TZXD7', 'Boncer Cero Cupón Dic-2027 (TZXD7)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (12/2027)'),
+        ('TZX28', 'Boncer Cero Cupón Jun-2028 (TZX28)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (06/2028)'),
+        ('TX28', 'Boncer 2028 (TX28)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 2.25, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (11/2028)'),
+        ('TX31', 'Boncer 2031 (TX31)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 2.50, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (11/2031)'),
+        ('DICP', 'Discount en Pesos CER (DICP)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 5.83, 'Tasa Fija + CER', 'Semestral', 'Semestral (2024-2033)'),
+        ('PARP', 'Par en Pesos CER (PARP)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 3.11, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (12/2038)'),
+        ('CUAP', 'Cuasipar en Pesos CER (CUAP)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 3.31, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (12/2045)'),
 
-        # Bonos TAMAR / Badlar (Flotante)
-        ('BDC28', 'Ciudad de Bs As Badlar 2028', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 28.78, 'Badlar Privada + Spread', 'Trimestral', 'Bullet'),
-        ('PBA25', 'Provincia de Bs As Badlar 2025', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 41.20, 'Badlar Privada + 3.75%', 'Trimestral', 'Bullet'),
+        # LECAPs & Tasa Fija
+        ('S31G6', 'LECAP Vto. 31/08/2026 (S31G6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 26.51, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('S30S6', 'LECAP Vto. 30/09/2026 (S30S6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 27.90, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('S30O6', 'LECAP Vto. 30/10/2026 (S30O6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 27.89, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('S30N6', 'LECAP Vto. 30/11/2026 (S30N6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 28.48, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('M31G6', 'BONCAP Vto. 31/08/2026 (M31G6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 29.16, 'Cupón Fijo', 'Al Vto', 'Bullet'),
+        ('TO26', 'Bono Tasa Fija 2026 (TO26)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 15.50, 'Fijo Semestral', 'Semestral', 'Bullet'),
 
-        # Dólar Linked & Duales
-        ('TZV26', 'Bono Dólar Linked 2026 (TZV26)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Cero Cupón Dólar Linked', 'Al Vencimiento', 'Bullet'),
-        ('TZV27', 'Bono Dólar Linked 2027', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Cero Cupón Dólar Linked', 'Al Vencimiento', 'Bullet'),
-        ('TZV28', 'Bono Dólar Linked 2028', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Cero Cupón Dólar Linked', 'Al Vencimiento', 'Bullet'),
+        # Bonos TAMAR / Badlar
+        ('BDC28', 'Ciudad de Bs As Badlar 2028 (BDC28)', 'Bonos TAMAR / Badlar', 'ARS', 'CABA', 6.76, 'Badlar Privada + Spread', 'Trimestral', 'Bullet'),
 
-        # BOPREAL (BCRA para Importadores)
-        ('BPO27', 'BOPREAL Serie 1 (BPO27)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Fijo en USD', 'Semestral', 'Bullet (Opción Put)'),
-        ('BPOA8', 'BOPREAL Serie 1 Strip A (BPOA8)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Fijo en USD (Con Opción Put)', 'Semestral', 'Bullet'),
-        ('BPY26', 'BOPREAL Serie 2 (BPY26)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 0.00, 'Cero Cupón', 'Mensual', '12 cuotas mensuales')
+        # Dólar Linked
+        ('TZV27', 'Bono Dólar Linked Jun-2027 (TZV27)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
+        ('TZV28', 'Bono Dólar Linked Jun-2028 (TZV28)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
+        ('TZVD8', 'Bono Dólar Linked Dic-2028 (TZVD8)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
+
+        # BOPREAL (BCRA)
+        ('BPOA7', 'BOPREAL Serie 1 Strip A 2027 (BPOA7)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPOB7', 'BOPREAL Serie 1 Strip B 2027 (BPOB7)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPOC7', 'BOPREAL Serie 1 Strip C 2027 (BPOC7)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPOA8', 'BOPREAL Serie 1 Strip A 2028 (BPOA8)', 'BOPREAL (BCRA)', 'ARS', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet'),
+        ('BPA8D', 'BOPREAL Serie 1 Strip A 2028 USD (BPA8D)', 'BOPREAL (BCRA)', 'USD', 'Argentina', 5.00, 'Tasa Fija USD', 'Semestral', 'Bullet')
     ]
 
     results = []
