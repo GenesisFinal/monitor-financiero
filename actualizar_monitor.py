@@ -1186,7 +1186,7 @@ def fetch_etfs():
                 var_12m = round(((closes[-1] - closes[0]) / closes[0]) * 100, 2)
                 
             series_map[conf['id']] = [
-                {'time': d, 'close': round(float(c), 2), 'open': round(float(c), 2), 'high': round(float(c), 2), 'low': round(float(c), 2), 'volume': 0}
+                {'date': d, 'time': d, 'close': round(float(c), 2), 'open': round(float(c), 2), 'high': round(float(c), 2), 'low': round(float(c), 2), 'volume': 0}
                 for d, c in zip(dates, closes)
             ]
             
