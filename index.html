@@ -362,6 +362,8 @@
     let CURRENT_COMMODITY_FILTER = 'all';
     let CURRENT_FCI_FILTER = 'all';
     let CURRENT_FCI_SEARCH = '';
+    let CURRENT_ETF_CATEGORY = 'todos';
+    let CURRENT_ETF_SEARCH = '';
     let CURRENT_BONOS_FILTER = 'all';
     let CURRENT_BONOS_SEARCH = '';
     let EXPANDED_BONO_ID = null;
@@ -1792,4 +1794,150 @@
     });
   </script>
 </body>
-</html>
+</html>      // -------------------------------------------------------------
+      // SECCION PERSONALIZADA: ETFS (Exchange Traded Funds)
+      // -------------------------------------------------------------
+      if (secKey === 'etfs') {
+        const categories = [
+          { id: 'todos', name: 'Todos los ETFs' },
+          { id: 'Índices Globales', name: 'Índices Globales' },
+          { id: 'Sectores EE.UU.', name: 'Sectores EE.UU.' },
+          { id: 'Regionales & Emergentes', name: 'Regionales & Emergentes' },
+          { id: 'Renta Fija Global', name: 'Renta Fija Global' },
+          { id: 'Commodities & Temáticos', name: 'Commodities & Temáticos' }
+        ];
+
+        let filteredItems = items;
+        if (CURRENT_ETF_CATEGORY !== 'todos') {
+          filteredItems = filteredItems.filter(x => x.categoria === CURRENT_ETF_CATEGORY);
+        }
+        if (CURRENT_ETF_SEARCH.trim() !== '') {
+          const q = CURRENT_ETF_SEARCH.toLowerCase();
+          filteredItems = filteredItems.filter(x => 
+            (x.symbol && x.symbol.toLowerCase().includes(q)) || 
+            (x.nombre && x.nombre.toLowerCase().includes(q)) ||
+            (x.emisor && x.emisor.toLowerCase().includes(q)) ||
+            (x.categoria && x.categoria.toLowerCase().includes(q))
+          );
+        }
+
+        return `
+          <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" id="section_${secKey}">
+            
+            <!-- Cabecera de ETFs -->
+            <div class="px-5 py-4 border-b border-slate-100 bg-slate-50/60 flex flex-col gap-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center space-x-3">
+                  <span class="p-2 bg-rose-50 text-brand-red rounded-lg"><i data-lucide="${sec.icono || 'pie-chart'}" class="w-5 h-5"></i></span>
+                  <div>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">${sec.titulo}</h2>
+                    <p class="text-xs text-slate-500 font-medium">${filteredItems.length} fondos cotizados monitoreados</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                  <div class="relative w-full sm:w-64">
+                    <input 
+                      type="text" 
+                      placeholder="Buscar ETF, emisor o sector..." 
+                      value="${CURRENT_ETF_SEARCH}"
+                      oninput="handleEtfSearch(this.value)"
+                      class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all"
+                    >
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+                  </div>
+                  <button onclick="exportSectionToCSV('etfs')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-semibold text-xs transition-colors shadow-xs shrink-0" title="Exportar datos a CSV / Excel">
+                    <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500"></i>
+                    <span class="hidden sm:inline">Exportar CSV</span>
+                    <span class="sm:hidden">CSV</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Selectores de Categoría de ETFs -->
+              <div class="flex items-center gap-1.5 flex-wrap pt-1">
+                ${categories.map(c => `
+                  <button 
+                    onclick="setEtfCategory('${c.id}')" 
+                    class="px-2.5 py-1 text-[11px] font-semibold rounded-lg transition-all ${CURRENT_ETF_CATEGORY === c.id ? 'bg-brand-red text-white shadow-xs' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}"
+                  >
+                    ${c.name}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Tabla de ETFs -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="border-b border-slate-200 bg-slate-50/75 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    <th class="py-3 px-4">Símbolo & Emisor</th>
+                    <th class="py-3 px-4">Nombre / Enfoque</th>
+                    <th class="py-3 px-3 text-right">Precio USD</th>
+                    <th class="py-3 px-3 text-right">Precio CEDEAR</th>
+                    <th class="py-3 px-3 text-right">CCL Implícito</th>
+                    <th class="py-3 px-3 text-right">Var 1D</th>
+                    <th class="py-3 px-3 text-right">Var 1M</th>
+                    <th class="py-3 px-3 text-right">Var 12M</th>
+                    <th class="py-3 px-3 text-right">Expense Ratio</th>
+                    <th class="py-3 px-4 text-center">Categoría</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 bg-white font-medium">
+                  ${filteredItems.map(item => `
+                    <tr class="hover:bg-slate-50/80 transition-colors cursor-pointer" onclick="openChartModal('${item.id}')">
+                      <td class="py-2.5 px-4">
+                        <div class="flex items-center space-x-2">
+                          <span class="font-bold text-slate-900 text-xs">${item.symbol}</span>
+                          <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-600 border border-slate-200">${item.emisor || 'ETF'}</span>
+                        </div>
+                      </td>
+                      <td class="py-2.5 px-4">
+                        <p class="font-semibold text-slate-800 line-clamp-1">${item.nombre}</p>
+                        <p class="text-[10px] text-slate-400 line-clamp-1">${item.subtitulo || ''}</p>
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-900">
+                        ${item.precio !== null && item.precio !== undefined ? formatNumber(item.precio, 2) : '-'}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold text-slate-700">
+                        ${item.precio_ars !== null && item.precio_ars !== undefined ? `<span class="text-slate-900">${formatNumber(item.precio_ars, 2)}</span> <span class="text-[10px] text-slate-400">ARS</span>` : '-'}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold ${item.ccl_implicito ? 'text-indigo-600' : 'text-slate-400'}">
+                        ${item.ccl_implicito !== null && item.ccl_implicito !== undefined ? formatNumber(item.ccl_implicito, 2) : '-'}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold ${getVarColorClass(item.var_1d)}">
+                        ${formatVar(item.var_1d)}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold ${getVarColorClass(item.var_1m)}">
+                        ${formatVar(item.var_1m)}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono font-semibold ${getVarColorClass(item.var_12m)}">
+                        ${formatVar(item.var_12m)}
+                      </td>
+                      <td class="py-2.5 px-3 text-right font-mono text-slate-600">
+                        ${item.expense_ratio_pct !== null && item.expense_ratio_pct !== undefined ? item.expense_ratio_pct.toFixed(2) + '%' : '-'}
+                      </td>
+                      <td class="py-2.5 px-4 text-center">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-brand-red border border-rose-100">
+                          ${item.categoria || 'ETF'}
+                        </span>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="px-5 py-3 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+              <span class="text-[11px]">Cotizaciones en USD provistas por Wall Street (NYSE/Nasdaq/CBOE) y CEDEARs en ARS provistos por BYMA.</span>
+              <button onclick="exportSectionToCSV('etfs')" class="text-brand-red font-semibold hover:underline inline-flex items-center space-x-1">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                <span>Descargar planilla completa en CSV</span>
+              </button>
+            </div>
+          </section>
+        `;
+      }
+
+
