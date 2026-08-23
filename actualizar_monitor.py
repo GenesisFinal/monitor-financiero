@@ -1304,6 +1304,11 @@ def main():
     master_dataset['secciones']['criptomonedas'] = {'titulo': 'Criptomonedas', 'icono': 'cpu', 'items': crypto_items}
     all_series.update(crypto_series)
     
+    # 14. ETFs (Exchange Traded Funds)
+    etfs_items, etfs_series = fetch_etfs()
+    master_dataset['secciones']['etfs'] = {'titulo': 'ETFs (Exchange Traded Funds)', 'icono': 'pie-chart', 'items': etfs_items}
+    all_series.update(etfs_series)
+    
     # Curvas de rendimiento
     curvas = build_yield_curves(bonos_items, ons_items)
     
