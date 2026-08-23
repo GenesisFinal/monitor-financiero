@@ -824,44 +824,40 @@ def fetch_ons():
         series_map[o['id']] = hist_series
     return results, series_map
 
-def fit_yield_curve_regression(points):
-    """Calcula la curva de regresión no lineal TIR = f(Duration) sobre los pares reales (Duration, TIR)."""
-    valid = [p for p in points if p.get('duration') is not None and p.get('tir') is not None and p['duration'] > 0 and p['tir'] > 0]
+def fit_yield_curve_regression(points, is_lecaps=False):
+    """Calcula la curva de regresión no lineal TIR = f(X) sobre los pares reales (X, TIR)."""
+    valid = []
+    for p in points:
+        x_val = p.get('dias_vto') if is_lecaps else p.get('duration')
+        y_val = p.get('tir')
+        if x_val is not None and y_val is not None and x_val > 0 and y_val > 0:
+            valid.append((float(x_val), float(y_val)))
+    
     if len(valid) < 2:
         return []
         
-    x_vals = np.array([p['duration'] for p in valid])
-    y_vals = np.array([p['tir'] for p in valid])
+    valid.sort(key=lambda item: item[0])
+    x_sorted = np.array([item[0] for item in valid])
+    y_sorted = np.array([item[1] for item in valid])
     
-    # Ordenar por duration
-    sort_idx = np.argsort(x_vals)
-    x_sorted = x_vals[sort_idx]
-    y_sorted = y_vals[sort_idx]
-    
-    min_x = max(0.05, float(x_sorted[0]))
+    min_x = float(x_sorted[0])
     max_x = float(x_sorted[-1])
     
-    # Modelo de regresión polinómica cuadrática o logarítmica
-    try:
-        if len(x_sorted) >= 3:
-            # Polinomio de grado 2
-            coeffs = np.polyfit(x_sorted, y_sorted, deg=2)
-            poly_fn = np.poly1d(coeffs)
-            
-            # Generar 40 puntos densos a lo largo de la curva para un trazado suave
-            x_dense = np.linspace(min_x, max_x, 40)
-            y_dense = poly_fn(x_dense)
+    # Generar 40 puntos densos para un trazado perfectamente fluido
+    x_dense = np.linspace(min_x, max_x, 40)
+    bandwidth = max(0.08 if not is_lecaps else 10.0, (max_x - min_x) * 0.30)
+    
+    y_dense = []
+    for xd in x_dense:
+        weights = np.exp(-0.5 * ((x_sorted - xd) / bandwidth) ** 2)
+        if np.sum(weights) > 0:
+            yd = np.sum(weights * y_sorted) / np.sum(weights)
         else:
-            # Regresión lineal
-            coeffs = np.polyfit(x_sorted, y_sorted, deg=1)
-            poly_fn = np.poly1d(coeffs)
-            x_dense = np.linspace(min_x, max_x, 20)
-            y_dense = poly_fn(x_dense)
-            
-        curve_line = [{'x': round(float(xd), 2), 'y': round(float(yd), 2)} for xd, yd in zip(x_dense, y_dense)]
-        return curve_line
-    except Exception as e:
-        return [{'x': round(float(xd), 2), 'y': round(float(yd), 2)} for xd, yd in zip(x_sorted, y_sorted)]
+            yd = np.interp(xd, x_sorted, y_sorted)
+        y_dense.append(round(float(yd), 2))
+        
+    curve_line = [{'x': round(float(xd), 2), 'y': float(yd)} for xd, yd in zip(x_dense, y_dense)]
+    return curve_line
 
 def build_yield_curves(bonos_list, ons_list):
     print('-> Generando Curvas de Rendimiento (TIR vs Duration con Regresión Spline/Polinómica)...')
@@ -932,9 +928,13 @@ def build_yield_curves(bonos_list, ons_list):
     # Construir paquete final con puntos y regresión ajustada
     final_curves = {}
     for cat_k, pts in raw_buckets.items():
-        # Ordenar por duration
-        valid_pts = sorted([p for p in pts if p.get('duration') is not None and p['duration'] > 0], key=lambda x: x['duration'])
-        regression_line = fit_yield_curve_regression(valid_pts)
+        is_lecaps = (cat_k == 'lecaps')
+        if is_lecaps:
+            valid_pts = sorted([p for p in pts if p.get('dias_vto') is not None and p['dias_vto'] > 0], key=lambda x: x['dias_vto'])
+        else:
+            valid_pts = sorted([p for p in pts if p.get('duration') is not None and p['duration'] > 0], key=lambda x: x['duration'])
+            
+        regression_line = fit_yield_curve_regression(valid_pts, is_lecaps=is_lecaps)
         
         final_curves[cat_k] = {
             'puntos': valid_pts,
