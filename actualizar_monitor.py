@@ -1087,6 +1087,143 @@ def enrich_cedears_ccl(cedears_list, acciones_mundiales_list):
             c['ccl_implicito'] = None
     return cedears_list
 
+
+CONFIG_ETFS = [
+    # Índices Globales & Broad Market
+    {'symbol': 'SPY', 'name': 'SPDR S&P 500 ETF Trust', 'id': 'ETF_SPY', 'categoria': 'Índices Globales', 'emisor': 'State Street', 'subtitulo': 'Replica el índice S&P 500 (500 mayores empresas de EE.UU.)', 'cedear_sym': 'SPY.BA', 'ratio': 20, 'expense_ratio': 0.09},
+    {'symbol': 'QQQ', 'name': 'Invesco QQQ Trust (Nasdaq 100)', 'id': 'ETF_QQQ', 'categoria': 'Índices Globales', 'emisor': 'Invesco', 'subtitulo': '100 empresas no financieras líderes de Nasdaq', 'cedear_sym': 'QQQ.BA', 'ratio': 20, 'expense_ratio': 0.20},
+    {'symbol': 'DIA', 'name': 'SPDR Dow Jones Industrial Average', 'id': 'ETF_DIA', 'categoria': 'Índices Globales', 'emisor': 'State Street', 'subtitulo': '30 empresas industriales y blue chips de EE.UU.', 'cedear_sym': 'DIA.BA', 'ratio': 20, 'expense_ratio': 0.16},
+    {'symbol': 'IWM', 'name': 'iShares Russell 2000 ETF', 'id': 'ETF_IWM', 'categoria': 'Índices Globales', 'emisor': 'BlackRock', 'subtitulo': '2.000 empresas de pequeña capitalización (Small Caps)', 'cedear_sym': 'IWM.BA', 'ratio': 10, 'expense_ratio': 0.19},
+    {'symbol': 'VT', 'name': 'Vanguard Total World Stock ETF', 'id': 'ETF_VT', 'categoria': 'Índices Globales', 'emisor': 'Vanguard', 'subtitulo': 'Más de 9.000 acciones globales en mercados desarrollados y emergentes', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.07},
+    {'symbol': 'ACWI', 'name': 'iShares MSCI ACWI ETF', 'id': 'ETF_ACWI', 'categoria': 'Índices Globales', 'emisor': 'BlackRock', 'subtitulo': 'Índice global All Country World Index', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.32},
+
+    # Sectores de EE.UU. (Select Sector SPDRs)
+    {'symbol': 'XLK', 'name': 'Technology Select Sector SPDR', 'id': 'ETF_XLK', 'categoria': 'Sectores EE.UU.', 'emisor': 'State Street', 'subtitulo': 'Sector Tecnológico (Apple, Microsoft, NVIDIA, etc.)', 'cedear_sym': 'XLK.BA', 'ratio': 5, 'expense_ratio': 0.09},
+    {'symbol': 'XLF', 'name': 'Financial Select Sector SPDR', 'id': 'ETF_XLF', 'categoria': 'Sectores EE.UU.', 'emisor': 'State Street', 'subtitulo': 'Sector Financiero, Bancos y Aseguradoras', 'cedear_sym': 'XLF.BA', 'ratio': 2, 'expense_ratio': 0.09},
+    {'symbol': 'XLE', 'name': 'Energy Select Sector SPDR', 'id': 'ETF_XLE', 'categoria': 'Sectores EE.UU.', 'emisor': 'State Street', 'subtitulo': 'Sector Energía, Petróleo y Gas (Exxon, Chevron)', 'cedear_sym': 'XLE.BA', 'ratio': 2, 'expense_ratio': 0.09},
+    {'symbol': 'XLV', 'name': 'Health Care Select Sector SPDR', 'id': 'ETF_XLV', 'categoria': 'Sectores EE.UU.', 'emisor': 'State Street', 'subtitulo': 'Sector Salud, Farmacéuticas y Biotecnología', 'cedear_sym': 'XLV.BA', 'ratio': 5, 'expense_ratio': 0.09},
+    {'symbol': 'XLI', 'name': 'Industrial Select Sector SPDR', 'id': 'ETF_XLI', 'categoria': 'Sectores EE.UU.', 'emisor': 'State Street', 'subtitulo': 'Sector Industrial, Aeroespacial y Transporte', 'cedear_sym': 'XLI.BA', 'ratio': 5, 'expense_ratio': 0.09},
+    {'symbol': 'XLC', 'name': 'Communication Services SPDR', 'id': 'ETF_XLC', 'categoria': 'Sectores EE.UU.', 'emisor': 'State Street', 'subtitulo': 'Sector Servicios de Comunicación (Meta, Alphabet, Netflix)', 'cedear_sym': 'XLC.BA', 'ratio': 5, 'expense_ratio': 0.09},
+    {'symbol': 'XLY', 'name': 'Consumer Discretionary SPDR', 'id': 'ETF_XLY', 'categoria': 'Sectores EE.UU.', 'emisor': 'State Street', 'subtitulo': 'Sector Consumo Discrecional (Amazon, Tesla, Home Depot)', 'cedear_sym': 'XLY.BA', 'ratio': 5, 'expense_ratio': 0.09},
+    {'symbol': 'XLP', 'name': 'Consumer Staples Select SPDR', 'id': 'ETF_XLP', 'categoria': 'Sectores EE.UU.', 'emisor': 'State Street', 'subtitulo': 'Sector Consumo Masivo / Defensivo (P&G, Walmart, Coca-Cola)', 'cedear_sym': 'XLP.BA', 'ratio': 2, 'expense_ratio': 0.09},
+    {'symbol': 'XLU', 'name': 'Utilities Select Sector SPDR', 'id': 'ETF_XLU', 'categoria': 'Sectores EE.UU.', 'emisor': 'State Street', 'subtitulo': 'Sector Servicios Públicos / Electricidad y Agua', 'cedear_sym': 'XLU.BA', 'ratio': 2, 'expense_ratio': 0.09},
+    {'symbol': 'XLRE', 'name': 'Real Estate Select Sector SPDR', 'id': 'ETF_XLRE', 'categoria': 'Sectores EE.UU.', 'emisor': 'State Street', 'subtitulo': 'Sector Bienes Raíces y Fideicomisos Inmobiliarios (REITs)', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.09},
+
+    # Regionales & Emergentes
+    {'symbol': 'EEM', 'name': 'iShares MSCI Emerging Markets', 'id': 'ETF_EEM', 'categoria': 'Regionales & Emergentes', 'emisor': 'BlackRock', 'subtitulo': 'Mercados Emergentes globales (Asia, Latam, EMEA)', 'cedear_sym': 'EEM.BA', 'ratio': 5, 'expense_ratio': 0.69},
+    {'symbol': 'EWZ', 'name': 'iShares MSCI Brazil ETF', 'id': 'ETF_EWZ', 'categoria': 'Regionales & Emergentes', 'emisor': 'BlackRock', 'subtitulo': 'Acciones líderes de Brasil (Petrobras, Vale, Itaú)', 'cedear_sym': 'EWZ.BA', 'ratio': 2, 'expense_ratio': 0.58},
+    {'symbol': 'FXI', 'name': 'iShares China Large-Cap ETF', 'id': 'ETF_FXI', 'categoria': 'Regionales & Emergentes', 'emisor': 'BlackRock', 'subtitulo': '50 mayores empresas chinas que cotizan en Hong Kong', 'cedear_sym': 'FXI.BA', 'ratio': 5, 'expense_ratio': 0.74},
+    {'symbol': 'KWEB', 'name': 'KraneShares CSI China Internet', 'id': 'ETF_KWEB', 'categoria': 'Regionales & Emergentes', 'emisor': 'KraneShares', 'subtitulo': 'Empresas de Internet y Comercio Electrónico de China (Tencent, Alibaba)', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.69},
+    {'symbol': 'ARGT', 'name': 'Global X MSCI Argentina ETF', 'id': 'ETF_ARGT', 'categoria': 'Regionales & Emergentes', 'emisor': 'Global X', 'subtitulo': 'Índice MSCI Argentina (MercadoLibre, YPF, Galicia, Pampa)', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.59},
+    {'symbol': 'EWJ', 'name': 'iShares MSCI Japan ETF', 'id': 'ETF_EWJ', 'categoria': 'Regionales & Emergentes', 'emisor': 'BlackRock', 'subtitulo': 'Mercado accionario japonés (Toyota, Sony, Mitsubishi)', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.50},
+    {'symbol': 'VGK', 'name': 'Vanguard FTSE Europe ETF', 'id': 'ETF_VGK', 'categoria': 'Regionales & Emergentes', 'emisor': 'Vanguard', 'subtitulo': 'Acciones líderes de las principales economías europeas', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.11},
+
+    # Renta Fija & Bonos Globales
+    {'symbol': 'TLT', 'name': 'iShares 20+ Year Treasury Bond', 'id': 'ETF_TLT', 'categoria': 'Renta Fija Global', 'emisor': 'BlackRock', 'subtitulo': 'Bonos del Tesoro de EE.UU. a largo plazo (20+ años)', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.15},
+    {'symbol': 'IEF', 'name': 'iShares 7-10 Year Treasury', 'id': 'ETF_IEF', 'categoria': 'Renta Fija Global', 'emisor': 'BlackRock', 'subtitulo': 'Bonos del Tesoro de EE.UU. a mediano plazo (7-10 años)', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.15},
+    {'symbol': 'SHY', 'name': 'iShares 1-3 Year Treasury', 'id': 'ETF_SHY', 'categoria': 'Renta Fija Global', 'emisor': 'BlackRock', 'subtitulo': 'Letras y Bonos del Tesoro de EE.UU. a corto plazo (1-3 años)', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.15},
+    {'symbol': 'HYG', 'name': 'iShares High Yield Corporate Bond', 'id': 'ETF_HYG', 'categoria': 'Renta Fija Global', 'emisor': 'BlackRock', 'subtitulo': 'Bonos corporativos de alto rendimiento / High Yield', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.49},
+    {'symbol': 'LQD', 'name': 'iShares Investment Grade Bond', 'id': 'ETF_LQD', 'categoria': 'Renta Fija Global', 'emisor': 'BlackRock', 'subtitulo': 'Bonos corporativos grado de inversión de EE.UU.', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.14},
+    {'symbol': 'EMB', 'name': 'iShares J.P. Morgan USD Emrg Bond', 'id': 'ETF_EMB', 'categoria': 'Renta Fija Global', 'emisor': 'BlackRock', 'subtitulo': 'Bonos soberanos de mercados emergentes emitidos en USD', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.39},
+
+    # Commodities & Temáticos
+    {'symbol': 'GLD', 'name': 'SPDR Gold Shares', 'id': 'ETF_GLD', 'categoria': 'Commodities & Temáticos', 'emisor': 'State Street', 'subtitulo': 'Fondo respaldado 100% por lingotes de oro físico', 'cedear_sym': 'GLD.BA', 'ratio': 24, 'expense_ratio': 0.40},
+    {'symbol': 'SLV', 'name': 'iShares Silver Trust', 'id': 'ETF_SLV', 'categoria': 'Commodities & Temáticos', 'emisor': 'BlackRock', 'subtitulo': 'Fondo respaldado por plata física en bóvedas', 'cedear_sym': 'SLV.BA', 'ratio': 2, 'expense_ratio': 0.50},
+    {'symbol': 'USO', 'name': 'United States Oil Fund', 'id': 'ETF_USO', 'categoria': 'Commodities & Temáticos', 'emisor': 'USCF Investments', 'subtitulo': 'Futuros de petróleo crudo ligero dulce (WTI)', 'cedear_sym': 'USO.BA', 'ratio': 4, 'expense_ratio': 0.81},
+    {'symbol': 'SMH', 'name': 'VanEck Semiconductor ETF', 'id': 'ETF_SMH', 'categoria': 'Commodities & Temáticos', 'emisor': 'VanEck', 'subtitulo': '25 mayores fabricantes mundiales de microchips y semiconductores', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.35},
+    {'symbol': 'LIT', 'name': 'Global X Lithium & Battery Tech', 'id': 'ETF_LIT', 'categoria': 'Commodities & Temáticos', 'emisor': 'Global X', 'subtitulo': 'Minería de litio, refinación y fabricantes de baterías de VE', 'cedear_sym': None, 'ratio': None, 'expense_ratio': 0.75},
+    {'symbol': 'ARKK', 'name': 'ARK Innovation ETF', 'id': 'ETF_ARKK', 'categoria': 'Commodities & Temáticos', 'emisor': 'ARK Invest (Cathie Wood)', 'subtitulo': 'Empresas de innovación disruptiva y tecnología exponencial', 'cedear_sym': 'ARKK.BA', 'ratio': 10, 'expense_ratio': 0.75},
+    {'symbol': 'IBIT', 'name': 'iShares Bitcoin Trust', 'id': 'ETF_IBIT', 'categoria': 'Commodities & Temáticos', 'emisor': 'BlackRock', 'subtitulo': 'ETF Spot de Bitcoin custodiado por Coinbase', 'cedear_sym': 'IBIT.BA', 'ratio': 5, 'expense_ratio': 0.25}
+]
+
+def fetch_etfs():
+    print('-> Obteniendo ETFs Globales y CEDEARs de ETFs vía Yahoo Finance...')
+    all_symbols = [e['symbol'] for e in CONFIG_ETFS]
+    cedear_symbols = [e['cedear_sym'] for e in CONFIG_ETFS if e.get('cedear_sym')]
+    
+    try:
+        df_etfs = yf.download(all_symbols, period="1y", interval="1d", group_by='ticker', progress=False)
+    except Exception as e:
+        print(f"   [Error downloading ETFs]: {e}")
+        df_etfs = pd.DataFrame()
+        
+    try:
+        df_cedears = yf.download(cedear_symbols, period="5d", interval="1d", group_by='ticker', progress=False) if cedear_symbols else pd.DataFrame()
+    except Exception as e:
+        print(f"   [Error downloading CEDEARs]: {e}")
+        df_cedears = pd.DataFrame()
+        
+    items = []
+    series_map = {}
+    
+    for conf in CONFIG_ETFS:
+        sym = conf['symbol']
+        ced_sym = conf.get('cedear_sym')
+        ratio = conf.get('ratio')
+        
+        df_sub = None
+        if isinstance(df_etfs.columns, pd.MultiIndex):
+            if sym in df_etfs.columns.levels[0]:
+                df_sub = df_etfs[sym].dropna(subset=['Close'])
+        else:
+            df_sub = df_etfs.dropna(subset=['Close'])
+            
+        precio_usd = None
+        var_1d = None
+        var_1m = None
+        var_12m = None
+        
+        if df_sub is not None and not df_sub.empty:
+            closes = df_sub['Close'].tolist()
+            dates = df_sub.index.strftime('%Y-%m-%d').tolist()
+            precio_usd = round(float(closes[-1]), 2)
+            
+            if len(closes) >= 2:
+                var_1d = round(((closes[-1] - closes[-2]) / closes[-2]) * 100, 2)
+            if len(closes) >= 22:
+                var_1m = round(((closes[-1] - closes[-22]) / closes[-22]) * 100, 2)
+            if len(closes) >= 250:
+                var_12m = round(((closes[-1] - closes[0]) / closes[0]) * 100, 2)
+                
+            series_map[conf['id']] = [
+                {'time': d, 'close': round(float(c), 2), 'open': round(float(c), 2), 'high': round(float(c), 2), 'low': round(float(c), 2), 'volume': 0}
+                for d, c in zip(dates, closes)
+            ]
+            
+        precio_ars = None
+        ccl_impl = None
+        if ced_sym and isinstance(df_cedears.columns, pd.MultiIndex) and ced_sym in df_cedears.columns.levels[0]:
+            df_ced = df_cedears[ced_sym].dropna(subset=['Close'])
+            if not df_ced.empty:
+                precio_ars = round(float(df_ced['Close'].iloc[-1]), 2)
+                if precio_usd and ratio and precio_usd > 0:
+                    ccl_impl = round((precio_ars * ratio) / precio_usd, 2)
+                    
+        item = {
+            'id': conf['id'],
+            'symbol': sym,
+            'nombre': conf['name'],
+            'categoria': conf['categoria'],
+            'subtitulo': conf['subtitulo'],
+            'emisor': conf['emisor'],
+            'moneda': 'USD',
+            'precio': precio_usd,
+            'precio_ars': precio_ars,
+            'cedear_symbol': ced_sym,
+            'ratio': ratio,
+            'ccl_implicito': ccl_impl,
+            'var_1d': var_1d,
+            'var_1m': var_1m,
+            'var_12m': var_12m,
+            'expense_ratio_pct': conf.get('expense_ratio'),
+            'dividend_yield_pct': None,
+            'patrimonio_formateado': None
+        }
+        items.append(item)
+        
+    print(f"   [ETFs] {len(items)} fondos cotizados procesados exitosamente.")
+    return items, series_map
+
 def main():
     print(f'=== INICIANDO ACTUALIZACION DEL MONITOR FINANCIERO [{NOW_STR}] ===')
     start_time = time.time()
