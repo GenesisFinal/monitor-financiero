@@ -355,13 +355,16 @@ def fetch_fci():
         
         is_usd = (f.get('moneda') == 'USD' or 'dólar' in nom_lower or 'dolar' in nom_lower or 'usd' in nom_lower or 'u$s' in nom_lower)
         
+        exp = f.get('exp') or {}
+        cer_exposure = exp.get('cer', 0) if isinstance(exp, dict) else 0
+
         if 'pyme' in nom_lower or 'infraestructura' in nom_lower or 'factoring' in nom_lower:
             cat_buckets['Pymes & Infraestructura'].append(f)
         elif is_usd or tipo == 'USD':
             cat_buckets['Renta Fija Dólar HARD (USD)'].append(f)
         elif 'linked' in nom_lower or 'cobertura' in nom_lower or tipo == 'DL':
             cat_buckets['Dólar Linked'].append(f)
-        elif 'cer' in nom_lower or 'inflacion' in nom_lower or 'inflación' in nom_lower:
+        elif 'cer' in nom_lower or 'boncer' in nom_lower or 'inflacion' in nom_lower or 'inflación' in nom_lower or 'uva' in nom_lower or 'retorno real' in nom_lower or cer_exposure >= 20:
             cat_buckets['Renta Fija CER (Inflación)'].append(f)
         elif tipo == 'MM' or 'dinero' in nom_lower or 'money market' in nom_lower or f.get('plazoLiq') == 0:
             cat_buckets['Money Market (T+0)'].append(f)
@@ -484,7 +487,7 @@ def fetch_fci():
                 'vcp': round(vcp_hoy, 4 if is_usd else 2),
                 'fecha_cierre': fecha_vcp,
                 'patrimonio': pat,
-                'patrimonio_formateado': f"{'US$' if is_usd else '$'} {pat/1e9:,.1f} B",
+                'patrimonio_formateado': f"{pat/1e9:,.1f} B" if pat >= 1e9 else f"{pat/1e6:,.1f} M",
                 'moneda': moneda,
                 'subtitulo': f'{gestora} • Pat: {"US$" if is_usd else "$"} {pat/1e9:.1f} B • {plazo_text}',
                 'var_1d': v1d,
