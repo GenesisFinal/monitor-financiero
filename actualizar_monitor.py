@@ -1483,9 +1483,24 @@ def main():
     with open('master_dataset.json', 'w', encoding='utf-8') as f:
         json.dump(master_dataset, f, ensure_ascii=False, indent=2)
         
-    print('-> Guardando series_historicas.json...')
+    print('-> Compactando y guardando series_historicas.json...')
+    compact_series = {}
+    for k, pts in all_series.items():
+        c_pts = []
+        for pt in pts:
+            d = pt.get('date') or pt.get('time')
+            c = round(float(pt.get('close', 0)), 2)
+            o = round(float(pt.get('open', c)), 2) if 'open' in pt else c
+            h = round(float(pt.get('high', c)), 2) if 'high' in pt else c
+            l = round(float(pt.get('low', c)), 2) if 'low' in pt else c
+            if o == c and h == c and l == c:
+                c_pts.append({'date': d, 'close': c})
+            else:
+                c_pts.append({'date': d, 'close': c, 'open': o, 'high': h, 'low': l})
+        compact_series[k] = c_pts
+
     with open('series_historicas.json', 'w', encoding='utf-8') as f:
-        json.dump(all_series, f, ensure_ascii=False)
+        json.dump(compact_series, f, ensure_ascii=False, separators=(',', ':'))
         
     print('-> Guardando curvas_rendimiento.json...')
     with open('curvas_rendimiento.json', 'w', encoding='utf-8') as f:
