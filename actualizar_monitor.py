@@ -1181,20 +1181,194 @@ def fetch_acciones_mundiales_screeners():
     return items, series_map, active_eq_ids
 
 
-CONFIG_CEDEARS = [
-    {'symbol': 'SPY.BA', 'name': 'CEDEAR SPDR S&P 500 (SPY)', 'id': 'CEDEAR_SPY', 'currency': 'ARS', 'subyacente_sym': 'SPY', 'ratio': 20, 'subtitulo': 'ETF S&P 500 (Ratio 20:1)'},
-    {'symbol': 'QQQ.BA', 'name': 'CEDEAR Invesco QQQ (QQQ)', 'id': 'CEDEAR_QQQ', 'currency': 'ARS', 'subyacente_sym': 'QQQ', 'ratio': 20, 'subtitulo': 'ETF Nasdaq 100 (Ratio 20:1)'},
-    {'symbol': 'AAPL.BA', 'name': 'CEDEAR Apple (AAPL)', 'id': 'CEDEAR_AAPL', 'currency': 'ARS', 'subyacente_sym': 'AAPL', 'ratio': 10, 'subtitulo': 'Apple Inc. (Ratio 10:1)'},
-    {'symbol': 'NVDA.BA', 'name': 'CEDEAR NVIDIA (NVDA)', 'id': 'CEDEAR_NVDA', 'currency': 'ARS', 'subyacente_sym': 'NVDA', 'ratio': 24, 'subtitulo': 'NVIDIA Corp. (Ratio 24:1)'},
-    {'symbol': 'MELI.BA', 'name': 'CEDEAR MercadoLibre (MELI)', 'id': 'CEDEAR_MELI', 'currency': 'ARS', 'subyacente_sym': 'MELI', 'ratio': 60, 'subtitulo': 'MercadoLibre Inc. (Ratio 60:1)'},
-    {'symbol': 'TSLA.BA', 'name': 'CEDEAR Tesla (TSLA)', 'id': 'CEDEAR_TSLA', 'currency': 'ARS', 'subyacente_sym': 'TSLA', 'ratio': 15, 'subtitulo': 'Tesla Inc. (Ratio 15:1)'},
-    {'symbol': 'KO.BA', 'name': 'CEDEAR Coca-Cola (KO)', 'id': 'CEDEAR_KO', 'currency': 'ARS', 'subyacente_sym': 'KO', 'ratio': 5, 'subtitulo': 'The Coca-Cola Co. (Ratio 5:1)'},
-    {'symbol': 'MSFT.BA', 'name': 'CEDEAR Microsoft (MSFT)', 'id': 'CEDEAR_MSFT', 'currency': 'ARS', 'subyacente_sym': 'MSFT', 'ratio': 10, 'subtitulo': 'Microsoft Corp. (Ratio 10:1)'},
-    {'symbol': 'GOOGL.BA', 'name': 'CEDEAR Alphabet (GOOGL)', 'id': 'CEDEAR_GOOGL', 'currency': 'ARS', 'subyacente_sym': 'GOOGL', 'ratio': 29, 'subtitulo': 'Alphabet Inc. (Ratio 29:1)'},
-    {'symbol': 'AMZN.BA', 'name': 'CEDEAR Amazon (AMZN)', 'id': 'CEDEAR_AMZN', 'currency': 'ARS', 'subyacente_sym': 'AMZN', 'ratio': 144, 'subtitulo': 'Amazon.com (Ratio 144:1)'},
-    {'symbol': 'VIST.BA', 'name': 'CEDEAR Vista Energy (VIST)', 'id': 'CEDEAR_VIST', 'currency': 'ARS', 'subyacente_sym': 'VIST', 'ratio': 5, 'subtitulo': 'Vista Energy (Ratio 5:1)'},
-    {'symbol': 'BBD.BA', 'name': 'CEDEAR Banco Bradesco (BBD)', 'id': 'CEDEAR_BBD', 'currency': 'ARS', 'subyacente_sym': 'BBD', 'ratio': 1, 'subtitulo': 'Banco Bradesco (Ratio 1:1)'},
+CEDEARS_MASTER_CONFIG = [
+    # Blue Chips & Tech Leaders
+    {'sym': 'AAPL.BA', 'us': 'AAPL', 'name': 'Apple Inc.', 'ratio': 20, 'sector': 'Tecnología & Hardware', 'is_blue_chip': True},
+    {'sym': 'NVDA.BA', 'us': 'NVDA', 'name': 'NVIDIA Corporation', 'ratio': 24, 'sector': 'Semiconductores & IA', 'is_blue_chip': True},
+    {'sym': 'MSFT.BA', 'us': 'MSFT', 'name': 'Microsoft Corp.', 'ratio': 30, 'sector': 'Software & Cloud', 'is_blue_chip': True},
+    {'sym': 'AMZN.BA', 'us': 'AMZN', 'name': 'Amazon.com Inc.', 'ratio': 144, 'sector': 'E-Commerce & AWS', 'is_blue_chip': True},
+    {'sym': 'GOOGL.BA', 'us': 'GOOGL', 'name': 'Alphabet Inc. (Google)', 'ratio': 58, 'sector': 'Servicios de Internet', 'is_blue_chip': True},
+    {'sym': 'META.BA', 'us': 'META', 'name': 'Meta Platforms', 'ratio': 24, 'sector': 'Redes Sociales & Metaverso', 'is_blue_chip': True},
+    {'sym': 'TSLA.BA', 'us': 'TSLA', 'name': 'Tesla Inc.', 'ratio': 15, 'sector': 'Vehículos Eléctricos & IA', 'is_blue_chip': True},
+    {'sym': 'MELI.BA', 'us': 'MELI', 'name': 'MercadoLibre Inc.', 'ratio': 120, 'sector': 'E-Commerce & Fintech Latam', 'is_blue_chip': True},
+    {'sym': 'KO.BA', 'us': 'KO', 'name': 'The Coca-Cola Co.', 'ratio': 5, 'sector': 'Consumo Masivo / Bebidas', 'is_blue_chip': True},
+    {'sym': 'WMT.BA', 'us': 'WMT', 'name': 'Walmart Inc.', 'ratio': 18, 'sector': 'Retail & Consumo Masivo', 'is_blue_chip': True},
+    {'sym': 'JNJ.BA', 'us': 'JNJ', 'name': 'Johnson & Johnson', 'ratio': 15, 'sector': 'Farmacéutica & Salud', 'is_blue_chip': True},
+    {'sym': 'PG.BA', 'us': 'PG', 'name': 'Procter & Gamble', 'ratio': 15, 'sector': 'Consumo Masivo / Hogar', 'is_blue_chip': True},
+    {'sym': 'JPM.BA', 'us': 'JPM', 'name': 'JPMorgan Chase & Co.', 'ratio': 15, 'sector': 'Banca & Servicios Financieros', 'is_blue_chip': True},
+    {'sym': 'V.BA', 'us': 'V', 'name': 'Visa Inc.', 'ratio': 18, 'sector': 'Fintech & Pagos Digitales', 'is_blue_chip': True},
+    
+    # Regionales / Latam / Commodities / Crecimiento
+    {'sym': 'VIST.BA', 'us': 'VIST', 'name': 'Vista Energy', 'ratio': 3, 'sector': 'Petróleo & Gas / Vaca Muerta'},
+    {'sym': 'BBD.BA', 'us': 'BBD', 'name': 'Banco Bradesco', 'ratio': 1, 'sector': 'Banca & Finanzas / Brasil'},
+    {'sym': 'PBR.BA', 'us': 'PBR', 'name': 'Petrobras', 'ratio': 1, 'sector': 'Petróleo & Gas / Brasil'},
+    {'sym': 'VALE.BA', 'us': 'VALE', 'name': 'Vale S.A.', 'ratio': 2, 'sector': 'Minería & Hierro / Brasil'},
+    {'sym': 'AMD.BA', 'us': 'AMD', 'name': 'Advanced Micro Devices', 'ratio': 10, 'sector': 'Semiconductores & GPUs'},
+    {'sym': 'INTC.BA', 'us': 'INTC', 'name': 'Intel Corporation', 'ratio': 5, 'sector': 'Semiconductores'},
+    {'sym': 'GLOB.BA', 'us': 'GLOB', 'name': 'Globant S.A.', 'ratio': 18, 'sector': 'Tecnología & Software Latam'},
+    {'sym': 'BIOX.BA', 'us': 'BIOX', 'name': 'Bioceres Crop Solutions', 'ratio': 1, 'sector': 'Biotecnología Agro'},
+    {'sym': 'MCD.BA', 'us': 'MCD', 'name': "McDonald's Corp.", 'ratio': 24, 'sector': 'Restaurantes & Franquicias'},
+    {'sym': 'XOM.BA', 'us': 'XOM', 'name': 'Exxon Mobil Corp.', 'ratio': 10, 'sector': 'Petróleo & Gas'},
+    {'sym': 'CVX.BA', 'us': 'CVX', 'name': 'Chevron Corp.', 'ratio': 16, 'sector': 'Petróleo & Gas'},
+    {'sym': 'BABA.BA', 'us': 'BABA', 'name': 'Alibaba Group', 'ratio': 9, 'sector': 'E-Commerce / China'},
+    {'sym': 'NIO.BA', 'us': 'NIO', 'name': 'NIO Inc.', 'ratio': 4, 'sector': 'Vehículos Eléctricos / China'},
+    {'sym': 'PYPL.BA', 'us': 'PYPL', 'name': 'PayPal Holdings', 'ratio': 8, 'sector': 'Fintech & Pagos'},
+    {'sym': 'NFLX.BA', 'us': 'NFLX', 'name': 'Netflix Inc.', 'ratio': 48, 'sector': 'Streaming & Medios'},
+    {'sym': 'QCOM.BA', 'us': 'QCOM', 'name': 'Qualcomm Inc.', 'ratio': 11, 'sector': 'Semiconductores & Conectividad'},
+    {'sym': 'CRM.BA', 'us': 'CRM', 'name': 'Salesforce Inc.', 'ratio': 18, 'sector': 'Software CRM & Cloud'},
+    {'sym': 'ORCL.BA', 'us': 'ORCL', 'name': 'Oracle Corp.', 'ratio': 3, 'sector': 'Bases de Datos & Cloud'},
+    {'sym': 'COIN.BA', 'us': 'COIN', 'name': 'Coinbase Global', 'ratio': 27, 'sector': 'Cripto Exchange'},
+    {'sym': 'MSTR.BA', 'us': 'MSTR', 'name': 'MicroStrategy', 'ratio': 20, 'sector': 'Software & Bitcoin'},
+    {'sym': 'PLTR.BA', 'us': 'PLTR', 'name': 'Palantir Technologies', 'ratio': 3, 'sector': 'Big Data & IA'},
+    {'sym': 'ARM.BA', 'us': 'ARM', 'name': 'Arm Holdings', 'ratio': 27, 'sector': 'Arquitectura de Chips'},
+    {'sym': 'UBER.BA', 'us': 'UBER', 'name': 'Uber Technologies', 'ratio': 2, 'sector': 'Movilidad & Delivery'},
+    {'sym': 'SHOP.BA', 'us': 'SHOP', 'name': 'Shopify Inc.', 'ratio': 108, 'sector': 'E-Commerce Platforms'},
+    {'sym': 'NVO.BA', 'us': 'NVO', 'name': 'Novo Nordisk', 'ratio': 7, 'sector': 'Farmacéutica / Dinamarca'},
+    {'sym': 'AZN.BA', 'us': 'AZN', 'name': 'AstraZeneca', 'ratio': 4, 'sector': 'Farmacéutica / Reino Unido'},
+    {'sym': 'SHEL.BA', 'us': 'SHEL', 'name': 'Shell plc', 'ratio': 2, 'sector': 'Energía & Gas / Europa'},
+    {'sym': 'HMY.BA', 'us': 'HMY', 'name': 'Harmony Gold Mining', 'ratio': 1, 'sector': 'Minería de Oro'},
+    {'sym': 'PAAS.BA', 'us': 'PAAS', 'name': 'Pan American Silver', 'ratio': 3, 'sector': 'Minería de Plata'}
 ]
+
+def fetch_cedears_screeners():
+    print('-> Obteniendo CEDEARs mediante Screeners de BYMA (Volumen, Subas, Bajas, 52W y Blue Chips)...')
+    
+    ba_syms = [c['sym'] for c in CEDEARS_MASTER_CONFIG]
+    us_syms = list(set([c['us'] for c in CEDEARS_MASTER_CONFIG]))
+    
+    try:
+        df_ba = yf.download(ba_syms, period="5y", interval="1d", group_by='ticker', auto_adjust=True, progress=False)
+    except Exception as e:
+        print(f"   [Error downloading CEDEARs BYMA]: {e}")
+        df_ba = pd.DataFrame()
+        
+    try:
+        df_us = yf.download(us_syms, period="5d", interval="1d", group_by='ticker', auto_adjust=True, progress=False)
+    except Exception as e:
+        print(f"   [Error downloading US underlying]: {e}")
+        df_us = pd.DataFrame()
+        
+    cedear_metrics = {}
+    series_map = {}
+    
+    for c in CEDEARS_MASTER_CONFIG:
+        sym = c['sym']
+        us_s = c['us']
+        ratio = c['ratio']
+        
+        df_sub = None
+        if isinstance(df_ba.columns, pd.MultiIndex):
+            if sym in df_ba.columns.levels[0]:
+                df_sub = df_ba[sym].dropna(subset=['Close'])
+        else:
+            df_sub = df_ba.dropna(subset=['Close'])
+            
+        if df_sub is not None and not df_sub.empty and len(df_sub) >= 2:
+            closes = df_sub['Close'].tolist()
+            dates = df_sub.index.strftime('%Y-%m-%d').tolist()
+            last_ars = round(float(closes[-1]), 2)
+            prev_ars = round(float(closes[-2]), 2)
+            var_1d = round(((last_ars - prev_ars) / prev_ars) * 100, 2)
+            var_1m = round(((last_ars - closes[-22]) / closes[-22]) * 100, 2) if len(closes) >= 22 else None
+            var_12m = round(((last_ars - closes[-250]) / closes[-250]) * 100, 2) if len(closes) >= 250 else round(((last_ars - closes[0]) / closes[0]) * 100, 2)
+            
+            vol = float(df_sub['Volume'].iloc[-1]) if 'Volume' in df_sub and not df_sub['Volume'].empty else 0.0
+            
+            # US Price & CCL
+            last_usd = None
+            ccl = None
+            if isinstance(df_us.columns, pd.MultiIndex) and us_s in df_us.columns.levels[0]:
+                df_us_sub = df_us[us_s].dropna(subset=['Close'])
+                if not df_us_sub.empty:
+                    last_usd = round(float(df_us_sub['Close'].iloc[-1]), 2)
+                    if last_usd > 0 and ratio > 0:
+                        ccl = round((last_ars * ratio) / last_usd, 2)
+                        
+            series_pts = [
+                {'date': d, 'time': d, 'close': round(float(cl), 2), 'open': round(float(cl), 2), 'high': round(float(cl), 2), 'low': round(float(cl), 2), 'volume': 0}
+                for d, cl in zip(dates, closes)
+            ]
+            
+            clean_sym = sym.replace('.BA', '')
+            ced_id = f"CEDEAR_{clean_sym}"
+            
+            cedear_metrics[clean_sym] = {
+                'id': ced_id,
+                'symbol': clean_sym,
+                'symbol_ba': sym,
+                'us_symbol': us_s,
+                'name': c['name'],
+                'sector': c['sector'],
+                'ratio': ratio,
+                'precio_ars': last_ars,
+                'precio_usd': last_usd,
+                'ccl': ccl,
+                'var_1d': var_1d,
+                'var_1m': var_1m,
+                'var_12m': var_12m,
+                'volumen': vol,
+                'is_blue_chip': c.get('is_blue_chip', False),
+                'series': series_pts
+            }
+            
+    # Rankings
+    all_metrics = list(cedear_metrics.values())
+    top_15_vol = [s['symbol'] for s in sorted(all_metrics, key=lambda x: x['volumen'], reverse=True)[:15]]
+    top_10_gainers_1d = [s['symbol'] for s in sorted(all_metrics, key=lambda x: x['var_1d'], reverse=True)[:10]]
+    top_10_losers_1d = [s['symbol'] for s in sorted(all_metrics, key=lambda x: x['var_1d'])[:10]]
+    
+    valid_52w = [s for s in all_metrics if s['var_12m'] is not None]
+    top_10_gainers_52w = [s['symbol'] for s in sorted(valid_52w, key=lambda x: x['var_12m'], reverse=True)[:10]]
+    top_10_losers_52w = [s['symbol'] for s in sorted(valid_52w, key=lambda x: x['var_12m'])[:10]]
+    blue_chips_syms = [s['symbol'] for s in all_metrics if s['is_blue_chip']][:10]
+    
+    selected_syms = list(dict.fromkeys(
+        top_15_vol + top_10_gainers_1d + top_10_losers_1d + 
+        top_10_gainers_52w + top_10_losers_52w + blue_chips_syms
+    ))
+    
+    items = []
+    active_ced_ids = set()
+    
+    for sym in selected_syms:
+        m = cedear_metrics.get(sym)
+        if not m: continue
+        
+        active_ced_ids.add(m['id'])
+        
+        tags = []
+        if sym in top_15_vol: tags.append('top_volume')
+        if sym in top_10_gainers_1d: tags.append('day_gainers')
+        if sym in top_10_losers_1d: tags.append('day_losers')
+        if sym in top_10_gainers_52w: tags.append('gainers_52w')
+        if sym in top_10_losers_52w: tags.append('losers_52w')
+        if sym in blue_chips_syms: tags.append('blue_chips')
+        
+        item = {
+            'id': m['id'],
+            'symbol': m['symbol'],
+            'us_symbol': m['us_symbol'],
+            'nombre': m['name'],
+            'categoria': 'CEDEARs',
+            'subtitulo': m['sector'],
+            'moneda': 'ARS',
+            'precio': m['precio_ars'],
+            'precio_usd': m['precio_usd'],
+            'ratio': m['ratio'],
+            'ccl_implicito': m['ccl'],
+            'var_1d': m['var_1d'],
+            'var_1m': m['var_1m'],
+            'var_12m': m['var_12m'],
+            'volumen': m['volumen'],
+            'tags': tags,
+            'tipo': 'market_asset'
+        }
+        items.append(item)
+        series_map[m['id']] = m['series']
+        
+    print(f"   [CEDEARs] {len(items)} CEDEARs procesados en los 6 rankings.")
+    return items, series_map, active_ced_ids
+
 
 CONFIG_ACCIONES_ARG = [
     {'symbol': 'GGAL.BA', 'name': 'Grupo Financiero Galicia (GGAL)', 'id': 'ARG_GGAL', 'currency': 'ARS', 'subtitulo': 'Sector Financiero / Bancario'},
@@ -1455,10 +1629,15 @@ def main():
             
     all_series.update(acc_mund_series)
     
-    # 11. CEDEARs
-    cedears_items, cedears_series = fetch_yahoo_market_group(CONFIG_CEDEARS, 'CEDEARs')
-    cedears_items = enrich_cedears_ccl(cedears_items, acc_mund_items)
+    # 11. CEDEARs mediante Screeners de BYMA (Volumen, Subas, Bajas, 52W y Blue Chips)
+    cedears_items, cedears_series, active_ced_ids = fetch_cedears_screeners()
     master_dataset['secciones']['cedears'] = {'titulo': 'CEDEARs', 'icono': 'shuffle', 'items': cedears_items}
+    
+    # Purgar series históricas obsoletas de CEDEARs que ya no califican hoy
+    for k in list(all_series.keys()):
+        if k.startswith('CEDEAR_') and k not in active_ced_ids:
+            del all_series[k]
+            
     all_series.update(cedears_series)
     
     # 12. Acciones Argentinas (Merval)
