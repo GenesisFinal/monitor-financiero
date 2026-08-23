@@ -1657,34 +1657,39 @@
       const rawSeries = HISTORICAL_SERIES[CURRENT_MODAL_ASSET.id] || [];
       if (!rawSeries.length) return;
 
-      // Para FCI mostramos directamente todos los puntos reales acumulados en la base
+      // Normalizar puntos de serie histórica (date / time / fecha)
       const isFCIAsset = (CURRENT_MODAL_ASSET.categoria === 'Fondos Comunes de Inversión');
       let series = rawSeries;
       if (!isFCIAsset) {
         const now = new Date();
         const cutoffTime = now.getTime() - (CURRENT_TIMEFRAME * 30.4375 * 24 * 60 * 60 * 1000);
-        series = rawSeries.filter(pt => new Date(pt.date).getTime() >= cutoffTime);
+        series = rawSeries.filter(pt => {
+          const dStr = pt.date || pt.time || pt.fecha;
+          return dStr ? (new Date(dStr).getTime() >= cutoffTime) : true;
+        });
         if (series.length < 2) {
           series = rawSeries.slice(-Math.min(rawSeries.length, CURRENT_TIMEFRAME * 22));
         }
       }
 
-      const ctx = document.getElementById('modalMainCanvas').getContext('2d');
+      const canvasEl = document.getElementById('modalMainCanvas');
+      if (!canvasEl) return;
+      const ctx = canvasEl.getContext('2d');
       if (modalChartInstance) {
         modalChartInstance.destroy();
         modalChartInstance = null;
       }
 
-      const labels = series.map(x => x.date);
+      const labels = series.map(x => x.date || x.time || x.fecha || '');
       const datasets = [];
 
-      let chartData = series.map(x => x.close);
+      let chartData = series.map(x => parseFloat(x.close) || 0);
       const isFCI = (CURRENT_MODAL_ASSET.categoria === 'Fondos Comunes de Inversión');
       let chartLabel = isFCI ? 'Valor de Cuotaparte (VCP)' : 'Precio de Cierre';
       let chartColor = '#e20039';
       let chartBg = 'rgba(226, 0, 57, 0.06)';
 
-      const isBond = (CURRENT_MODAL_ASSET.categoria === 'Bonos - LECAPs' || CURRENT_MODAL_ASSET.categoria === 'Obligaciones Negociables (ONs)' || CURRENT_MODAL_ASSET.paridad_pct !== undefined || CURRENT_MODAL_ASSET.tir !== undefined);
+      const isBond = (CURRENT_MODAL_ASSET.categoria === 'Bonos - LECAPs' || CURRENT_MODAL_ASSET.categoria === 'Obligaciones Negociables (ONs)' || CURRENT_MODAL_ASSET.paridad_pct !== undefined || CURRENT_MODAL_ASSET.tir !== undefined || (CURRENT_MODAL_ASSET.id && CURRENT_MODAL_ASSET.id.startsWith('BONO_')));
       const isMetricParidad = isBond && CURRENT_BOND_METRIC === 'paridad';
       const isMetricTIR = isBond && CURRENT_BOND_METRIC === 'tir';
 
@@ -1693,7 +1698,7 @@
         chartColor = '#0284c7';
         chartBg = 'rgba(2, 132, 199, 0.06)';
         const baseParidad = parseFloat(CURRENT_MODAL_ASSET.paridad_pct) || 88.0;
-        const lastPx = parseFloat(CURRENT_MODAL_ASSET.precio) || (series.length ? series[series.length-1].close : 1);
+        const lastPx = parseFloat(CURRENT_MODAL_ASSET.precio) || (series.length ? parseFloat(series[series.length-1].close) : 1);
         chartData = series.map(x => {
           const px = parseFloat(x.close) || lastPx;
           return roundNumber(baseParidad * (px / Math.max(0.001, lastPx)), 2);
@@ -1703,7 +1708,7 @@
         chartColor = '#10b981';
         chartBg = 'rgba(16, 185, 129, 0.06)';
         const baseTir = parseFloat(CURRENT_MODAL_ASSET.tir) || 8.5;
-        const lastPx = parseFloat(CURRENT_MODAL_ASSET.precio) || (series.length ? series[series.length-1].close : 1);
+        const lastPx = parseFloat(CURRENT_MODAL_ASSET.precio) || (series.length ? parseFloat(series[series.length-1].close) : 1);
         const dur = parseFloat(CURRENT_MODAL_ASSET.duration) || 1.5;
         chartData = series.map(x => {
           const px = parseFloat(x.close) || lastPx;
@@ -1796,7 +1801,7 @@
               grid: { color: '#f1f5f9' },
               ticks: {
                 font: { family: 'JetBrains Mono', size: 10 },
-                callback: function(v) { return formatNumber(v); }
+                callback: function(v) { return formatNumber(v) + (isMetricParidad || isMetricTIR ? '%' : ''); }
               }
             }
           }
