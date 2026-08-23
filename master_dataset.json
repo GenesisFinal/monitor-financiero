@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-08-23 10:35:01",
+  "ultima_actualizacion": "2026-08-23 11:37:41",
   "fecha_cierre": "2026-08-23",
   "secciones": {
     "dolar": {
@@ -111,11 +111,11 @@
           "nombre": "Dólar Cripto (USDT)",
           "categoria": "Dólar",
           "tipo": "single_price",
-          "precio": 1590.8,
-          "compra": 1582.85,
-          "venta": 1590.8,
+          "precio": 1590.2,
+          "compra": 1582.25,
+          "venta": 1590.2,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-08-23 10:35:01",
+          "fecha_actualizacion": "2026-08-23 11:37:41",
           "var_1d": 0.15,
           "var_1m": 3.2,
           "var_12m": 42.5
@@ -499,17 +499,17 @@
           "categoria": "Divisas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 5.1366,
+          "precio": 5.1435,
           "open": 5.1366,
-          "high": 5.1366,
+          "high": 5.1435,
           "low": 5.1366,
           "moneda": "BRL",
           "cap_bursatil": null,
           "ma50": 5.14,
           "ma200": 5.2,
-          "var_1d": -1.09,
-          "var_1m": 0.78,
-          "var_12m": -5.55,
+          "var_1d": -0.96,
+          "var_1m": 0.91,
+          "var_12m": -5.42,
           "subtitulo": "Brasil"
         },
         {
@@ -585,11 +585,11 @@
           "low": 40.195,
           "moneda": "UYU",
           "cap_bursatil": null,
-          "ma50": 39.68,
+          "ma50": 39.67,
           "ma200": 39.16,
-          "var_1d": 1.58,
-          "var_1m": 1.51,
-          "var_12m": 1.9,
+          "var_1d": 1.52,
+          "var_1m": 1.19,
+          "var_12m": 1.84,
           "subtitulo": "Uruguay"
         }
       ]
@@ -8506,8 +8506,8 @@
           "ley": "Nueva York",
           "vto": "2026-07-28",
           "var_1d": 0.13,
-          "var_1m": 0.61,
-          "var_12m": 3.99
+          "var_1m": 1.16,
+          "var_12m": 3.67
         },
         {
           "id": "ON_YCA6O",
@@ -8524,9 +8524,9 @@
           "cupon": 8.75,
           "ley": "Nueva York",
           "vto": "2029-06-30",
-          "var_1d": 0.31,
-          "var_1m": 0.96,
-          "var_12m": 3.38
+          "var_1d": -0.03,
+          "var_1m": 0.91,
+          "var_12m": 3.79
         },
         {
           "id": "ON_PAMPO",
@@ -8543,9 +8543,9 @@
           "cupon": 9.12,
           "ley": "Nueva York",
           "vto": "2026-12-08",
-          "var_1d": -0.16,
-          "var_1m": 0.93,
-          "var_12m": 3.51
+          "var_1d": 0.06,
+          "var_1m": 0.85,
+          "var_12m": 4.11
         },
         {
           "id": "ON_PAE27",
@@ -8562,9 +8562,9 @@
           "cupon": 8.5,
           "ley": "Nueva York",
           "vto": "2027-04-30",
-          "var_1d": -0.46,
-          "var_1m": 1.26,
-          "var_12m": 3.57
+          "var_1d": 0.16,
+          "var_1m": 0.71,
+          "var_12m": 3.89
         },
         {
           "id": "ON_TLC1O",
@@ -8581,9 +8581,9 @@
           "cupon": 8.0,
           "ley": "Nueva York",
           "vto": "2026-08-18",
-          "var_1d": -0.37,
-          "var_1m": 1.14,
-          "var_12m": 3.63
+          "var_1d": 0.0,
+          "var_1m": 1.0,
+          "var_12m": 3.52
         },
         {
           "id": "ON_VSC3O",
@@ -8600,9 +8600,9 @@
           "cupon": 7.95,
           "ley": "Nueva York",
           "vto": "2027-06-20",
-          "var_1d": -0.1,
-          "var_1m": 0.83,
-          "var_12m": 3.6
+          "var_1d": 0.02,
+          "var_1m": 1.08,
+          "var_12m": 3.82
         },
         {
           "id": "ON_CS38O",
@@ -8619,9 +8619,9 @@
           "cupon": 8.0,
           "ley": "Argentina",
           "vto": "2026-03-12",
-          "var_1d": -0.05,
-          "var_1m": 1.16,
-          "var_12m": 3.95
+          "var_1d": -0.1,
+          "var_1m": 0.77,
+          "var_12m": 3.47
         },
         {
           "id": "ON_CP17O",
@@ -8638,215 +8638,896 @@
           "cupon": 8.75,
           "ley": "Nueva York",
           "vto": "2027-09-02",
-          "var_1d": 0.37,
-          "var_1m": 0.95,
-          "var_12m": 3.84
+          "var_1d": -0.2,
+          "var_1m": 1.13,
+          "var_12m": 3.89
         }
       ]
     },
     "acciones_mundiales": {
       "titulo": "Acciones Mundiales",
-      "icono": "activity",
+      "icono": "globe",
       "items": [
+        {
+          "id": "EQ_NVDA",
+          "symbol": "NVDA",
+          "nombre": "NVIDIA Corporation",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Semiconductores & IA",
+          "moneda": "USD",
+          "precio": 214.72,
+          "var_1d": -0.98,
+          "var_1m": 2.85,
+          "var_12m": 19.57,
+          "volumen": 98545600.0,
+          "tags": [
+            "top_mcap",
+            "most_actives"
+          ],
+          "tipo": "market_asset"
+        },
         {
           "id": "EQ_AAPL",
           "symbol": "AAPL",
           "nombre": "Apple Inc.",
           "categoria": "Acciones Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 309.35,
-          "open": 312.05,
-          "high": 312.38,
-          "low": 307.01,
+          "subtitulo": "Tecnología & Hardware",
           "moneda": "USD",
-          "cap_bursatil": 4514709504000,
-          "ma50": 309.99,
-          "ma200": 281.03,
+          "precio": 309.35,
           "var_1d": -0.63,
           "var_1m": -3.74,
-          "var_12m": 37.38,
-          "subtitulo": "Tecnología / Consumer Electronics"
+          "var_12m": 36.68,
+          "volumen": 46768100.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
         },
         {
           "id": "EQ_MSFT",
           "symbol": "MSFT",
-          "nombre": "Microsoft Corp.",
+          "nombre": "Microsoft Corporation",
           "categoria": "Acciones Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 483.24,
-          "open": 479.88,
-          "high": 486.36,
-          "low": 478.53,
+          "subtitulo": "Software & Cloud",
           "moneda": "USD",
-          "cap_bursatil": 3588320657408,
-          "ma50": 419.09,
-          "ma200": 429.43,
+          "precio": 483.24,
           "var_1d": 0.43,
           "var_1m": 26.88,
-          "var_12m": -3.5,
-          "subtitulo": "Tecnología / Software y Cloud"
-        },
-        {
-          "id": "EQ_NVDA",
-          "symbol": "NVDA",
-          "nombre": "NVIDIA Corp.",
-          "categoria": "Acciones Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 214.72,
-          "open": 218.42,
-          "high": 218.74,
-          "low": 214.5,
-          "moneda": "USD",
-          "cap_bursatil": 5200733011968,
-          "ma50": 207.58,
-          "ma200": 195.12,
-          "var_1d": -0.98,
-          "var_1m": 2.85,
-          "var_12m": 22.58,
-          "subtitulo": "Semiconductores e Inteligencia Artificial"
-        },
-        {
-          "id": "EQ_GOOGL",
-          "symbol": "GOOGL",
-          "nombre": "Alphabet Inc. (Google)",
-          "categoria": "Acciones Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 344.82,
-          "open": 342.58,
-          "high": 346.2,
-          "low": 340.4,
-          "moneda": "USD",
-          "cap_bursatil": 4217126256640,
-          "ma50": 351.77,
-          "ma200": 332.77,
-          "var_1d": 1.22,
-          "var_1m": 8.54,
-          "var_12m": 73.49,
-          "subtitulo": "Servicios de Internet y Publicidad"
+          "var_12m": -3.38,
+          "volumen": 22489200.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
         },
         {
           "id": "EQ_AMZN",
           "symbol": "AMZN",
           "nombre": "Amazon.com Inc.",
           "categoria": "Acciones Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 258.63,
-          "open": 260.74,
-          "high": 261.09,
-          "low": 257.04,
+          "subtitulo": "E-Commerce & AWS",
           "moneda": "USD",
-          "cap_bursatil": 2789664358400,
-          "ma50": 249.73,
-          "ma200": 238.33,
+          "precio": 258.63,
           "var_1d": -0.57,
           "var_1m": 10.69,
-          "var_12m": 15.56,
-          "subtitulo": "E-Commerce y Cloud Computing (AWS)"
+          "var_12m": 13.46,
+          "volumen": 35652900.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_GOOGL",
+          "symbol": "GOOGL",
+          "nombre": "Alphabet Inc. (Google)",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Servicios de Internet",
+          "moneda": "USD",
+          "precio": 344.82,
+          "var_1d": 1.22,
+          "var_1m": 8.54,
+          "var_12m": 65.86,
+          "volumen": 20803700.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
         },
         {
           "id": "EQ_META",
           "symbol": "META",
           "nombre": "Meta Platforms (Facebook)",
           "categoria": "Acciones Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 549.9,
-          "open": 546.89,
-          "high": 553.87,
-          "low": 543.23,
+          "subtitulo": "Redes Sociales & Metaverso",
           "moneda": "USD",
-          "cap_bursatil": 1400873680896,
-          "ma50": 592.97,
-          "ma200": 623.36,
+          "precio": 549.9,
           "var_1d": 0.75,
           "var_1m": -9.27,
-          "var_12m": -26.22,
-          "subtitulo": "Redes Sociales y Metaverso"
+          "var_12m": -26.76,
+          "volumen": 13663800.0,
+          "tags": [
+            "top_mcap",
+            "losers_52w"
+          ],
+          "tipo": "market_asset"
         },
         {
           "id": "EQ_TSLA",
           "symbol": "TSLA",
           "nombre": "Tesla Inc.",
           "categoria": "Acciones Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 362.86,
-          "open": 349.88,
-          "high": 366.5,
-          "low": 346.9,
+          "subtitulo": "Vehículos Eléctricos & IA",
           "moneda": "USD",
-          "cap_bursatil": 1433132728320,
-          "ma50": 365.86,
-          "ma200": 403.32,
+          "precio": 362.86,
           "var_1d": 5.14,
           "var_1m": 13.5,
-          "var_12m": 12.03,
-          "subtitulo": "Vehículos Eléctricos y Energía"
+          "var_12m": 4.69,
+          "volumen": 58979800.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
         },
         {
           "id": "EQ_BRK_B",
           "symbol": "BRK-B",
-          "nombre": "Berkshire Hathaway B",
+          "nombre": "Berkshire Hathaway",
           "categoria": "Acciones Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 495.82,
-          "open": 498.5,
-          "high": 501.0,
-          "low": 495.68,
+          "subtitulo": "Holding Financiero & Seguros",
           "moneda": "USD",
-          "cap_bursatil": 1061406703616,
-          "ma50": 500.39,
-          "ma200": 492.12,
+          "precio": 495.82,
           "var_1d": -0.21,
           "var_1m": 1.01,
-          "var_12m": 1.46,
-          "subtitulo": "Holding Financiero y Seguros"
+          "var_12m": 1.98,
+          "volumen": 4625000.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
         },
         {
-          "id": "EQ_LLY",
-          "symbol": "LLY",
-          "nombre": "Eli Lilly and Company",
+          "id": "EQ_TSM",
+          "symbol": "TSM",
+          "nombre": "Taiwan Semiconductor (TSMC)",
           "categoria": "Acciones Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 1255.4,
-          "open": 1232.0,
-          "high": 1271.22,
-          "low": 1230.0,
+          "subtitulo": "Semiconductores / Fundición",
           "moneda": "USD",
-          "cap_bursatil": 1119492112384,
-          "ma50": 1178.11,
-          "ma200": 1049.74,
-          "var_1d": 0.88,
-          "var_1m": 6.01,
-          "var_12m": 79.08,
-          "subtitulo": "Farmacéutica y Biotecnología"
+          "precio": 418.95,
+          "var_1d": 0.71,
+          "var_1m": 0.81,
+          "var_12m": 79.8,
+          "volumen": 8936800.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
         },
         {
           "id": "EQ_AVGO",
           "symbol": "AVGO",
           "nombre": "Broadcom Inc.",
           "categoria": "Acciones Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 368.45,
-          "open": 370.69,
-          "high": 375.13,
-          "low": 365.05,
+          "subtitulo": "Semiconductores & Redes",
           "moneda": "USD",
-          "cap_bursatil": 1752930451456,
-          "ma50": 388.43,
-          "ma200": 368.3,
+          "precio": 368.45,
           "var_1d": 1.21,
           "var_1m": -6.12,
-          "var_12m": 27.47,
-          "subtitulo": "Semiconductores y Conectividad"
+          "var_12m": 26.14,
+          "volumen": 19000300.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_JPM",
+          "symbol": "JPM",
+          "nombre": "JPMorgan Chase & Co.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Banca & Servicios Financieros",
+          "moneda": "USD",
+          "precio": 351.58,
+          "var_1d": 0.01,
+          "var_1m": 0.48,
+          "var_12m": 21.5,
+          "volumen": 8073400.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_V",
+          "symbol": "V",
+          "nombre": "Visa Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Pagos Digitales & Fintech",
+          "moneda": "USD",
+          "precio": 371.04,
+          "var_1d": 1.45,
+          "var_1m": 5.73,
+          "var_12m": 7.22,
+          "volumen": 6667100.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_LLY",
+          "symbol": "LLY",
+          "nombre": "Eli Lilly and Company",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Farmacéutica & Salud",
+          "moneda": "USD",
+          "precio": 1255.4,
+          "var_1d": 0.88,
+          "var_1m": 6.01,
+          "var_12m": 81.69,
+          "volumen": 2497300.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_UNH",
+          "symbol": "UNH",
+          "nombre": "UnitedHealth Group",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Seguros & Atención Médica",
+          "moneda": "USD",
+          "precio": 390.11,
+          "var_1d": 1.37,
+          "var_1m": -7.9,
+          "var_12m": 31.39,
+          "volumen": 4879600.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_WMT",
+          "symbol": "WMT",
+          "nombre": "Walmart Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Consumo Masivo & Retail",
+          "moneda": "USD",
+          "precio": 103.7,
+          "var_1d": 0.11,
+          "var_1m": -4.11,
+          "var_12m": 8.85,
+          "volumen": 44377000.0,
+          "tags": [
+            "top_mcap"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_SLS",
+          "symbol": "SLS",
+          "nombre": "SELLAS Life Sciences Group, Inc",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 15.46,
+          "var_1d": 15.37,
+          "var_1m": 25.28,
+          "var_12m": 709.42,
+          "volumen": 15204000.0,
+          "tags": [
+            "day_gainers",
+            "gainers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_IQMX",
+          "symbol": "IQMX",
+          "nombre": "IQM Quantum Computers Oyj",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 11.11,
+          "var_1d": 14.77,
+          "var_1m": 3.16,
+          "var_12m": 9.78,
+          "volumen": 2664500.0,
+          "tags": [
+            "day_gainers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_HOOD",
+          "symbol": "HOOD",
+          "nombre": "Robinhood Markets, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 108.13,
+          "var_1d": 13.7,
+          "var_1m": 6.45,
+          "var_12m": 0.18,
+          "volumen": 50228800.0,
+          "tags": [
+            "day_gainers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_USAR",
+          "symbol": "USAR",
+          "nombre": "USA Rare Earth, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 19.26,
+          "var_1d": 12.57,
+          "var_1m": 27.21,
+          "var_12m": 21.67,
+          "volumen": 21535100.0,
+          "tags": [
+            "day_gainers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_INFQ",
+          "symbol": "INFQ",
+          "nombre": "Infleqtion, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 14.12,
+          "var_1d": 12.51,
+          "var_1m": 45.72,
+          "var_12m": -9.43,
+          "volumen": 15337700.0,
+          "tags": [
+            "day_gainers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_DK",
+          "symbol": "DK",
+          "nombre": "Delek US Holdings, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 71.47,
+          "var_1d": 11.6,
+          "var_1m": 10.74,
+          "var_12m": 182.56,
+          "volumen": 3416000.0,
+          "tags": [
+            "day_gainers",
+            "gainers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_RGTI",
+          "symbol": "RGTI",
+          "nombre": "Rigetti Computing, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 17.91,
+          "var_1d": 11.45,
+          "var_1m": 20.61,
+          "var_12m": 23.77,
+          "volumen": 23061400.0,
+          "tags": [
+            "day_gainers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_VIRT",
+          "symbol": "VIRT",
+          "nombre": "Virtu Financial, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 67.93,
+          "var_1d": 11.01,
+          "var_1m": 13.84,
+          "var_12m": 63.97,
+          "volumen": 3022000.0,
+          "tags": [
+            "day_gainers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_CVI",
+          "symbol": "CVI",
+          "nombre": "CVR Energy Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 39.51,
+          "var_1d": 10.27,
+          "var_1m": 16.79,
+          "var_12m": 39.89,
+          "volumen": 1771100.0,
+          "tags": [
+            "day_gainers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_FSLY",
+          "symbol": "FSLY",
+          "nombre": "Fastly, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 24.95,
+          "var_1d": 9.86,
+          "var_1m": 28.41,
+          "var_12m": 244.14,
+          "volumen": 5646600.0,
+          "tags": [
+            "day_gainers",
+            "gainers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_SA",
+          "symbol": "SA",
+          "nombre": "Seabridge Gold, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 30.16,
+          "var_1d": -9.35,
+          "var_1m": 15.87,
+          "var_12m": 84.46,
+          "volumen": 3024400.0,
+          "tags": [
+            "day_losers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_HUT",
+          "symbol": "HUT",
+          "nombre": "Hut 8 Corp.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 80.86,
+          "var_1d": -8.79,
+          "var_1m": -31.28,
+          "var_12m": 244.82,
+          "volumen": 9561500.0,
+          "tags": [
+            "day_losers",
+            "gainers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_TLX",
+          "symbol": "TLX",
+          "nombre": "Telix Pharmaceuticals Limited",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 11.33,
+          "var_1d": -8.78,
+          "var_1m": 7.8,
+          "var_12m": -7.13,
+          "volumen": 299600.0,
+          "tags": [
+            "day_losers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_BABA",
+          "symbol": "BABA",
+          "nombre": "Alibaba Group Holding Limited",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 119.34,
+          "var_1d": -8.57,
+          "var_1m": 4.63,
+          "var_12m": -3.15,
+          "volumen": 32402400.0,
+          "tags": [
+            "day_losers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_CIFR",
+          "symbol": "CIFR",
+          "nombre": "Cipher Digital Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 15.77,
+          "var_1d": -8.37,
+          "var_1m": -38.92,
+          "var_12m": 137.5,
+          "volumen": 55134300.0,
+          "tags": [
+            "day_losers",
+            "gainers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_IOVA",
+          "symbol": "IOVA",
+          "nombre": "Iovance Biotherapeutics, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 8.29,
+          "var_1d": -7.79,
+          "var_1m": 61.6,
+          "var_12m": 227.67,
+          "volumen": 27765400.0,
+          "tags": [
+            "day_losers",
+            "gainers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_BKV",
+          "symbol": "BKV",
+          "nombre": "BKV Corporation",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 24.2,
+          "var_1d": -7.28,
+          "var_1m": -6.92,
+          "var_12m": 7.56,
+          "volumen": 1831600.0,
+          "tags": [
+            "day_losers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_CBRS",
+          "symbol": "CBRS",
+          "nombre": "Cerebras Systems Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 196.13,
+          "var_1d": -6.54,
+          "var_1m": -10.85,
+          "var_12m": -36.95,
+          "volumen": 7755700.0,
+          "tags": [
+            "day_losers",
+            "losers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_MRVL",
+          "symbol": "MRVL",
+          "nombre": "Marvell Technology, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 237.04,
+          "var_1d": -5.57,
+          "var_1m": 13.24,
+          "var_12m": 225.63,
+          "volumen": 25467400.0,
+          "tags": [
+            "day_losers",
+            "gainers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_RIOT",
+          "symbol": "RIOT",
+          "nombre": "Riot Platforms, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 19.83,
+          "var_1d": -5.48,
+          "var_1m": -16.89,
+          "var_12m": 49.32,
+          "volumen": 27329400.0,
+          "tags": [
+            "day_losers"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_MRNA",
+          "symbol": "MRNA",
+          "nombre": "Moderna, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 145.13,
+          "var_1d": 8.86,
+          "var_1m": 154.52,
+          "var_12m": 472.5,
+          "volumen": 87147300.0,
+          "tags": [
+            "gainers_52w",
+            "most_actives"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_INTC",
+          "symbol": "INTC",
+          "nombre": "Intel Corporation",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 90.07,
+          "var_1d": -2.24,
+          "var_1m": -10.14,
+          "var_12m": 266.88,
+          "volumen": 91192100.0,
+          "tags": [
+            "gainers_52w",
+            "most_actives"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_AMD",
+          "symbol": "AMD",
+          "nombre": "AMD",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 473.25,
+          "var_1d": 0.81,
+          "var_1m": -12.31,
+          "var_12m": 189.7,
+          "volumen": 14310600.0,
+          "tags": [
+            "gainers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_MSTR",
+          "symbol": "MSTR",
+          "nombre": "MSTR",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 119.25,
+          "var_1d": 6.1,
+          "var_1m": 27.36,
+          "var_12m": -65.25,
+          "volumen": 45839500.0,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_COIN",
+          "symbol": "COIN",
+          "nombre": "COIN",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 186.49,
+          "var_1d": 8.2,
+          "var_1m": 15.72,
+          "var_12m": -39.06,
+          "volumen": 22583200.0,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_ORCL",
+          "symbol": "ORCL",
+          "nombre": "ORCL",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 146.47,
+          "var_1d": 3.1,
+          "var_1m": 22.02,
+          "var_12m": -37.07,
+          "volumen": 19567800.0,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_NFLX",
+          "symbol": "NFLX",
+          "nombre": "NFLX",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 79.59,
+          "var_1d": -0.69,
+          "var_1m": 15.53,
+          "var_12m": -34.66,
+          "volumen": 23619600.0,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_SOFI",
+          "symbol": "SOFI",
+          "nombre": "SoFi Technologies, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 18.91,
+          "var_1d": 5.52,
+          "var_1m": 13.57,
+          "var_12m": -27.69,
+          "volumen": 62131000.0,
+          "tags": [
+            "losers_52w",
+            "most_actives"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_MARA",
+          "symbol": "MARA",
+          "nombre": "MARA Holdings, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 11.26,
+          "var_1d": 0.99,
+          "var_1m": -11.82,
+          "var_12m": -26.88,
+          "volumen": 103811900.0,
+          "tags": [
+            "losers_52w",
+            "most_actives"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_ADBE",
+          "symbol": "ADBE",
+          "nombre": "ADBE",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 275.3,
+          "var_1d": 1.13,
+          "var_1m": 29.75,
+          "var_12m": -24.2,
+          "volumen": 4343100.0,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_SAP",
+          "symbol": "SAP",
+          "nombre": "SAP",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 218.68,
+          "var_1d": 0.73,
+          "var_1m": 49.39,
+          "var_12m": -17.68,
+          "volumen": 1580300.0,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_WBS",
+          "symbol": "WBS",
+          "nombre": "Webster Financial Corporation",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 77.57,
+          "var_1d": 0.0,
+          "var_1m": 0.62,
+          "var_12m": 43.77,
+          "volumen": 0.0,
+          "tags": [
+            "most_actives"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_SPCX",
+          "symbol": "SPCX",
+          "nombre": "Space Exploration Technologies ",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 136.97,
+          "var_1d": 2.22,
+          "var_1m": 15.84,
+          "var_12m": -14.9,
+          "volumen": 78553200.0,
+          "tags": [
+            "most_actives"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_AAL",
+          "symbol": "AAL",
+          "nombre": "American Airlines Group, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 13.82,
+          "var_1d": 2.22,
+          "var_1m": 1.92,
+          "var_12m": 6.31,
+          "volumen": 68444300.0,
+          "tags": [
+            "most_actives"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_NU",
+          "symbol": "NU",
+          "nombre": "Nu Holdings Ltd.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 14.58,
+          "var_1d": 2.6,
+          "var_1m": 2.75,
+          "var_12m": 2.46,
+          "volumen": 66022200.0,
+          "tags": [
+            "most_actives"
+          ],
+          "tipo": "market_asset"
+        },
+        {
+          "id": "EQ_ONDS",
+          "symbol": "ONDS",
+          "nombre": "Ondas Inc",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "EQUITY",
+          "moneda": "USD",
+          "precio": 8.71,
+          "var_1d": 3.94,
+          "var_1m": 9.84,
+          "var_12m": 79.59,
+          "volumen": 58556100.0,
+          "tags": [
+            "most_actives"
+          ],
+          "tipo": "market_asset"
         }
       ]
     },
@@ -9421,17 +10102,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 77469.6016,
+          "precio": 77435.4297,
           "open": 77076.0625,
           "high": 77673.5078,
           "low": 75884.6797,
           "moneda": "USD",
-          "cap_bursatil": 1553854103552,
-          "ma50": 65148.97,
-          "ma200": 69003.09,
-          "var_1d": 0.5,
-          "var_1m": 22.03,
-          "var_12m": -12.14,
+          "cap_bursatil": 1554433441792,
+          "ma50": 65148.28,
+          "ma200": 69002.92,
+          "var_1d": 0.46,
+          "var_1m": 21.98,
+          "var_12m": -12.18,
           "subtitulo": "Criptomoneda Líder / Reserva Digital"
         },
         {
@@ -9441,17 +10122,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2454.51,
+          "precio": 2453.25,
           "open": 2423.2788,
           "high": 2471.2754,
           "low": 2366.843,
           "moneda": "USD",
-          "cap_bursatil": 296427192320,
-          "ma50": 1920.37,
+          "cap_bursatil": 296137293824,
+          "ma50": 1920.35,
           "ma200": 2006.95,
-          "var_1d": 1.25,
-          "var_1m": 30.38,
-          "var_12m": -19.8,
+          "var_1d": 1.2,
+          "var_1m": 30.32,
+          "var_12m": -19.84,
           "subtitulo": "Contratos Inteligentes / Web3"
         },
         {
@@ -9461,17 +10142,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 95.0,
+          "precio": 95.35,
           "open": 93.8988,
           "high": 96.5367,
           "low": 91.9249,
           "moneda": "USD",
-          "cap_bursatil": 55436861440,
+          "cap_bursatil": 55606542336,
           "ma50": 77.39,
           "ma200": 81.15,
-          "var_1d": 1.16,
-          "var_1m": 29.34,
-          "var_12m": -26.63,
+          "var_1d": 1.53,
+          "var_1m": 29.82,
+          "var_12m": -26.36,
           "subtitulo": "Blockchain de Alta Velocidad"
         },
         {
@@ -9481,17 +10162,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 697.97,
+          "precio": 697.59,
           "open": 695.6825,
           "high": 700.6078,
           "low": 679.3317,
           "moneda": "USD",
-          "cap_bursatil": 92924805120,
-          "ma50": 592.85,
+          "cap_bursatil": 92866519040,
+          "ma50": 592.84,
           "ma200": 615.23,
-          "var_1d": 0.33,
-          "var_1m": 18.79,
-          "var_12m": -20.49,
+          "var_1d": 0.27,
+          "var_1m": 18.72,
+          "var_12m": -20.53,
           "subtitulo": "Ecosistema BNB Chain"
         },
         {
@@ -9501,17 +10182,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.5109,
+          "precio": 1.5351,
           "open": 1.4635,
-          "high": 1.5132,
+          "high": 1.5393,
           "low": 1.4387,
           "moneda": "USD",
-          "cap_bursatil": 94572609536,
+          "cap_bursatil": 96416907264,
           "ma50": 1.1,
           "ma200": 1.27,
-          "var_1d": 3.22,
-          "var_1m": 39.3,
-          "var_12m": -23.66,
+          "var_1d": 4.88,
+          "var_1m": 41.54,
+          "var_12m": -22.44,
           "subtitulo": "Pagos y Liquidaciones"
         },
         {
@@ -9521,17 +10202,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.2275,
+          "precio": 0.227,
           "open": 0.2262,
-          "high": 0.2289,
+          "high": 0.2298,
           "low": 0.2141,
           "moneda": "USD",
-          "cap_bursatil": 8333929984,
+          "cap_bursatil": 8347714560,
           "ma50": 0.18,
           "ma200": 0.22,
-          "var_1d": 0.53,
-          "var_1m": 20.12,
-          "var_12m": -42.64,
+          "var_1d": 0.31,
+          "var_1m": 19.85,
+          "var_12m": -42.76,
           "subtitulo": "Blockchain Proof of Stake"
         },
         {
@@ -9541,17 +10222,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0933,
+          "precio": 0.0937,
           "open": 0.0919,
-          "high": 0.0941,
+          "high": 0.0943,
           "low": 0.0891,
           "moneda": "USD",
-          "cap_bursatil": 14512673792,
+          "cap_bursatil": 14610743296,
           "ma50": 0.07,
           "ma200": 0.09,
-          "var_1d": 1.41,
-          "var_1m": 31.97,
-          "var_12m": -30.48,
+          "var_1d": 1.85,
+          "var_1m": 32.53,
+          "var_12m": -30.18,
           "subtitulo": "Moneda Digital Memética"
         },
         {
@@ -9561,17 +10242,17 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.9999,
+          "precio": 0.9998,
           "open": 0.9999,
           "high": 1.0001,
           "low": 0.9997,
           "moneda": "USD",
-          "cap_bursatil": 183207460864,
+          "cap_bursatil": 183241916416,
           "ma50": 1.0,
           "ma200": 1.0,
-          "var_1d": 0.01,
-          "var_1m": 0.1,
-          "var_12m": -0.03,
+          "var_1d": 0.0,
+          "var_1m": 0.09,
+          "var_12m": -0.04,
           "subtitulo": "Stablecoin Dólar"
         }
       ]
