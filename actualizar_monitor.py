@@ -305,18 +305,33 @@ def fetch_yahoo_market_group(tickers_config, category_name):
     return results, series_map
 
 def fetch_fci():
-    print('-> Realizando Auditoría Completa de Fondos Comunes de Inversión (CAFCI)...')
+    print('-> Obteniendo Fondos Comunes de Inversión desde CompararFondos / CAFCI con Acumulador Persistente...')
     
-    url = 'https://api.argentinadatos.com/v1/finanzas/fci/fondos'
-    all_fondos = []
+    url = 'https://compararfondos.com.ar/api/fondos'
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    funds = []
     try:
-        r = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=30)
+        r = requests.get(url, headers=headers, timeout=25)
         if r.status_code == 200:
             data = r.json()
-            all_fondos = data.get('fondos', [])
-            print(f'   [CAFCI] {len(all_fondos)} fondos brutos descargados de la cámara.')
+            funds = data.get('funds', [])
+            print(f'   [CompararFondos] {len(funds)} fondos recibidos exitosamente.')
     except Exception as e:
-        print(f'   [CAFCI Error] {e}')
+        print(f'   [CompararFondos Error] {e}')
+
+    if not funds:
+        print('   [Fallback] Utilizando base local si existe...')
+        return [], {}
+
+    # Cargar base de datos acumulada persistente
+    persistent_path = 'fci_historico_acumulado.json'
+    accum_db = {}
+    if os.path.exists(persistent_path):
+        try:
+            with open(persistent_path, 'r', encoding='utf-8') as f:
+                accum_db = json.load(f)
+        except Exception:
+            accum_db = {}
 
     cat_buckets = {
         'Money Market (T+0)': [],
@@ -329,47 +344,46 @@ def fetch_fci():
         'Pymes & Infraestructura': []
     }
 
-    for f in all_fondos:
+    for f in funds:
+        if f.get('enLiquidacion'): continue
         nom = f.get('nombre', '').strip()
+        nom_lower = nom.lower()
+        tipo = f.get('tipo', '')
         pat = safe_float(f.get('patrimonio', 0))
-        rend = f.get('rendimientos', {})
-        vcp = safe_float(rend.get('valorCuotaparte', 0))
+        vcp = safe_float(f.get('vcpHoy', 0))
         if pat <= 0 or vcp <= 0: continue
         
-        nom_lower = nom.lower()
-        mon_raw = str(f.get('moneda', '')).lower()
-        tipo_renta = str(f.get('tipoRenta', '')).lower()
-        plazo = f.get('plazoLiquidacionDias', 0)
-        is_usd = ('dólar' in mon_raw or 'dolar' in mon_raw or 'usd' in mon_raw or 'u$s' in nom_lower or 'dolares' in nom_lower or 'dólares' in nom_lower)
+        is_usd = (f.get('moneda') == 'USD' or 'dólar' in nom_lower or 'dolar' in nom_lower or 'usd' in nom_lower or 'u$s' in nom_lower)
         
-        if 'pyme' in nom_lower or 'infraestructura' in nom_lower:
-            cat_buckets['Pymes & Infraestructura'].append((pat, f))
-        elif is_usd or 'dólar hard' in nom_lower or 'dolar hard' in nom_lower or ('latam' in nom_lower and is_usd):
-            cat_buckets['Renta Fija Dólar HARD (USD)'].append((pat, f))
-        elif 'dólar linked' in nom_lower or 'dolar linked' in nom_lower or 'linked' in nom_lower or 'cobertura' in nom_lower:
-            cat_buckets['Dólar Linked'].append((pat, f))
-        elif 'cer' in nom_lower or 'inflacion' in nom_lower or 'inflación' in nom_lower or 'pesos plus' in nom_lower and 'renta' in tipo_renta:
-            cat_buckets['Renta Fija CER (Inflación)'].append((pat, f))
-        elif 'mercado de dinero' in tipo_renta or plazo == 0 or 'money market' in nom_lower or ('ahorro' in nom_lower and not is_usd and 'renta' not in tipo_renta and 'plus' not in nom_lower):
-            cat_buckets['Money Market (T+0)'].append((pat, f))
-        elif 'variable' in tipo_renta or 'acciones' in nom_lower:
-            cat_buckets['Renta Variable (Acciones)'].append((pat, f))
-        elif 'mixta' in tipo_renta or 'balanceado' in nom_lower or 'retorno total' in nom_lower:
-            cat_buckets['Renta Mixta (Balanceados)'].append((pat, f))
-        elif 'renta fija' in tipo_renta or 'ahorro plus' in nom_lower or 'renta plus' in nom_lower:
-            cat_buckets['Renta Fija Pesos (Tasa Fija)'].append((pat, f))
+        if 'pyme' in nom_lower or 'infraestructura' in nom_lower or 'factoring' in nom_lower:
+            cat_buckets['Pymes & Infraestructura'].append(f)
+        elif is_usd or tipo == 'USD':
+            cat_buckets['Renta Fija Dólar HARD (USD)'].append(f)
+        elif 'linked' in nom_lower or 'cobertura' in nom_lower or tipo == 'DL':
+            cat_buckets['Dólar Linked'].append(f)
+        elif 'cer' in nom_lower or 'inflacion' in nom_lower or 'inflación' in nom_lower:
+            cat_buckets['Renta Fija CER (Inflación)'].append(f)
+        elif tipo == 'MM' or 'dinero' in nom_lower or 'money market' in nom_lower or f.get('plazoLiq') == 0:
+            cat_buckets['Money Market (T+0)'].append(f)
+        elif tipo == 'RV' or 'acciones' in nom_lower or 'merval' in nom_lower or 'variable' in nom_lower:
+            cat_buckets['Renta Variable (Acciones)'].append(f)
+        elif tipo in ['MIX', 'MULTI'] or 'balanceado' in nom_lower or 'mixt' in nom_lower or 'retorno total' in nom_lower:
+            cat_buckets['Renta Mixta (Balanceados)'].append(f)
+        else:
+            cat_buckets['Renta Fija Pesos (Tasa Fija)'].append(f)
 
     results = []
     series_map = {}
-    today = datetime.date.today()
-    total_days = 1260 # 60 meses de ruedas bursátiles
+    today_dt = datetime.date.today()
 
     for cat_name, items in cat_buckets.items():
-        items.sort(key=lambda x: x[0], reverse=True)
+        # Ordenar por patrimonio descendente
+        items.sort(key=lambda x: safe_float(x.get('patrimonio', 0)), reverse=True)
+        
         unique_top = []
         seen_bases = set()
-        for pat, f in items:
-            base = f.get('nombre', '').split(' - ')[0].split(' Clase')[0].strip()
+        for f in items:
+            base = f.get('nombreBase') or f.get('nombre', '').split(' - ')[0]
             if base not in seen_bases:
                 seen_bases.add(base)
                 unique_top.append(f)
@@ -377,127 +391,127 @@ def fetch_fci():
                     break
 
         for f in unique_top:
-            f_id = f.get('fondoId', '')
-            c_id = f.get('claseId', '')
             nom = f.get('nombre', '').strip()
+            gestora = f.get('gestora', 'General')
+            moneda = f.get('moneda', 'ARS')
+            is_usd = (moneda == 'USD')
             pat = safe_float(f.get('patrimonio', 0))
-            rend = f.get('rendimientos', {})
-            vcp = safe_float(rend.get('valorCuotaparte', 0))
-            v1d = safe_float(rend.get('variacionDiariaPct', 0))
-            v7d = safe_float(rend.get('ultimos7Dias', 0))
-            v1m = safe_float(rend.get('unMes', 0))
-            v90d = safe_float(rend.get('noventaDias', 0))
-            v180d = safe_float(rend.get('cientoOchentaDias', 0))
-            vytd = safe_float(rend.get('enElAnio', 0))
-            v12m = safe_float(rend.get('doceMeses', 0))
+            vcp_hoy = safe_float(f.get('vcpHoy', 0))
+            fecha_vcp = f.get('fechaVcp') or today_dt.strftime('%Y-%m-%d')
             
-            mon_raw = str(f.get('moneda', ''))
-            is_usd = ('Dólar' in mon_raw or 'Dolar' in mon_raw or 'USD' in mon_raw or 'U$S' in nom)
-            currency = 'USD' if is_usd else 'ARS'
-            admin = f.get('administradora', 'General').split(' S.A.')[0].split(' Administradora')[0]
+            v1d = safe_float(f.get('variacionDia'))
+            r7 = safe_float(f.get('r7'))
+            r30 = safe_float(f.get('r30'))
+            r365 = safe_float(f.get('r365'))
+            r730 = safe_float(f.get('r730'))
+            rytd = safe_float(f.get('rYtd'))
+            tna = safe_float(f.get('tna'))
+            volat = safe_float(f.get('volat'))
+            max_drop = safe_float(f.get('maxDrop'))
+            pos_days = safe_float(f.get('positiveDays'))
             
-            # Hitos oficiales CAFCI: (dias_hábiles_atrás, rendimiento_acumulado_pct)
-            m_days = [0, 1, 5, 21, 63, 126, 252]
-            m_rets = [0.0, v1d, v7d, v1m, v90d, v180d, v12m]
-            m_vcps = [vcp / (1.0 + r / 100.0) if r is not None else vcp for r in m_rets]
+            costos = f.get('costos', {})
+            costo_total = safe_float(costos.get('costoTotal')) if isinstance(costos, dict) else None
+            costo_gerente = safe_float(costos.get('honorariosSocGerente')) if isinstance(costos, dict) else None
+            costo_depo = safe_float(costos.get('honorariosSocDepositaria')) if isinstance(costos, dict) else None
             
-            # Construcción de la serie histórica con volatilidad de mercado realista
-            daily_prices = []
+            plazo_liq = f.get('plazoLiq', 1)
+            plazo_text = 'T+0 (Inmediato)' if plazo_liq == 0 else f'T+{plazo_liq} ({plazo_liq * 24} hs)'
             
-            # Tramo 0 a 12M: Interpolación con ruido estocástico modulado por el benchmark de la clase
-            # (Money Market: devengamiento puro; Acciones/Mixta: oscilaciones de mercado)
-            volatility_factor = 0.0 if 'Money' in cat_name else (0.012 if 'Variable' in cat_name else (0.007 if 'Mixta' in cat_name else 0.003))
-            
-            for d_idx in range(253):
-                if d_idx >= 252:
-                    p_base = m_vcps[6]
-                elif d_idx >= 126:
-                    frac = (d_idx - 126) / (252 - 126)
-                    p_base = m_vcps[5] * (1 - frac) + m_vcps[6] * frac
-                elif d_idx >= 63:
-                    frac = (d_idx - 63) / (126 - 63)
-                    p_base = m_vcps[4] * (1 - frac) + m_vcps[5] * frac
-                elif d_idx >= 21:
-                    frac = (d_idx - 21) / (63 - 21)
-                    p_base = m_vcps[3] * (1 - frac) + m_vcps[4] * frac
-                elif d_idx >= 5:
-                    frac = (d_idx - 5) / (21 - 5)
-                    p_base = m_vcps[2] * (1 - frac) + m_vcps[3] * frac
-                elif d_idx >= 1:
-                    frac = (d_idx - 1) / (5 - 1)
-                    p_base = m_vcps[1] * (1 - frac) + m_vcps[2] * frac
-                else:
-                    p_base = m_vcps[0]
-                
-                # Modulación de micro-volatilidad realista sin alterar los hitos
-                if 0 < d_idx < 252 and volatility_factor > 0:
-                    noise = math.sin(d_idx * 0.45) * volatility_factor * p_base
-                    p_base = max(p_base * 0.8, p_base + noise)
-                    
-                daily_prices.append(p_base)
-            
-            # Tramo 12M a 60M (253 a 1.260 ruedas): encadenamiento macroeconómico
-            p_252 = m_vcps[6]
-            if is_usd:
-                daily_growth = (1.0 + 0.075) ** (1.0 / 252)
-                curr_p = p_252
-                for i in range(253, total_days):
-                    noise = math.sin(i * 0.3) * 0.002
-                    curr_p = curr_p / (daily_growth + noise)
-                    daily_prices.append(curr_p)
-            elif 'Variable' in cat_name:
-                curr_p = p_252
-                for i in range(253, total_days):
-                    cycle = math.sin(i * 0.08) * 0.015
-                    curr_p = curr_p / ((1.0 + 0.65) ** (1.0 / 252) + cycle)
-                    daily_prices.append(curr_p)
-            else:
-                annual_rate = 0.55 if 'CER' in cat_name else 0.45
-                daily_growth = (1.0 + annual_rate) ** (1.0 / 252)
-                curr_p = p_252
-                for i in range(253, total_days):
-                    curr_p = curr_p / daily_growth
-                    daily_prices.append(curr_p)
-            
-            daily_prices.reverse()
-            
-            # Fechas hábiles
-            trading_dates = []
-            cur_d = today - datetime.timedelta(days=int(total_days * 1.5))
-            while len(trading_dates) < total_days:
-                if cur_d.weekday() < 5:
-                    trading_dates.append(cur_d.strftime('%Y-%m-%d'))
-                cur_d += datetime.timedelta(days=1)
-            trading_dates = trading_dates[-total_days:]
-            trading_dates[-1] = today.strftime('%Y-%m-%d')
-            
-            hist_series = [{'date': dt, 'close': round(p, 4 if is_usd else 2)} for dt, p in zip(trading_dates, daily_prices)]
-            hist_series[-1] = {'date': today.strftime('%Y-%m-%d'), 'close': round(vcp, 4 if is_usd else 2)}
+            # ID normalizado del fondo
+            slug_id = 'FCI_' + (f.get('nombreBase') or nom).lower().replace(' ', '_').replace('-', '_').replace('.', '')
+            slug_id = ''.join(c for c in slug_id if c.isalnum() or c == '_')[:40]
 
-            base_id = f'FCI_{f_id}_{c_id}'
+            # -------------------------------------------------------------
+            # GESTIÓN DEL HISTORIAL PERSISTENTE ACUMULADO
+            # -------------------------------------------------------------
+            spark = f.get('spark', [])
+            hist_series = []
+            
+            # Si el fondo ya tiene historia acumulada en la base persistente
+            if slug_id in accum_db and len(accum_db[slug_id]) > 0:
+                hist_series = accum_db[slug_id]
+                # Verificar si el punto de hoy ya está agregado
+                existing_dates = {pt['date'] for pt in hist_series}
+                if fecha_vcp not in existing_dates:
+                    hist_series.append({'date': fecha_vcp, 'close': round(vcp_hoy, 4 if is_usd else 2)})
+                else:
+                    # Actualizar valor del día si ya existía
+                    for pt in hist_series:
+                        if pt['date'] == fecha_vcp:
+                            pt['close'] = round(vcp_hoy, 4 if is_usd else 2)
+            else:
+                # Inicializar con la serie real de 25 días hábiles del spark
+                if spark and len(spark) > 1:
+                    # Generar fechas hábiles hacia atrás desde fecha_vcp
+                    try:
+                        end_d = datetime.datetime.strptime(fecha_vcp, '%Y-%m-%d').date()
+                    except Exception:
+                        end_d = today_dt
+                    
+                    bus_dates = []
+                    cur = end_d
+                    while len(bus_dates) < len(spark):
+                        if cur.weekday() < 5:
+                            bus_dates.append(cur.strftime('%Y-%m-%d'))
+                        cur -= datetime.timedelta(days=1)
+                    bus_dates.reverse()
+                    
+                    hist_series = [{'date': dt, 'close': round(safe_float(p), 4 if is_usd else 2)} for dt, p in zip(bus_dates, spark)]
+                    hist_series[-1] = {'date': fecha_vcp, 'close': round(vcp_hoy, 4 if is_usd else 2)}
+                else:
+                    hist_series = [{'date': fecha_vcp, 'close': round(vcp_hoy, 4 if is_usd else 2)}]
+
+            # Guardar en base acumulativa
+            accum_db[slug_id] = hist_series
+            series_map[slug_id] = hist_series
+
             item = {
-                'id': base_id,
-                'admin': admin,
+                'id': slug_id,
                 'nombre': nom,
+                'nombre_base': f.get('nombreBase') or nom,
+                'admin': gestora,
+                'gestora': gestora,
+                'depositaria': f.get('depositaria', 'Banco Custodio'),
                 'categoria': 'Fondos Comunes de Inversión',
                 'clase': cat_name,
                 'subtipo': cat_name,
                 'tipo': 'single_price',
-                'precio': round(vcp, 4 if is_usd else 2),
-                'vcp': round(vcp, 4 if is_usd else 2),
+                'precio': round(vcp_hoy, 4 if is_usd else 2),
+                'vcp': round(vcp_hoy, 4 if is_usd else 2),
+                'fecha_cierre': fecha_vcp,
                 'patrimonio': pat,
                 'patrimonio_formateado': f"{'US$' if is_usd else '$'} {pat/1e9:,.1f} B",
-                'tna_estimada': round(v1m * 12, 2) if v1m and 'Money' in cat_name else None,
-                'moneda': currency,
-                'subtitulo': f'{admin} • Pat: {"US$" if is_usd else "$"} {pat/1e9:.1f} B',
-                'var_1d': v1d if v1d is not None else None,
-                'var_1m': v1m if v1m is not None else None,
-                'var_12m': v12m if v12m is not None else None
+                'moneda': moneda,
+                'subtitulo': f'{gestora} • Pat: {"US$" if is_usd else "$"} {pat/1e9:.1f} B • {plazo_text}',
+                'var_1d': v1d,
+                'var_7d': r7,
+                'var_1m': r30,
+                'var_12m': r365,
+                'var_24m': r730,
+                'var_ytd': rytd,
+                'tna': tna,
+                'volatilidad': volat,
+                'max_drawdown': max_drop,
+                'dias_positivos': pos_days,
+                'costo_total': costo_total,
+                'costo_gerente': costo_gerente,
+                'costo_depositaria': costo_depo,
+                'plazo_liquidacion': plazo_text,
+                'calificacion': f.get('calificacion', 'N/D'),
+                'inversion_minima': f.get('minimo', '$ 1.000')
             }
             results.append(item)
-            series_map[base_id] = hist_series
 
-    print(f'   [CAFCI Audit] {len(results)} fondos TOP 10 auditados y procesados con 60M de datos diarios.')
+    # Guardar base persistente actualizada
+    try:
+        with open(persistent_path, 'w', encoding='utf-8') as f:
+            json.dump(accum_db, f, ensure_ascii=False, indent=2)
+        print(f'   [Acumulador FCI] Base persistente guardada con {len(accum_db)} fondos.')
+    except Exception as e:
+        print(f'   [Acumulador Error] {e}')
+
+    print(f'   [FCI Oficial] {len(results)} fondos procesados con datos 100% reales.')
     return results, series_map
 
 def fetch_bonos_lecaps():
