@@ -567,7 +567,22 @@
       lucide.createIcons();
     }
 
-            function renderVariationBadgeClean(val) {
+                function formatPatrimonioLatino(pat) {
+      if (!pat || pat <= 0) return '-';
+      const num = parseFloat(pat);
+      if (isNaN(num)) return '-';
+      if (num >= 1e12) {
+        return formatNumber(num / 1e12, 2) + ' B';
+      } else if (num >= 1e9) {
+        return formatNumber(num / 1e9, 2) + ' MM';
+      } else if (num >= 1e6) {
+        return formatNumber(num / 1e6, 2) + ' M';
+      } else {
+        return formatNumber(num, 0);
+      }
+    }
+
+    function renderVariationBadgeClean(val) {
       if (val === null || val === undefined) return '<span class="text-slate-400 font-mono text-xs">-</span>';
       const num = parseFloat(val);
       if (isNaN(num)) return '<span class="text-slate-400 font-mono text-xs">-</span>';
@@ -678,7 +693,7 @@
                           <td class="p-2.5 text-right font-mono text-rose-600 font-medium whitespace-nowrap">${f.max_drawdown ? f.max_drawdown.toFixed(1) + '%' : '-'}</td>
                           <td class="p-2.5 text-center whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-slate-100 font-mono font-semibold text-slate-700 text-[10.5px]">${f.costo_total ? f.costo_total.toFixed(2) + '%' : (f.costo_gerente ? (f.costo_gerente + (f.costo_depositaria || 0)).toFixed(2) + '%' : '-')}</span></td>
                           <td class="p-2.5 text-center whitespace-nowrap"><span class="px-1.5 py-0.5 rounded font-mono font-bold text-[9.5px] ${plazoVal === 'T+0' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}">${plazoVal}</span></td>
-                          <td class="p-2.5 text-right font-mono font-medium text-slate-700 whitespace-nowrap">${patFormatted}</td>
+                          <td class="p-2.5 text-right font-mono font-medium text-slate-700 whitespace-nowrap">${f.patrimonio ? formatPatrimonioLatino(f.patrimonio) : patFormatted}</td>
                         </tr>
                       `;
                     }).join('')}
