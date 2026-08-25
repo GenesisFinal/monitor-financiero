@@ -1,5 +1,4 @@
 import os, json, time, math, requests
-from datetime import datetime, date
 import yfinance as yf
 import pandas as pd
 import numpy as np
@@ -19,7 +18,7 @@ def fetch_riesgo_pais():
                 prev_12m = data[-250]['valor'] if len(data) >= 250 else data[0]['valor']
                 var_12m = round(((last_val - prev_12m) / prev_12m) * 100, 2)
                 
-                current_year = datetime.now().year
+                current_year = datetime.datetime.now().year
                 prev_year_pts = [p for p in data if p['fecha'] < f"{current_year}-01-01"]
                 close_eoy = prev_year_pts[-1]['valor'] if prev_year_pts else data[0]['valor']
                 var_ytd = round(((last_val - close_eoy) / close_eoy) * 100, 2)
