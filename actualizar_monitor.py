@@ -1812,6 +1812,25 @@ def main():
     # Curvas de rendimiento
     curvas = build_yield_curves(bonos_items, ons_items)
     
+    print('-> Calculando Variación YTD (%) para todos los instrumentos...')
+    current_year = datetime.datetime.now().year
+    for sec_k, sec in master_dataset['secciones'].items():
+        for item in sec.get('items', []):
+            iid = item.get('id')
+            if iid in all_series and all_series[iid]:
+                pts = all_series[iid]
+                prev_year_pts = [p for p in pts if (p.get('date') or p.get('time', '')) < f"{current_year}-01-01"]
+                if prev_year_pts:
+                    close_eoy = float(prev_year_pts[-1]['close'])
+                    if close_eoy > 0 and item.get('precio'):
+                        item['var_ytd'] = round(((float(item['precio']) - close_eoy) / close_eoy) * 100, 2)
+                elif item.get('var_ytd') is None:
+                    curr_pts = [p for p in pts if (p.get('date') or p.get('time', '')) >= f"{current_year}-01-01"]
+                    if curr_pts and len(curr_pts) >= 2 and item.get('precio'):
+                        c_start = float(curr_pts[0]['close'])
+                        if c_start > 0:
+                            item['var_ytd'] = round(((float(item['precio']) - c_start) / c_start) * 100, 2)
+
     print('-> Guardando master_dataset.json...')
     with open('master_dataset.json', 'w', encoding='utf-8') as f:
         json.dump(master_dataset, f, ensure_ascii=False, indent=2)
