@@ -1,3 +1,9 @@
+import os, json, time, math, requests
+from datetime import datetime, date
+import yfinance as yf
+import pandas as pd
+import numpy as np
+
 def fetch_riesgo_pais():
     print('-> Obteniendo Riesgo País oficial (ArgentinaDatos / EMBI+)...')
     try:
