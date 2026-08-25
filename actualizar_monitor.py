@@ -1,3 +1,47 @@
+def fetch_riesgo_pais():
+    print('-> Obteniendo Riesgo País oficial (ArgentinaDatos / EMBI+)...')
+    try:
+        r = requests.get('https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais', timeout=10)
+        if r.status_code == 200:
+            data = r.json()
+            if data:
+                last_val = data[-1]['valor']
+                prev_val = data[-2]['valor'] if len(data) >= 2 else last_val
+                var_1d = round(((last_val - prev_val) / prev_val) * 100, 2)
+                prev_1m = data[-22]['valor'] if len(data) >= 22 else last_val
+                var_1m = round(((last_val - prev_1m) / prev_1m) * 100, 2)
+                prev_12m = data[-250]['valor'] if len(data) >= 250 else data[0]['valor']
+                var_12m = round(((last_val - prev_12m) / prev_12m) * 100, 2)
+                
+                current_year = datetime.now().year
+                prev_year_pts = [p for p in data if p['fecha'] < f"{current_year}-01-01"]
+                close_eoy = prev_year_pts[-1]['valor'] if prev_year_pts else data[0]['valor']
+                var_ytd = round(((last_val - close_eoy) / close_eoy) * 100, 2)
+                
+                series_pts = [
+                    {'date': p['fecha'], 'time': p['fecha'], 'close': float(p['valor']), 'open': float(p['valor']), 'high': float(p['valor']), 'low': float(p['valor'])}
+                    for p in data[-1200:]
+                ]
+                
+                item = {
+                    'id': 'RIESGO_PAIS',
+                    'symbol': 'EMBI+ ARG',
+                    'nombre': 'Riesgo País (EMBI+)',
+                    'categoria': 'Riesgo País',
+                    'subtitulo': 'Spread Soberano vs US Treasuries (JP Morgan)',
+                    'moneda': 'Pts',
+                    'precio': float(last_val),
+                    'var_1d': var_1d,
+                    'var_1m': var_1m,
+                    'var_12m': var_12m,
+                    'var_ytd': var_ytd,
+                    'tipo': 'macro_index'
+                }
+                return item, series_pts
+    except Exception as e:
+        print(f"   [Error fetching Riesgo Pais]: {e}")
+    return None, []
+
 """
 Actualizador de Datos del Monitor Financiero Institucional (La Segunda Seguros)
 Genera:
@@ -1671,9 +1715,14 @@ def main():
     }
     all_series = {}
     
-    # 1. Dólar
+    # 1. Dólar y Riesgo País
     dolar_items, dolar_series = fetch_dolar()
-    master_dataset['secciones']['dolar'] = {'titulo': 'Dólar', 'icono': 'dollar-sign', 'items': dolar_items}
+    rp_item, rp_series = fetch_riesgo_pais()
+    if rp_item:
+        dolar_items.append(rp_item)
+        if rp_series:
+            dolar_series['RIESGO_PAIS'] = rp_series
+    master_dataset['secciones']['dolar'] = {'titulo': 'Dólar & Riesgo País', 'icono': 'dollar-sign', 'items': dolar_items}
     all_series.update(dolar_series)
     
     # 2. Índices Mundiales
