@@ -523,23 +523,159 @@
 
       const dSecc = DATASET.secciones.dolar?.items || [];
       const iSecc = DATASET.secciones.indices_mundiales?.items || [];
+      const cSecc = DATASET.secciones.commodities?.items || [];
+      const bSecc = DATASET.secciones.bonos_lecaps?.items || [];
+      const crSecc = DATASET.secciones.criptomonedas?.items || [];
 
-      const blue = dSecc.find(x => x.id === 'USD_BLUE') || { nombre: 'Dólar Blue', precio: 1550, var_1d: 0.0 };
-      const mep = dSecc.find(x => x.id === 'USD_BOLSA') || { nombre: 'Dólar MEP', precio: 1545.3, var_1d: 0.0 };
-      const ccl = dSecc.find(x => x.id === 'USD_CONTADODONLIQUI') || { nombre: 'Dólar CCL', precio: 1215, var_1d: -0.1 };
-      const merv = iSecc.find(x => x.id === 'IDX_MERVAL_ARS') || { nombre: 'S&P Merval', precio: 2913184, var_1d: 1.29 };
+      // Helper para calcular YTD desde series históricas si no viene en el item
+      function getFallbackYtd(itemId, currentPrice) {
+        if (!SERIES_HISTORICAS || !SERIES_HISTORICAS[itemId] || !currentPrice) return null;
+        const pts = SERIES_HISTORICAS[itemId];
+        const currentYear = new Date().getFullYear();
+        const prevYearPts = pts.filter(p => (p.date || p.time || '') < `${currentYear}-01-01`);
+        if (prevYearPts.length > 0) {
+          const closeEoy = parseFloat(prevYearPts[prevYearPts.length - 1].close);
+          if (closeEoy > 0) return roundNumber(((currentPrice - closeEoy) / closeEoy) * 100, 2);
+        }
+        return null;
+      }
 
-      const cards = [blue, mep, ccl, merv];
+      // 1. Dólar Bolsa
+      const mepItem = dSecc.find(x => x.id === 'USD_BOLSA') || { id: 'USD_BOLSA', nombre: 'Dólar Bolsa', precio: 1545.3, var_1d: 0.0, moneda: 'ARS' };
+      const c1 = {
+        id: mepItem.id,
+        nombre: 'Dólar Bolsa',
+        precio: mepItem.precio,
+        moneda: 'ARS',
+        var_1d: mepItem.var_1d ?? 0.0,
+        var_ytd: mepItem.var_ytd ?? getFallbackYtd(mepItem.id, mepItem.precio)
+      };
+
+      // 2. Riesgo País
+      const rpItem = dSecc.find(x => x.id === 'RIESGO_PAIS') || { id: 'RIESGO_PAIS', nombre: 'Riesgo País', precio: 505, var_1d: -5.08, var_ytd: -11.56, moneda: 'Pts' };
+      const c2 = {
+        id: rpItem.id,
+        nombre: 'Riesgo País',
+        precio: rpItem.precio,
+        moneda: 'Pts',
+        var_1d: rpItem.var_1d ?? 0.0,
+        var_ytd: rpItem.var_ytd ?? getFallbackYtd(rpItem.id, rpItem.precio)
+      };
+
+      // 3. Merval
+      const mervItem = iSecc.find(x => x.id === 'IDX_MERVAL_ARS') || { id: 'IDX_MERVAL_ARS', nombre: 'S&P Merval', precio: 2913184, var_1d: 1.29, moneda: 'ARS' };
+      const c3 = {
+        id: mervItem.id,
+        nombre: 'S&P Merval',
+        precio: mervItem.precio,
+        moneda: 'ARS',
+        var_1d: mervItem.var_1d ?? 0.0,
+        var_ytd: mervItem.var_ytd ?? getFallbackYtd(mervItem.id, mervItem.precio)
+      };
+
+      // 4. S&P 500
+      const spItem = iSecc.find(x => x.id === 'IDX_SP500') || { id: 'IDX_SP500', nombre: 'S&P 500', precio: 7674.37, var_1d: 0.43, moneda: 'Pts' };
+      const c4 = {
+        id: spItem.id,
+        nombre: 'S&P 500',
+        precio: spItem.precio,
+        moneda: 'Pts',
+        var_1d: spItem.var_1d ?? 0.0,
+        var_ytd: spItem.var_ytd ?? getFallbackYtd(spItem.id, spItem.precio)
+      };
+
+      // 5. DJI (Dow Jones)
+      const djiItem = iSecc.find(x => x.id === 'IDX_DOW') || { id: 'IDX_DOW', nombre: 'Dow Jones (DJI)', precio: 53277.01, var_1d: 0.98, moneda: 'Pts' };
+      const c5 = {
+        id: djiItem.id,
+        nombre: 'Dow Jones (DJI)',
+        precio: djiItem.precio,
+        moneda: 'Pts',
+        var_1d: djiItem.var_1d ?? 0.0,
+        var_ytd: djiItem.var_ytd ?? getFallbackYtd(djiItem.id, djiItem.precio)
+      };
+
+      // 6. Commodity Dinámico Líder (Mayor variación absoluta en 1D)
+      let leaderComm = null;
+      let maxAbsVar = -1;
+      cSecc.forEach(c => {
+        if (c.var_1d !== undefined && c.var_1d !== null) {
+          const absV = Math.abs(parseFloat(c.var_1d));
+          if (absV > maxAbsVar) {
+            maxAbsVar = absV;
+            leaderComm = c;
+          }
+        }
+      });
+      if (!leaderComm && cSecc.length > 0) leaderComm = cSecc[0];
+      const commCleanName = leaderComm ? (leaderComm.nombre || '').split('(')[0].trim() : 'Commodity Líder';
+      const c6 = {
+        id: leaderComm ? leaderComm.id : 'COMM_SOJA',
+        nombre: commCleanName,
+        isLeader: true,
+        precio: leaderComm ? leaderComm.precio : 1239.5,
+        moneda: 'USD',
+        var_1d: leaderComm ? leaderComm.var_1d : 0.0,
+        var_ytd: leaderComm ? (leaderComm.var_ytd ?? getFallbackYtd(leaderComm.id, leaderComm.precio)) : null
+      };
+
+      // 7. AL30D
+      const al30Item = bSecc.find(x => x.symbol === 'AL30D' || x.id === 'BONO_AL30D') || { id: 'BONO_AL30D', nombre: 'Bono AL30D', precio: 55.02, var_1d: -0.24, moneda: 'USD' };
+      const c7 = {
+        id: al30Item.id,
+        nombre: 'Bono AL30D',
+        precio: al30Item.precio,
+        moneda: 'USD',
+        var_1d: al30Item.var_1d ?? 0.0,
+        var_ytd: al30Item.var_ytd ?? getFallbackYtd(al30Item.id, al30Item.precio)
+      };
+
+      // 8. BitCoin
+      const btcItem = crSecc.find(x => x.id === 'CRYPTO_BTC') || { id: 'CRYPTO_BTC', nombre: 'Bitcoin (BTC)', precio: 77607.85, var_1d: 0.68, moneda: 'USD' };
+      const c8 = {
+        id: btcItem.id,
+        nombre: 'Bitcoin (BTC)',
+        precio: btcItem.precio,
+        moneda: 'USD',
+        var_1d: btcItem.var_1d ?? 0.0,
+        var_ytd: btcItem.var_ytd ?? getFallbackYtd(btcItem.id, btcItem.precio)
+      };
+
+      const cards = [c1, c2, c3, c4, c5, c6, c7, c8];
+
       container.innerHTML = cards.map(c => {
-        const isUp = (c.var_1d >= 0);
-        const prefix = c.moneda === 'USD' ? 'US$' : (c.moneda === 'Pts' ? '' : '$');
+        const isUp1d = (c.var_1d >= 0);
+        const hasYtd = (c.var_ytd !== undefined && c.var_ytd !== null);
+        const isUpYtd = (c.var_ytd >= 0);
+        const prefix = (c.moneda === 'USD') ? 'US$' : ((c.moneda === 'Pts') ? '' : '$');
+        const suffix = (c.moneda === 'Pts') ? ' pts' : '';
+
         return `
-          <div class="bg-white/10 backdrop-blur rounded-lg px-2.5 py-1.5 border border-white/10 hover:bg-white/15 cursor-pointer transition-all min-w-0" onclick="openChartModal('${c.id}')">
-            <div class="text-[10px] text-slate-300 font-medium truncate">${c.nombre}</div>
-            <div class="flex items-center justify-between gap-1.5 mt-0.5 whitespace-nowrap">
-              <span class="text-xs sm:text-sm font-mono font-bold text-white whitespace-nowrap">${prefix} ${formatNumber(c.precio, 2)}</span>
-              <span class="text-[11px] font-mono font-semibold ${isUp ? 'text-emerald-400' : 'text-rose-400'} shrink-0">${isUp ? '+' : ''}${c.var_1d}%</span>
+          <div class="bg-white/10 hover:bg-white/[0.16] backdrop-blur rounded-xl px-2.5 sm:px-3 py-1.5 sm:py-2 border border-white/10 transition-all cursor-pointer shadow-xs flex flex-col justify-between" onclick="openChartModal('${c.id}')">
+            
+            <!-- Encabezado de la tarjeta -->
+            <div class="flex items-center justify-between gap-1 mb-0.5">
+              <span class="text-[10px] sm:text-[11px] text-slate-300 font-semibold truncate">${c.nombre}</span>
+              ${c.isLeader ? '<span class="px-1 py-0.2 rounded text-[7.5px] font-extrabold bg-amber-400/25 text-amber-300 border border-amber-400/40 shrink-0">Líder</span>' : ''}
             </div>
+
+            <!-- Precio principal -->
+            <div class="text-xs sm:text-[13px] font-mono font-bold text-white tracking-tight mb-1 truncate">
+              ${prefix} ${formatNumber(c.precio, 2)}${suffix}
+            </div>
+
+            <!-- Métricas: Var 1D y YTD -->
+            <div class="flex items-center justify-between gap-1 text-[9.5px] sm:text-[10px] font-mono border-t border-white/10 pt-1">
+              <div class="flex items-center gap-0.5 ${isUp1d ? 'text-emerald-400' : 'text-rose-400'} font-semibold">
+                <span class="text-[8.5px] opacity-75">1D:</span>
+                <span>${isUp1d ? '+' : ''}${formatNumber(c.var_1d, 2)}%</span>
+              </div>
+              <div class="flex items-center gap-0.5 ${hasYtd ? (isUpYtd ? 'text-emerald-400' : 'text-rose-400') : 'text-slate-400'} font-semibold">
+                <span class="text-[8.5px] opacity-75">YTD:</span>
+                <span>${hasYtd ? (isUpYtd ? '+' : '') + formatNumber(c.var_ytd, 2) + '%' : '-'}</span>
+              </div>
+            </div>
+
           </div>
         `;
       }).join('');
@@ -2426,4 +2562,27 @@
     });
   </script>
 </body>
-</html>
+</html<!-- BANNER SUPERIOR OSCURO (MONITOR FINANCIERO & 8 HIGHLIGHTS EN 2 FILAS) -->
+    <div class="bg-[#1e222d] border border-slate-800 text-white px-4 sm:px-5 py-3 shadow-md rounded-2xl mb-6">
+      <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4">
+        
+        <!-- Bloque de Título 'Monitor Financiero' -->
+        <div class="flex lg:flex-col items-center lg:items-start justify-between lg:justify-center space-x-3 lg:space-x-0 shrink-0 pr-0 lg:pr-5 lg:border-r border-slate-700/60 pb-2 lg:pb-0 border-b lg:border-b-0">
+          <div class="flex items-center space-x-2.5">
+            <span class="p-2 bg-brand-red rounded-xl text-white shadow-sm flex items-center justify-center">
+              <i data-lucide="trending-up" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+            </span>
+            <div>
+              <div class="text-sm sm:text-base font-bold tracking-tight text-white whitespace-nowrap">Monitor Financiero</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-400 font-medium">Mercados & Inversiones</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Grid de 8 Tarjetas en 2 Filas (4 columnas en desktop / 2 en móvil) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 w-full flex-1" id="quickHighlightsRibbon">
+        </div>
+      </div>
+    </div>
+
+    >
