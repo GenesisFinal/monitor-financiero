@@ -2,14 +2,18 @@ name: Actualizar Monitor Financiero 24/7
 
 on:
   schedule:
-    # 1. Cierre Principal de Mercados: 18:37 ART (21:37 UTC) Lunes a Viernes
+    # 1. 18:37 ART (21:37 UTC) Lunes a Viernes - Cierre BYMA y Wall Street
     - cron: '37 21 * * 1-5'
-    # 2. Respaldo Cierres Tardíos y FCI: 20:17 ART (23:17 UTC) Lunes a Viernes
+    # 2. 20:17 ART (23:17 UTC) Lunes a Viernes - Cierres Tardíos y Cuotapartes FCI
     - cron: '17 23 * * 1-5'
-    # 3. Respaldo Nocturno Consolidado: 21:43 ART (00:43 UTC) Martes a Sábado
+    # 3. 21:43 ART (00:43 UTC) Martes a Sábado - Respaldo Nocturno y Riesgo País
     - cron: '43 0 * * 2-6'
-    # 4. Respaldo Final Nocturno: 23:22 ART (02:22 UTC) Martes a Sábado
+    # 4. 23:22 ART (02:22 UTC) Martes a Sábado - Consolidación de Rueda Local
     - cron: '22 2 * * 2-6'
+    # 5. 01:12 ART (04:12 UTC) Martes a Sábado - Captura de Cierres de Commodities y Divisas
+    - cron: '12 4 * * 2-6'
+    # 6. 06:17 ART (09:17 UTC) Martes a Sábado - Cierres Consolidados de Asia y Pre-Apertura
+    - cron: '17 9 * * 2-6'
   workflow_dispatch:
 
 permissions:
