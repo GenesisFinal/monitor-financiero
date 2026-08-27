@@ -392,8 +392,11 @@ def fetch_yahoo_market_group(tickers_config, category_name):
         print(f'Error downloading {category_name} from Yahoo: {e}')
     return results, series_map
 
-def fetch_fci():
-    print('-> Obteniendo Fondos Comunes de Inversión desde CompararFondos / CAFCI con Acumulador Persistente...')
+def fetch_fci(is_reconciliation_round=False, prev_items=None, prev_series_map=None):
+    if is_reconciliation_round:
+        print('-> [FCI 06:17 ART] Ejecutando Reconciliación Total Obligatoria y Detección de Rectificaciones en CAFCI...')
+    else:
+        print('-> Obteniendo Fondos Comunes de Inversión desde CompararFondos / CAFCI con Acumulador Persistente...')
     
     url = 'https://compararfondos.com.ar/api/fondos'
     headers = {'User-Agent': 'Mozilla/5.0'}
@@ -1735,8 +1738,44 @@ def fetch_etfs():
     return items, series_map
 
 def main():
-    print(f'=== INICIANDO ACTUALIZACION DEL MONITOR FINANCIERO [{NOW_STR}] ===')
+    import argparse
+    parser = argparse.ArgumentParser(description='Actualizador Incremental del Monitor Financiero')
+    parser.add_argument('--force-all', action='store_true', help='Fuerza la descarga completa de todos los activos sin delta')
+    parser.add_argument('--reconcile-fci', action='store_true', help='Fuerza la reconciliación total de cuotapartes de FCI')
+    args, _ = parser.parse_known_args()
+
+    now_dt = datetime.datetime.now()
+    current_hour = now_dt.hour
+    is_0617_round = (current_hour == 6 or args.reconcile_fci)
+    
+    print(f'=== INICIANDO ACTUALIZACION INCREMENTAL (DELTA ETL) [{NOW_STR}] ===')
+    if is_0617_round:
+        print('-> [Ronda 06:17 ART] Barrido de Cierre Asia y Reconciliación Final de FCI.')
+    
     start_time = time.time()
+    
+    # -------------------------------------------------------------
+    # 0. CARGAR ESTADO Y SERIES PREVIAS
+    # -------------------------------------------------------------
+    prev_master = {}
+    prev_series = {}
+    if os.path.exists('master_dataset.json') and not args.force_all:
+        try:
+            with open('master_dataset.json', 'r', encoding='utf-8') as f:
+                prev_master = json.load(f)
+        except Exception:
+            prev_master = {}
+
+    if os.path.exists('series_historicas.json') and not args.force_all:
+        try:
+            with open('series_historicas.json', 'r', encoding='utf-8') as f:
+                prev_series = json.load(f)
+        except Exception:
+            prev_series = {}
+
+    is_same_day = (prev_master.get('fecha_cierre') == TODAY_STR)
+    prev_secciones = prev_master.get('secciones', {}) if is_same_day else {}
+
     master_dataset = {
         'version': '2.0',
         'marca': 'La Segunda Seguros',
@@ -1744,100 +1783,172 @@ def main():
         'fecha_cierre': TODAY_STR,
         'secciones': {}
     }
-    all_series = {}
-    
+    all_series = dict(prev_series) if is_same_day else {}
+    stats_skipped = 0
+    stats_updated = 0
+
     # 1. Dólar y Riesgo País
-    dolar_items, dolar_series = fetch_dolar()
-    rp_item, rp_series = fetch_riesgo_pais()
-    if rp_item:
-        dolar_items.append(rp_item)
-        if rp_series:
-            dolar_series['RIESGO_PAIS'] = rp_series
-    master_dataset['secciones']['dolar'] = {'titulo': 'Dólar & Riesgo País', 'icono': 'dollar-sign', 'items': dolar_items}
-    all_series.update(dolar_series)
-    
-    # 2. Índices Mundiales
-    indices_items, indices_series = fetch_yahoo_market_group(CONFIG_INDICES, 'Índices Mundiales')
-    master_dataset['secciones']['indices_mundiales'] = {'titulo': 'Índices Mundiales', 'icono': 'globe', 'items': indices_items}
-    all_series.update(indices_series)
-    
+    # Si ya tenemos Dólar y Riesgo País actualizados para hoy en prev_secciones, verificar si Riesgo País ya cerró
+    dolar_closed = False
+    if is_same_day and 'dolar' in prev_secciones:
+        d_items = prev_secciones['dolar'].get('items', [])
+        rp_it = next((x for x in d_items if x.get('id') == 'RIESGO_PAIS'), None)
+        # Si Riesgo País ya tiene cotización de hoy o pasaron las 22:00
+        if rp_it and (rp_it.get('var_1d') is not None) and len(d_items) >= 7 and not is_0617_round:
+            master_dataset['secciones']['dolar'] = prev_secciones['dolar']
+            dolar_closed = True
+            stats_skipped += len(d_items)
+            print(f'   [Delta Dólar & Riesgo País] Reutilizando cierre consolidado de hoy ({len(d_items)} activos).')
+
+    if not dolar_closed:
+        dolar_items, dolar_series = fetch_dolar()
+        rp_item, rp_series = fetch_riesgo_pais()
+        if rp_item:
+            dolar_items.append(rp_item)
+            if rp_series:
+                dolar_series['RIESGO_PAIS'] = rp_series
+        master_dataset['secciones']['dolar'] = {'titulo': 'Dólar & Riesgo País', 'icono': 'dollar-sign', 'items': dolar_items}
+        all_series.update(dolar_series)
+        stats_updated += len(dolar_items)
+
+    # Helper para grupos Yahoo Finance con Delta
+    def process_yahoo_group(cfg, cat_name, sec_key, icon):
+        nonlocal stats_skipped, stats_updated
+        if is_same_day and sec_key in prev_secciones and not args.force_all:
+            prev_sec = prev_secciones[sec_key]
+            p_items = prev_sec.get('items', [])
+            # Si todos los activos ya están cargados y no es la ronda de Asia a las 06:17 para índices mundiales
+            if len(p_items) >= len(cfg) and not (sec_key == 'indices_mundiales' and is_0617_round):
+                master_dataset['secciones'][sec_key] = prev_sec
+                stats_skipped += len(p_items)
+                print(f'   [Delta {cat_name}] Reutilizando cierre consolidado de hoy ({len(p_items)} activos).')
+                return
+        
+        items, s_map = fetch_yahoo_market_group(cfg, cat_name)
+        master_dataset['secciones'][sec_key] = {'titulo': cat_name, 'icono': icon, 'items': items}
+        all_series.update(s_map)
+        stats_updated += len(items)
+
+    # 2. Índices Mundiales (se actualiza en Ronda 1 y se revisa en Ronda 6 para cierres asiáticos de Tokio/HK)
+    process_yahoo_group(CONFIG_INDICES, 'Índices Mundiales', 'indices_mundiales', 'globe')
+
     # 3. Divisas
-    divisas_items, divisas_series = fetch_yahoo_market_group(CONFIG_DIVISAS, 'Divisas')
-    master_dataset['secciones']['divisas'] = {'titulo': 'Divisas', 'icono': 'repeat', 'items': divisas_items}
-    all_series.update(divisas_series)
-    
+    process_yahoo_group(CONFIG_DIVISAS, 'Divisas', 'divisas', 'repeat')
+
     # 4. Commodities
-    comm_items, comm_series = fetch_yahoo_market_group(CONFIG_COMMODITIES, 'Commodities')
-    master_dataset['secciones']['commodities'] = {'titulo': 'Commodities', 'icono': 'layers', 'items': comm_items}
-    all_series.update(comm_series)
-    
+    process_yahoo_group(CONFIG_COMMODITIES, 'Commodities', 'commodities', 'layers')
+
     # 5. Tasas Internacionales
-    tasas_int_items, tasas_int_series = fetch_yahoo_market_group(CONFIG_TASAS_INT, 'Tasas Internacionales')
-    tasas_int_items.append({'id': 'TASA_FED_FUNDS', 'nombre': 'Tasa de Referencia Fed (EE.UU.)', 'categoria': 'Tasas Internacionales', 'tipo': 'rate', 'precio': 4.50, 'moneda': '%', 'var_1d': 0.0, 'var_1m': 0.0, 'var_12m': -15.0, 'subtitulo': 'Target Range Federal Reserve'})
-    tasas_int_items.append({'id': 'TASA_ECB_DEP', 'nombre': 'Tasa de Depósito BCE (Europa)', 'categoria': 'Tasas Internacionales', 'tipo': 'rate', 'precio': 3.00, 'moneda': '%', 'var_1d': 0.0, 'var_1m': 0.0, 'var_12m': -20.0, 'subtitulo': 'Banco Central Europeo'})
-    master_dataset['secciones']['tasas_internacionales'] = {'titulo': 'Tasas Internacionales', 'icono': 'trending-up', 'items': tasas_int_items}
-    all_series.update(tasas_int_series)
-    
+    if is_same_day and 'tasas_internacionales' in prev_secciones and not args.force_all:
+        master_dataset['secciones']['tasas_internacionales'] = prev_secciones['tasas_internacionales']
+        stats_skipped += len(prev_secciones['tasas_internacionales'].get('items', []))
+        print(f'   [Delta Tasas Internacionales] Reutilizando datos de hoy.')
+    else:
+        tasas_int_items, tasas_int_series = fetch_yahoo_market_group(CONFIG_TASAS_INT, 'Tasas Internacionales')
+        tasas_int_items.append({'id': 'TASA_FED_FUNDS', 'nombre': 'Tasa de Referencia Fed (EE.UU.)', 'categoria': 'Tasas Internacionales', 'tipo': 'rate', 'precio': 4.50, 'moneda': '%', 'var_1d': 0.0, 'var_1m': 0.0, 'var_12m': -15.0, 'subtitulo': 'Target Range Federal Reserve'})
+        tasas_int_items.append({'id': 'TASA_ECB_DEP', 'nombre': 'Tasa de Depósito BCE (Europa)', 'categoria': 'Tasas Internacionales', 'tipo': 'rate', 'precio': 3.00, 'moneda': '%', 'var_1d': 0.0, 'var_1m': 0.0, 'var_12m': -20.0, 'subtitulo': 'Banco Central Europeo'})
+        master_dataset['secciones']['tasas_internacionales'] = {'titulo': 'Tasas Internacionales', 'icono': 'trending-up', 'items': tasas_int_items}
+        all_series.update(tasas_int_series)
+        stats_updated += len(tasas_int_items)
+
     # 6. Tasas Locales
-    tasas_loc_items, tasas_loc_series = fetch_tasas_locales()
-    master_dataset['secciones']['tasas_locales'] = {'titulo': 'Tasas Locales', 'icono': 'landmark', 'items': tasas_loc_items}
-    all_series.update(tasas_loc_series)
-    
-    # 7. FCI
-    fci_items, fci_series = fetch_fci()
+    if is_same_day and 'tasas_locales' in prev_secciones and not args.force_all:
+        master_dataset['secciones']['tasas_locales'] = prev_secciones['tasas_locales']
+        stats_skipped += len(prev_secciones['tasas_locales'].get('items', []))
+        print(f'   [Delta Tasas Locales] Reutilizando tasas bancarias de hoy.')
+    else:
+        tasas_loc_items, tasas_loc_series = fetch_tasas_locales()
+        master_dataset['secciones']['tasas_locales'] = {'titulo': 'Tasas Locales', 'icono': 'landmark', 'items': tasas_loc_items}
+        all_series.update(tasas_loc_series)
+        stats_updated += len(tasas_loc_items)
+
+    # 7. Fondos Comunes de Inversión (FCI)
+    # Siempre se evalúa para capturar cuotapartes tardías o reconciliación de las 06:17
+    fci_items, fci_series = fetch_fci(is_reconciliation_round=is_0617_round)
     master_dataset['secciones']['fci'] = {'titulo': 'Fondos Comunes de Inversión', 'icono': 'pie-chart', 'items': fci_items}
     all_series.update(fci_series)
-    
-    # 8. Bonos - LECAPs
-    bonos_items, bonos_series = fetch_bonos_lecaps()
-    master_dataset['secciones']['bonos_lecaps'] = {'titulo': 'Bonos - LECAPs', 'icono': 'file-text', 'items': bonos_items}
-    all_series.update(bonos_series)
-    
+    stats_updated += len(fci_items)
+
+    # 8. Bonos - LECAPs (BYMA cierra a las 17:00 / 18:00 ART)
+    if is_same_day and 'bonos_lecaps' in prev_secciones and len(prev_secciones['bonos_lecaps'].get('items', [])) >= 50 and not args.force_all:
+        master_dataset['secciones']['bonos_lecaps'] = prev_secciones['bonos_lecaps']
+        stats_skipped += len(prev_secciones['bonos_lecaps'].get('items', []))
+        print(f"   [Delta Bonos & LECAPs] Reutilizando cierre consolidado de BYMA ({len(prev_secciones['bonos_lecaps'].get('items', []))} títulos).")
+    else:
+        bonos_items, bonos_series = fetch_bonos_lecaps()
+        master_dataset['secciones']['bonos_lecaps'] = {'titulo': 'Bonos - LECAPs', 'icono': 'file-text', 'items': bonos_items}
+        all_series.update(bonos_series)
+        stats_updated += len(bonos_items)
+
     # 9. ONs
-    ons_items, ons_series = fetch_ons()
-    master_dataset['secciones']['ons'] = {'titulo': 'ONs (Obligaciones Negociables)', 'icono': 'briefcase', 'items': ons_items}
-    all_series.update(ons_series)
-    
-    # 10. Acciones Mundiales mediante Screeners Oficiales (Top Market Cap, Subas, Bajas, 52W y Volumen)
-    acc_mund_items, acc_mund_series, active_eq_ids = fetch_acciones_mundiales_screeners()
-    master_dataset['secciones']['acciones_mundiales'] = {'titulo': 'Acciones Mundiales', 'icono': 'globe', 'items': acc_mund_items}
-    
-    # Purgar series históricas obsoletas de acciones mundiales que ya no califican hoy
-    for k in list(all_series.keys()):
-        if k.startswith('EQ_') and k not in active_eq_ids:
-            del all_series[k]
-            
-    all_series.update(acc_mund_series)
-    
-    # 11. CEDEARs mediante Screeners de BYMA (Volumen, Subas, Bajas, 52W y Blue Chips)
-    cedears_items, cedears_series, active_ced_ids = fetch_cedears_screeners()
-    master_dataset['secciones']['cedears'] = {'titulo': 'CEDEARs', 'icono': 'shuffle', 'items': cedears_items}
-    
-    # Purgar series históricas obsoletas de CEDEARs que ya no califican hoy
-    for k in list(all_series.keys()):
-        if k.startswith('CEDEAR_') and k not in active_ced_ids:
-            del all_series[k]
-            
-    all_series.update(cedears_series)
-    
-    # 12. Acciones Argentinas (Merval)
-    acc_arg_items, acc_arg_series = fetch_yahoo_market_group(CONFIG_ACCIONES_ARG, 'Acciones Argentinas')
-    master_dataset['secciones']['acciones_argentinas'] = {'titulo': 'Acciones Argentinas', 'icono': 'trending-up', 'items': acc_arg_items}
-    all_series.update(acc_arg_series)
-    
+    if is_same_day and 'ons' in prev_secciones and len(prev_secciones['ons'].get('items', [])) >= 8 and not args.force_all:
+        master_dataset['secciones']['ons'] = prev_secciones['ons']
+        stats_skipped += len(prev_secciones['ons'].get('items', []))
+        print(f"   [Delta ONs] Reutilizando cierre consolidado de ONs ({len(prev_secciones['ons'].get('items', []))} títulos).")
+    else:
+        ons_items, ons_series = fetch_ons()
+        master_dataset['secciones']['ons'] = {'titulo': 'ONs (Obligaciones Negociables)', 'icono': 'briefcase', 'items': ons_items}
+        all_series.update(ons_series)
+        stats_updated += len(ons_items)
+
+    # 10. Acciones Mundiales mediante Screeners
+    if is_same_day and 'acciones_mundiales' in prev_secciones and len(prev_secciones['acciones_mundiales'].get('items', [])) >= 30 and not args.force_all:
+        master_dataset['secciones']['acciones_mundiales'] = prev_secciones['acciones_mundiales']
+        stats_skipped += len(prev_secciones['acciones_mundiales'].get('items', []))
+        print(f"   [Delta Acciones Mundiales] Reutilizando rankings oficiales de hoy ({len(prev_secciones['acciones_mundiales'].get('items', []))} acciones).")
+    else:
+        acc_mund_items, acc_mund_series, active_eq_ids = fetch_acciones_mundiales_screeners()
+        master_dataset['secciones']['acciones_mundiales'] = {'titulo': 'Acciones Mundiales', 'icono': 'globe', 'items': acc_mund_items}
+        for k in list(all_series.keys()):
+            if k.startswith('EQ_') and k not in active_eq_ids:
+                del all_series[k]
+        all_series.update(acc_mund_series)
+        stats_updated += len(acc_mund_items)
+
+    # 11. CEDEARs mediante Screeners
+    if is_same_day and 'cedears' in prev_secciones and len(prev_secciones['cedears'].get('items', [])) >= 25 and not args.force_all:
+        master_dataset['secciones']['cedears'] = prev_secciones['cedears']
+        stats_skipped += len(prev_secciones['cedears'].get('items', []))
+        print(f"   [Delta CEDEARs] Reutilizando screeners consolidados de BYMA ({len(prev_secciones['cedears'].get('items', []))} CEDEARs).")
+    else:
+        cedears_items, cedears_series, active_ced_ids = fetch_cedears_screeners()
+        master_dataset['secciones']['cedears'] = {'titulo': 'CEDEARs', 'icono': 'shuffle', 'items': cedears_items}
+        for k in list(all_series.keys()):
+            if k.startswith('CEDEAR_') and k not in active_ced_ids:
+                del all_series[k]
+        all_series.update(cedears_series)
+        stats_updated += len(cedears_items)
+
+    # 12. Acciones Argentinas
+    process_yahoo_group(CONFIG_ACCIONES_ARG, 'Acciones Argentinas', 'acciones_argentinas', 'trending-up')
+
     # 13. Criptomonedas
-    crypto_items, crypto_series = fetch_yahoo_market_group(CONFIG_CRIPTO, 'Criptomonedas')
-    master_dataset['secciones']['criptomonedas'] = {'titulo': 'Criptomonedas', 'icono': 'cpu', 'items': crypto_items}
-    all_series.update(crypto_series)
-    
-    # 14. ETFs (Exchange Traded Funds)
-    etfs_items, etfs_series = fetch_etfs()
-    master_dataset['secciones']['etfs'] = {'titulo': 'ETFs (Exchange Traded Funds)', 'icono': 'pie-chart', 'items': etfs_items}
-    all_series.update(etfs_series)
-    
-    # Curvas de rendimiento
-    curvas = build_yield_curves(bonos_items, ons_items)
-    
+    process_yahoo_group(CONFIG_CRIPTO, 'Criptomonedas', 'criptomonedas', 'cpu')
+
+    # 14. ETFs
+    if is_same_day and 'etfs' in prev_secciones and len(prev_secciones['etfs'].get('items', [])) >= 30 and not args.force_all:
+        master_dataset['secciones']['etfs'] = prev_secciones['etfs']
+        stats_skipped += len(prev_secciones['etfs'].get('items', []))
+        print(f"   [Delta ETFs] Reutilizando cotizaciones consolidadas de hoy ({len(prev_secciones['etfs'].get('items', []))} fondos cotizados).")
+    else:
+        etfs_items, etfs_series = fetch_etfs()
+        master_dataset['secciones']['etfs'] = {'titulo': 'ETFs', 'icono': 'clock', 'items': etfs_items}
+        all_series.update(etfs_series)
+        stats_updated += len(etfs_items)
+
+    # Curvas de Rendimiento (generar o reutilizar)
+    curvas_file = 'curvas_rendimiento.json'
+    if is_same_day and os.path.exists(curvas_file) and not args.force_all and ('bonos_lecaps' in prev_secciones):
+        print('   [Delta Curvas de Rendimiento] Reutilizando curvas óptimas ya calculadas hoy.')
+    else:
+        b_items = master_dataset['secciones'].get('bonos_lecaps', {}).get('items', [])
+        o_items = master_dataset['secciones'].get('ons', {}).get('items', [])
+        curvas_dataset = build_yield_curves_dataset(b_items, o_items)
+        print('-> Guardando curvas_rendimiento.json...')
+        with open(curvas_file, 'w', encoding='utf-8') as f:
+            json.dump(curvas_dataset, f, ensure_ascii=False, indent=2)
+
+    # Calcular Variación YTD (%) universal
     print('-> Calculando Variación YTD (%) para todos los instrumentos...')
     current_year = datetime.datetime.now().year
     for sec_k, sec in master_dataset['secciones'].items():
@@ -1863,29 +1974,21 @@ def main():
         
     print('-> Compactando y guardando series_historicas.json...')
     compact_series = {}
-    for k, pts in all_series.items():
-        c_pts = []
-        for pt in pts:
-            d = pt.get('date') or pt.get('time')
-            c = round(float(pt.get('close', 0)), 2)
-            o = round(float(pt.get('open', c)), 2) if 'open' in pt else c
-            h = round(float(pt.get('high', c)), 2) if 'high' in pt else c
-            l = round(float(pt.get('low', c)), 2) if 'low' in pt else c
-            if o == c and h == c and l == c:
-                c_pts.append({'date': d, 'close': c})
-            else:
-                c_pts.append({'date': d, 'close': c, 'open': o, 'high': h, 'low': l})
-        compact_series[k] = c_pts
-
+    for k, v in all_series.items():
+        if isinstance(v, list) and v:
+            compact_series[k] = v[-600:]
+        elif isinstance(v, list):
+            compact_series[k] = v
     with open('series_historicas.json', 'w', encoding='utf-8') as f:
-        json.dump(compact_series, f, ensure_ascii=False, separators=(',', ':'))
-        
-    print('-> Guardando curvas_rendimiento.json...')
-    with open('curvas_rendimiento.json', 'w', encoding='utf-8') as f:
-        json.dump(curvas, f, ensure_ascii=False, indent=2)
-        
+        json.dump(compact_series, f, ensure_ascii=False)
+
     elapsed = round(time.time() - start_time, 2)
-    print(f'=== ACTUALIZACION COMPLETADA CON EXITO EN {elapsed}s ===')
+    total_assets = stats_skipped + stats_updated
+    print(f'=== ACTUALIZACION INCREMENTAL COMPLETADA EN {elapsed}s ===')
+    print(f'   * Total Activos Evaluados: {total_assets}')
+    print(f'   * Activos Consolidados Protegidos (Salteados): {stats_skipped}')
+    print(f'   * Activos Actualizados en esta Ronda: {stats_updated}')
+
 
 if __name__ == '__main__':
     main()
