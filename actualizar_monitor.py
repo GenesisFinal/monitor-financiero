@@ -312,7 +312,7 @@ def fetch_tasas_locales():
         tasas.append(it)
         series_map[r_id] = h_s
     
-return tasas, series_map
+    return tasas, series_map
 
 def fetch_yahoo_market_group(tickers_config, category_name):
     print(f'-> Obteniendo {category_name} vía Yahoo Finance...')
