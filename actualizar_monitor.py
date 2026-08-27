@@ -1942,7 +1942,7 @@ def main():
     else:
         b_items = master_dataset['secciones'].get('bonos_lecaps', {}).get('items', [])
         o_items = master_dataset['secciones'].get('ons', {}).get('items', [])
-        curvas_dataset = build_yield_curves_dataset(b_items, o_items)
+        curvas_dataset = build_yield_curves(b_items, o_items)
         print('-> Guardando curvas_rendimiento.json...')
         with open(curvas_file, 'w', encoding='utf-8') as f:
             json.dump(curvas_dataset, f, ensure_ascii=False, indent=2)
