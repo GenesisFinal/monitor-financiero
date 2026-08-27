@@ -345,6 +345,10 @@ def fetch_yahoo_market_group(tickers_config, category_name):
                             'close': safe_float(row['Close']),
                             'volume': safe_float(row.get('Volume', 0))
                         })
+                    # Filtrar velas intradía de ruedas futuras no cerradas (ej: Asia al día siguiente)
+                    while hist_series and hist_series[-1]['date'] > TODAY_STR:
+                        hist_series.pop()
+
                     if hist_series:
                         last_pt = hist_series[-1]
                         last_close = last_pt['close']
