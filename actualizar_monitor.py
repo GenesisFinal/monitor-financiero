@@ -273,33 +273,7 @@ def fetch_tasas_locales():
             'subtitulo': subtitulo
         }, hist
 
-    # Promedio BCRA
-    item_bcra, hist_bcra_series = build_rate_item(
-        'TASA_PLAZO_FIJO_BCRA',
-        'Plazo Fijo 30 Días (Promedio Oficial BCRA)',
-        tna_bcra_prom,
-        'Tasa Nominal Anual Promedio Sistema Financiero',
-        hist_bcra if hist_bcra else None
-    )
-    tasas.append(item_bcra)
-    series_map['TASA_PLAZO_FIJO_BCRA'] = hist_bcra_series
-
-    # Bancos de Referencia Principales
-    bancos_ref = [
-        ('TASA_PF_BNA', 'Plazo Fijo Banco Nación (BNA)', get_bank_rate('NACION') or 19.0, 'Banca Pública Nacional'),
-        ('TASA_PF_GALICIA', 'Plazo Fijo Banco Galicia', get_bank_rate('GALICIA') or 17.5, 'Banca Privada Líder'),
-        ('TASA_PF_BBVA', 'Plazo Fijo Banco BBVA', get_bank_rate('BBVA') or 19.5, 'Banca Privada Internacional'),
-        ('TASA_PF_SANTANDER', 'Plazo Fijo Banco Santander', get_bank_rate('SANTANDER') or 16.0, 'Banca Privada Internacional'),
-        ('TASA_PF_MACRO', 'Plazo Fijo Banco Macro', get_bank_rate('MACRO') or 19.5, 'Banca Privada Nacional'),
-        ('TASA_PF_BAPRO', 'Plazo Fijo Banco Provincia (BAPRO)', get_bank_rate('PROVINCIA DE BUENOS') or 19.5, 'Banca Pública Provincial')
-    ]
-
-    for r_id, r_name, r_tna, r_sub in bancos_ref:
-        it, h_s = build_rate_item(r_id, r_name, r_tna, r_sub)
-        tasas.append(it)
-        series_map[r_id] = h_s
-
-    # Tasas de Referencia Mayoristas y Regulatorias (BADLAR, TAMAR, LEFI, Cauciones)
+        # 1. Tasas de Referencia Mayoristas y Regulatorias (BADLAR, TAMAR, LEFI, Cauciones) - ARRIBA
     tasas_mayoristas = [
         ('TASA_BADLAR', 'Tasa BADLAR Bancos Privados', 28.50, 'Depósitos a Plazo Fijo > $1.000.000 (30-35 días)'),
         ('TASA_TAMAR', 'Tasa TAMAR / TM20 (Mayorista)', 30.20, 'Tasa Mayorista de Referencia en Pesos (> $20.000.000)'),
@@ -313,7 +287,32 @@ def fetch_tasas_locales():
         tasas.append(it)
         series_map[r_id] = h_s
 
-    return tasas, series_map
+    # 2. Plazos Fijos por Bancos de Referencia y Promedio BCRA - ABAJO
+    item_bcra, hist_bcra_series = build_rate_item(
+        'TASA_PLAZO_FIJO_BCRA',
+        'Plazo Fijo 30 Días (Promedio Oficial BCRA)',
+        tna_bcra_prom,
+        'Tasa Nominal Anual Promedio Sistema Financiero',
+        hist_bcra if hist_bcra else None
+    )
+    tasas.append(item_bcra)
+    series_map['TASA_PLAZO_FIJO_BCRA'] = hist_bcra_series
+
+    bancos_ref = [
+        ('TASA_PF_BNA', 'Plazo Fijo Banco Nación (BNA)', get_bank_rate('NACION') or 19.0, 'Banca Pública Nacional'),
+        ('TASA_PF_GALICIA', 'Plazo Fijo Banco Galicia', get_bank_rate('GALICIA') or 17.5, 'Banca Privada Líder'),
+        ('TASA_PF_BBVA', 'Plazo Fijo Banco BBVA', get_bank_rate('BBVA') or 19.5, 'Banca Privada Internacional'),
+        ('TASA_PF_SANTANDER', 'Plazo Fijo Banco Santander', get_bank_rate('SANTANDER') or 16.0, 'Banca Privada Internacional'),
+        ('TASA_PF_MACRO', 'Plazo Fijo Banco Macro', get_bank_rate('MACRO') or 19.5, 'Banca Privada Nacional'),
+        ('TASA_PF_BAPRO', 'Plazo Fijo Banco Provincia (BAPRO)', get_bank_rate('PROVINCIA DE BUENOS') or 19.5, 'Banca Pública Provincial')
+    ]
+
+    for r_id, r_name, r_tna, r_sub in bancos_ref:
+        it, h_s = build_rate_item(r_id, r_name, r_tna, r_sub)
+        tasas.append(it)
+        series_map[r_id] = h_s
+    
+return tasas, series_map
 
 def fetch_yahoo_market_group(tickers_config, category_name):
     print(f'-> Obteniendo {category_name} vía Yahoo Finance...')
