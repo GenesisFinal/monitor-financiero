@@ -257,7 +257,15 @@
           </div>
         </div>
 
-        <div class="mt-6 relative h-[380px] w-full">
+        <div class="flex items-center justify-between mt-4">
+          <div class="text-xs text-slate-500 font-medium">Gráfico Interactivo de Rendimiento vs Duration</div>
+          <button onclick="downloadYieldCurveChartPng()" title="Capturar y Guardar Curva de Rendimiento como Imagen PNG" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 hover:border-slate-400 text-slate-700 font-medium text-xs shadow-xs transition-all cursor-pointer">
+            <i data-lucide="camera" class="w-4 h-4 text-brand-red"></i>
+            <span class="font-semibold">Capturar PNG</span>
+          </button>
+        </div>
+
+        <div class="mt-3 relative h-[380px] w-full">
           <canvas id="yieldCurveCanvas"></canvas>
         </div>
 
