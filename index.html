@@ -288,9 +288,15 @@
           </div>
         </div>
 
-        <button onclick="closeModal()" class="p-2 rounded-full hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-all">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+        <div class="flex items-center space-x-2">
+          <button onclick="downloadModalChartPng()" title="Capturar y Guardar Gráfico como Imagen PNG" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 hover:border-slate-400 text-slate-700 font-medium text-xs shadow-xs transition-all cursor-pointer">
+            <i data-lucide="camera" class="w-4 h-4 text-brand-red"></i>
+            <span class="font-semibold hidden sm:inline">Capturar PNG</span>
+          </button>
+          <button onclick="closeModal()" class="p-2 rounded-full hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-all cursor-pointer">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
       </div>
 
       <!-- Modal Body -->
@@ -2561,6 +2567,142 @@
     document.addEventListener('DOMContentLoaded', () => {
       loadDataset();
     });
-  </script>
+  
+
+    // =============================================================
+    // FUNCIONES DE CAPTURA Y DESCARGA DE GRÁFICOS COMO IMAGEN PNG
+    // =============================================================
+    function downloadChartCanvasAsPng(chartInstance, defaultFilename, mainTitle, subTitle, extraMeta) {
+      if (!chartInstance || !chartInstance.canvas) {
+        alert('No se encontró el gráfico activo para capturar.');
+        return;
+      }
+      const srcCanvas = chartInstance.canvas;
+
+      // Crear canvas de alta definición para exportación con encabezado y branding
+      const exportCanvas = document.createElement('canvas');
+      const ctx = exportCanvas.getContext('2d');
+
+      const pad = 28;
+      const headerH = mainTitle ? 72 : 20;
+      const footerH = 34;
+
+      exportCanvas.width = srcCanvas.width + (pad * 2);
+      exportCanvas.height = srcCanvas.height + headerH + footerH + (pad * 2);
+
+      // 1. Fondo blanco puro
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+
+      // 2. Encabezado Institucional
+      if (mainTitle) {
+        // Título Principal
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 18px Sora, system-ui, -apple-system, sans-serif';
+        ctx.fillText(mainTitle, pad, pad + 24);
+
+        // Subtítulo / Métricas
+        ctx.fillStyle = '#475569';
+        ctx.font = '500 12px Sora, system-ui, -apple-system, sans-serif';
+        const sub = subTitle || `Monitor Financiero • ${new Date().toLocaleDateString('es-AR')}`;
+        ctx.fillText(sub, pad, pad + 46);
+
+        // Metadata adicional a la derecha
+        if (extraMeta) {
+          ctx.fillStyle = '#64748b';
+          ctx.font = '600 11px "JetBrains Mono", monospace';
+          ctx.textAlign = 'right';
+          ctx.fillText(extraMeta, exportCanvas.width - pad, pad + 24);
+          ctx.textAlign = 'left';
+        }
+
+        // Línea divisoria elegante
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(pad, pad + 58);
+        ctx.lineTo(exportCanvas.width - pad, pad + 58);
+        ctx.stroke();
+      }
+
+      // 3. Dibujar el Gráfico
+      ctx.drawImage(srcCanvas, pad, pad + headerH);
+
+      // 4. Pie Institucional
+      ctx.strokeStyle = '#f1f5f9';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(pad, exportCanvas.height - footerH);
+      ctx.lineTo(exportCanvas.width - pad, exportCanvas.height - footerH);
+      ctx.stroke();
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '500 10px Sora, sans-serif';
+      ctx.fillText(`Captura generada el ${new Date().toLocaleString('es-AR')}`, pad, exportCanvas.height - 12);
+
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#e20039';
+      ctx.font = 'bold 10.5px Sora, sans-serif';
+      ctx.fillText('Monitor Financiero • La Segunda Seguros', exportCanvas.width - pad, exportCanvas.height - 12);
+      ctx.textAlign = 'left';
+
+      // 5. Descargar automáticamente el archivo PNG
+      const cleanName = defaultFilename.replace(/[^a-zA-Z0-9_-]/g, '_').toLowerCase();
+      const filename = cleanName.endsWith('.png') ? cleanName : `${cleanName}.png`;
+
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = exportCanvas.toDataURL('image/png', 1.0);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function downloadModalChartPng() {
+      if (!modalChartInstance || !CURRENT_MODAL_ASSET) {
+        alert('No hay un gráfico de activo abierto para capturar.');
+        return;
+      }
+      const asset = CURRENT_MODAL_ASSET;
+      const sym = asset.symbol || asset.id || 'ACTIVO';
+      const name = asset.nombre || sym;
+      const cat = asset.categoria || '';
+      const priceStr = asset.precio ? `${(asset.moneda === 'USD' ? 'US$' : (asset.moneda === 'Pts' ? '' : '$'))} ${formatNumber(asset.precio, 2)}` : '';
+      const var1dStr = (asset.var_1d !== undefined && asset.var_1d !== null) ? `${asset.var_1d >= 0 ? '+' : ''}${formatNumber(asset.var_1d, 2)}% (1D)` : '';
+      
+      const title = `${name} (${sym})`;
+      const subtitle = `${cat}${asset.subtitulo ? ` • ${asset.subtitulo}` : ''} • Periodo: ${CURRENT_TIMEFRAME}`;
+      const extraMeta = `${priceStr} ${var1dStr}`.trim();
+      const dateStr = new Date().toISOString().slice(0, 10);
+      const filename = `grafico_${sym}_${CURRENT_TIMEFRAME}_${dateStr}.png`;
+
+      downloadChartCanvasAsPng(modalChartInstance, filename, title, subtitle, extraMeta);
+    }
+
+    function downloadYieldCurveChartPng() {
+      if (!yieldCurveChartInstance) {
+        alert('No hay una curva de rendimiento activa para capturar.');
+        return;
+      }
+      const tabNames = {
+        'soberanos_usd': 'Soberanos en Dólares (Bonares & Globales)',
+        'bonos_cer': 'Bonos Soberanos CER (Ajustables por Inflación)',
+        'lecaps': 'LECAPs, BONCAPs y Tasa Fija en Pesos',
+        'tamar_badlar': 'Curva TAMAR / Badlar (Tasa Mayorista)',
+        'dolar_linked': 'Bonos Dólar Linked',
+        'bopreal': 'BOPREAL (Banco Central de la República Argentina)',
+        'ons_usd': 'Obligaciones Negociables Corporativas en USD'
+      };
+      const curKey = CURRENT_CURVE_KEY || 'soberanos_usd';
+      const curveTitle = tabNames[curKey] || 'Curva de Rendimiento';
+      const title = `Curva de Rendimiento: ${curveTitle}`;
+      const subtitle = 'Estructura Temporal de Tasas • TIR (%) vs Duration / Días al Vencimiento';
+      const dateStr = new Date().toISOString().slice(0, 10);
+      const filename = `curva_rendimiento_${curKey}_${dateStr}.png`;
+
+      downloadChartCanvasAsPng(yieldCurveChartInstance, filename, title, subtitle, 'Modelo de Mayor R²');
+    }
+
+</script>
 </body>
 </html>
