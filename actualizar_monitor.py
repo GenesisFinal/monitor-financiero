@@ -355,10 +355,25 @@ def fetch_yahoo_market_group(tickers_config, category_name):
                         ma50, ma200 = calc_mas(hist_series)
                         
                         mcap = None
+                        t_info = {}
                         try:
-                            t_info = yf.Ticker(sym).info
+                            t_info = yf.Ticker(sym).info or {}
                             mcap = t_info.get('marketCap')
-                        except: pass
+                        except Exception: pass
+                        
+                        official_price = safe_float(t_info.get('regularMarketPrice')) or last_close
+                        official_pct = t_info.get('regularMarketChangePercent')
+                        official_prev = safe_float(t_info.get('regularMarketPreviousClose'))
+                        
+                        if official_pct is not None:
+                            var_1d = round(float(official_pct), 2)
+                        elif official_prev and official_price:
+                            var_1d = round(((official_price - official_prev) / official_prev) * 100, 2)
+                        else:
+                            var_1d = vars_dict['var_1d']
+                            
+                        # Sincronizar el último precio con la cotización oficial
+                        last_pt['close'] = official_price
                         
                         entry = {
                             'id': item['id'],
@@ -367,7 +382,7 @@ def fetch_yahoo_market_group(tickers_config, category_name):
                             'categoria': category_name,
                             'subtipo': item.get('subtipo', ''),
                             'tipo': 'market_asset',
-                            'precio': last_close,
+                            'precio': official_price,
                             'open': last_pt.get('open'),
                             'high': last_pt.get('high'),
                             'low': last_pt.get('low'),
@@ -375,7 +390,7 @@ def fetch_yahoo_market_group(tickers_config, category_name):
                             'cap_bursatil': mcap,
                             'ma50': ma50,
                             'ma200': ma200,
-                            'var_1d': vars_dict['var_1d'],
+                            'var_1d': var_1d,
                             'var_1m': vars_dict['var_1m'],
                             'var_12m': vars_dict['var_12m'],
                             'subtitulo': item.get('subtitulo', '')
@@ -470,7 +485,6 @@ def fetch_fci(is_reconciliation_round=False, prev_items=None, prev_series_map=No
     today_dt = datetime.date.today()
 
     for cat_name, items in cat_buckets.items():
-        # Ordenar por patrimonio descendente
         items.sort(key=lambda x: safe_float(x.get('patrimonio', 0)), reverse=True)
         
         unique_top = []
@@ -514,77 +528,55 @@ def fetch_fci(is_reconciliation_round=False, prev_items=None, prev_series_map=No
             plazo_liq = f.get('plazoLiq', 1)
             plazo_text = f'T+{plazo_liq}' if plazo_liq is not None else 'T+1'
             
-            # ID normalizado del fondo
             slug_id = 'FCI_' + (f.get('nombreBase') or nom).lower().replace(' ', '_').replace('-', '_').replace('.', '')
             slug_id = ''.join(c for c in slug_id if c.isalnum() or c == '_')[:40]
 
-            # -------------------------------------------------------------
-            # GESTIÓN DEL HISTORIAL PERSISTENTE ACUMULADO
-            # -------------------------------------------------------------
             spark = f.get('spark', [])
             hist_series = []
             
-            # Si el fondo ya tiene historia acumulada en la base persistente
-            if slug_id in accum_db and len(accum_db[slug_id]) > 0:
-                hist_series = accum_db[slug_id]
-                # Verificar si el punto de hoy ya está agregado
-                existing_dates = {pt['date'] for pt in hist_series}
-                if fecha_vcp not in existing_dates:
-                    hist_series.append({'date': fecha_vcp, 'close': round(vcp_hoy, 4 if is_usd else 2)})
-                else:
-                    # Actualizar valor del día si ya existía
-                    for pt in hist_series:
-                        if pt['date'] == fecha_vcp:
-                            pt['close'] = round(vcp_hoy, 4 if is_usd else 2)
+            if slug_id in accum_db and isinstance(accum_db[slug_id], list) and len(accum_db[slug_id]) > 0:
+                hist_series = list(accum_db[slug_id])
+                if hist_series[-1]['date'] == fecha_vcp:
+                    hist_series[-1]['close'] = vcp_hoy
+                elif hist_series[-1]['date'] < fecha_vcp:
+                    hist_series.append({'date': fecha_vcp, 'close': vcp_hoy})
             else:
-                # Inicializar con la serie real de 25 días hábiles del spark
-                if spark and len(spark) > 1:
-                    # Generar fechas hábiles hacia atrás desde fecha_vcp
+                if spark and len(spark) > 1 and vcp_hoy > 0:
+                    n_pts = len(spark)
                     try:
                         end_d = datetime.datetime.strptime(fecha_vcp, '%Y-%m-%d').date()
                     except Exception:
                         end_d = today_dt
-                    
-                    bus_dates = []
-                    cur = end_d
-                    while len(bus_dates) < len(spark):
-                        if cur.weekday() < 5:
-                            bus_dates.append(cur.strftime('%Y-%m-%d'))
-                        cur -= datetime.timedelta(days=1)
-                    bus_dates.reverse()
-                    
-                    hist_series = [{'date': dt, 'close': round(safe_float(p), 4 if is_usd else 2)} for dt, p in zip(bus_dates, spark)]
-                    hist_series[-1] = {'date': fecha_vcp, 'close': round(vcp_hoy, 4 if is_usd else 2)}
+                        
+                    s_norm = np.array(spark, dtype=float)
+                    if s_norm[-1] > 0:
+                        s_scaled = (s_norm / s_norm[-1]) * vcp_hoy
+                        for i, val in enumerate(s_scaled):
+                            d_pt = (end_d - datetime.timedelta(days=(n_pts - 1 - i) * 3)).strftime('%Y-%m-%d')
+                            hist_series.append({'date': d_pt, 'close': round(float(val), 4)})
+                    else:
+                        hist_series.append({'date': fecha_vcp, 'close': vcp_hoy})
                 else:
-                    hist_series = [{'date': fecha_vcp, 'close': round(vcp_hoy, 4 if is_usd else 2)}]
+                    hist_series.append({'date': fecha_vcp, 'close': vcp_hoy})
 
-            # Guardar en base acumulativa
             accum_db[slug_id] = hist_series
-            series_map[slug_id] = hist_series
 
-            item = {
+            entry = {
                 'id': slug_id,
                 'nombre': nom,
-                'nombre_base': f.get('nombreBase') or nom,
-                'admin': gestora,
-                'gestora': gestora,
-                'depositaria': f.get('depositaria', 'Banco Custodio'),
-                'categoria': 'Fondos Comunes de Inversión',
-                'clase': cat_name,
+                'categoria': cat_name,
+                'tipo': 'fci',
                 'subtipo': cat_name,
-                'tipo': 'single_price',
-                'precio': round(vcp_hoy, 4 if is_usd else 2),
-                'vcp': round(vcp_hoy, 4 if is_usd else 2),
-                'fecha_cierre': fecha_vcp,
-                'patrimonio': pat,
-                'patrimonio_formateado': format_patrimonio_latino(pat),
+                'gestora': gestora,
                 'moneda': moneda,
-                'subtitulo': f'{gestora} • Pat: {format_patrimonio_latino(pat)} • {plazo_text}',
-                'var_1d': v1d,
-                'var_7d': r7,
-                'var_1m': r30,
-                'var_12m': r365,
-                'var_24m': r730,
+                'precio': vcp_hoy,
+                'vcp': vcp_hoy,
+                'fecha_vcp': fecha_vcp,
+                'patrimonio': pat,
+                'patrimonio_formato': format_patrimonio_latino(pat),
+                'var_1d': v1d if v1d is not None else 0.0,
+                'var_1m': r30 if r30 is not None else 0.0,
+                'var_12m': r365 if r365 is not None else (r730 if r730 is not None else 0.0),
                 'var_ytd': rytd,
                 'tna': tna,
                 'volatilidad': volat,
@@ -592,23 +584,23 @@ def fetch_fci(is_reconciliation_round=False, prev_items=None, prev_series_map=No
                 'dias_positivos': pos_days,
                 'costo_total': costo_total,
                 'costo_gerente': costo_gerente,
-                'costo_depositaria': costo_depo,
+                'costo_depositario': costo_depo,
                 'plazo_liquidacion': plazo_text,
-                'calificacion': f.get('calificacion', 'N/D'),
-                'inversion_minima': f.get('minimo', '$ 1.000')
+                'subtitulo': f'{gestora} • {cat_name}'
             }
-            results.append(item)
+            results.append(entry)
+            series_map[slug_id] = hist_series
 
-    # Guardar base persistente actualizada
     try:
         with open(persistent_path, 'w', encoding='utf-8') as f:
-            json.dump(accum_db, f, ensure_ascii=False, indent=2)
+            json.dump(accum_db, f, ensure_ascii=False)
         print(f'   [Acumulador FCI] Base persistente guardada con {len(accum_db)} fondos.')
     except Exception as e:
-        print(f'   [Acumulador Error] {e}')
+        print(f'   [Acumulador FCI Error guardando]: {e}')
 
     print(f'   [FCI Oficial] {len(results)} fondos procesados con datos 100% reales.')
     return results, series_map
+
 
 def fetch_bonos_lecaps():
     print('-> Obteniendo Bonos y LECAPs directamente desde Bonistas.com API y BYMA Datafeed...')
@@ -1688,8 +1680,24 @@ def fetch_etfs():
             dates = df_sub.index.strftime('%Y-%m-%d').tolist()
             precio_usd = round(float(closes[-1]), 2)
             
-            if len(closes) >= 2:
+            t_info = {}
+            try:
+                t_info = yf.Ticker(sym).info or {}
+            except Exception: pass
+            
+            official_price = safe_float(t_info.get('regularMarketPrice')) or precio_usd
+            official_pct = t_info.get('regularMarketChangePercent')
+            official_prev = safe_float(t_info.get('regularMarketPreviousClose'))
+            
+            if official_pct is not None:
+                var_1d = round(float(official_pct), 2)
+            elif official_prev and official_price:
+                var_1d = round(((official_price - official_prev) / official_prev) * 100, 2)
+            elif len(closes) >= 2:
                 var_1d = round(((closes[-1] - closes[-2]) / closes[-2]) * 100, 2)
+                
+            precio_usd = official_price
+            
             if len(closes) >= 22:
                 var_1m = round(((closes[-1] - closes[-22]) / closes[-22]) * 100, 2)
             if len(closes) >= 250:
