@@ -1187,42 +1187,75 @@ EXTRA_GLOBAL_CANDIDATES = [
     'HD', 'PG', 'JNJ', 'BAC', 'CVX', 'XOM', 'MRK', 'ABBV', 'DIS', 'SHEL'
 ]
 
-def get_yahoo_screener_quotes(scr_id, count=10):
-    url = f"https://query1.finance.yahoo.com/v1/finance/screener/predefined/saved?formatted=false&scrIds={scr_id}&count={count}"
+def scrape_yahoo_screener(url_path):
+    url = f"https://finance.yahoo.com/markets/stocks/{url_path}/"
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
     }
     try:
-        resp = requests.get(url, headers=headers, timeout=10)
-        if resp.status_code == 200:
-            return resp.json().get('finance', {}).get('result', [{}])[0].get('quotes', [])
+        r = requests.get(url, headers=headers, timeout=15)
+        if r.status_code != 200:
+            return []
+        soup = BeautifulSoup(r.text, 'html.parser')
+        tables = soup.find_all('table')
+        if not tables:
+            return []
+        results = []
+        rows = tables[0].find_all('tr')
+        for row in rows[1:]:
+            cols = row.find_all(['td', 'th'])
+            if len(cols) >= 6:
+                sym = cols[0].get_text(strip=True)
+                name = cols[1].get_text(strip=True)
+                pct_str = cols[5].get_text(strip=True).replace('%', '').replace('+', '')
+                vol_str = cols[6].get_text(strip=True) if len(cols) > 6 else ""
+                try:
+                    pct = float(pct_str) if pct_str else None
+                except:
+                    pct = None
+                results.append({
+                    'symbol': sym,
+                    'name': name,
+                    'change_pct': pct,
+                    'volume_str': vol_str
+                })
+        return results
     except Exception as e:
-        print(f"   [Error fetching screener {scr_id}]: {e}")
-    return []
+        print(f"   [Error scraping {url_path}]: {e}")
+        return []
 
 def fetch_acciones_mundiales_screeners():
-    print('-> Obteniendo Acciones Mundiales mediante Screeners Oficiales (Top Market Cap, Subas, Bajas, 52W y Volumen)...')
+    print('-> Obteniendo Acciones Mundiales mediante Screeners Oficiales de Yahoo Finance...')
     
-    gainers_quotes = get_yahoo_screener_quotes('day_gainers', 10)
-    losers_quotes = get_yahoo_screener_quotes('day_losers', 10)
-    actives_quotes = get_yahoo_screener_quotes('most_actives', 10)
+    gainers_quotes = scrape_yahoo_screener('gainers')
+    losers_quotes = scrape_yahoo_screener('losers')
+    actives_quotes = scrape_yahoo_screener('most-active')
+    gainers52w_quotes = scrape_yahoo_screener('52-week-gainers')
+    losers52w_quotes = scrape_yahoo_screener('52-week-losers')
     
     meta_by_sym = {}
     for item in MEGA_CAPS_CONFIG:
         meta_by_sym[item['symbol']] = {'name': item['name'], 'subtitulo': item['sector']}
         
-    for q in gainers_quotes + losers_quotes + actives_quotes:
+    for q in gainers_quotes + losers_quotes + actives_quotes + gainers52w_quotes + losers52w_quotes:
         s = q.get('symbol')
         if s and s not in meta_by_sym:
-            name = q.get('shortName') or q.get('longName') or s
-            meta_by_sym[s] = {'name': name, 'subtitulo': q.get('quoteType', 'Acción Global')}
+            name = q.get('name') or s
+            meta_by_sym[s] = {'name': name, 'subtitulo': 'Acción Global'}
             
     mega_syms = [m['symbol'] for m in MEGA_CAPS_CONFIG]
     gainers_syms_raw = [q.get('symbol') for q in gainers_quotes if q.get('symbol')]
     losers_syms_raw = [q.get('symbol') for q in losers_quotes if q.get('symbol')]
     actives_syms_raw = [q.get('symbol') for q in actives_quotes if q.get('symbol')]
+    gainers52w_syms_raw = [q.get('symbol') for q in gainers52w_quotes if q.get('symbol')]
+    losers52w_syms_raw = [q.get('symbol') for q in losers52w_quotes if q.get('symbol')]
     
-    all_candidates = list(dict.fromkeys(mega_syms + gainers_syms_raw + losers_syms_raw + actives_syms_raw + EXTRA_GLOBAL_CANDIDATES))
+    all_candidates = list(dict.fromkeys(
+        mega_syms + gainers_syms_raw + losers_syms_raw + actives_syms_raw + 
+        gainers52w_syms_raw + losers52w_syms_raw + EXTRA_GLOBAL_CANDIDATES
+    ))
     
     try:
         df_all = yf.download(all_candidates, period="5y", interval="1d", group_by='ticker', auto_adjust=True, progress=False)
@@ -1246,7 +1279,26 @@ def fetch_acciones_mundiales_screeners():
             dates = df_sub.index.strftime('%Y-%m-%d').tolist()
             last_px = round(float(closes[-1]), 2)
             prev_px = round(float(closes[-2]), 2)
-            var_1d = round(((last_px - prev_px) / prev_px) * 100, 2)
+            
+            t_info = {}
+            try:
+                t_info = yf.Ticker(sym).info or {}
+            except Exception: pass
+            
+            official_price = safe_float(t_info.get('regularMarketPrice')) or last_px
+            official_pct = t_info.get('regularMarketChangePercent')
+            official_prev = safe_float(t_info.get('regularMarketPreviousClose'))
+            mcap = t_info.get('marketCap')
+            
+            if official_pct is not None:
+                var_1d = round(float(official_pct), 2)
+            elif official_prev and official_price:
+                var_1d = round(((official_price - official_prev) / official_prev) * 100, 2)
+            else:
+                var_1d = round(((last_px - prev_px) / prev_px) * 100, 2)
+                
+            last_px = official_price
+            
             var_1m = round(((last_px - closes[-22]) / closes[-22]) * 100, 2) if len(closes) >= 22 else None
             var_12m = round(((last_px - closes[-250]) / closes[-250]) * 100, 2) if len(closes) >= 250 else round(((last_px - closes[0]) / closes[0]) * 100, 2)
             
@@ -1256,6 +1308,8 @@ def fetch_acciones_mundiales_screeners():
                 {'date': d, 'time': d, 'close': round(float(c), 2), 'open': round(float(c), 2), 'high': round(float(c), 2), 'low': round(float(c), 2), 'volume': 0}
                 for d, c in zip(dates, closes)
             ]
+            if series_pts:
+                series_pts[-1]['close'] = official_price
             
             stock_metrics[sym] = {
                 'symbol': sym,
@@ -1264,31 +1318,17 @@ def fetch_acciones_mundiales_screeners():
                 'var_1m': var_1m,
                 'var_12m': var_12m,
                 'volume': vol,
+                'cap_bursatil': mcap,
                 'series': series_pts
             }
             
-    # Rankings de Acciones Mundiales (ordenamiento estricto)
+    # Rankings Oficiales de Acciones Mundiales
     top_15_mcap = [s for s in mega_syms if s in stock_metrics][:15]
-    
-    # Subas del día (ordenadas de mayor suba a menor suba)
-    all_gainers = [s for s in stock_metrics.values() if s['var_1d'] is not None and s['var_1d'] > 0]
-    top_10_gainers_1d = [s['symbol'] for s in sorted(all_gainers, key=lambda x: x['var_1d'], reverse=True)[:10]]
-    
-    # Bajas del día (ordenadas de mayor baja a menor baja, estrictamente negativas)
-    all_losers = [s for s in stock_metrics.values() if s['var_1d'] is not None and s['var_1d'] < 0]
-    top_10_losers_1d = [s['symbol'] for s in sorted(all_losers, key=lambda x: x['var_1d'])[:10]]
-    
-    # Mayor volumen (ordenadas de mayor a menor volumen)
-    all_actives = [s for s in stock_metrics.values() if s['volume'] is not None]
-    top_10_actives = [s['symbol'] for s in sorted(all_actives, key=lambda x: x['volume'], reverse=True)[:10]]
-    
-    # 52W Subas (mayor rendimiento anual a menor, > 0)
-    valid_52w_gainers = [s for s in stock_metrics.values() if s['var_12m'] is not None and s['var_12m'] > 0]
-    top_10_gainers_52w = [s['symbol'] for s in sorted(valid_52w_gainers, key=lambda x: x['var_12m'], reverse=True)[:10]]
-    
-    # 52W Bajas (estrictamente negativas < 0%, sin rellenar con subas)
-    valid_52w_losers = [s for s in stock_metrics.values() if s['var_12m'] is not None and s['var_12m'] < 0]
-    top_10_losers_52w = [s['symbol'] for s in sorted(valid_52w_losers, key=lambda x: x['var_12m'])[:10]]
+    top_10_gainers_1d = [s for s in gainers_syms_raw if s in stock_metrics][:10]
+    top_10_losers_1d = [s for s in losers_syms_raw if s in stock_metrics][:10]
+    top_10_actives = [s for s in actives_syms_raw if s in stock_metrics][:10]
+    top_10_gainers_52w = [s for s in gainers52w_syms_raw if s in stock_metrics][:10]
+    top_10_losers_52w = [s for s in losers52w_syms_raw if s in stock_metrics][:10]
     
     selected_syms = list(dict.fromkeys(
         top_15_mcap + top_10_gainers_1d + top_10_losers_1d + 
@@ -1326,15 +1366,15 @@ def fetch_acciones_mundiales_screeners():
             'var_1m': m['var_1m'],
             'var_12m': m['var_12m'],
             'volumen': m['volume'],
+            'cap_bursatil': m.get('cap_bursatil'),
             'tags': tags,
             'tipo': 'market_asset'
         }
         items.append(item)
         series_map[eq_id] = m['series']
         
-    print(f"   [Acciones Mundiales] {len(items)} acciones procesadas en los 6 rankings.")
+    print(f"   [Acciones Mundiales] {len(items)} acciones procesadas en los 6 rankings oficiales.")
     return items, series_map, active_eq_ids
-
 
 CEDEARS_MASTER_CONFIG = [
     # Blue Chips & Tech Leaders
