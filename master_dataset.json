@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-08-29 06:10:09",
+  "ultima_actualizacion": "2026-08-29 08:01:09",
   "fecha_cierre": "2026-08-29",
   "secciones": {
     "dolar": {
@@ -174,6 +174,27 @@
           "var_12m": 23.19,
           "subtitulo": "Estados Unidos - Tecnológico",
           "var_ytd": 13.6
+        },
+        {
+          "id": "IDX_DOW",
+          "symbol": "^DJI",
+          "nombre": "Dow Jones Industrial",
+          "categoria": "Índices Mundiales",
+          "subtipo": "",
+          "tipo": "market_asset",
+          "precio": 53559.99,
+          "open": 53613.6602,
+          "high": 53707.6211,
+          "low": 53345.6211,
+          "moneda": "USD",
+          "cap_bursatil": null,
+          "ma50": 52755.42,
+          "ma200": 49683.18,
+          "var_1d": -0.02,
+          "var_1m": 3.83,
+          "var_12m": 17.95,
+          "subtitulo": "Estados Unidos - Industriales",
+          "var_ytd": 11.44
         },
         {
           "id": "IDX_RUSSELL2000",
@@ -426,27 +447,6 @@
           "var_12m": 1.54,
           "subtitulo": "Hong Kong - Gigantes Tecnológicos y Financieros Asia",
           "var_ytd": -0.18
-        },
-        {
-          "id": "IDX_BOVESPA",
-          "symbol": "^BVSP",
-          "nombre": "Bovespa (Ibovespa)",
-          "categoria": "Índices Mundiales",
-          "subtipo": "",
-          "tipo": "market_asset",
-          "precio": 175664.62,
-          "open": 174584.0,
-          "high": 175558.0,
-          "low": 173661.0,
-          "moneda": "BRL",
-          "cap_bursatil": null,
-          "ma50": 172939.16,
-          "ma200": 174597.98,
-          "var_1d": 0.3,
-          "var_1m": 0.72,
-          "var_12m": 26.89,
-          "subtitulo": "Brasil - Bolsa de São Paulo",
-          "var_ytd": 9.02
         }
       ]
     },
