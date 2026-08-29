@@ -1188,43 +1188,97 @@ EXTRA_GLOBAL_CANDIDATES = [
 ]
 
 def scrape_yahoo_screener(url_path):
+    """
+    Extractor multi-nivel de Screeners Oficiales de Yahoo Finance:
+    Nivel 1: Parseo de tablas HTML con User-Agents modernos y headers de navegador real.
+    Nivel 2: Parseo de datos estructurados JSON embebidos en tags <script>.
+    """
     url = f"https://finance.yahoo.com/markets/stocks/{url_path}/"
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.5',
-    }
-    try:
-        r = requests.get(url, headers=headers, timeout=15)
-        if r.status_code != 200:
-            return []
-        soup = BeautifulSoup(r.text, 'html.parser')
-        tables = soup.find_all('table')
-        if not tables:
-            return []
-        results = []
-        rows = tables[0].find_all('tr')
-        for row in rows[1:]:
-            cols = row.find_all(['td', 'th'])
-            if len(cols) >= 6:
-                sym = cols[0].get_text(strip=True)
-                name = cols[1].get_text(strip=True)
-                pct_str = cols[5].get_text(strip=True).replace('%', '').replace('+', '')
-                vol_str = cols[6].get_text(strip=True) if len(cols) > 6 else ""
-                try:
-                    pct = float(pct_str) if pct_str else None
-                except:
-                    pct = None
-                results.append({
-                    'symbol': sym,
-                    'name': name,
-                    'change_pct': pct,
-                    'volume_str': vol_str
-                })
-        return results
-    except Exception as e:
-        print(f"   [Error scraping {url_path}]: {e}")
-        return []
+    headers_list = [
+        {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9,es;q=0.8',
+            'Sec-Ch-Ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+            'Sec-Ch-Ua-Mobile': '?0',
+            'Sec-Ch-Ua-Platform': '"Windows"',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
+            'Upgrade-Insecure-Requests': '1'
+        },
+        {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9'
+        }
+    ]
+
+    for attempt, headers in enumerate(headers_list):
+        try:
+            r = requests.get(url, headers=headers, timeout=15)
+            if r.status_code == 200:
+                soup = BeautifulSoup(r.text, 'html.parser')
+                
+                # Nivel 1: Tablas HTML
+                tables = soup.find_all('table')
+                if tables:
+                    results = []
+                    rows = tables[0].find_all('tr')
+                    for row in rows[1:]:
+                        cols = row.find_all(['td', 'th'])
+                        if len(cols) >= 6:
+                            sym = cols[0].get_text(strip=True)
+                            name = cols[1].get_text(strip=True)
+                            pct_str = cols[5].get_text(strip=True).replace('%', '').replace('+', '').strip()
+                            vol_str = cols[6].get_text(strip=True) if len(cols) > 6 else ""
+                            try:
+                                pct = float(pct_str) if pct_str else None
+                            except:
+                                pct = None
+                            if sym and len(sym) <= 10:
+                                results.append({
+                                    'symbol': sym,
+                                    'name': name,
+                                    'change_pct': pct,
+                                    'volume_str': vol_str
+                                })
+                    if len(results) >= 5:
+                        return results
+                        
+                # Nivel 2: Buscar JSON embebido en script tags
+                scripts = soup.find_all('script')
+                for s in scripts:
+                    txt = s.string or ""
+                    if 'quotes' in txt and ('gainers' in txt or 'losers' in txt or 'most-active' in txt or 'screener' in txt):
+                        import re
+                        m = re.findall(r'"symbol":"([A-Z0-9\.\-]+)","shortName":"([^"]+)"', txt)
+                        if m and len(m) >= 5:
+                            json_res = [{'symbol': pair[0], 'name': pair[1], 'change_pct': None} for pair in m]
+                            return json_res
+        except Exception as e:
+            if attempt == len(headers_list) - 1:
+                print(f"   [Error scraping {url_path}]: {e}")
+            time.sleep(1)
+            
+    return []
+
+# Universo Expandido de Seguridad (Respaldo Robusto para Rankings Globales)
+EXTRA_GLOBAL_CANDIDATES = [
+    # Tech / Semis / IA / Software
+    'ESTC', 'GAP', 'SOLS', 'TOP', 'TRLV', 'FLUT', 'WDAY', 'DPZ', 'LULU', 'CVI',
+    'SLS', 'RBRK', 'PYPL', 'IREN', 'KLRA', 'AXTI', 'AEHR', 'INFQ', 'MRVL', 'MARA',
+    'NVDA', 'PCG', 'INTC', 'NU', 'ONDS', 'AAL', 'SPCX', 'PATH', 'BMNR', 'PLTR',
+    'MSTR', 'COIN', 'ARM', 'SMCI', 'SOUN', 'AMD', 'QCOM', 'AVGO', 'TSM', 'ASML',
+    'BABA', 'NIO', 'PDD', 'JD', 'BIDU', 'TCEHY', 'SE', 'GRAB', 'SHOP', 'SNOW',
+    'CRWD', 'PANW', 'NET', 'DDOG', 'ZS', 'MDB', 'TEAM', 'NOW', 'ADBE', 'CRM',
+    # Biopharma / Salud
+    'LLY', 'NVO', 'AZN', 'PFE', 'MRK', 'ABBV', 'JNJ', 'BIIB', 'VRTX', 'REGN',
+    # Finanzas / Pagos / Consumo / Energía
+    'JPM', 'BAC', 'WFC', 'C', 'GS', 'MS', 'V', 'MA', 'AXP', 'DIS', 'NFLX', 'WMT',
+    'COST', 'TGT', 'HD', 'LOW', 'MCD', 'SBUX', 'NKE', 'XOM', 'CVX', 'COP', 'SLB'
+]
 
 def fetch_acciones_mundiales_screeners():
     print('-> Obteniendo Acciones Mundiales mediante Screeners Oficiales de Yahoo Finance...')
@@ -1322,13 +1376,38 @@ def fetch_acciones_mundiales_screeners():
                 'series': series_pts
             }
             
-    # Rankings Oficiales de Acciones Mundiales
+    # Rankings Oficiales de Acciones Mundiales (con fallback dinámico robusto si los feeds scrapeados estuviesen vacíos)
     top_15_mcap = [s for s in mega_syms if s in stock_metrics][:15]
-    top_10_gainers_1d = [s for s in gainers_syms_raw if s in stock_metrics][:10]
-    top_10_losers_1d = [s for s in losers_syms_raw if s in stock_metrics][:10]
-    top_10_actives = [s for s in actives_syms_raw if s in stock_metrics][:10]
-    top_10_gainers_52w = [s for s in gainers52w_syms_raw if s in stock_metrics][:10]
-    top_10_losers_52w = [s for s in losers52w_syms_raw if s in stock_metrics][:10]
+    
+    if gainers_syms_raw:
+        top_10_gainers_1d = [s for s in gainers_syms_raw if s in stock_metrics][:10]
+    else:
+        all_gainers = [s for s in stock_metrics.values() if s['var_1d'] is not None and s['var_1d'] > 0]
+        top_10_gainers_1d = [s['symbol'] for s in sorted(all_gainers, key=lambda x: x['var_1d'], reverse=True)[:10]]
+        
+    if losers_syms_raw:
+        top_10_losers_1d = [s for s in losers_syms_raw if s in stock_metrics][:10]
+    else:
+        all_losers = [s for s in stock_metrics.values() if s['var_1d'] is not None and s['var_1d'] < 0]
+        top_10_losers_1d = [s['symbol'] for s in sorted(all_losers, key=lambda x: x['var_1d'])[:10]]
+        
+    if actives_syms_raw:
+        top_10_actives = [s for s in actives_syms_raw if s in stock_metrics][:10]
+    else:
+        all_actives = [s for s in stock_metrics.values() if s['volume'] is not None]
+        top_10_actives = [s['symbol'] for s in sorted(all_actives, key=lambda x: x['volume'], reverse=True)[:10]]
+        
+    if gainers52w_syms_raw:
+        top_10_gainers_52w = [s for s in gainers52w_syms_raw if s in stock_metrics][:10]
+    else:
+        valid_52w_g = [s for s in stock_metrics.values() if s['var_12m'] is not None and s['var_12m'] > 0]
+        top_10_gainers_52w = [s['symbol'] for s in sorted(valid_52w_g, key=lambda x: x['var_12m'], reverse=True)[:10]]
+        
+    if losers52w_syms_raw:
+        top_10_losers_52w = [s for s in losers52w_syms_raw if s in stock_metrics][:10]
+    else:
+        valid_52w_l = [s for s in stock_metrics.values() if s['var_12m'] is not None and s['var_12m'] < 0]
+        top_10_losers_52w = [s['symbol'] for s in sorted(valid_52w_l, key=lambda x: x['var_12m'])[:10]]
     
     selected_syms = list(dict.fromkeys(
         top_15_mcap + top_10_gainers_1d + top_10_losers_1d + 
