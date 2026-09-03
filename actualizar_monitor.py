@@ -1940,16 +1940,7 @@ def main():
     # Helper para grupos Yahoo Finance con Delta
     def process_yahoo_group(cfg, cat_name, sec_key, icon):
         nonlocal stats_skipped, stats_updated
-        if is_same_day and sec_key in prev_secciones and not args.force_all:
-            prev_sec = prev_secciones[sec_key]
-            p_items = prev_sec.get('items', [])
-            # Si todos los activos ya están cargados y no es la ronda de Asia a las 06:17 para índices mundiales
-            if len(p_items) >= len(cfg) and not (sec_key == 'indices_mundiales' and is_0617_round):
-                master_dataset['secciones'][sec_key] = prev_sec
-                stats_skipped += len(p_items)
-                print(f'   [Delta {cat_name}] Reutilizando cierre consolidado de hoy ({len(p_items)} activos).')
-                return
-        
+        # Cada pasada consulta activamente las cotizaciones oficiales para capturar los cierres definitivos
         items, s_map = fetch_yahoo_market_group(cfg, cat_name)
         master_dataset['secciones'][sec_key] = {'titulo': cat_name, 'icono': icon, 'items': items}
         all_series.update(s_map)
