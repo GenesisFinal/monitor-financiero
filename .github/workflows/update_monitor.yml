@@ -42,7 +42,7 @@ jobs:
           PYTHONPATH: '.'
           TZ: 'America/Argentina/Buenos_Aires'
         run: |
-          python actualizar_monitor.py
+          python actualizar_monitor.py --force-all
 
       - name: Commit and Push Updated Data
         run: |
