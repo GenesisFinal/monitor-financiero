@@ -502,10 +502,7 @@
         DATASET = rMaster;
         YIELD_CURVES = rCurvas;
 
-        const updateEl = document.getElementById('updateTimeBadge');
-        if (updateEl) {
-          updateEl.innerText = `Actualizado: ${DATASET.ultima_actualizacion || 'Hoy'}`;
-        }
+        updateFreshnessBadge();
         
         // Renderizar inmediatamente la página completa
         renderHeroHighlights();
@@ -2710,6 +2707,63 @@
 
       downloadChartCanvasAsPng(yieldCurveChartInstance, filename, title, subtitle, 'Modelo de Mayor R²');
     }
+
+
+
+    // =============================================================
+    // AUTO-POLLING SILENCIOSO Y VIGILANTE DE FRESCURA EN SEGUNDO PLANO
+    // =============================================================
+    function formatTimeAgo(dateStr) {
+      if (!dateStr) return 'Reciente';
+      try {
+        const parts = dateStr.split(' ');
+        const dateParts = parts[0].split('-');
+        const timeParts = parts[1].split(':');
+        const updateDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2], timeParts[0], timeParts[1], timeParts[2]);
+        const now = new Date();
+        const diffMs = now - updateDate;
+        const diffMins = Math.floor(diffMs / 60000);
+        
+        if (diffMins < 1) return 'Recién actualizado';
+        if (diffMins === 1) return 'Hace 1 minuto';
+        if (diffMins < 60) return `Hace ${diffMins} minutos`;
+        const diffHours = Math.floor(diffMins / 60);
+        if (diffHours === 1) return 'Hace 1 hora';
+        if (diffHours < 24) return `Hace ${diffHours} horas`;
+        return `El ${parts[0]} a las ${parts[1].slice(0, 5)}`;
+      } catch (e) {
+        return dateStr;
+      }
+    }
+
+    function updateFreshnessBadge() {
+      const updateEl = document.getElementById('updateTimeBadge');
+      if (updateEl && DATASET && DATASET.ultima_actualizacion) {
+        const relTime = formatTimeAgo(DATASET.ultima_actualizacion);
+        updateEl.innerHTML = `<strong>Actualizado:</strong> ${DATASET.ultima_actualizacion} <span class="text-slate-400 font-normal">(${relTime})</span>`;
+      }
+    }
+
+    // Polling en segundo plano cada 60 segundos
+    setInterval(async () => {
+      try {
+        const r = await fetch(`master_dataset.json?v=${Date.now()}`, { cache: 'no-store' });
+        if (r.ok) {
+          const freshData = await r.json();
+          if (freshData && freshData.ultima_actualizacion && (!DATASET || freshData.ultima_actualizacion !== DATASET.ultima_actualizacion)) {
+            console.log(`[Auto-Refresh] Nuevo cierre detectado (${freshData.ultima_actualizacion}). Actualizando tablero...`);
+            DATASET = freshData;
+            renderHeroHighlights();
+            renderActiveSection();
+            updateFreshnessBadge();
+          } else {
+            updateFreshnessBadge();
+          }
+        }
+      } catch (e) {
+        // Fallback silencioso sin interrumpir la experiencia del usuario
+      }
+    }, 60000);
 
 </script>
 </body>
