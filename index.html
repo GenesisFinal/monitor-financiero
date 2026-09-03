@@ -488,7 +488,7 @@
       if (refreshIcon) refreshIcon.classList.add('animate-spin');
       
       try {
-        const cacheBuster = force ? `?t=${Date.now()}` : '';
+        const cacheBuster = `?v=${Date.now()}`; // Siempre fresco, sin caché residual
         
         // 1. Cargar instantáneamente el dataset maestro y curvas (~350 KB)
         const [rMaster, rCurvas] = await Promise.all([
