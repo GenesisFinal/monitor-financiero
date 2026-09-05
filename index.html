@@ -392,6 +392,8 @@
     let CURRENT_CEDEARS_SEARCH = '';
     let CURRENT_BONOS_FILTER = 'all';
     let CURRENT_BONOS_SEARCH = '';
+    let CURRENT_ONS_FILTER = 'all';
+    let CURRENT_ONS_SEARCH = '';
     let EXPANDED_BONO_ID = null;
     let CURRENT_MODAL_ASSET = null;
     let CURRENT_TIMEFRAME = 12;
@@ -774,7 +776,18 @@
       renderActiveSection();
     }
 
-    function handleFciSearch(query) {
+    
+    function filterOns(sector) {
+      CURRENT_ONS_FILTER = sector;
+      renderActiveSection();
+    }
+
+    function handleOnsSearch(query) {
+      CURRENT_ONS_SEARCH = query.trim().toLowerCase();
+      renderActiveSection();
+    }
+
+function handleFciSearch(query) {
       CURRENT_FCI_SEARCH = query.trim().toLowerCase();
       renderActiveSection();
     }
@@ -809,7 +822,22 @@
         });
       } else if (secKey === 'bonos_lecaps' && CURRENT_BONOS_FILTER !== 'all') {
         items = items.filter(x => x.subtipo && x.subtipo.toLowerCase().includes(CURRENT_BONOS_FILTER.toLowerCase()));
-      } else if (secKey === 'commodities' && CURRENT_COMMODITY_FILTER !== 'all') {
+      } else 
+      if (secKey === 'ons') {
+        if (CURRENT_ONS_FILTER !== 'all') {
+          items = items.filter(x => (x.subtipo || '').toLowerCase().includes(CURRENT_ONS_FILTER.toLowerCase()) || (x.emisor || '').toLowerCase().includes(CURRENT_ONS_FILTER.toLowerCase()));
+        }
+        if (CURRENT_ONS_SEARCH) {
+          items = items.filter(x => 
+            (x.nombre || '').toLowerCase().includes(CURRENT_ONS_SEARCH) || 
+            (x.symbol || x.id || '').toLowerCase().includes(CURRENT_ONS_SEARCH) ||
+            (x.emisor || '').toLowerCase().includes(CURRENT_ONS_SEARCH) ||
+            (x.ley || '').toLowerCase().includes(CURRENT_ONS_SEARCH)
+          );
+        }
+      }
+
+      if (secKey === 'commodities' && CURRENT_COMMODITY_FILTER !== 'all') {
         items = items.filter(x => x.subtipo === CURRENT_COMMODITY_FILTER);
       }
 
@@ -1641,7 +1669,17 @@
                   </div>
                 ` : ''}
 
-                ${secKey === 'bonos_lecaps' ? `
+                ${secKey === 'ons' ? `
+              <div class="flex flex-wrap gap-1.5 pt-2.5 border-t border-slate-200/60 items-center">
+                <button onclick="filterOns('all')" class="ons-sub-tab px-2.5 py-1 rounded-lg text-xs font-semibold ${CURRENT_ONS_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">Todas las ONs</button>
+                <button onclick="filterOns('Petróleo & Gas')" class="ons-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_ONS_FILTER === 'Petróleo & Gas' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🛢️ Petróleo & Gas (Vaca Muerta)</button>
+                <button onclick="filterOns('Energía Eléctrica')" class="ons-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_ONS_FILTER === 'Energía Eléctrica' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">⚡ Energía Eléctrica & Renovable</button>
+                <button onclick="filterOns('Gas No Convencional')" class="ons-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_ONS_FILTER === 'Gas No Convencional' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🔥 Gas & Transporte</button>
+                <button onclick="filterOns('Agroindustria')" class="ons-sub-tab px-2.5 py-1 rounded-lg text-xs font-medium ${CURRENT_ONS_FILTER === 'Agroindustria' ? 'bg-brand-red text-white shadow-sm' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'}">🌾 Agro & Real Estate</button>
+              </div>
+            ` : ''}
+
+            ${secKey === 'bonos_lecaps' ? `
                   <div class="relative w-full sm:w-56">
                     <input 
                       type="text" 
@@ -1660,10 +1698,22 @@
                 ` : ''}
 
                 ${secKey === 'ons' ? `
-                  <button onclick="selectSection('curvas_rendimiento')" class="text-xs font-semibold text-brand-red bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-all flex items-center space-x-1">
-                    <i data-lucide="activity" class="w-3.5 h-3.5"></i>
-                    <span>Ver Curva TIR</span>
-                  </button>
+                  <div class="flex items-center space-x-2">
+                    <div class="relative w-full sm:w-64">
+                      <input 
+                        type="text" 
+                        placeholder="Buscar ticker o empresa (ej: YMCXD, Vista)..." 
+                        value="${CURRENT_ONS_SEARCH}"
+                        oninput="handleOnsSearch(this.value)" 
+                        class="w-full text-xs bg-white border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-brand-red focus:border-brand-red"
+                      />
+                      <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5"></i>
+                    </div>
+                    <button onclick="selectSection('curvas_rendimiento')" class="text-xs font-semibold text-brand-red bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-all flex items-center space-x-1 whitespace-nowrap">
+                      <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+                      <span>Curva ONs USD</span>
+                    </button>
+                  </div>
                 ` : ''}
               </div>
             </div>
@@ -2030,6 +2080,42 @@
         </div>
       `;
 
+      // Si es un Bono o una Obligación Negociable (ON), agregamos métricas financieras (TIR, Duration, Paridad, Cupón)
+      if (isBondAsset) {
+        if (found.tir !== undefined) {
+          mHtml += `
+            <div class="bg-emerald-50/60 border border-emerald-200 rounded-xl p-3">
+              <div class="text-[11px] text-emerald-800 uppercase font-bold">TIR Anual</div>
+              <div class="text-base font-mono font-bold text-emerald-700 mt-1">${found.tir > 0 ? found.tir.toFixed(2) : '-'}%</div>
+            </div>
+          `;
+        }
+        if (found.duration !== undefined) {
+          mHtml += `
+            <div class="bg-blue-50/60 border border-blue-200 rounded-xl p-3">
+              <div class="text-[11px] text-blue-800 uppercase font-bold">Duration (Modificada)</div>
+              <div class="text-base font-mono font-bold text-blue-700 mt-1">${found.duration > 0 ? found.duration.toFixed(2) : '-'} a</div>
+            </div>
+          `;
+        }
+        if (found.paridad_pct !== undefined) {
+          mHtml += `
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3">
+              <div class="text-[11px] text-slate-500 uppercase font-medium">Paridad Bursátil</div>
+              <div class="text-base font-mono font-bold text-slate-800 mt-1">${found.paridad_pct > 0 ? found.paridad_pct.toFixed(1) : '-'}%</div>
+            </div>
+          `;
+        }
+        if (found.cupon_anual_pct !== undefined) {
+          mHtml += `
+            <div class="bg-purple-50/60 border border-purple-200 rounded-xl p-3">
+              <div class="text-[11px] text-purple-800 uppercase font-bold">Tasa Cupón Nominal</div>
+              <div class="text-base font-mono font-bold text-purple-700 mt-1">${found.cupon_anual_pct.toFixed(2)}%</div>
+            </div>
+          `;
+        }
+      }
+
       // Si es un Fondo Común de Inversión, agregamos métricas avanzadas (Volatilidad, Drawdown, Comisión, Rescate)
       if (found.categoria === 'Fondos Comunes de Inversión') {
         if (found.var_24m) {
@@ -2105,7 +2191,7 @@
 
       // Control estricto de la barra de métricas: SOLO para Bonos - LECAPs
       const bmt = document.getElementById('bondMetricsToolbar');
-      const isBondAsset = (found.categoria === 'Bonos - LECAPs');
+      const isBondAsset = (found.categoria === 'Bonos - LECAPs' || found.categoria === 'Obligaciones Negociables (ONs)' || found.categoria === 'ONs' || (found.id && found.id.startsWith('ON_')));
       if (bmt) {
         bmt.style.display = isBondAsset ? 'flex' : 'none';
       }
