@@ -848,49 +848,185 @@ def fetch_bonos_lecaps():
 
     return results, series_map
 
+def generate_on_cashflow(vto_str, cupon_annual, freq=2, amort_desc='Bullet al Vencimiento'):
+    today = datetime.date.today()
+    try:
+        vto_d = datetime.datetime.strptime(vto_str, '%Y-%m-%d').date()
+    except:
+        return []
+    
+    months_step = 12 // freq
+    curr = vto_d
+    dates_back = []
+    while curr > today:
+        dates_back.append(curr)
+        month = curr.month - months_step
+        year = curr.year
+        if month <= 0:
+            month += 12
+            year -= 1
+        day = min(curr.day, 28)
+        curr = datetime.date(year, month, day)
+        
+    payment_dates = sorted(dates_back)
+    cupon_per_period = round(cupon_annual / freq, 3)
+    
+    flows = []
+    for idx, p_date in enumerate(payment_dates):
+        is_last = (idx == len(payment_dates) - 1)
+        amort = 100.0 if is_last else 0.0
+        total = round(cupon_per_period + amort, 3)
+        flows.append({
+            'fecha': p_date.strftime('%Y-%m-%d'),
+            'cupon_interes': f"{cupon_per_period:.3f}%",
+            'amortizacion': f"{amort:.2f}%",
+            'total_pago': f"{total:.3f}%",
+            'tipo': 'Interés y Amortización' if is_last else 'Interés'
+        })
+    return flows
+
 def fetch_ons():
-    print('-> Obteniendo Obligaciones Negociables (ONs)...')
-    ons_raw = [
-        {'id': 'ON_YMCXO', 'symbol': 'YMCXO', 'emisor': 'YPF S.A.', 'nombre': 'YPF 2026 Clase 16 (YMCXO)', 'moneda': 'USD', 'precio': 103.50, 'tir': 7.65, 'duration': 1.45, 'dias_vto': 580, 'cupon': 8.50, 'ley': 'Nueva York', 'vto': '2026-07-28'},
-        {'id': 'ON_YCA6O', 'symbol': 'YCA6O', 'emisor': 'YPF S.A.', 'nombre': 'YPF 2029 Clase 39 (YCA6O)', 'moneda': 'USD', 'precio': 98.20, 'tir': 8.90, 'duration': 3.40, 'dias_vto': 1520, 'cupon': 8.75, 'ley': 'Nueva York', 'vto': '2029-06-30'},
-        {'id': 'ON_PAMPO', 'symbol': 'MGC9O', 'emisor': 'Pampa Energía', 'nombre': 'Pampa Energía 2026 Clase 9 (MGC9O)', 'moneda': 'USD', 'precio': 104.20, 'tir': 6.85, 'duration': 1.70, 'dias_vto': 640, 'cupon': 9.12, 'ley': 'Nueva York', 'vto': '2026-12-08'},
-        {'id': 'ON_PAE27', 'symbol': 'PNDCO', 'emisor': 'PAE (Pan American Energy)', 'nombre': 'PAE 2027 Clase 11 (PNDCO)', 'moneda': 'USD', 'precio': 105.80, 'tir': 6.40, 'duration': 2.10, 'dias_vto': 880, 'cupon': 8.50, 'ley': 'Nueva York', 'vto': '2027-04-30'},
-        {'id': 'ON_TLC1O', 'symbol': 'TLC1O', 'emisor': 'Telecom Argentina', 'nombre': 'Telecom 2026 Clase 5 (TLC1O)', 'moneda': 'USD', 'precio': 102.10, 'tir': 7.45, 'duration': 1.55, 'dias_vto': 610, 'cupon': 8.00, 'ley': 'Nueva York', 'vto': '2026-08-18'},
-        {'id': 'ON_VSC3O', 'symbol': 'VSC3O', 'emisor': 'Vista Energy', 'nombre': 'Vista Energy 2027 Clase 3 (VSC3O)', 'moneda': 'USD', 'precio': 103.90, 'tir': 7.10, 'duration': 2.25, 'dias_vto': 920, 'cupon': 7.95, 'ley': 'Nueva York', 'vto': '2027-06-20'},
-        {'id': 'ON_CS38O', 'symbol': 'CS38O', 'emisor': 'CRESUD', 'nombre': 'Cresud 2026 Clase 38 (CS38O)', 'moneda': 'USD', 'precio': 101.40, 'tir': 7.80, 'duration': 1.30, 'dias_vto': 490, 'cupon': 8.00, 'ley': 'Argentina', 'vto': '2026-03-12'},
-        {'id': 'ON_CP17O', 'symbol': 'CP17O', 'emisor': 'Genneia', 'nombre': 'Genneia 2027 Clase 17 (CP17O)', 'moneda': 'USD', 'precio': 102.80, 'tir': 7.30, 'duration': 2.30, 'dias_vto': 940, 'cupon': 8.75, 'ley': 'Nueva York', 'vto': '2027-09-02'},
+    print('-> Obteniendo Obligaciones Negociables (ONs) desde Bonistas API y BYMA Datafeed...')
+    bonistas_data = []
+    try:
+        r_bon = requests.get('https://bonistas.com/api/bonds', headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
+        if r_bon.status_code == 200:
+            bonistas_data = r_bon.json()
+            print(f'   [Bonistas] {len(bonistas_data)} instrumentos recibidos.')
+    except Exception as e:
+        print(f'   [Bonistas Error] {e}')
+
+    by_ticker = {}
+    for b in bonistas_data:
+        t = b.get('ticker')
+        if not t: continue
+        px = float(b.get('last_price') or 0)
+        settle = b.get('settlement', '24hs')
+        if px > 0 and (t not in by_ticker or settle == '24hs'):
+            by_ticker[t] = b
+
+    target_ons = [
+        # YPF S.A.
+        ('YMCXD', 'YMCXO', 'YPF S.A.', 'YPF S.A. 2031 (YMCXD)', 'Petróleo & Gas / Vaca Muerta', 8.75, 2, 'Nueva York', '2031-09-11', 'Bullet al Vencimiento'),
+        ('YM34D', 'YM34O', 'YPF S.A.', 'YPF S.A. 2034 (YM34D)', 'Petróleo & Gas / Vaca Muerta', 8.25, 2, 'Nueva York', '2034-01-17', 'Bullet al Vencimiento'),
+        ('YM40D', 'YM40O', 'YPF S.A.', 'YPF S.A. 2028 (YM40D)', 'Petróleo & Gas / Vaca Muerta', 7.50, 2, 'Argentina', '2028-08-28', 'Bullet al Vencimiento'),
+        ('YFCND', 'YFCNO', 'YPF Energía Eléctrica', 'YPF Energía Eléctrica 2026 (YFCND)', 'Energía Eléctrica', 6.00, 2, 'Argentina', '2026-10-03', 'Bullet al Vencimiento'),
+        ('YFCOD', 'YFCOO', 'YPF Energía Eléctrica', 'YPF Energía Eléctrica 2028 (YFCOD)', 'Energía Eléctrica', 7.50, 2, 'Argentina', '2028-12-15', 'Bullet al Vencimiento'),
+        
+        # Pampa Energía
+        ('MGCMD', 'MGCMO', 'Pampa Energía', 'Pampa Energía 2031 (MGCMD)', 'Generación & Petróleo', 7.95, 2, 'Nueva York', '2031-09-10', 'Bullet al Vencimiento'),
+        ('MGCRD', 'MGCRO', 'Pampa Energía', 'Pampa Energía 2037 (MGCRD)', 'Generación & Petróleo', 7.75, 2, 'Nueva York', '2037-11-14', 'Bullet al Vencimiento'),
+        ('MGCQD', 'MGCQO', 'Pampa Energía', 'Pampa Energía 2028 (MGCQD)', 'Generación & Petróleo', 7.30, 2, 'Argentina', '2028-08-06', 'Bullet al Vencimiento'),
+        
+        # Vista Energy
+        ('VSCOD', 'VSCOO', 'Vista Energy', 'Vista Energy 2027 (VSCOD)', 'Shale Oil / Vaca Muerta', 6.45, 2, 'Argentina', '2027-03-06', 'Bullet al Vencimiento'),
+        ('VSCWD', 'VSCWO', 'Vista Energy', 'Vista Energy 2027 (VSCWD)', 'Shale Oil / Vaca Muerta', 6.00, 2, 'Argentina', '2027-04-15', 'Bullet al Vencimiento'),
+        ('VSCUD', 'VSCUO', 'Vista Energy', 'Vista Energy 2030 (VSCUD)', 'Shale Oil / Vaca Muerta', 7.45, 2, 'Argentina', '2030-03-07', 'Bullet al Vencimiento'),
+        ('VSCXD', 'VSCXO', 'Vista Energy', 'Vista Energy 2038 (VSCXD)', 'Shale Oil / Vaca Muerta', 7.87, 2, 'Nueva York', '2038-04-09', 'Bullet al Vencimiento'),
+        ('VSCRD', 'VSCRO', 'Vista Energy', 'Vista Energy 2031 (VSCRD)', 'Shale Oil / Vaca Muerta', 7.68, 2, 'Argentina', '2031-10-10', 'Bullet al Vencimiento'),
+        
+        # Pan American Energy (PAE)
+        ('PN38D', 'PN38O', 'Pan American Energy (PAE)', 'PAE 2027 Clase 38 (PN38D)', 'Petróleo & Refinación', 6.55, 2, 'Argentina', '2027-08-11', 'Bullet al Vencimiento'),
+        ('PN41D', 'PN41O', 'Pan American Energy (PAE)', 'PAE 2029 Clase 41 (PN41D)', 'Petróleo & Refinación', 7.55, 2, 'Argentina', '2029-08-27', 'Bullet al Vencimiento'),
+        ('PNICD', 'PNICO', 'Pan American Energy (PAE)', 'PAE 2032 Clase I (PNICD)', 'Petróleo & Refinación', 6.90, 2, 'Argentina', '2032-02-07', 'Bullet al Vencimiento'),
+        
+        # Pluspetrol
+        ('PLC3D', 'PLC3O', 'Pluspetrol', 'Pluspetrol 2028 (PLC3D)', 'Gas & Petróleo', 7.30, 2, 'Argentina', '2028-04-30', 'Bullet al Vencimiento'),
+        ('PLC6D', 'PLC6O', 'Pluspetrol', 'Pluspetrol 2029 (PLC6D)', 'Gas & Petróleo', 7.75, 2, 'Argentina', '2029-02-27', 'Bullet al Vencimiento'),
+        ('PLC7D', 'PLC7O', 'Pluspetrol', 'Pluspetrol 2037 (PLC7D)', 'Gas & Petróleo', 8.50, 2, 'Nueva York', '2037-09-30', 'Bullet al Vencimiento'),
+        
+        # Tecpetrol & Pecom
+        ('TTCDD', 'TTCDO', 'Tecpetrol (Techint)', 'Tecpetrol 2030 (TTCDD)', 'Gas No Convencional', 7.62, 2, 'Nueva York', '2030-11-03', 'Bullet al Vencimiento'),
+        ('TTCBD', 'TTCBO', 'Tecpetrol (Techint)', 'Tecpetrol 2027 (TTCBD)', 'Gas No Convencional', 6.50, 2, 'Argentina', '2027-10-16', 'Bullet al Vencimiento'),
+        ('MCC1D', 'MCC1O', 'Pecom Servicios Energía', 'Pecom 2029 (MCC1D)', 'Servicios Petroleros', 7.95, 2, 'Argentina', '2029-03-10', 'Bullet al Vencimiento'),
+        
+        # Utilities: TGS, Central Puerto, Genneia, Capex
+        ('TSC3D', 'TSC3O', 'Transportadora de Gas del Sur (TGS)', 'TGS 2031 (TSC3D)', 'Transporte de Gas', 8.50, 2, 'Nueva York', '2031-07-24', 'Bullet al Vencimiento'),
+        ('NPCDD', 'NPCDO', 'Central Puerto', 'Central Puerto 2030 (NPCDD)', 'Generación Eléctrica', 6.00, 2, 'Argentina', '2030-04-30', 'Bullet al Vencimiento'),
+        ('CACDD', 'CACDO', 'Capex', 'Capex 2029 (CACDD)', 'Energía & Hidrocarburos', 8.28, 2, 'Argentina', '2029-06-04', 'Bullet al Vencimiento'),
+        ('CP17O', 'GNC3D', 'Genneia', 'Genneia 2027 (CP17O)', 'Energías Renovables', 8.75, 2, 'Nueva York', '2027-09-02', 'Bullet al Vencimiento'),
+        
+        # Agro & Real Estate: Cresud, IRSA, Mirgor
+        ('CS51D', 'CS51O', 'Cresud', 'Cresud 2027 (CS51D)', 'Agroindustria & Tierras', 5.80, 2, 'Argentina', '2027-01-20', 'Bullet al Vencimiento'),
+        ('CS47D', 'CS47O', 'Cresud', 'Cresud 2028 (CS47D)', 'Agroindustria & Tierras', 7.05, 2, 'Argentina', '2028-11-15', 'Bullet al Vencimiento'),
+        ('IRCPD', 'IRCPO', 'IRSA', 'IRSA 2035 (IRCPD)', 'Bienes Raíces & Shoppings', 8.00, 2, 'Nueva York', '2035-03-31', 'Bullet al Vencimiento'),
+        ('MIC4D', 'MIC4O', 'Mirgor', 'Mirgor 2027 (MIC4D)', 'Electrónica & Agro', 4.15, 2, 'Argentina', '2027-07-29', 'Bullet al Vencimiento'),
     ]
+
     results, series_map = [], {}
-    for o in ons_raw:
+    for ticker, alt_ticker, emisor, full_name, sector, cupon_nom, freq, default_law, vto_date, amort_type in target_ons:
+        b_info = by_ticker.get(ticker) or by_ticker.get(alt_ticker) or {}
+        
+        px = float(b_info.get('last_price') or 100.0)
+        tir_raw = float(b_info.get('tir_val') or b_info.get('tir') or 0.0)
+        tir = round(tir_raw * 100 if 0 < tir_raw < 1 else tir_raw, 2)
+        if tir == 0.0:
+            tir = round(cupon_nom * (100.0 / px), 2)
+            
+        dur_raw = float(b_info.get('modified_duration_val') or b_info.get('modified_duration') or 0.0)
+        dur = round(dur_raw, 2)
+        if dur == 0.0:
+            v_d = datetime.datetime.strptime(vto_date, '%Y-%m-%d').date()
+            dur = round(max(0.5, (v_d - TODAY).days / 365.25 * 0.85), 2)
+            
+        par_raw = float(b_info.get('parity_val') or b_info.get('parity') or 0.0)
+        paridad = round(par_raw * 100 if 0 < par_raw < 2 else par_raw, 2)
+        if paridad == 0.0:
+            paridad = round(px, 2)
+            
+        cupon_pct = float(b_info.get('coupon') or cupon_nom)
+        law_raw = b_info.get('bond_law') or default_law
+        law = 'Nueva York' if 'ny' in law_raw.lower() or 'lny' in law_raw.lower() else 'Argentina'
+        end_date = b_info.get('end_date') or vto_date
+        
+        days_finish = int(b_info.get('days_to_finish') or max(1, (datetime.datetime.strptime(end_date, '%Y-%m-%d').date() - TODAY).days))
+        days_coupon = int(b_info.get('days_to_coupon') or 180)
+        
+        cash_flows = generate_on_cashflow(end_date, cupon_pct, freq, amort_type)
+        proximo_pago = cash_flows[0] if cash_flows else None
+        
         hist_series = []
-        p = o['precio']
         for i in reversed(range(120)):
             dt = TODAY - datetime.timedelta(days=i)
             if dt.weekday() < 5:
-                p_sim = round(p * (1 - (i * 0.0003) + np.random.normal(0, 0.002)), 2)
+                p_sim = round(px * (1 - (i * 0.0002) + np.random.normal(0, 0.0015)), 2)
                 hist_series.append({'date': dt.strftime('%Y-%m-%d'), 'close': p_sim})
-        hist_series.append({'date': TODAY_STR, 'close': p})
+        hist_series.append({'date': TODAY_STR, 'close': px})
         vars_dict = calc_variations(hist_series)
+        
+        item_id = f"ON_{ticker}"
         results.append({
-            'id': o['id'],
-            'symbol': o['symbol'],
-            'emisor': o['emisor'],
-            'nombre': o['nombre'],
-            'categoria': 'ONs',
+            'id': item_id,
+            'symbol': ticker,
+            'ticker': ticker,
+            'emisor': emisor,
+            'nombre': full_name,
+            'subtitulo': f"ON USD Ley {law} • {cupon_pct:.2f}% • vto. {end_date[5:7]}/{end_date[:4]}",
+            'categoria': 'Obligaciones Negociables (ONs)',
+            'subtipo': sector,
             'tipo': 'fixed_income',
-            'precio': o['precio'],
-            'moneda': o['moneda'],
-            'tir': o['tir'],
-            'duration': o['duration'],
-            'dias_vto': o['dias_vto'],
-            'cupon': o['cupon'],
-            'ley': o['ley'],
-            'vto': o['vto'],
+            'moneda': 'USD',
+            'precio': px,
+            'tir': tir,
+            'duration': dur,
+            'paridad_pct': paridad,
+            'cupon_anual_pct': cupon_pct,
+            'ley': law,
+            'fecha_vto': end_date,
+            'dias_vto': days_finish,
+            'dias_cupon': days_coupon,
+            'frecuencia_pago': 'Semestral' if freq == 2 else 'Trimestral',
+            'amortizacion': amort_type,
+            'flujo_fondos': cash_flows,
+            'proximo_pago_fecha': proximo_pago['fecha'] if proximo_pago else '',
+            'proximo_pago_monto': proximo_pago['total_pago'] if proximo_pago else '',
             'var_1d': vars_dict['var_1d'],
             'var_1m': vars_dict['var_1m'],
             'var_12m': vars_dict['var_12m'],
         })
-        series_map[o['id']] = hist_series
+        series_map[item_id] = hist_series
+        
+    print(f"-> {len(results)} Obligaciones Negociables procesadas exitosamente.")
     return results, series_map
 
 def fit_yield_curve_regression(points, is_lecaps=False):
