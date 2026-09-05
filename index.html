@@ -835,6 +835,8 @@ function handleFciSearch(query) {
             (x.ley || '').toLowerCase().includes(CURRENT_ONS_SEARCH)
           );
         }
+        // Ordenar estrictamente por Duration ascendente
+        items = [...items].sort((a, b) => (parseFloat(a.duration) || 0) - (parseFloat(b.duration) || 0));
       }
 
       if (secKey === 'commodities' && CURRENT_COMMODITY_FILTER !== 'all') {
