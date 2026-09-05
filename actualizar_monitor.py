@@ -848,12 +848,12 @@ def fetch_bonos_lecaps():
 
     return results, series_map
 
-def generate_on_cashflow(vto_str, cupon_annual, freq=2, amort_desc='Bullet al Vencimiento'):
+def generate_on_cashflow_table(vto_str, cupon_annual, freq=2, amort_desc='Bullet al Vencimiento'):
     today = datetime.date.today()
     try:
         vto_d = datetime.datetime.strptime(vto_str, '%Y-%m-%d').date()
     except:
-        return []
+        return [], None
     
     months_step = 12 // freq
     curr = vto_d
@@ -871,19 +871,30 @@ def generate_on_cashflow(vto_str, cupon_annual, freq=2, amort_desc='Bullet al Ve
     payment_dates = sorted(dates_back)
     cupon_per_period = round(cupon_annual / freq, 3)
     
-    flows = []
+    cashflow_list = []
     for idx, p_date in enumerate(payment_dates):
         is_last = (idx == len(payment_dates) - 1)
         amort = 100.0 if is_last else 0.0
         total = round(cupon_per_period + amort, 3)
-        flows.append({
+        cashflow_list.append({
             'fecha': p_date.strftime('%Y-%m-%d'),
-            'cupon_interes': f"{cupon_per_period:.3f}%",
-            'amortizacion': f"{amort:.2f}%",
-            'total_pago': f"{total:.3f}%",
+            'renta': cupon_per_period,
+            'amort': amort,
+            'total': total,
             'tipo': 'Interés y Amortización' if is_last else 'Interés'
         })
-    return flows
+    
+    last_coupon_date = None
+    if payment_dates:
+        first_next = payment_dates[0]
+        prev_month = first_next.month - months_step
+        prev_year = first_next.year
+        if prev_month <= 0:
+            prev_month += 12
+            prev_year -= 1
+        last_coupon_date = datetime.date(prev_year, prev_month, min(first_next.day, 28))
+        
+    return cashflow_list, last_coupon_date
 
 def fetch_ons():
     print('-> Obteniendo Obligaciones Negociables (ONs) desde Bonistas API y BYMA Datafeed...')
@@ -982,8 +993,18 @@ def fetch_ons():
         days_finish = int(b_info.get('days_to_finish') or max(1, (datetime.datetime.strptime(end_date, '%Y-%m-%d').date() - TODAY).days))
         days_coupon = int(b_info.get('days_to_coupon') or 180)
         
-        cash_flows = generate_on_cashflow(end_date, cupon_pct, freq, amort_type)
-        proximo_pago = cash_flows[0] if cash_flows else None
+        cashflow_list, last_coupon_date = generate_on_cashflow_table(end_date, cupon_pct, freq, amort_type)
+        
+        if last_coupon_date:
+            days_accrued = max(0, (TODAY - last_coupon_date).days)
+        else:
+            days_accrued = max(0, int((365.25 / freq) - days_coupon))
+            
+        intereses_corridos = round(100.0 * (cupon_pct / 100.0) * (days_accrued / 365.0), 2)
+        valor_residual = 100.0
+        valor_tecnico = round(valor_residual + intereses_corridos, 2)
+        
+        proximo_pago = cashflow_list[0] if cashflow_list else None
         
         hist_series = []
         for i in reversed(range(120)):
@@ -1011,22 +1032,29 @@ def fetch_ons():
             'duration': dur,
             'paridad_pct': paridad,
             'cupon_anual_pct': cupon_pct,
+            'tipo_cupon': 'Fijo',
+            'frecuencia_pago': 'Semestral' if freq == 2 else 'Trimestral',
+            'amortizacion': amort_type,
             'ley': law,
             'fecha_vto': end_date,
             'dias_vto': days_finish,
             'dias_cupon': days_coupon,
-            'frecuencia_pago': 'Semestral' if freq == 2 else 'Trimestral',
-            'amortizacion': amort_type,
-            'flujo_fondos': cash_flows,
+            'intereses_corridos': intereses_corridos,
+            'valor_residual_pct': valor_residual,
+            'valor_tecnico': valor_tecnico,
+            'cashflow': cashflow_list,
+            'flujo_fondos': cashflow_list,
             'proximo_pago_fecha': proximo_pago['fecha'] if proximo_pago else '',
-            'proximo_pago_monto': proximo_pago['total_pago'] if proximo_pago else '',
+            'proximo_pago_monto': f"{proximo_pago['total']:.3f}%" if proximo_pago else '',
             'var_1d': vars_dict['var_1d'],
             'var_1m': vars_dict['var_1m'],
             'var_12m': vars_dict['var_12m'],
         })
         series_map[item_id] = hist_series
         
-    print(f"-> {len(results)} Obligaciones Negociables procesadas exitosamente.")
+    # Ordenar estrictamente por Duration ascendente (de menor a mayor plazo)
+    results = sorted(results, key=lambda x: x.get('duration') or 0.0)
+    print(f"-> {len(results)} Obligaciones Negociables ordenadas por Duration procesadas exitosamente.")
     return results, series_map
 
 def fit_yield_curve_regression(points, is_lecaps=False):
