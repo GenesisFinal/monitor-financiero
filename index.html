@@ -2205,6 +2205,34 @@
       if (!CURRENT_MODAL_ASSET || !HISTORICAL_SERIES) return;
       const rawSeries = HISTORICAL_SERIES[CURRENT_MODAL_ASSET.id] || [];
       if (!rawSeries.length) return;
+      // Pre-calcular MA 50 y MA 200 sobre el 100% de la historia disponible (rawSeries)
+      const fullMA50ByDate = {};
+      const fullMA200ByDate = {};
+      const rawCloses = rawSeries.map(x => parseFloat(x.close) || 0);
+
+      for (let i = 0; i < rawSeries.length; i++) {
+        const dt = rawSeries[i].date || rawSeries[i].time || rawSeries[i].fecha;
+        if (!dt) continue;
+
+        // MA 50: ventana de 50 ruedas históricas
+        if (i >= 49) {
+          let sum50 = 0;
+          for (let j = i - 49; j <= i; j++) sum50 += rawCloses[j];
+          fullMA50ByDate[dt] = roundNumber(sum50 / 50, 2);
+        } else {
+          fullMA50ByDate[dt] = null;
+        }
+
+        // MA 200: ventana de 200 ruedas históricas
+        if (i >= 199) {
+          let sum200 = 0;
+          for (let j = i - 199; j <= i; j++) sum200 += rawCloses[j];
+          fullMA200ByDate[dt] = roundNumber(sum200 / 200, 2);
+        } else {
+          fullMA200ByDate[dt] = null;
+        }
+      }
+
 
       // Normalizar puntos de serie histórica (date / time / fecha)
       const isFCIAsset = (CURRENT_MODAL_ASSET.categoria === 'Fondos Comunes de Inversión');
@@ -2279,13 +2307,11 @@
         tension: 0.1
       });
 
-      if (SHOW_MA50 && CURRENT_MODAL_ASSET.tipo === 'market_asset' && !isMetricParidad && !isMetricTIR) {
-        const ma50Vals = [];
-        for (let i = 0; i < series.length; i++) {
-          const slice = series.slice(Math.max(0, i - 50 + 1), i + 1);
-          const avg = slice.reduce((a, b) => a + b.close, 0) / slice.length;
-          ma50Vals.push(i >= 15 ? avg : null);
-        }
+            if (SHOW_MA50 && CURRENT_MODAL_ASSET.tipo === 'market_asset' && !isMetricParidad && !isMetricTIR) {
+        const ma50Vals = series.map(pt => {
+          const dt = pt.date || pt.time || pt.fecha;
+          return dt ? fullMA50ByDate[dt] : null;
+        });
         datasets.push({
           label: 'MA 50 Días',
           data: ma50Vals,
@@ -2299,12 +2325,10 @@
       }
 
       if (SHOW_MA200 && CURRENT_MODAL_ASSET.tipo === 'market_asset' && !isMetricParidad && !isMetricTIR) {
-        const ma200Vals = [];
-        for (let i = 0; i < series.length; i++) {
-          const slice = series.slice(Math.max(0, i - 200 + 1), i + 1);
-          const avg = slice.reduce((a, b) => a + b.close, 0) / slice.length;
-          ma200Vals.push(i >= 40 ? avg : null);
-        }
+        const ma200Vals = series.map(pt => {
+          const dt = pt.date || pt.time || pt.fecha;
+          return dt ? fullMA200ByDate[dt] : null;
+        });
         datasets.push({
           label: 'MA 200 Días',
           data: ma200Vals,
