@@ -2056,6 +2056,8 @@ function handleFciSearch(query) {
       }
       if (!found) return;
 
+      const isBondAsset = (found.categoria === 'Bonos - LECAPs' || found.categoria === 'Obligaciones Negociables (ONs)' || found.categoria === 'ONs' || (found.id && found.id.startsWith('ON_')) || (found.id && found.id.startsWith('BONO_')));
+
       CURRENT_MODAL_ASSET = found;
       
       document.getElementById('modalAssetTitle').innerText = found.nombre;
@@ -2193,7 +2195,7 @@ function handleFciSearch(query) {
 
       // Control estricto de la barra de métricas: SOLO para Bonos - LECAPs
       const bmt = document.getElementById('bondMetricsToolbar');
-      const isBondAsset = (found.categoria === 'Bonos - LECAPs' || found.categoria === 'Obligaciones Negociables (ONs)' || found.categoria === 'ONs' || (found.id && found.id.startsWith('ON_')));
+      // isBondAsset ya inicializado arriba
       if (bmt) {
         bmt.style.display = isBondAsset ? 'flex' : 'none';
       }
