@@ -896,6 +896,48 @@ def generate_on_cashflow_table(vto_str, cupon_annual, freq=2, amort_desc='Bullet
         
     return cashflow_list, last_coupon_date
 
+def fetch_real_on_history_rava(ticker):
+    url = f"https://www.rava.com/perfil/{ticker}"
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=6)
+        if r.status_code != 200:
+            return []
+        soup = BeautifulSoup(r.text, 'html.parser')
+        tables = soup.find_all('table')
+        if len(tables) < 2:
+            return []
+        
+        hist_table = tables[1]
+        rows = hist_table.find_all('tr')
+        series = []
+        for row in rows[1:]:
+            cols = [td.text.strip().replace('.', '').replace(',', '.') for td in row.find_all(['td', 'th'])]
+            if len(cols) >= 5:
+                try:
+                    d_raw = row.find_all(['td', 'th'])[0].text.strip()
+                    d_parts = d_raw.split('/')
+                    if len(d_parts) == 3:
+                        dt_iso = f"{d_parts[2]}-{d_parts[1]}-{d_parts[0]}"
+                        o_val = float(cols[1])
+                        h_val = float(cols[2])
+                        l_val = float(cols[3])
+                        c_val = float(cols[4])
+                        v_val = float(cols[5]) if len(cols) > 5 else 0.0
+                        series.append({
+                            'date': dt_iso,
+                            'open': o_val,
+                            'high': h_val,
+                            'low': l_val,
+                            'close': c_val,
+                            'volume': v_val
+                        })
+                except Exception:
+                    continue
+        series.reverse() # Orden cronológico ascendente
+        return series
+    except Exception:
+        return []
+
 def fetch_ons():
     print('-> Obteniendo Obligaciones Negociables (ONs) desde Bonistas API y BYMA Datafeed...')
     bonistas_data = []
@@ -1006,14 +1048,26 @@ def fetch_ons():
         
         proximo_pago = cashflow_list[0] if cashflow_list else None
         
-        hist_series = []
-        for i in reversed(range(120)):
-            dt = TODAY - datetime.timedelta(days=i)
-            if dt.weekday() < 5:
-                p_sim = round(px * (1 - (i * 0.0002) + np.random.normal(0, 0.0015)), 2)
-                hist_series.append({'date': dt.strftime('%Y-%m-%d'), 'close': p_sim})
-        hist_series.append({'date': TODAY_STR, 'close': px})
-        vars_dict = calc_variations(hist_series)
+        # Extraer serie 100% REAL de ruedas operadas en BYMA / Rava
+        hist_series = fetch_real_on_history_rava(ticker)
+        if not hist_series:
+            hist_series = fetch_real_on_history_rava(alt_ticker)
+            
+        if hist_series:
+            # Asegurar que el último punto tenga el precio de cierre consolidado
+            hist_series[-1]['close'] = px
+            vars_dict = calc_variations(hist_series)
+            tipo_item = 'market_asset'
+            open_px = hist_series[-1].get('open', px)
+            high_px = hist_series[-1].get('high', px)
+            low_px = hist_series[-1].get('low', px)
+        else:
+            hist_series = [{'date': TODAY_STR, 'close': px}]
+            vars_dict = {'var_1d': round(float(b_info.get('day_difference') or 0.0), 2), 'var_1m': 0.0, 'var_12m': 0.0}
+            tipo_item = 'fixed_income'
+            open_px = px
+            high_px = px
+            low_px = px
         
         item_id = f"ON_{ticker}"
         results.append({
@@ -1025,9 +1079,12 @@ def fetch_ons():
             'subtitulo': f"ON USD Ley {law} • {cupon_pct:.2f}% • vto. {end_date[5:7]}/{end_date[:4]}",
             'categoria': 'Obligaciones Negociables (ONs)',
             'subtipo': sector,
-            'tipo': 'fixed_income',
+            'tipo': tipo_item,
             'moneda': 'USD',
             'precio': px,
+            'open': open_px,
+            'high': high_px,
+            'low': low_px,
             'tir': tir,
             'duration': dur,
             'paridad_pct': paridad,
@@ -1052,9 +1109,9 @@ def fetch_ons():
         })
         series_map[item_id] = hist_series
         
-    # Ordenar estrictamente por Duration ascendente (de menor a mayor plazo)
+    # Ordenar estrictamente por Duration ascendente
     results = sorted(results, key=lambda x: x.get('duration') or 0.0)
-    print(f"-> {len(results)} Obligaciones Negociables ordenadas por Duration procesadas exitosamente.")
+    print(f"-> {len(results)} Obligaciones Negociables con series 100% reales procesadas exitosamente.")
     return results, series_map
 
 def fit_yield_curve_regression(points, is_lecaps=False):
