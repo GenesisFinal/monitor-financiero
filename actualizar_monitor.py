@@ -963,47 +963,48 @@ def fetch_ons():
         ('YMCXD', 'YMCXO', 'YPF S.A.', 'YPF S.A. 2031 (YMCXD)', 'Petróleo & Gas / Vaca Muerta', 8.75, 2, 'Nueva York', '2031-09-11', 'Bullet al Vencimiento'),
         ('YM34D', 'YM34O', 'YPF S.A.', 'YPF S.A. 2034 (YM34D)', 'Petróleo & Gas / Vaca Muerta', 8.25, 2, 'Nueva York', '2034-01-17', 'Bullet al Vencimiento'),
         ('YM40D', 'YM40O', 'YPF S.A.', 'YPF S.A. 2028 (YM40D)', 'Petróleo & Gas / Vaca Muerta', 7.50, 2, 'Argentina', '2028-08-28', 'Bullet al Vencimiento'),
+        ('YM41D', 'YM41O', 'YPF S.A.', 'YPF S.A. 2029 (YM41D)', 'Petróleo & Gas / Vaca Muerta', 8.00, 2, 'Argentina', '2029-07-15', 'Bullet al Vencimiento'),
         ('YFCND', 'YFCNO', 'YPF Energía Eléctrica', 'YPF Energía Eléctrica 2026 (YFCND)', 'Energía Eléctrica', 6.00, 2, 'Argentina', '2026-10-03', 'Bullet al Vencimiento'),
-        ('YFCOD', 'YFCOO', 'YPF Energía Eléctrica', 'YPF Energía Eléctrica 2028 (YFCOD)', 'Energía Eléctrica', 7.50, 2, 'Argentina', '2028-12-15', 'Bullet al Vencimiento'),
+        ('YFCMD', 'YFCMO', 'YPF Energía Eléctrica', 'YPF Energía Eléctrica 2028 (YFCMD)', 'Energía Eléctrica', 7.50, 2, 'Argentina', '2028-12-15', 'Bullet al Vencimiento'),
         
         # Pampa Energía
         ('MGCMD', 'MGCMO', 'Pampa Energía', 'Pampa Energía 2031 (MGCMD)', 'Generación & Petróleo', 7.95, 2, 'Nueva York', '2031-09-10', 'Bullet al Vencimiento'),
-        ('MGCRD', 'MGCRO', 'Pampa Energía', 'Pampa Energía 2037 (MGCRD)', 'Generación & Petróleo', 7.75, 2, 'Nueva York', '2037-11-14', 'Bullet al Vencimiento'),
+        ('MGCRD', 'MGCRC', 'Pampa Energía', 'Pampa Energía 2037 (MGCRD)', 'Generación & Petróleo', 7.75, 2, 'Nueva York', '2037-11-14', 'Bullet al Vencimiento'),
         ('MGCQD', 'MGCQO', 'Pampa Energía', 'Pampa Energía 2028 (MGCQD)', 'Generación & Petróleo', 7.30, 2, 'Argentina', '2028-08-06', 'Bullet al Vencimiento'),
+        ('MGCOD', 'MGCOO', 'Pampa Energía', 'Pampa Energía 2027 (MGCOD)', 'Generación & Petróleo', 6.85, 2, 'Argentina', '2027-12-08', 'Bullet al Vencimiento'),
         
         # Vista Energy
         ('VSCOD', 'VSCOO', 'Vista Energy', 'Vista Energy 2027 (VSCOD)', 'Shale Oil / Vaca Muerta', 6.45, 2, 'Argentina', '2027-03-06', 'Bullet al Vencimiento'),
         ('VSCWD', 'VSCWO', 'Vista Energy', 'Vista Energy 2027 (VSCWD)', 'Shale Oil / Vaca Muerta', 6.00, 2, 'Argentina', '2027-04-15', 'Bullet al Vencimiento'),
         ('VSCUD', 'VSCUO', 'Vista Energy', 'Vista Energy 2030 (VSCUD)', 'Shale Oil / Vaca Muerta', 7.45, 2, 'Argentina', '2030-03-07', 'Bullet al Vencimiento'),
-        ('VSCXD', 'VSCXO', 'Vista Energy', 'Vista Energy 2038 (VSCXD)', 'Shale Oil / Vaca Muerta', 7.87, 2, 'Nueva York', '2038-04-09', 'Bullet al Vencimiento'),
+        ('VSCVD', 'VSCVO', 'Vista Energy', 'Vista Energy 2033 (VSCVD)', 'Shale Oil / Vaca Muerta', 7.87, 2, 'Nueva York', '2033-06-10', 'Bullet al Vencimiento'),
         ('VSCRD', 'VSCRO', 'Vista Energy', 'Vista Energy 2031 (VSCRD)', 'Shale Oil / Vaca Muerta', 7.68, 2, 'Argentina', '2031-10-10', 'Bullet al Vencimiento'),
         
         # Pan American Energy (PAE)
         ('PN38D', 'PN38O', 'Pan American Energy (PAE)', 'PAE 2027 Clase 38 (PN38D)', 'Petróleo & Refinación', 6.55, 2, 'Argentina', '2027-08-11', 'Bullet al Vencimiento'),
         ('PN41D', 'PN41O', 'Pan American Energy (PAE)', 'PAE 2029 Clase 41 (PN41D)', 'Petróleo & Refinación', 7.55, 2, 'Argentina', '2029-08-27', 'Bullet al Vencimiento'),
-        ('PNICD', 'PNICO', 'Pan American Energy (PAE)', 'PAE 2032 Clase I (PNICD)', 'Petróleo & Refinación', 6.90, 2, 'Argentina', '2032-02-07', 'Bullet al Vencimiento'),
+        ('PN35D', 'PN35O', 'Pan American Energy (PAE)', 'PAE 2028 Clase 35 (PN35D)', 'Petróleo & Refinación', 7.15, 2, 'Argentina', '2028-05-18', 'Bullet al Vencimiento'),
+        ('PN34O', 'PN34D', 'Pan American Energy (PAE)', 'PAE 2027 Clase 34 (PN34O)', 'Petróleo & Refinación', 6.75, 2, 'Argentina', '2027-03-12', 'Bullet al Vencimiento'),
         
         # Pluspetrol
         ('PLC3D', 'PLC3O', 'Pluspetrol', 'Pluspetrol 2028 (PLC3D)', 'Gas & Petróleo', 7.30, 2, 'Argentina', '2028-04-30', 'Bullet al Vencimiento'),
-        ('PLC6D', 'PLC6O', 'Pluspetrol', 'Pluspetrol 2029 (PLC6D)', 'Gas & Petróleo', 7.75, 2, 'Argentina', '2029-02-27', 'Bullet al Vencimiento'),
-        ('PLC7D', 'PLC7O', 'Pluspetrol', 'Pluspetrol 2037 (PLC7D)', 'Gas & Petróleo', 8.50, 2, 'Nueva York', '2037-09-30', 'Bullet al Vencimiento'),
+        ('PLC4O', 'PLC4D', 'Pluspetrol', 'Pluspetrol 2032 (PLC4O)', 'Gas & Petróleo', 7.75, 2, 'Nueva York', '2032-05-30', 'Bullet al Vencimiento'),
+        ('PLC2O', 'PLC2D', 'Pluspetrol', 'Pluspetrol 2027 (PLC2O)', 'Gas & Petróleo', 6.80, 2, 'Argentina', '2027-11-20', 'Bullet al Vencimiento'),
         
         # Tecpetrol & Pecom
         ('TTCDD', 'TTCDO', 'Tecpetrol (Techint)', 'Tecpetrol 2030 (TTCDD)', 'Gas No Convencional', 7.62, 2, 'Nueva York', '2030-11-03', 'Bullet al Vencimiento'),
         ('TTCBD', 'TTCBO', 'Tecpetrol (Techint)', 'Tecpetrol 2027 (TTCBD)', 'Gas No Convencional', 6.50, 2, 'Argentina', '2027-10-16', 'Bullet al Vencimiento'),
+        ('TTC9O', 'TTC9D', 'Tecpetrol (Techint)', 'Tecpetrol 2026 (TTC9O)', 'Gas No Convencional', 6.25, 2, 'Argentina', '2026-06-25', 'Bullet al Vencimiento'),
         ('MCC1D', 'MCC1O', 'Pecom Servicios Energía', 'Pecom 2029 (MCC1D)', 'Servicios Petroleros', 7.95, 2, 'Argentina', '2029-03-10', 'Bullet al Vencimiento'),
         
-        # Utilities: TGS, Central Puerto, Genneia, Capex
+        # Utilities: TGS, Capex
         ('TSC3D', 'TSC3O', 'Transportadora de Gas del Sur (TGS)', 'TGS 2031 (TSC3D)', 'Transporte de Gas', 8.50, 2, 'Nueva York', '2031-07-24', 'Bullet al Vencimiento'),
-        ('NPCDD', 'NPCDO', 'Central Puerto', 'Central Puerto 2030 (NPCDD)', 'Generación Eléctrica', 6.00, 2, 'Argentina', '2030-04-30', 'Bullet al Vencimiento'),
-        ('CACDD', 'CACDO', 'Capex', 'Capex 2029 (CACDD)', 'Energía & Hidrocarburos', 8.28, 2, 'Argentina', '2029-06-04', 'Bullet al Vencimiento'),
-        ('CP17O', 'GNC3D', 'Genneia', 'Genneia 2027 (CP17O)', 'Energías Renovables', 8.75, 2, 'Nueva York', '2027-09-02', 'Bullet al Vencimiento'),
+        ('CACBO', 'CACBD', 'Capex', 'Capex 2028 (CACBO)', 'Energía & Hidrocarburos', 8.28, 2, 'Argentina', '2028-06-04', 'Bullet al Vencimiento'),
         
-        # Agro & Real Estate: Cresud, IRSA, Mirgor
-        ('CS51D', 'CS51O', 'Cresud', 'Cresud 2027 (CS51D)', 'Agroindustria & Tierras', 5.80, 2, 'Argentina', '2027-01-20', 'Bullet al Vencimiento'),
+        # Agro & Real Estate: Cresud, IRSA
         ('CS47D', 'CS47O', 'Cresud', 'Cresud 2028 (CS47D)', 'Agroindustria & Tierras', 7.05, 2, 'Argentina', '2028-11-15', 'Bullet al Vencimiento'),
+        ('CS49D', 'CS49O', 'Cresud', 'Cresud 2029 (CS49D)', 'Agroindustria & Tierras', 7.50, 2, 'Argentina', '2029-04-18', 'Bullet al Vencimiento'),
         ('IRCPD', 'IRCPO', 'IRSA', 'IRSA 2035 (IRCPD)', 'Bienes Raíces & Shoppings', 8.00, 2, 'Nueva York', '2035-03-31', 'Bullet al Vencimiento'),
-        ('MIC4D', 'MIC4O', 'Mirgor', 'Mirgor 2027 (MIC4D)', 'Electrónica & Agro', 4.15, 2, 'Argentina', '2027-07-29', 'Bullet al Vencimiento'),
     ]
 
     results, series_map = [], {}
