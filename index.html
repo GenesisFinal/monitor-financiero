@@ -766,13 +766,6 @@
 
     function filterFCI(clase) {
       CURRENT_FCI_FILTER = clase;
-      document.querySelectorAll('.fci-sub-tab').forEach(btn => {
-        if (btn.getAttribute('data-fci') === clase) {
-          btn.className = 'fci-sub-tab px-3 py-1 rounded-lg text-xs font-bold bg-brand-red text-white shadow-sm whitespace-nowrap';
-        } else {
-          btn.className = 'fci-sub-tab px-3 py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 whitespace-nowrap';
-        }
-      });
       renderActiveSection();
     }
 
@@ -805,21 +798,34 @@ function handleFciSearch(query) {
       }
 
       // Aplicar filtros activos si corresponden
-      if (secKey === 'fci' && CURRENT_FCI_FILTER !== 'all') {
-        const fLow = CURRENT_FCI_FILTER.toLowerCase();
-        items = items.filter(x => {
-          const cLow = (x.clase || '').toLowerCase();
-          const sLow = (x.subtipo || '').toLowerCase();
-          if (fLow === 'tasa fija' || fLow === 't+1') return cLow.includes('tasa fija') || cLow.includes('pesos');
-          if (fLow === 'hard') return cLow.includes('hard') || cLow.includes('usd') || x.moneda === 'USD';
-          if (fLow === 'linked') return cLow.includes('linked') || cLow.includes('cobertura');
-          if (fLow === 'cer') return cLow.includes('cer') || cLow.includes('inflación') || cLow.includes('inflacion');
-          if (fLow === 'money market') return cLow.includes('money market') || cLow.includes('t+0');
-          if (fLow === 'variable') return cLow.includes('variable') || cLow.includes('acciones');
-          if (fLow === 'mixta') return cLow.includes('mixta') || cLow.includes('balanceados');
-          if (fLow === 'pymes') return cLow.includes('pyme') || cLow.includes('infraestructura');
-          return cLow.includes(fLow) || sLow.includes(fLow);
-        });
+      if (secKey === 'fci') {
+        if (CURRENT_FCI_FILTER !== 'all') {
+          const fLow = CURRENT_FCI_FILTER.toLowerCase().trim();
+          items = items.filter(x => {
+            const cat = (x.categoria || '').toLowerCase().trim();
+            const sub = (x.subtipo || '').toLowerCase().trim();
+            if (fLow === 'money market' || fLow === 't+0') return cat.includes('money market') || sub.includes('money market');
+            if (fLow === 'cer' || fLow === 'inflacion' || fLow === 'inflación') return cat.includes('cer') || sub.includes('cer') || cat.includes('inflaci');
+            if (fLow === 'hard' || fLow === 'dólar hard' || fLow === 'dolar hard') return cat.includes('hard') || sub.includes('hard') || (x.moneda === 'USD' && cat.includes('hard'));
+            if (fLow === 'linked' || fLow === 'dólar linked' || fLow === 'dolar linked') return cat.includes('linked') || sub.includes('linked');
+            if (fLow === 'tasa fija' || fLow === 'renta fija corto' || fLow === 't+1') return cat.includes('tasa fija') || cat.includes('pesos (tasa fija)') || sub.includes('tasa fija');
+            if (fLow === 'variable' || fLow === 'acciones') return cat.includes('variable') || cat.includes('acciones') || sub.includes('variable');
+            if (fLow === 'mixta' || fLow === 'balanceados') return cat.includes('mixta') || cat.includes('balanceados') || sub.includes('mixta');
+            if (fLow === 'pymes' || fLow === 'infraestructura') return cat.includes('pyme') || cat.includes('infraestructura') || sub.includes('pyme');
+            return cat.includes(fLow) || sub.includes(fLow);
+          });
+        }
+        if (CURRENT_FCI_SEARCH) {
+          const q = CURRENT_FCI_SEARCH.toLowerCase().trim();
+          items = items.filter(x => 
+            (x.nombre && x.nombre.toLowerCase().includes(q)) ||
+            (x.gestora && x.gestora.toLowerCase().includes(q)) ||
+            (x.admin && x.admin.toLowerCase().includes(q)) ||
+            (x.categoria && x.categoria.toLowerCase().includes(q)) ||
+            (x.subtipo && x.subtipo.toLowerCase().includes(q)) ||
+            (x.id && x.id.toLowerCase().includes(q))
+          );
+        }
       } else if (secKey === 'bonos_lecaps' && CURRENT_BONOS_FILTER !== 'all') {
         items = items.filter(x => x.subtipo && x.subtipo.toLowerCase().includes(CURRENT_BONOS_FILTER.toLowerCase()));
       } else 
@@ -1023,48 +1029,72 @@ function handleFciSearch(query) {
         items = items.filter(x => x.subtipo === CURRENT_COMMODITY_FILTER);
       }
 
-                              if (secKey === 'fci') {
-          let fciItems = items;
-          if (CURRENT_FCI_FILTER !== 'all') {
-            const fLow = CURRENT_FCI_FILTER.toLowerCase();
-            fciItems = fciItems.filter(x => {
-              const cLow = (x.clase || '').toLowerCase();
-              const sLow = (x.subtipo || '').toLowerCase();
-              if (fLow === 'tasa fija' || fLow === 't+1') return cLow.includes('tasa fija') || cLow.includes('pesos');
-              if (fLow === 'hard') return cLow.includes('hard') || cLow.includes('usd') || x.moneda === 'USD';
-              if (fLow === 'linked') return cLow.includes('linked') || cLow.includes('cobertura');
-              if (fLow === 'cer') return cLow.includes('cer') || cLow.includes('inflación') || cLow.includes('inflacion');
-              if (fLow === 'money market') return cLow.includes('money market') || cLow.includes('t+0');
-              if (fLow === 'variable') return cLow.includes('variable') || cLow.includes('acciones');
-              if (fLow === 'mixta') return cLow.includes('mixta') || cLow.includes('balanceados');
-              if (fLow === 'pymes') return cLow.includes('pyme') || cLow.includes('infraestructura');
-              return cLow.includes(fLow) || sLow.includes(fLow);
-            });
-          }
+      if (secKey === 'fci') {
+        let fciItems = items;
+        if (CURRENT_FCI_FILTER !== 'all') {
+          const fLow = CURRENT_FCI_FILTER.toLowerCase().trim();
+          fciItems = fciItems.filter(x => {
+            const cat = (x.categoria || '').toLowerCase().trim();
+            const sub = (x.subtipo || '').toLowerCase().trim();
+            if (fLow === 'money market' || fLow === 't+0') return cat.includes('money market') || sub.includes('money market');
+            if (fLow === 'cer' || fLow === 'inflacion' || fLow === 'inflación') return cat.includes('cer') || sub.includes('cer') || cat.includes('inflaci');
+            if (fLow === 'hard' || fLow === 'dólar hard' || fLow === 'dolar hard') return cat.includes('hard') || sub.includes('hard') || (x.moneda === 'USD' && cat.includes('hard'));
+            if (fLow === 'linked' || fLow === 'dólar linked' || fLow === 'dolar linked') return cat.includes('linked') || sub.includes('linked');
+            if (fLow === 'tasa fija' || fLow === 'renta fija corto' || fLow === 't+1') return cat.includes('tasa fija') || cat.includes('pesos (tasa fija)') || sub.includes('tasa fija');
+            if (fLow === 'variable' || fLow === 'acciones') return cat.includes('variable') || cat.includes('acciones') || sub.includes('variable');
+            if (fLow === 'mixta' || fLow === 'balanceados') return cat.includes('mixta') || cat.includes('balanceados') || sub.includes('mixta');
+            if (fLow === 'pymes' || fLow === 'infraestructura') return cat.includes('pyme') || cat.includes('infraestructura') || sub.includes('pyme');
+            return cat.includes(fLow) || sub.includes(fLow);
+          });
+        }
 
-          return `
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
-              <div class="p-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-slate-50/50">
-                <div class="flex items-center space-x-2">
-                  <span class="p-1.5 bg-rose-50 text-brand-red rounded-lg"><i data-lucide="pie-chart" class="w-4 h-4"></i></span>
-                  <div>
-                    <div class="flex items-center space-x-2">
-                      <h3 class="text-base font-bold text-slate-900">${sec.titulo}</h3>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium">Oficial CAFCI / CompararFondos</span>
-                    </div>
-                    <p class="text-[11px] text-slate-500 mt-0.5">
-                      <span class="font-semibold text-slate-700">Vol%</span>: Volatilidad anualizada (riesgo). 
-                      <span class="font-semibold text-slate-700 ml-1.5">Max Drawdown</span>: Mayor caída histórica registrada desde un pico.
-                    </p>
+        if (CURRENT_FCI_SEARCH) {
+          const q = CURRENT_FCI_SEARCH.toLowerCase().trim();
+          fciItems = fciItems.filter(x => 
+            (x.nombre && x.nombre.toLowerCase().includes(q)) ||
+            (x.gestora && x.gestora.toLowerCase().includes(q)) ||
+            (x.admin && x.admin.toLowerCase().includes(q)) ||
+            (x.categoria && x.categoria.toLowerCase().includes(q)) ||
+            (x.subtipo && x.subtipo.toLowerCase().includes(q)) ||
+            (x.id && x.id.toLowerCase().includes(q))
+          );
+        }
+
+        return `
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8" id="section_${secKey}">
+            <div class="p-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-slate-50/50">
+              <div class="flex items-center space-x-2">
+                <span class="p-1.5 bg-rose-50 text-brand-red rounded-lg"><i data-lucide="pie-chart" class="w-4 h-4"></i></span>
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <h3 class="text-base font-bold text-slate-900">${sec.titulo}</h3>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium">Oficial CAFCI / CompararFondos</span>
+                    <span class="text-xs text-slate-500 font-medium">(${fciItems.length} fondos)</span>
                   </div>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <button onclick="exportSectionToCSV('fci')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-semibold text-xs transition-colors shadow-xs shrink-0">
-                    <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500"></i>
-                    <span>Exportar CSV</span>
-                  </button>
+                  <p class="text-[11px] text-slate-500 mt-0.5">
+                    <span class="font-semibold text-slate-700">Vol%</span>: Volatilidad anualizada (riesgo). 
+                    <span class="font-semibold text-slate-700 ml-1.5">Max Drawdown</span>: Mayor caída histórica registrada desde un pico.
+                  </p>
                 </div>
               </div>
+              <div class="flex items-center space-x-2">
+                <div class="relative w-full sm:w-64">
+                  <input 
+                    type="text" 
+                    placeholder="Buscar fondo o gestora (ej: Fima, Balanz)..." 
+                    value="${CURRENT_FCI_SEARCH}"
+                    oninput="handleFciSearch(this.value)"
+                    class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all"
+                  >
+                  <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+                </div>
+                <button onclick="exportSectionToCSV('fci')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-semibold text-xs transition-colors shadow-xs shrink-0">
+                  <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500"></i>
+                  <span class="hidden sm:inline">Exportar CSV</span>
+                  <span class="sm:hidden">CSV</span>
+                </button>
+              </div>
+            </div>
               <div class="p-3 bg-slate-50 border-b border-slate-200">
                 <div class="flex flex-wrap items-center gap-1.5" id="fciFilters">
                   <button onclick="filterFCI('all')" data-fci="all" class="fci-sub-tab px-2.5 py-1 rounded-lg text-xs font-semibold ${CURRENT_FCI_FILTER === 'all' ? 'bg-brand-red text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'} whitespace-nowrap">Todos</button>
@@ -1096,7 +1126,13 @@ function handleFciSearch(query) {
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-slate-100">
-                    ${fciItems.map(f => {
+                    ${fciItems.length === 0 ? `
+                      <tr>
+                        <td colspan="11" class="p-8 text-center text-slate-400 text-xs">
+                          No se encontraron fondos comunes de inversión que coincidan con la búsqueda o categoría seleccionada.
+                        </td>
+                      </tr>
+                    ` : fciItems.map(f => {
                       const isUsd = (f.moneda === 'USD');
                       const plazoVal = f.plazo_liquidacion ? f.plazo_liquidacion.split(' ')[0] : 'T+1';
                       const vcpFormatted = formatNumber(f.precio, isUsd ? 4 : 2);
