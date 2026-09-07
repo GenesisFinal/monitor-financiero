@@ -1920,15 +1920,15 @@
         "ley": "Argentina"
       },
       {
-        "id": "ON_CS51D",
-        "symbol": "CS51D",
-        "nombre": "Cresud 2027 (CS51D)",
-        "emisor": "Cresud",
-        "tir": 5.45,
-        "duration": 0.36,
-        "dias_vto": 135,
-        "precio": 100.9,
-        "paridad": 100.13,
+        "id": "ON_YM41D",
+        "symbol": "YM41D",
+        "nombre": "YPF S.A. 2029 (YM41D)",
+        "emisor": "YPF S.A.",
+        "tir": 1.54,
+        "duration": 0.33,
+        "dias_vto": 123,
+        "precio": 102.5,
+        "paridad": 101.48,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -1959,28 +1959,15 @@
         "ley": "Argentina"
       },
       {
-        "id": "ON_CP17O",
-        "symbol": "CP17O",
-        "nombre": "Genneia 2027 (CP17O)",
-        "emisor": "Genneia",
-        "tir": 8.75,
-        "duration": 0.84,
-        "dias_vto": 362,
-        "precio": 100.0,
-        "paridad": 100.0,
-        "cupon": null,
-        "ley": "Argentina"
-      },
-      {
-        "id": "ON_MIC4D",
-        "symbol": "MIC4D",
-        "nombre": "Mirgor 2027 (MIC4D)",
-        "emisor": "Mirgor",
-        "tir": 6.6,
-        "duration": 0.85,
-        "dias_vto": 325,
-        "precio": 102.45,
-        "paridad": 101.53,
+        "id": "ON_YFCMD",
+        "symbol": "YFCMD",
+        "nombre": "YPF Energía Eléctrica 2028 (YFCMD)",
+        "emisor": "YPF Energía Eléctrica",
+        "tir": 3.83,
+        "duration": 0.68,
+        "dias_vto": 255,
+        "precio": 102.2,
+        "paridad": 101.89,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -1994,6 +1981,32 @@
         "dias_vto": 338,
         "precio": 107.0,
         "paridad": 106.49,
+        "cupon": null,
+        "ley": "Argentina"
+      },
+      {
+        "id": "ON_CS49D",
+        "symbol": "CS49D",
+        "nombre": "Cresud 2029 (CS49D)",
+        "emisor": "Cresud",
+        "tir": 6.94,
+        "duration": 0.94,
+        "dias_vto": 360,
+        "precio": 100.5,
+        "paridad": 100.4,
+        "cupon": null,
+        "ley": "Argentina"
+      },
+      {
+        "id": "ON_PN34O",
+        "symbol": "PN34O",
+        "nombre": "PAE 2027 Clase 34 (PN34O)",
+        "emisor": "Pan American Energy (PAE)",
+        "tir": 3.79,
+        "duration": 1.0,
+        "dias_vto": 385,
+        "precio": 157840.0,
+        "paridad": 101.21,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2020,6 +2033,19 @@
         "dias_vto": 601,
         "precio": 103.85,
         "paridad": 103.05,
+        "cupon": null,
+        "ley": "Argentina"
+      },
+      {
+        "id": "ON_CACBO",
+        "symbol": "CACBO",
+        "nombre": "Capex 2028 (CACBO)",
+        "emisor": "Capex",
+        "tir": 7.36,
+        "duration": 1.63,
+        "dias_vto": 652,
+        "precio": 156610.0,
+        "paridad": 100.91,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2063,19 +2089,6 @@
         "ley": "Argentina"
       },
       {
-        "id": "ON_YFCOD",
-        "symbol": "YFCOD",
-        "nombre": "YPF Energía Eléctrica 2028 (YFCOD)",
-        "emisor": "YPF Energía Eléctrica",
-        "tir": 5.38,
-        "duration": 2.0,
-        "dias_vto": 830,
-        "precio": 108.05,
-        "paridad": 102.99,
-        "cupon": null,
-        "ley": "Argentina"
-      },
-      {
         "id": "ON_MCC1D",
         "symbol": "MCC1D",
         "nombre": "Pecom 2029 (MCC1D)",
@@ -2085,32 +2098,6 @@
         "dias_vto": 917,
         "precio": 106.45,
         "paridad": 102.44,
-        "cupon": null,
-        "ley": "Argentina"
-      },
-      {
-        "id": "ON_PLC6D",
-        "symbol": "PLC6D",
-        "nombre": "Pluspetrol 2029 (PLC6D)",
-        "emisor": "Pluspetrol",
-        "tir": 5.46,
-        "duration": 2.2,
-        "dias_vto": 904,
-        "precio": 105.95,
-        "paridad": 102.45,
-        "cupon": null,
-        "ley": "Argentina"
-      },
-      {
-        "id": "ON_CACDD",
-        "symbol": "CACDD",
-        "nombre": "Capex 2029 (CACDD)",
-        "emisor": "Capex",
-        "tir": 7.78,
-        "duration": 2.37,
-        "dias_vto": 1001,
-        "precio": 103.65,
-        "paridad": 101.47,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2128,6 +2115,45 @@
         "ley": "Argentina"
       },
       {
+        "id": "ON_PN35D",
+        "symbol": "PN35D",
+        "nombre": "PAE 2028 Clase 35 (PN35D)",
+        "emisor": "Pan American Energy (PAE)",
+        "tir": 5.57,
+        "duration": 2.65,
+        "dias_vto": 1116,
+        "precio": 107.35,
+        "paridad": 104.08,
+        "cupon": null,
+        "ley": "Argentina"
+      },
+      {
+        "id": "ON_TTC9O",
+        "symbol": "TTC9O",
+        "nombre": "Tecpetrol 2026 (TTC9O)",
+        "emisor": "Tecpetrol (Techint)",
+        "tir": 5.85,
+        "duration": 2.73,
+        "dias_vto": 1143,
+        "precio": 160870.0,
+        "paridad": 102.86,
+        "cupon": null,
+        "ley": "Argentina"
+      },
+      {
+        "id": "ON_PLC2O",
+        "symbol": "PLC2O",
+        "nombre": "Pluspetrol 2027 (PLC2O)",
+        "emisor": "Pluspetrol",
+        "tir": 6.06,
+        "duration": 2.9,
+        "dias_vto": 1238,
+        "precio": 163800.0,
+        "paridad": 104.53,
+        "cupon": null,
+        "ley": "Argentina"
+      },
+      {
         "id": "ON_VSCUD",
         "symbol": "VSCUD",
         "nombre": "Vista Energy 2030 (VSCUD)",
@@ -2137,32 +2163,6 @@
         "dias_vto": 1277,
         "precio": 107.7,
         "paridad": 107.7,
-        "cupon": null,
-        "ley": "Argentina"
-      },
-      {
-        "id": "ON_PNICD",
-        "symbol": "PNICD",
-        "nombre": "PAE 2032 Clase I (PNICD)",
-        "emisor": "Pan American Energy (PAE)",
-        "tir": 1.44,
-        "duration": 3.15,
-        "dias_vto": 1981,
-        "precio": 92.07,
-        "paridad": 109.16,
-        "cupon": null,
-        "ley": "Argentina"
-      },
-      {
-        "id": "ON_NPCDD",
-        "symbol": "NPCDD",
-        "nombre": "Central Puerto 2030 (NPCDD)",
-        "emisor": "Central Puerto",
-        "tir": 6.15,
-        "duration": 3.16,
-        "dias_vto": 1331,
-        "precio": 101.95,
-        "paridad": 99.82,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2232,6 +2232,32 @@
         "ley": "Nueva York"
       },
       {
+        "id": "ON_PLC4O",
+        "symbol": "PLC4O",
+        "nombre": "Pluspetrol 2032 (PLC4O)",
+        "emisor": "Pluspetrol",
+        "tir": 6.78,
+        "duration": 4.46,
+        "dias_vto": 2093,
+        "precio": 169110.0,
+        "paridad": 108.38,
+        "cupon": null,
+        "ley": "Nueva York"
+      },
+      {
+        "id": "ON_VSCVD",
+        "symbol": "VSCVD",
+        "nombre": "Vista Energy 2033 (VSCVD)",
+        "emisor": "Vista Energy",
+        "tir": 6.39,
+        "duration": 4.5,
+        "dias_vto": 2468,
+        "precio": 112.55,
+        "paridad": 110.28,
+        "cupon": null,
+        "ley": "Nueva York"
+      },
+      {
         "id": "ON_YM34D",
         "symbol": "YM34D",
         "nombre": "YPF S.A. 2034 (YM34D)",
@@ -2245,6 +2271,19 @@
         "ley": "Nueva York"
       },
       {
+        "id": "ON_MGCOD",
+        "symbol": "MGCOD",
+        "nombre": "Pampa Energía 2027 (MGCOD)",
+        "emisor": "Pampa Energía",
+        "tir": 6.73,
+        "duration": 6.02,
+        "dias_vto": 3024,
+        "precio": 109.65,
+        "paridad": 107.74,
+        "cupon": null,
+        "ley": "Nueva York"
+      },
+      {
         "id": "ON_IRCPD",
         "symbol": "IRCPD",
         "nombre": "IRSA 2035 (IRCPD)",
@@ -2254,32 +2293,6 @@
         "dias_vto": 3126,
         "precio": 110.35,
         "paridad": 106.63,
-        "cupon": null,
-        "ley": "Nueva York"
-      },
-      {
-        "id": "ON_PLC7D",
-        "symbol": "PLC7D",
-        "nombre": "Pluspetrol 2037 (PLC7D)",
-        "emisor": "Pluspetrol",
-        "tir": 7.16,
-        "duration": 6.94,
-        "dias_vto": 4041,
-        "precio": 105.0,
-        "paridad": 103.55,
-        "cupon": null,
-        "ley": "Nueva York"
-      },
-      {
-        "id": "ON_VSCXD",
-        "symbol": "VSCXD",
-        "nombre": "Vista Energy 2038 (VSCXD)",
-        "emisor": "Vista Energy",
-        "tir": 7.05,
-        "duration": 7.02,
-        "dias_vto": 4232,
-        "precio": 110.2,
-        "paridad": 106.74,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2299,167 +2312,167 @@
     ],
     "regresion": [
       {
-        "x": 0.36,
-        "y": 6.17
+        "x": 0.33,
+        "y": 4.19
       },
       {
-        "x": 0.54,
-        "y": 6.09
+        "x": 0.51,
+        "y": 4.34
       },
       {
-        "x": 0.72,
-        "y": 6.01
+        "x": 0.69,
+        "y": 4.48
       },
       {
-        "x": 0.9,
-        "y": 5.94
+        "x": 0.87,
+        "y": 4.62
       },
       {
-        "x": 1.08,
-        "y": 5.88
+        "x": 1.05,
+        "y": 4.76
       },
       {
-        "x": 1.25,
-        "y": 5.82
+        "x": 1.23,
+        "y": 4.89
       },
       {
-        "x": 1.43,
-        "y": 5.77
+        "x": 1.41,
+        "y": 5.01
       },
       {
-        "x": 1.61,
-        "y": 5.72
+        "x": 1.59,
+        "y": 5.14
       },
       {
-        "x": 1.79,
-        "y": 5.68
+        "x": 1.77,
+        "y": 5.26
       },
       {
-        "x": 1.97,
-        "y": 5.65
+        "x": 1.95,
+        "y": 5.37
       },
       {
-        "x": 2.15,
-        "y": 5.62
+        "x": 2.13,
+        "y": 5.48
       },
       {
-        "x": 2.33,
-        "y": 5.6
-      },
-      {
-        "x": 2.51,
+        "x": 2.31,
         "y": 5.59
       },
       {
-        "x": 2.69,
-        "y": 5.58
+        "x": 2.49,
+        "y": 5.69
       },
       {
-        "x": 2.87,
-        "y": 5.58
-      },
-      {
-        "x": 3.04,
-        "y": 5.58
-      },
-      {
-        "x": 3.22,
-        "y": 5.59
-      },
-      {
-        "x": 3.4,
-        "y": 5.61
-      },
-      {
-        "x": 3.58,
-        "y": 5.63
-      },
-      {
-        "x": 3.76,
-        "y": 5.66
-      },
-      {
-        "x": 3.94,
-        "y": 5.7
-      },
-      {
-        "x": 4.12,
-        "y": 5.74
-      },
-      {
-        "x": 4.3,
+        "x": 2.67,
         "y": 5.79
       },
       {
-        "x": 4.48,
-        "y": 5.84
+        "x": 2.85,
+        "y": 5.88
       },
       {
-        "x": 4.66,
-        "y": 5.9
+        "x": 3.03,
+        "y": 5.98
       },
       {
-        "x": 4.83,
-        "y": 5.97
+        "x": 3.21,
+        "y": 6.06
       },
       {
-        "x": 5.01,
-        "y": 6.04
+        "x": 3.39,
+        "y": 6.15
       },
       {
-        "x": 5.19,
-        "y": 6.12
+        "x": 3.57,
+        "y": 6.22
       },
       {
-        "x": 5.37,
-        "y": 6.21
-      },
-      {
-        "x": 5.55,
+        "x": 3.75,
         "y": 6.3
       },
       {
-        "x": 5.73,
-        "y": 6.4
+        "x": 3.92,
+        "y": 6.37
       },
       {
-        "x": 5.91,
+        "x": 4.1,
+        "y": 6.44
+      },
+      {
+        "x": 4.28,
         "y": 6.5
       },
       {
-        "x": 6.09,
-        "y": 6.61
+        "x": 4.46,
+        "y": 6.56
       },
       {
-        "x": 6.27,
-        "y": 6.73
+        "x": 4.64,
+        "y": 6.62
       },
       {
-        "x": 6.45,
-        "y": 6.85
+        "x": 4.82,
+        "y": 6.67
+      },
+      {
+        "x": 5.0,
+        "y": 6.72
+      },
+      {
+        "x": 5.18,
+        "y": 6.76
+      },
+      {
+        "x": 5.36,
+        "y": 6.8
+      },
+      {
+        "x": 5.54,
+        "y": 6.83
+      },
+      {
+        "x": 5.72,
+        "y": 6.87
+      },
+      {
+        "x": 5.9,
+        "y": 6.89
+      },
+      {
+        "x": 6.08,
+        "y": 6.92
+      },
+      {
+        "x": 6.26,
+        "y": 6.94
+      },
+      {
+        "x": 6.44,
+        "y": 6.95
       },
       {
         "x": 6.62,
-        "y": 6.98
+        "y": 6.96
       },
       {
         "x": 6.8,
-        "y": 7.11
+        "y": 6.97
       },
       {
         "x": 6.98,
-        "y": 7.25
+        "y": 6.98
       },
       {
         "x": 7.16,
-        "y": 7.4
+        "y": 6.98
       },
       {
         "x": 7.34,
-        "y": 7.56
+        "y": 6.97
       }
     ],
     "modelo_seleccionado": "Cuadrática",
-    "r2_score": 0.1605
+    "r2_score": 0.3925
   }
 }
