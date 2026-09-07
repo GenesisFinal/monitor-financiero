@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-09-05 20:47:41",
+  "ultima_actualizacion": "2026-09-05 21:08:48",
   "fecha_cierre": "2026-09-05",
   "secciones": {
     "dolar": {
@@ -117,11 +117,11 @@
           "nombre": "Dólar Cripto (USDT)",
           "categoria": "Dólar",
           "tipo": "single_price",
-          "precio": 1583.6,
-          "compra": 1575.68,
-          "venta": 1583.6,
+          "precio": 1583.7,
+          "compra": 1575.78,
+          "venta": 1583.7,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-09-05 20:47:41",
+          "fecha_actualizacion": "2026-09-05 21:08:48",
           "var_1d": 0.15,
           "var_1m": 3.2,
           "var_12m": 42.5
@@ -8072,57 +8072,58 @@
           "var_ytd": 3.02
         },
         {
-          "id": "ON_CS51D",
-          "symbol": "CS51D",
-          "ticker": "CS51D",
-          "emisor": "Cresud",
-          "nombre": "Cresud 2027 (CS51D)",
-          "subtitulo": "ON USD Ley Argentina • 2.90% • vto. 01/2027",
+          "id": "ON_YM41D",
+          "symbol": "YM41D",
+          "ticker": "YM41D",
+          "emisor": "YPF S.A.",
+          "nombre": "YPF S.A. 2029 (YM41D)",
+          "subtitulo": "ON USD Ley Argentina • 1.51% • vto. 01/2027",
           "categoria": "Obligaciones Negociables (ONs)",
-          "subtipo": "Agroindustria & Tierras",
-          "tipo": "fixed_income",
+          "subtipo": "Petróleo & Gas / Vaca Muerta",
+          "tipo": "market_asset",
           "moneda": "USD",
-          "precio": 100.9,
-          "open": 100.9,
-          "high": 100.9,
-          "low": 100.9,
-          "tir": 5.45,
-          "duration": 0.36,
-          "paridad_pct": 100.13,
-          "cupon_anual_pct": 2.8986301369863017,
+          "precio": 102.5,
+          "open": 102.5,
+          "high": 102.5,
+          "low": 101.6,
+          "tir": 1.54,
+          "duration": 0.33,
+          "paridad_pct": 101.48,
+          "cupon_anual_pct": 1.5123287671232877,
           "tipo_cupon": "Fijo",
           "frecuencia_pago": "Semestral",
           "amortizacion": "Bullet al Vencimiento",
           "ley": "Argentina",
-          "fecha_vto": "2027-01-20",
-          "dias_vto": 135,
-          "dias_cupon": 135,
-          "intereses_corridos": 0.37,
+          "fecha_vto": "2027-01-08",
+          "dias_vto": 123,
+          "dias_cupon": 31,
+          "intereses_corridos": 0.24,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.37,
+          "valor_tecnico": 100.24,
           "cashflow": [
             {
-              "fecha": "2027-01-20",
-              "renta": 1.449,
+              "fecha": "2027-01-08",
+              "renta": 0.756,
               "amort": 100.0,
-              "total": 101.449,
+              "total": 100.756,
               "tipo": "Interés y Amortización"
             }
           ],
           "flujo_fondos": [
             {
-              "fecha": "2027-01-20",
-              "renta": 1.449,
+              "fecha": "2027-01-08",
+              "renta": 0.756,
               "amort": 100.0,
-              "total": 101.449,
+              "total": 100.756,
               "tipo": "Interés y Amortización"
             }
           ],
-          "proximo_pago_fecha": "2027-01-20",
-          "proximo_pago_monto": "101.449%",
+          "proximo_pago_fecha": "2027-01-08",
+          "proximo_pago_monto": "100.756%",
           "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0
+          "var_1m": 1.49,
+          "var_12m": 2.81,
+          "var_ytd": 0.99
         },
         {
           "id": "ON_VSCOD",
@@ -8261,138 +8262,72 @@
           "var_ytd": -2.51
         },
         {
-          "id": "ON_CP17O",
-          "symbol": "CP17O",
-          "ticker": "CP17O",
-          "emisor": "Genneia",
-          "nombre": "Genneia 2027 (CP17O)",
-          "subtitulo": "ON USD Ley Argentina • 8.75% • vto. 09/2027",
+          "id": "ON_YFCMD",
+          "symbol": "YFCMD",
+          "ticker": "YFCMD",
+          "emisor": "YPF Energía Eléctrica",
+          "nombre": "YPF Energía Eléctrica 2028 (YFCMD)",
+          "subtitulo": "ON USD Ley Argentina • 1.62% • vto. 05/2027",
           "categoria": "Obligaciones Negociables (ONs)",
-          "subtipo": "Energías Renovables",
-          "tipo": "fixed_income",
+          "subtipo": "Energía Eléctrica",
+          "tipo": "market_asset",
           "moneda": "USD",
-          "precio": 100.0,
-          "open": 100.0,
-          "high": 100.0,
-          "low": 100.0,
-          "tir": 8.75,
-          "duration": 0.84,
-          "paridad_pct": 100.0,
-          "cupon_anual_pct": 8.75,
+          "precio": 102.2,
+          "open": 102.5,
+          "high": 102.5,
+          "low": 101.4,
+          "tir": 3.83,
+          "duration": 0.68,
+          "paridad_pct": 101.89,
+          "cupon_anual_pct": 1.625,
           "tipo_cupon": "Fijo",
           "frecuencia_pago": "Semestral",
           "amortizacion": "Bullet al Vencimiento",
           "ley": "Argentina",
-          "fecha_vto": "2027-09-02",
-          "dias_vto": 362,
-          "dias_cupon": 180,
-          "intereses_corridos": 0.07,
+          "fecha_vto": "2027-05-20",
+          "dias_vto": 255,
+          "dias_cupon": 74,
+          "intereses_corridos": 0.48,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.07,
+          "valor_tecnico": 100.48,
           "cashflow": [
             {
-              "fecha": "2027-03-02",
-              "renta": 4.375,
+              "fecha": "2026-11-20",
+              "renta": 0.812,
               "amort": 0.0,
-              "total": 4.375,
+              "total": 0.812,
               "tipo": "Interés"
             },
             {
-              "fecha": "2027-09-02",
-              "renta": 4.375,
+              "fecha": "2027-05-20",
+              "renta": 0.812,
               "amort": 100.0,
-              "total": 104.375,
+              "total": 100.812,
               "tipo": "Interés y Amortización"
             }
           ],
           "flujo_fondos": [
             {
-              "fecha": "2027-03-02",
-              "renta": 4.375,
+              "fecha": "2026-11-20",
+              "renta": 0.812,
               "amort": 0.0,
-              "total": 4.375,
+              "total": 0.812,
               "tipo": "Interés"
             },
             {
-              "fecha": "2027-09-02",
-              "renta": 4.375,
+              "fecha": "2027-05-20",
+              "renta": 0.812,
               "amort": 100.0,
-              "total": 104.375,
+              "total": 100.812,
               "tipo": "Interés y Amortización"
             }
           ],
-          "proximo_pago_fecha": "2027-03-02",
-          "proximo_pago_monto": "4.375%",
-          "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0
-        },
-        {
-          "id": "ON_MIC4D",
-          "symbol": "MIC4D",
-          "ticker": "MIC4D",
-          "emisor": "Mirgor",
-          "nombre": "Mirgor 2027 (MIC4D)",
-          "subtitulo": "ON USD Ley Argentina • 2.08% • vto. 07/2027",
-          "categoria": "Obligaciones Negociables (ONs)",
-          "subtipo": "Electrónica & Agro",
-          "tipo": "fixed_income",
-          "moneda": "USD",
-          "precio": 102.45,
-          "open": 102.45,
-          "high": 102.45,
-          "low": 102.45,
-          "tir": 6.6,
-          "duration": 0.85,
-          "paridad_pct": 101.53,
-          "cupon_anual_pct": 2.0794520547945208,
-          "tipo_cupon": "Fijo",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet al Vencimiento",
-          "ley": "Argentina",
-          "fecha_vto": "2027-07-29",
-          "dias_vto": 325,
-          "dias_cupon": 52,
-          "intereses_corridos": 0.22,
-          "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.22,
-          "cashflow": [
-            {
-              "fecha": "2027-01-28",
-              "renta": 1.04,
-              "amort": 0.0,
-              "total": 1.04,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-07-29",
-              "renta": 1.04,
-              "amort": 100.0,
-              "total": 101.04,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "flujo_fondos": [
-            {
-              "fecha": "2027-01-28",
-              "renta": 1.04,
-              "amort": 0.0,
-              "total": 1.04,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-07-29",
-              "renta": 1.04,
-              "amort": 100.0,
-              "total": 101.04,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "proximo_pago_fecha": "2027-01-28",
-          "proximo_pago_monto": "1.040%",
-          "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0
+          "proximo_pago_fecha": "2026-11-20",
+          "proximo_pago_monto": "0.812%",
+          "var_1d": 0.1,
+          "var_1m": -2.34,
+          "var_12m": 0.2,
+          "var_ytd": -1.64
         },
         {
           "id": "ON_PN38D",
@@ -8461,6 +8396,156 @@
           "var_1m": -1.34,
           "var_12m": 6.89,
           "var_ytd": 2.88
+        },
+        {
+          "id": "ON_CS49D",
+          "symbol": "CS49D",
+          "ticker": "CS49D",
+          "emisor": "Cresud",
+          "nombre": "Cresud 2029 (CS49D)",
+          "subtitulo": "ON USD Ley Argentina • 3.60% • vto. 09/2027",
+          "categoria": "Obligaciones Negociables (ONs)",
+          "subtipo": "Agroindustria & Tierras",
+          "tipo": "market_asset",
+          "moneda": "USD",
+          "precio": 100.5,
+          "open": 100.0,
+          "high": 100.5,
+          "low": 100.0,
+          "tir": 6.94,
+          "duration": 0.94,
+          "paridad_pct": 100.4,
+          "cupon_anual_pct": 3.5952054794520545,
+          "tipo_cupon": "Fijo",
+          "frecuencia_pago": "Semestral",
+          "amortizacion": "Bullet al Vencimiento",
+          "ley": "Argentina",
+          "fecha_vto": "2027-09-02",
+          "dias_vto": 360,
+          "dias_cupon": 176,
+          "intereses_corridos": 0.03,
+          "valor_residual_pct": 100.0,
+          "valor_tecnico": 100.03,
+          "cashflow": [
+            {
+              "fecha": "2027-03-02",
+              "renta": 1.798,
+              "amort": 0.0,
+              "total": 1.798,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-09-02",
+              "renta": 1.798,
+              "amort": 100.0,
+              "total": 101.798,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "flujo_fondos": [
+            {
+              "fecha": "2027-03-02",
+              "renta": 1.798,
+              "amort": 0.0,
+              "total": 1.798,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-09-02",
+              "renta": 1.798,
+              "amort": 100.0,
+              "total": 101.798,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "proximo_pago_fecha": "2027-03-02",
+          "proximo_pago_monto": "1.798%",
+          "var_1d": 0.45,
+          "var_1m": -4.96,
+          "var_12m": 0.6,
+          "var_ytd": -2.9
+        },
+        {
+          "id": "ON_PN34O",
+          "symbol": "PN34O",
+          "ticker": "PN34O",
+          "emisor": "Pan American Energy (PAE)",
+          "nombre": "PAE 2027 Clase 34 (PN34O)",
+          "subtitulo": "ON USD Ley Argentina • 2.51% • vto. 09/2027",
+          "categoria": "Obligaciones Negociables (ONs)",
+          "subtipo": "Petróleo & Refinación",
+          "tipo": "market_asset",
+          "moneda": "USD",
+          "precio": 157840.0,
+          "open": 161550.0,
+          "high": 161550.0,
+          "low": 157330.0,
+          "tir": 3.79,
+          "duration": 1.0,
+          "paridad_pct": 101.21,
+          "cupon_anual_pct": 2.5054246575342467,
+          "tipo_cupon": "Fijo",
+          "frecuencia_pago": "Semestral",
+          "amortizacion": "Bullet al Vencimiento",
+          "ley": "Argentina",
+          "fecha_vto": "2027-09-27",
+          "dias_vto": 385,
+          "dias_cupon": 21,
+          "intereses_corridos": 1.11,
+          "valor_residual_pct": 100.0,
+          "valor_tecnico": 101.11,
+          "cashflow": [
+            {
+              "fecha": "2026-09-27",
+              "renta": 1.253,
+              "amort": 0.0,
+              "total": 1.253,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-03-27",
+              "renta": 1.253,
+              "amort": 0.0,
+              "total": 1.253,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-09-27",
+              "renta": 1.253,
+              "amort": 100.0,
+              "total": 101.253,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "flujo_fondos": [
+            {
+              "fecha": "2026-09-27",
+              "renta": 1.253,
+              "amort": 0.0,
+              "total": 1.253,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-03-27",
+              "renta": 1.253,
+              "amort": 0.0,
+              "total": 1.253,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-09-27",
+              "renta": 1.253,
+              "amort": 100.0,
+              "total": 101.253,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "proximo_pago_fecha": "2026-09-27",
+          "proximo_pago_monto": "1.253%",
+          "var_1d": 0.0,
+          "var_1m": 0.24,
+          "var_12m": 11.55,
+          "var_ytd": 7.37
         },
         {
           "id": "ON_TTCBD",
@@ -8639,6 +8724,102 @@
           "var_1m": -0.05,
           "var_12m": 1.56,
           "var_ytd": -2.35
+        },
+        {
+          "id": "ON_CACBO",
+          "symbol": "CACBO",
+          "ticker": "CACBO",
+          "emisor": "Capex",
+          "nombre": "Capex 2028 (CACBO)",
+          "subtitulo": "ON USD Ley Argentina • 1.95% • vto. 06/2028",
+          "categoria": "Obligaciones Negociables (ONs)",
+          "subtipo": "Energía & Hidrocarburos",
+          "tipo": "market_asset",
+          "moneda": "USD",
+          "precio": 156610.0,
+          "open": 158000.0,
+          "high": 158000.0,
+          "low": 156610.0,
+          "tir": 7.36,
+          "duration": 1.63,
+          "paridad_pct": 100.91,
+          "cupon_anual_pct": 1.9534246575342467,
+          "tipo_cupon": "Fijo",
+          "frecuencia_pago": "Semestral",
+          "amortizacion": "Bullet al Vencimiento",
+          "ley": "Argentina",
+          "fecha_vto": "2028-06-17",
+          "dias_vto": 652,
+          "dias_cupon": 10,
+          "intereses_corridos": 0.43,
+          "valor_residual_pct": 100.0,
+          "valor_tecnico": 100.43,
+          "cashflow": [
+            {
+              "fecha": "2026-12-17",
+              "renta": 0.977,
+              "amort": 0.0,
+              "total": 0.977,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-06-17",
+              "renta": 0.977,
+              "amort": 0.0,
+              "total": 0.977,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-12-17",
+              "renta": 0.977,
+              "amort": 0.0,
+              "total": 0.977,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-06-17",
+              "renta": 0.977,
+              "amort": 100.0,
+              "total": 100.977,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "flujo_fondos": [
+            {
+              "fecha": "2026-12-17",
+              "renta": 0.977,
+              "amort": 0.0,
+              "total": 0.977,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-06-17",
+              "renta": 0.977,
+              "amort": 0.0,
+              "total": 0.977,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-12-17",
+              "renta": 0.977,
+              "amort": 0.0,
+              "total": 0.977,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-06-17",
+              "renta": 0.977,
+              "amort": 100.0,
+              "total": 100.977,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "proximo_pago_fecha": "2026-12-17",
+          "proximo_pago_monto": "0.977%",
+          "var_1d": -0.88,
+          "var_1m": 0.08,
+          "var_12m": 8.01,
+          "var_ytd": 7.64
         },
         {
           "id": "ON_MGCQD",
@@ -8943,115 +9124,6 @@
           "var_ytd": 3.28
         },
         {
-          "id": "ON_YFCOD",
-          "symbol": "YFCOD",
-          "ticker": "YFCOD",
-          "emisor": "YPF Energía Eléctrica",
-          "nombre": "YPF Energía Eléctrica 2028 (YFCOD)",
-          "subtitulo": "ON USD Ley Argentina • 5.06% • vto. 12/2028",
-          "categoria": "Obligaciones Negociables (ONs)",
-          "subtipo": "Energía Eléctrica",
-          "tipo": "fixed_income",
-          "moneda": "USD",
-          "precio": 108.05,
-          "open": 108.05,
-          "high": 108.05,
-          "low": 108.05,
-          "tir": 5.38,
-          "duration": 2.0,
-          "paridad_pct": 102.99,
-          "cupon_anual_pct": 5.0625,
-          "tipo_cupon": "Fijo",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet al Vencimiento",
-          "ley": "Argentina",
-          "fecha_vto": "2028-12-15",
-          "dias_vto": 830,
-          "dias_cupon": 8,
-          "intereses_corridos": 1.14,
-          "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.14,
-          "cashflow": [
-            {
-              "fecha": "2026-12-15",
-              "renta": 2.531,
-              "amort": 0.0,
-              "total": 2.531,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-06-15",
-              "renta": 2.531,
-              "amort": 0.0,
-              "total": 2.531,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-12-15",
-              "renta": 2.531,
-              "amort": 0.0,
-              "total": 2.531,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-06-15",
-              "renta": 2.531,
-              "amort": 0.0,
-              "total": 2.531,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-12-15",
-              "renta": 2.531,
-              "amort": 100.0,
-              "total": 102.531,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "flujo_fondos": [
-            {
-              "fecha": "2026-12-15",
-              "renta": 2.531,
-              "amort": 0.0,
-              "total": 2.531,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-06-15",
-              "renta": 2.531,
-              "amort": 0.0,
-              "total": 2.531,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-12-15",
-              "renta": 2.531,
-              "amort": 0.0,
-              "total": 2.531,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-06-15",
-              "renta": 2.531,
-              "amort": 0.0,
-              "total": 2.531,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-12-15",
-              "renta": 2.531,
-              "amort": 100.0,
-              "total": 102.531,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "proximo_pago_fecha": "2026-12-15",
-          "proximo_pago_monto": "2.531%",
-          "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0
-        },
-        {
           "id": "ON_MCC1D",
           "symbol": "MCC1D",
           "ticker": "MCC1D",
@@ -9176,238 +9248,6 @@
           "var_ytd": 4.36
         },
         {
-          "id": "ON_PLC6D",
-          "symbol": "PLC6D",
-          "ticker": "PLC6D",
-          "emisor": "Pluspetrol",
-          "nombre": "Pluspetrol 2029 (PLC6D)",
-          "subtitulo": "ON USD Ley Argentina • 4.86% • vto. 02/2029",
-          "categoria": "Obligaciones Negociables (ONs)",
-          "subtipo": "Gas & Petróleo",
-          "tipo": "fixed_income",
-          "moneda": "USD",
-          "precio": 105.95,
-          "open": 105.95,
-          "high": 105.95,
-          "low": 105.95,
-          "tir": 5.46,
-          "duration": 2.2,
-          "paridad_pct": 102.45,
-          "cupon_anual_pct": 4.861643835616438,
-          "tipo_cupon": "Fijo",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet al Vencimiento",
-          "ley": "Argentina",
-          "fecha_vto": "2029-02-27",
-          "dias_vto": 904,
-          "dias_cupon": 81,
-          "intereses_corridos": 0.12,
-          "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.12,
-          "cashflow": [
-            {
-              "fecha": "2027-02-27",
-              "renta": 2.431,
-              "amort": 0.0,
-              "total": 2.431,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-08-27",
-              "renta": 2.431,
-              "amort": 0.0,
-              "total": 2.431,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-02-27",
-              "renta": 2.431,
-              "amort": 0.0,
-              "total": 2.431,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-08-27",
-              "renta": 2.431,
-              "amort": 0.0,
-              "total": 2.431,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-02-27",
-              "renta": 2.431,
-              "amort": 100.0,
-              "total": 102.431,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "flujo_fondos": [
-            {
-              "fecha": "2027-02-27",
-              "renta": 2.431,
-              "amort": 0.0,
-              "total": 2.431,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-08-27",
-              "renta": 2.431,
-              "amort": 0.0,
-              "total": 2.431,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-02-27",
-              "renta": 2.431,
-              "amort": 0.0,
-              "total": 2.431,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-08-27",
-              "renta": 2.431,
-              "amort": 0.0,
-              "total": 2.431,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-02-27",
-              "renta": 2.431,
-              "amort": 100.0,
-              "total": 102.431,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "proximo_pago_fecha": "2027-02-27",
-          "proximo_pago_monto": "2.431%",
-          "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0
-        },
-        {
-          "id": "ON_CACDD",
-          "symbol": "CACDD",
-          "ticker": "CACDD",
-          "emisor": "Capex",
-          "nombre": "Capex 2029 (CACDD)",
-          "subtitulo": "ON USD Ley Argentina • 4.14% • vto. 06/2029",
-          "categoria": "Obligaciones Negociables (ONs)",
-          "subtipo": "Energía & Hidrocarburos",
-          "tipo": "fixed_income",
-          "moneda": "USD",
-          "precio": 103.65,
-          "open": 103.65,
-          "high": 103.65,
-          "low": 103.65,
-          "tir": 7.78,
-          "duration": 2.37,
-          "paridad_pct": 101.47,
-          "cupon_anual_pct": 4.136301369863014,
-          "tipo_cupon": "Fijo",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet al Vencimiento",
-          "ley": "Argentina",
-          "fecha_vto": "2029-06-04",
-          "dias_vto": 1001,
-          "dias_cupon": 88,
-          "intereses_corridos": 1.05,
-          "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.05,
-          "cashflow": [
-            {
-              "fecha": "2026-12-04",
-              "renta": 2.068,
-              "amort": 0.0,
-              "total": 2.068,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-06-04",
-              "renta": 2.068,
-              "amort": 0.0,
-              "total": 2.068,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-12-04",
-              "renta": 2.068,
-              "amort": 0.0,
-              "total": 2.068,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-06-04",
-              "renta": 2.068,
-              "amort": 0.0,
-              "total": 2.068,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-12-04",
-              "renta": 2.068,
-              "amort": 0.0,
-              "total": 2.068,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-06-04",
-              "renta": 2.068,
-              "amort": 100.0,
-              "total": 102.068,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "flujo_fondos": [
-            {
-              "fecha": "2026-12-04",
-              "renta": 2.068,
-              "amort": 0.0,
-              "total": 2.068,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-06-04",
-              "renta": 2.068,
-              "amort": 0.0,
-              "total": 2.068,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-12-04",
-              "renta": 2.068,
-              "amort": 0.0,
-              "total": 2.068,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-06-04",
-              "renta": 2.068,
-              "amort": 0.0,
-              "total": 2.068,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-12-04",
-              "renta": 2.068,
-              "amort": 0.0,
-              "total": 2.068,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-06-04",
-              "renta": 2.068,
-              "amort": 100.0,
-              "total": 102.068,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "proximo_pago_fecha": "2026-12-04",
-          "proximo_pago_monto": "2.068%",
-          "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0
-        },
-        {
           "id": "ON_PN41D",
           "symbol": "PN41D",
           "ticker": "PN41D",
@@ -9530,6 +9370,420 @@
           "var_1m": -3.91,
           "var_12m": 5.33,
           "var_ytd": -0.14
+        },
+        {
+          "id": "ON_PN35D",
+          "symbol": "PN35D",
+          "ticker": "PN35D",
+          "emisor": "Pan American Energy (PAE)",
+          "nombre": "PAE 2028 Clase 35 (PN35D)",
+          "subtitulo": "ON USD Ley Argentina • 3.53% • vto. 09/2029",
+          "categoria": "Obligaciones Negociables (ONs)",
+          "subtipo": "Petróleo & Refinación",
+          "tipo": "market_asset",
+          "moneda": "USD",
+          "precio": 107.35,
+          "open": 107.7,
+          "high": 107.8,
+          "low": 107.35,
+          "tir": 5.57,
+          "duration": 2.65,
+          "paridad_pct": 104.08,
+          "cupon_anual_pct": 3.528767123287672,
+          "tipo_cupon": "Fijo",
+          "frecuencia_pago": "Semestral",
+          "amortizacion": "Bullet al Vencimiento",
+          "ley": "Argentina",
+          "fecha_vto": "2029-09-27",
+          "dias_vto": 1116,
+          "dias_cupon": 21,
+          "intereses_corridos": 1.57,
+          "valor_residual_pct": 100.0,
+          "valor_tecnico": 101.57,
+          "cashflow": [
+            {
+              "fecha": "2026-09-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-03-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-09-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-03-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-09-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-03-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-09-27",
+              "renta": 1.764,
+              "amort": 100.0,
+              "total": 101.764,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "flujo_fondos": [
+            {
+              "fecha": "2026-09-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-03-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-09-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-03-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-09-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-03-27",
+              "renta": 1.764,
+              "amort": 0.0,
+              "total": 1.764,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-09-27",
+              "renta": 1.764,
+              "amort": 100.0,
+              "total": 101.764,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "proximo_pago_fecha": "2026-09-27",
+          "proximo_pago_monto": "1.764%",
+          "var_1d": -0.23,
+          "var_1m": -0.56,
+          "var_12m": 4.48,
+          "var_ytd": 4.63
+        },
+        {
+          "id": "ON_TTC9O",
+          "symbol": "TTC9O",
+          "ticker": "TTC9O",
+          "emisor": "Tecpetrol (Techint)",
+          "nombre": "Tecpetrol 2026 (TTC9O)",
+          "subtitulo": "ON USD Ley Argentina • 3.41% • vto. 10/2029",
+          "categoria": "Obligaciones Negociables (ONs)",
+          "subtipo": "Gas No Convencional",
+          "tipo": "market_asset",
+          "moneda": "USD",
+          "precio": 160870.0,
+          "open": 159410.0,
+          "high": 162510.0,
+          "low": 159410.0,
+          "tir": 5.85,
+          "duration": 2.73,
+          "paridad_pct": 102.86,
+          "cupon_anual_pct": 3.4093150684931515,
+          "tipo_cupon": "Fijo",
+          "frecuencia_pago": "Semestral",
+          "amortizacion": "Bullet al Vencimiento",
+          "ley": "Argentina",
+          "fecha_vto": "2029-10-24",
+          "dias_vto": 1143,
+          "dias_cupon": 49,
+          "intereses_corridos": 1.25,
+          "valor_residual_pct": 100.0,
+          "valor_tecnico": 101.25,
+          "cashflow": [
+            {
+              "fecha": "2026-10-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-04-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-10-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-04-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-10-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-04-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-10-24",
+              "renta": 1.705,
+              "amort": 100.0,
+              "total": 101.705,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "flujo_fondos": [
+            {
+              "fecha": "2026-10-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-04-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-10-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-04-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-10-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-04-24",
+              "renta": 1.705,
+              "amort": 0.0,
+              "total": 1.705,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-10-24",
+              "renta": 1.705,
+              "amort": 100.0,
+              "total": 101.705,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "proximo_pago_fecha": "2026-10-24",
+          "proximo_pago_monto": "1.705%",
+          "var_1d": -0.43,
+          "var_1m": -0.79,
+          "var_12m": 9.21,
+          "var_ytd": 4.87
+        },
+        {
+          "id": "ON_PLC2O",
+          "symbol": "PLC2O",
+          "ticker": "PLC2O",
+          "emisor": "Pluspetrol",
+          "nombre": "Pluspetrol 2027 (PLC2O)",
+          "subtitulo": "ON USD Ley Argentina • 3.76% • vto. 01/2030",
+          "categoria": "Obligaciones Negociables (ONs)",
+          "subtipo": "Gas & Petróleo",
+          "tipo": "market_asset",
+          "moneda": "USD",
+          "precio": 163800.0,
+          "open": 166750.0,
+          "high": 166750.0,
+          "low": 163500.0,
+          "tir": 6.06,
+          "duration": 2.9,
+          "paridad_pct": 104.53,
+          "cupon_anual_pct": 3.7602739726027403,
+          "tipo_cupon": "Fijo",
+          "frecuencia_pago": "Semestral",
+          "amortizacion": "Bullet al Vencimiento",
+          "ley": "Argentina",
+          "fecha_vto": "2030-01-27",
+          "dias_vto": 1238,
+          "dias_cupon": 50,
+          "intereses_corridos": 0.41,
+          "valor_residual_pct": 100.0,
+          "valor_tecnico": 100.41,
+          "cashflow": [
+            {
+              "fecha": "2027-01-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-07-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-01-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-07-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-01-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-07-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-01-27",
+              "renta": 1.88,
+              "amort": 100.0,
+              "total": 101.88,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "flujo_fondos": [
+            {
+              "fecha": "2027-01-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-07-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-01-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-07-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-01-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-07-27",
+              "renta": 1.88,
+              "amort": 0.0,
+              "total": 1.88,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-01-27",
+              "renta": 1.88,
+              "amort": 100.0,
+              "total": 101.88,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "proximo_pago_fecha": "2027-01-27",
+          "proximo_pago_monto": "1.880%",
+          "var_1d": -0.18,
+          "var_1m": 0.06,
+          "var_12m": 10.3,
+          "var_ytd": 3.68
         },
         {
           "id": "ON_VSCUD",
@@ -9682,351 +9936,6 @@
           "var_1m": -3.23,
           "var_12m": 3.06,
           "var_ytd": 3.26
-        },
-        {
-          "id": "ON_PNICD",
-          "symbol": "PNICD",
-          "ticker": "PNICD",
-          "emisor": "Pan American Energy (PAE)",
-          "nombre": "PAE 2032 Clase I (PNICD)",
-          "subtitulo": "ON USD Ley Argentina • 0.91% • vto. 02/2032",
-          "categoria": "Obligaciones Negociables (ONs)",
-          "subtipo": "Petróleo & Refinación",
-          "tipo": "market_asset",
-          "moneda": "USD",
-          "precio": 92.07,
-          "open": 127000.0,
-          "high": 127000.0,
-          "low": 127000.0,
-          "tir": 1.44,
-          "duration": 3.15,
-          "paridad_pct": 109.16,
-          "cupon_anual_pct": 0.9105479452054795,
-          "tipo_cupon": "Fijo",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet al Vencimiento",
-          "ley": "Argentina",
-          "fecha_vto": "2032-02-07",
-          "dias_vto": 1981,
-          "dias_cupon": 63,
-          "intereses_corridos": 0.07,
-          "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.07,
-          "cashflow": [
-            {
-              "fecha": "2027-02-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-08-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-02-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-08-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-02-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-08-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-02-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-08-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-02-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-08-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2032-02-07",
-              "renta": 0.455,
-              "amort": 100.0,
-              "total": 100.455,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "flujo_fondos": [
-            {
-              "fecha": "2027-02-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-08-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-02-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-08-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-02-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-08-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-02-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-08-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-02-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-08-07",
-              "renta": 0.455,
-              "amort": 0.0,
-              "total": 0.455,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2032-02-07",
-              "renta": 0.455,
-              "amort": 100.0,
-              "total": 100.455,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "proximo_pago_fecha": "2027-02-07",
-          "proximo_pago_monto": "0.455%",
-          "var_1d": -99.93,
-          "var_1m": -99.93,
-          "var_12m": -99.92,
-          "var_ytd": -99.92
-        },
-        {
-          "id": "ON_NPCDD",
-          "symbol": "NPCDD",
-          "ticker": "NPCDD",
-          "emisor": "Central Puerto",
-          "nombre": "Central Puerto 2030 (NPCDD)",
-          "subtitulo": "ON USD Ley Argentina • 3.01% • vto. 04/2030",
-          "categoria": "Obligaciones Negociables (ONs)",
-          "subtipo": "Generación Eléctrica",
-          "tipo": "fixed_income",
-          "moneda": "USD",
-          "precio": 101.95,
-          "open": 101.95,
-          "high": 101.95,
-          "low": 101.95,
-          "tir": 6.15,
-          "duration": 3.16,
-          "paridad_pct": 99.82,
-          "cupon_anual_pct": 3.008219178082192,
-          "tipo_cupon": "Fijo",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet al Vencimiento",
-          "ley": "Argentina",
-          "fecha_vto": "2030-04-30",
-          "dias_vto": 1331,
-          "dias_cupon": 53,
-          "intereses_corridos": 1.07,
-          "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.07,
-          "cashflow": [
-            {
-              "fecha": "2026-10-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-04-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-10-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-04-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-10-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-04-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-10-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-04-30",
-              "renta": 1.504,
-              "amort": 100.0,
-              "total": 101.504,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "flujo_fondos": [
-            {
-              "fecha": "2026-10-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-04-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-10-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-04-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-10-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-04-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-10-28",
-              "renta": 1.504,
-              "amort": 0.0,
-              "total": 1.504,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-04-30",
-              "renta": 1.504,
-              "amort": 100.0,
-              "total": 101.504,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "proximo_pago_fecha": "2026-10-28",
-          "proximo_pago_monto": "1.504%",
-          "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0
         },
         {
           "id": "ON_VSCRD",
@@ -10957,6 +10866,450 @@
           "var_ytd": 3.51
         },
         {
+          "id": "ON_PLC4O",
+          "symbol": "PLC4O",
+          "ticker": "PLC4O",
+          "emisor": "Pluspetrol",
+          "nombre": "Pluspetrol 2032 (PLC4O)",
+          "subtitulo": "ON USD Ley Nueva York • 4.25% • vto. 05/2032",
+          "categoria": "Obligaciones Negociables (ONs)",
+          "subtipo": "Gas & Petróleo",
+          "tipo": "market_asset",
+          "moneda": "USD",
+          "precio": 169110.0,
+          "open": 169160.0,
+          "high": 169580.0,
+          "low": 168850.0,
+          "tir": 6.78,
+          "duration": 4.46,
+          "paridad_pct": 108.38,
+          "cupon_anual_pct": 4.25,
+          "tipo_cupon": "Fijo",
+          "frecuencia_pago": "Semestral",
+          "amortizacion": "Bullet al Vencimiento",
+          "ley": "Nueva York",
+          "fecha_vto": "2032-05-30",
+          "dias_vto": 2093,
+          "dias_cupon": 84,
+          "intereses_corridos": 1.16,
+          "valor_residual_pct": 100.0,
+          "valor_tecnico": 101.16,
+          "cashflow": [
+            {
+              "fecha": "2026-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-05-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-05-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-05-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-05-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-05-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2032-05-30",
+              "renta": 2.125,
+              "amort": 100.0,
+              "total": 102.125,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "flujo_fondos": [
+            {
+              "fecha": "2026-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-05-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-05-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-05-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-05-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-05-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-11-28",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2032-05-30",
+              "renta": 2.125,
+              "amort": 100.0,
+              "total": 102.125,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "proximo_pago_fecha": "2026-11-28",
+          "proximo_pago_monto": "2.125%",
+          "var_1d": 0.01,
+          "var_1m": -0.48,
+          "var_12m": 14.26,
+          "var_ytd": 8.03
+        },
+        {
+          "id": "ON_VSCVD",
+          "symbol": "VSCVD",
+          "ticker": "VSCVD",
+          "emisor": "Vista Energy",
+          "nombre": "Vista Energy 2033 (VSCVD)",
+          "subtitulo": "ON USD Ley Nueva York • 4.25% • vto. 06/2033",
+          "categoria": "Obligaciones Negociables (ONs)",
+          "subtipo": "Shale Oil / Vaca Muerta",
+          "tipo": "market_asset",
+          "moneda": "USD",
+          "precio": 112.55,
+          "open": 112.3,
+          "high": 112.65,
+          "low": 112.2,
+          "tir": 6.39,
+          "duration": 4.5,
+          "paridad_pct": 110.28,
+          "cupon_anual_pct": 4.25,
+          "tipo_cupon": "Fijo",
+          "frecuencia_pago": "Semestral",
+          "amortizacion": "Bullet al Vencimiento",
+          "ley": "Nueva York",
+          "fecha_vto": "2033-06-10",
+          "dias_vto": 2468,
+          "dias_cupon": 94,
+          "intereses_corridos": 1.01,
+          "valor_residual_pct": 100.0,
+          "valor_tecnico": 101.01,
+          "cashflow": [
+            {
+              "fecha": "2026-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2032-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2032-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2033-06-10",
+              "renta": 2.125,
+              "amort": 100.0,
+              "total": 102.125,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "flujo_fondos": [
+            {
+              "fecha": "2026-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2032-06-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2032-12-10",
+              "renta": 2.125,
+              "amort": 0.0,
+              "total": 2.125,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2033-06-10",
+              "renta": 2.125,
+              "amort": 100.0,
+              "total": 102.125,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "proximo_pago_fecha": "2026-12-10",
+          "proximo_pago_monto": "2.125%",
+          "var_1d": 0.45,
+          "var_1m": 0.76,
+          "var_12m": 8.74,
+          "var_ytd": 6.18
+        },
+        {
           "id": "ON_YM34D",
           "symbol": "YM34D",
           "ticker": "YM34D",
@@ -11205,6 +11558,284 @@
           "var_1m": -1.04,
           "var_12m": 10.18,
           "var_ytd": -0.59
+        },
+        {
+          "id": "ON_MGCOD",
+          "symbol": "MGCOD",
+          "ticker": "MGCOD",
+          "emisor": "Pampa Energía",
+          "nombre": "Pampa Energía 2027 (MGCOD)",
+          "subtitulo": "ON USD Ley Nueva York • 3.94% • vto. 12/2034",
+          "categoria": "Obligaciones Negociables (ONs)",
+          "subtipo": "Generación & Petróleo",
+          "tipo": "market_asset",
+          "moneda": "USD",
+          "precio": 109.65,
+          "open": 109.4,
+          "high": 109.65,
+          "low": 109.3,
+          "tir": 6.73,
+          "duration": 6.02,
+          "paridad_pct": 107.74,
+          "cupon_anual_pct": 3.9375,
+          "tipo_cupon": "Fijo",
+          "frecuencia_pago": "Semestral",
+          "amortizacion": "Bullet al Vencimiento",
+          "ley": "Nueva York",
+          "fecha_vto": "2034-12-16",
+          "dias_vto": 3024,
+          "dias_cupon": 100,
+          "intereses_corridos": 0.87,
+          "valor_residual_pct": 100.0,
+          "valor_tecnico": 100.87,
+          "cashflow": [
+            {
+              "fecha": "2026-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2032-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2032-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2033-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2033-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2034-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2034-12-16",
+              "renta": 1.969,
+              "amort": 100.0,
+              "total": 101.969,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "flujo_fondos": [
+            {
+              "fecha": "2026-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2027-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2028-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2029-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2030-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2031-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2032-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2032-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2033-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2033-12-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2034-06-16",
+              "renta": 1.969,
+              "amort": 0.0,
+              "total": 1.969,
+              "tipo": "Interés"
+            },
+            {
+              "fecha": "2034-12-16",
+              "renta": 1.969,
+              "amort": 100.0,
+              "total": 101.969,
+              "tipo": "Interés y Amortización"
+            }
+          ],
+          "proximo_pago_fecha": "2026-12-16",
+          "proximo_pago_monto": "1.969%",
+          "var_1d": 0.23,
+          "var_1m": -0.05,
+          "var_12m": 8.3,
+          "var_ytd": 6.2
         },
         {
           "id": "ON_IRCPD",
@@ -11497,742 +12128,6 @@
           "var_1m": 0.0,
           "var_12m": 5.45,
           "var_ytd": 4.65
-        },
-        {
-          "id": "ON_PLC7D",
-          "symbol": "PLC7D",
-          "ticker": "PLC7D",
-          "emisor": "Pluspetrol",
-          "nombre": "Pluspetrol 2037 (PLC7D)",
-          "subtitulo": "ON USD Ley Nueva York • 5.66% • vto. 09/2037",
-          "categoria": "Obligaciones Negociables (ONs)",
-          "subtipo": "Gas & Petróleo",
-          "tipo": "fixed_income",
-          "moneda": "USD",
-          "precio": 105.0,
-          "open": 105.0,
-          "high": 105.0,
-          "low": 105.0,
-          "tir": 7.16,
-          "duration": 6.94,
-          "paridad_pct": 103.55,
-          "cupon_anual_pct": 5.6625,
-          "tipo_cupon": "Fijo",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet al Vencimiento",
-          "ley": "Nueva York",
-          "fecha_vto": "2037-09-30",
-          "dias_vto": 4041,
-          "dias_cupon": 204,
-          "intereses_corridos": 2.5,
-          "valor_residual_pct": 100.0,
-          "valor_tecnico": 102.5,
-          "cashflow": [
-            {
-              "fecha": "2026-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2032-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2032-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2033-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2033-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2034-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2034-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2035-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2035-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2036-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2036-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2037-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2037-09-30",
-              "renta": 2.831,
-              "amort": 100.0,
-              "total": 102.831,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "flujo_fondos": [
-            {
-              "fecha": "2026-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2032-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2032-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2033-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2033-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2034-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2034-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2035-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2035-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2036-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2036-09-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2037-03-28",
-              "renta": 2.831,
-              "amort": 0.0,
-              "total": 2.831,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2037-09-30",
-              "renta": 2.831,
-              "amort": 100.0,
-              "total": 102.831,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "proximo_pago_fecha": "2026-09-28",
-          "proximo_pago_monto": "2.831%",
-          "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0
-        },
-        {
-          "id": "ON_VSCXD",
-          "symbol": "VSCXD",
-          "ticker": "VSCXD",
-          "emisor": "Vista Energy",
-          "nombre": "Vista Energy 2038 (VSCXD)",
-          "subtitulo": "ON USD Ley Nueva York • 3.94% • vto. 04/2038",
-          "categoria": "Obligaciones Negociables (ONs)",
-          "subtipo": "Shale Oil / Vaca Muerta",
-          "tipo": "fixed_income",
-          "moneda": "USD",
-          "precio": 110.2,
-          "open": 110.2,
-          "high": 110.2,
-          "low": 110.2,
-          "tir": 7.05,
-          "duration": 7.02,
-          "paridad_pct": 106.74,
-          "cupon_anual_pct": 3.9375,
-          "tipo_cupon": "Fijo",
-          "frecuencia_pago": "Semestral",
-          "amortizacion": "Bullet al Vencimiento",
-          "ley": "Nueva York",
-          "fecha_vto": "2038-04-09",
-          "dias_vto": 4232,
-          "dias_cupon": 32,
-          "intereses_corridos": 1.61,
-          "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.61,
-          "cashflow": [
-            {
-              "fecha": "2026-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2032-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2032-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2033-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2033-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2034-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2034-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2035-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2035-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2036-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2036-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2037-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2037-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2038-04-09",
-              "renta": 1.969,
-              "amort": 100.0,
-              "total": 101.969,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "flujo_fondos": [
-            {
-              "fecha": "2026-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2027-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2028-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2029-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2030-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2031-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2032-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2032-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2033-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2033-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2034-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2034-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2035-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2035-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2036-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2036-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2037-04-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2037-10-09",
-              "renta": 1.969,
-              "amort": 0.0,
-              "total": 1.969,
-              "tipo": "Interés"
-            },
-            {
-              "fecha": "2038-04-09",
-              "renta": 1.969,
-              "amort": 100.0,
-              "total": 101.969,
-              "tipo": "Interés y Amortización"
-            }
-          ],
-          "proximo_pago_fecha": "2026-10-09",
-          "proximo_pago_monto": "1.969%",
-          "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0
         },
         {
           "id": "ON_MGCRD",
@@ -14420,7 +14315,7 @@
           "low": 6950.0,
           "moneda": "ARS",
           "cap_bursatil": 11251806633984,
-          "ma50": 7509.5,
+          "ma50": 7509.49,
           "ma200": 7220.88,
           "var_1d": -0.99,
           "var_1m": -5.02,
@@ -14693,19 +14588,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 79853.38,
-          "open": 79676.3281,
-          "high": 80134.6953,
-          "low": 79480.9297,
+          "precio": 79900.99,
+          "open": 81271.5391,
+          "high": 81433.1484,
+          "low": 78641.625,
           "moneda": "USD",
-          "cap_bursatil": 1602768732160,
-          "ma50": 69095.34,
-          "ma200": 69684.14,
-          "var_1d": 0.22,
-          "var_1m": 26.7,
-          "var_12m": -9.05,
+          "cap_bursatil": 1604676222976,
+          "ma50": 68776.26,
+          "ma200": 69622.34,
+          "var_1d": 0.38,
+          "var_1m": 26.51,
+          "var_12m": -8.74,
           "subtitulo": "Criptomoneda Líder / Reserva Digital",
-          "var_ytd": -8.75
+          "var_ytd": -8.69
         },
         {
           "id": "CRYPTO_ETH",
@@ -14714,19 +14609,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2483.03,
-          "open": 2456.2046,
-          "high": 2491.3899,
-          "low": 2446.7305,
+          "precio": 2482.07,
+          "open": 2508.0159,
+          "high": 2545.6235,
+          "low": 2432.3542,
           "moneda": "USD",
-          "cap_bursatil": 302828814336,
-          "ma50": 2090.02,
-          "ma200": 2036.09,
-          "var_1d": 1.08,
-          "var_1m": 32.01,
-          "var_12m": -15.77,
+          "cap_bursatil": 302681718784,
+          "ma50": 2077.18,
+          "ma200": 2033.63,
+          "var_1d": 1.21,
+          "var_1m": 30.6,
+          "var_12m": -16.05,
           "subtitulo": "Contratos Inteligentes / Web3",
-          "var_ytd": -16.31
+          "var_ytd": -16.35
         },
         {
           "id": "CRYPTO_SOL",
@@ -14735,19 +14630,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 103.3,
-          "open": 101.9461,
-          "high": 104.16,
-          "low": 101.725,
+          "precio": 103.37,
+          "open": 103.9779,
+          "high": 104.5845,
+          "low": 100.5663,
           "moneda": "USD",
-          "cap_bursatil": 60460122112,
-          "ma50": 83.77,
-          "ma200": 82.31,
-          "var_1d": 1.32,
-          "var_1m": 37.24,
-          "var_12m": -17.13,
+          "cap_bursatil": 60474994688,
+          "ma50": 83.21,
+          "ma200": 82.22,
+          "var_1d": 1.49,
+          "var_1m": 35.34,
+          "var_12m": -16.57,
           "subtitulo": "Blockchain de Alta Velocidad",
-          "var_ytd": -17.02
+          "var_ytd": -16.96
         },
         {
           "id": "CRYPTO_BNB",
@@ -14756,19 +14651,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 767.28,
-          "open": 721.2719,
-          "high": 778.7446,
-          "low": 719.8221,
+          "precio": 768.96,
+          "open": 724.9983,
+          "high": 728.6565,
+          "low": 710.2684,
           "moneda": "USD",
-          "cap_bursatil": 102185762816,
-          "ma50": 626.55,
-          "ma200": 620.36,
-          "var_1d": 6.33,
-          "var_1m": 26.38,
-          "var_12m": -9.15,
+          "cap_bursatil": 102193897472,
+          "ma50": 622.56,
+          "ma200": 619.61,
+          "var_1d": 6.78,
+          "var_1m": 18.71,
+          "var_12m": -13.53,
           "subtitulo": "Ecosistema BNB Chain",
-          "var_ytd": -11.12
+          "var_ytd": -10.92
         },
         {
           "id": "CRYPTO_XRP",
@@ -14777,19 +14672,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.4146,
-          "open": 1.3989,
-          "high": 1.4246,
-          "low": 1.3961,
+          "precio": 1.4127,
+          "open": 1.4513,
+          "high": 1.4606,
+          "low": 1.3873,
           "moneda": "USD",
-          "cap_bursatil": 88733491200,
-          "ma50": 1.18,
+          "cap_bursatil": 88603312128,
+          "ma50": 1.17,
           "ma200": 1.27,
-          "var_1d": 1.12,
-          "var_1m": 41.24,
-          "var_12m": -24.48,
+          "var_1d": 1.23,
+          "var_1m": 40.18,
+          "var_12m": -24.09,
           "subtitulo": "Pagos y Liquidaciones",
-          "var_ytd": -23.12
+          "var_ytd": -23.22
         },
         {
           "id": "CRYPTO_ADA",
@@ -14798,19 +14693,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.219,
-          "open": 0.2113,
-          "high": 0.2213,
-          "low": 0.2098,
+          "precio": 0.2188,
+          "open": 0.2212,
+          "high": 0.2263,
+          "low": 0.2099,
           "moneda": "USD",
-          "cap_bursatil": 8044891648,
+          "cap_bursatil": 8035353600,
           "ma50": 0.19,
           "ma200": 0.22,
-          "var_1d": 3.65,
-          "var_1m": 24.36,
-          "var_12m": -40.73,
+          "var_1d": 3.97,
+          "var_1m": 17.45,
+          "var_12m": -39.56,
           "subtitulo": "Blockchain Proof of Stake",
-          "var_ytd": -34.19
+          "var_ytd": -34.25
         },
         {
           "id": "CRYPTO_DOGE",
@@ -14819,19 +14714,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0899,
-          "open": 0.0848,
-          "high": 0.0935,
-          "low": 0.0845,
+          "precio": 0.09,
+          "open": 0.0878,
+          "high": 0.0882,
+          "low": 0.084,
           "moneda": "USD",
-          "cap_bursatil": 15426859008,
+          "cap_bursatil": 15418904576,
           "ma50": 0.08,
           "ma200": 0.09,
-          "var_1d": 5.98,
-          "var_1m": 29.17,
-          "var_12m": -27.62,
+          "var_1d": 6.26,
+          "var_1m": 21.14,
+          "var_12m": -30.49,
           "subtitulo": "Moneda Digital Memética",
-          "var_ytd": -23.36
+          "var_ytd": -23.27
         },
         {
           "id": "CRYPTO_USDT",
@@ -14841,16 +14736,16 @@
           "subtipo": "",
           "tipo": "market_asset",
           "precio": 1.0001,
-          "open": 1.0002,
-          "high": 1.0004,
-          "low": 0.9999,
+          "open": 1.0,
+          "high": 1.0014,
+          "low": 0.9997,
           "moneda": "USD",
-          "cap_bursatil": 183427629056,
+          "cap_bursatil": 183399776256,
           "ma50": 1.0,
           "ma200": 1.0,
-          "var_1d": -0.02,
-          "var_1m": 0.11,
-          "var_12m": 0.08,
+          "var_1d": -0.01,
+          "var_1m": 0.12,
+          "var_12m": 0.1,
           "subtitulo": "Stablecoin Dólar",
           "var_ytd": 0.17
         }
