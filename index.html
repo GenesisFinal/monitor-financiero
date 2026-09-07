@@ -123,15 +123,38 @@
             >
           </div>
 
+          <!-- Badge de Estado de Actualización -->
           <div class="flex items-center bg-slate-100/90 border border-slate-200 rounded-full px-3 py-1 text-xs">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
+            <span id="updateStatusDot" class="w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
             <span id="updateTimeBadge" class="text-slate-600 font-medium text-[11px] sm:text-xs">Cargando datos...</span>
           </div>
 
+          <!-- Botón de Actualización en Vivo Local & Info -->
+          <div id="liveBtnContainer" class="flex items-center space-x-1.5">
+            <button 
+              id="btnLiveTrigger"
+              onclick="triggerLiveSessionUpdate()" 
+              class="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-all shadow-xs cursor-pointer group"
+              title="Actualizar cotizaciones en tiempo real en tu navegador"
+            >
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-300 fill-amber-300 group-hover:scale-110 transition-transform"></i>
+              <span class="hidden sm:inline">Actualizar en Vivo</span>
+              <span class="sm:hidden">En Vivo</span>
+            </button>
+            <button 
+              onclick="openLiveInfoModal()" 
+              class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 border border-slate-200 transition-all cursor-pointer" 
+              title="¿Cómo funciona la actualización en vivo de mi sesión?"
+            >
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <!-- Botón de Recarga de Servidor -->
           <button 
             onclick="loadDataset(true)" 
-            title="Recargar datos"
-            class="p-2 rounded-full bg-slate-100 hover:bg-brand-red hover:text-white text-slate-600 border border-slate-200 transition-all"
+            title="Recargar datos del servidor"
+            class="p-1.5 sm:p-2 rounded-full bg-slate-100 hover:bg-brand-red hover:text-white text-slate-600 border border-slate-200 transition-all cursor-pointer"
           >
             <i data-lucide="refresh-cw" id="refreshIcon" class="w-4 h-4"></i>
           </button>
@@ -2891,11 +2914,289 @@ function handleFciSearch(query) {
 
     function updateFreshnessBadge() {
       const updateEl = document.getElementById('updateTimeBadge');
-      if (updateEl && DATASET && DATASET.ultima_actualizacion) {
-        const relTime = formatTimeAgo(DATASET.ultima_actualizacion);
-        updateEl.innerHTML = `<strong>Actualizado:</strong> ${DATASET.ultima_actualizacion} <span class="text-slate-400 font-normal">(${relTime})</span>`;
+      const dotEl = document.getElementById('updateStatusDot');
+      const liveBtnContainer = document.getElementById('liveBtnContainer');
+
+      if (IS_LIVE_SESSION) {
+        if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-amber-400 mr-2 animate-ping';
+        if (updateEl) {
+          updateEl.innerHTML = `<span class="text-emerald-700 font-bold flex items-center gap-1">⚡ En Vivo (Sesión Local): ${LIVE_SESSION_TIME || ''}</span>`;
+        }
+        if (liveBtnContainer) {
+          liveBtnContainer.innerHTML = `
+            <button 
+              onclick="restoreOfficialDataset()" 
+              class="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-900 text-white font-medium text-xs transition-all shadow-xs cursor-pointer"
+              title="Restaurar valores de cierre oficial del servidor"
+            >
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-slate-300"></i>
+              <span class="hidden sm:inline">Restaurar Cierre Oficial</span>
+              <span class="sm:hidden">Oficial</span>
+            </button>
+            <button 
+              onclick="openLiveInfoModal()" 
+              class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 border border-slate-200 transition-all cursor-pointer" 
+              title="¿Cómo funciona la actualización en vivo de mi sesión?"
+            >
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+            </button>
+          `;
+        }
+      } else {
+        if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse';
+        if (updateEl && DATASET && DATASET.ultima_actualizacion) {
+          const relTime = formatTimeAgo(DATASET.ultima_actualizacion);
+          updateEl.innerHTML = `<strong>Cierre Oficial:</strong> ${DATASET.ultima_actualizacion} <span class="text-slate-400 font-normal">(${relTime})</span>`;
+        }
+        if (liveBtnContainer) {
+          liveBtnContainer.innerHTML = `
+            <button 
+              id="btnLiveTrigger"
+              onclick="triggerLiveSessionUpdate()" 
+              class="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-all shadow-xs cursor-pointer group"
+              title="Actualizar cotizaciones en tiempo real en tu navegador"
+            >
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-300 fill-amber-300 group-hover:scale-110 transition-transform"></i>
+              <span class="hidden sm:inline">Actualizar en Vivo</span>
+              <span class="sm:hidden">En Vivo</span>
+            </button>
+            <button 
+              onclick="openLiveInfoModal()" 
+              class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 border border-slate-200 transition-all cursor-pointer" 
+              title="¿Cómo funciona la actualización en vivo de mi sesión?"
+            >
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+            </button>
+          `;
+        }
+      }
+      lucide.createIcons();
+    }
+
+    // -------------------------------------------------------------
+    // GESTIÓN DE ACTUALIZACIÓN EN VIVO POR SESIÓN LOCAL (CLIENT-SIDE)
+    // -------------------------------------------------------------
+    let IS_LIVE_SESSION = false;
+    let LIVE_SESSION_TIME = null;
+    let BACKUP_OFFICIAL_DATASET = null;
+
+    function openLiveInfoModal() {
+      const m = document.getElementById('liveInfoModal');
+      if (m) {
+        m.classList.remove('hidden');
+        lucide.createIcons();
       }
     }
+
+    function closeLiveInfoModal(e) {
+      if (e && e.target && e.target.id !== 'liveInfoModal' && !e.target.closest('button')) return;
+      const m = document.getElementById('liveInfoModal');
+      if (m) m.classList.add('hidden');
+    }
+
+    function showLiveToast(title, msg, type = 'info') {
+      const container = document.getElementById('liveToastContainer');
+      if (!container) return;
+      
+      const toast = document.createElement('div');
+      const isSuccess = (type === 'success');
+      toast.className = `p-3.5 rounded-xl border shadow-lg flex items-start space-x-2.5 max-w-sm pointer-events-auto transition-all animate-in slide-in-from-bottom-5 duration-200 ${isSuccess ? 'bg-emerald-900 text-white border-emerald-700' : 'bg-slate-900 text-white border-slate-700'}`;
+      toast.innerHTML = `
+        <i data-lucide="${isSuccess ? 'check-circle' : 'info'}" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+        <div class="flex-1">
+          <p class="text-xs font-bold leading-tight">${title}</p>
+          <p class="text-[11px] text-slate-300 mt-0.5 leading-normal">${msg}</p>
+        </div>
+      `;
+      container.appendChild(toast);
+      lucide.createIcons();
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 4500);
+    }
+
+    async function triggerLiveSessionUpdate() {
+      const btn = document.getElementById('btnLiveTrigger');
+      const updateEl = document.getElementById('updateTimeBadge');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin"></i><span>Consultando en vivo...</span>`;
+        lucide.createIcons();
+      }
+      if (updateEl) updateEl.innerText = 'Consultando cotizaciones en vivo...';
+
+      // 1. Guardar backup del cierre oficial si aún no se guardó
+      if (!BACKUP_OFFICIAL_DATASET && DATASET) {
+        BACKUP_OFFICIAL_DATASET = JSON.parse(JSON.stringify(DATASET));
+      }
+
+      let updatedCount = 0;
+
+      try {
+        // Consultas concurrentes en tiempo real a APIs abiertas
+        const promises = [];
+
+        // A. Dólares en Vivo (DolarApi)
+        const pDolar = fetch('https://dolarapi.com/v1/dolares', { cache: 'no-store' })
+          .then(r => r.ok ? r.json() : null)
+          .then(data => {
+            if (data && Array.isArray(data) && DATASET.secciones && DATASET.secciones.dolar) {
+              const dItems = DATASET.secciones.dolar.items || [];
+              const casaMap = {
+                'oficial': 'USD_OFICIAL',
+                'blue': 'USD_BLUE',
+                'bolsa': 'USD_BOLSA',
+                'contadoconliqui': 'USD_CCL',
+                'tarjeta': 'USD_TARJETA',
+                'mayorista': 'USD_MAYORISTA',
+                'cripto': 'USD_CRIPTO'
+              };
+              let oficialPx = null;
+              const livePrices = {};
+
+              data.forEach(d => {
+                const px = parseFloat(d.venta || d.compra) || 0;
+                const cId = casaMap[d.casa];
+                if (cId && px > 0) {
+                  livePrices[cId] = px;
+                  if (d.casa === 'oficial') oficialPx = px;
+                }
+              });
+
+              dItems.forEach(item => {
+                if (livePrices[item.id]) {
+                  const oldPx = item.precio || livePrices[item.id];
+                  item.precio = livePrices[item.id];
+                  item.subtitulo = 'Cotización en vivo';
+                  if (oficialPx && item.id !== 'USD_OFICIAL') {
+                    item.brecha_pct = roundNumber(((item.precio - oficialPx) / oficialPx) * 100, 2);
+                  }
+                  updatedCount++;
+                }
+              });
+            }
+          }).catch(e => console.warn('Live Dolar:', e));
+        promises.push(pDolar);
+
+        // B. Riesgo País en Vivo (ArgentinaDatos / Rava live)
+        const pRiesgo = fetch('https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais', { cache: 'no-store' })
+          .then(r => r.ok ? r.json() : null)
+          .then(data => {
+            if (data && Array.isArray(data) && data.length >= 2 && DATASET.secciones && DATASET.secciones.dolar) {
+              const lastVal = parseFloat(data[data.length - 1].valor);
+              const prevVal = parseFloat(data[data.length - 2].valor);
+              const dItems = DATASET.secciones.dolar.items || [];
+              const rp = dItems.find(x => x.id === 'RIESGO_PAIS');
+              if (rp && lastVal > 0) {
+                rp.precio = lastVal;
+                if (prevVal > 0) {
+                  rp.var_1d = roundNumber(((lastVal - prevVal) / prevVal) * 100, 2);
+                }
+                rp.subtitulo = 'Puntos básicos en tiempo real';
+                updatedCount++;
+              }
+            }
+          }).catch(e => console.warn('Live Riesgo País:', e));
+        promises.push(pRiesgo);
+
+        // C. Criptomonedas en Vivo (Binance API 24h Ticker)
+        const pCripto = fetch('https://api.binance.com/api/v3/ticker/24hr?symbols=[%22BTCUSDT%22,%22ETHUSDT%22,%22SOLUSDT%22,%22BNBUSDT%22,%22PAXGUSDT%22]', { cache: 'no-store' })
+          .then(r => r.ok ? r.json() : null)
+          .then(tickers => {
+            if (tickers && Array.isArray(tickers) && DATASET.secciones && DATASET.secciones.criptomonedas) {
+              const cItems = DATASET.secciones.criptomonedas.items || [];
+              const tickerMap = {
+                'BTCUSDT': 'CRIPTO_BTC',
+                'ETHUSDT': 'CRIPTO_ETH',
+                'SOLUSDT': 'CRIPTO_SOL',
+                'BNBUSDT': 'CRIPTO_BNB',
+                'PAXGUSDT': 'CRIPTO_PAXG'
+              };
+              tickers.forEach(t => {
+                const cId = tickerMap[t.symbol];
+                const item = cItems.find(x => x.id === cId || (x.symbol && x.symbol.toUpperCase() === t.symbol.replace('USDT', '')));
+                if (item) {
+                  const px = parseFloat(t.lastPrice);
+                  const chg = parseFloat(t.priceChangePercent);
+                  if (px > 0) {
+                    item.precio = px;
+                    item.var_1d = roundNumber(chg, 2);
+                    updatedCount++;
+                  }
+                }
+              });
+            }
+          }).catch(e => console.warn('Live Cripto:', e));
+        promises.push(pCripto);
+
+        // D. Tasas de Plazo Fijo en Vivo (ArgentinaDatos)
+        const pTasas = fetch('https://api.argentinadatos.com/v1/finanzas/tasas/plazo-fijo', { cache: 'no-store' })
+          .then(r => r.ok ? r.json() : null)
+          .then(tasas => {
+            if (tasas && Array.isArray(tasas) && DATASET.secciones && DATASET.secciones.tasas_locales) {
+              const tItems = DATASET.secciones.tasas_locales.items || [];
+              tasas.forEach(t => {
+                const ent = (t.entidad || '').toLowerCase();
+                const tnaVal = parseFloat(t.tnaClientes || t.tnaNoClientes || t.tna) * 100;
+                if (tnaVal > 0) {
+                  const match = tItems.find(x => x.nombre && x.nombre.toLowerCase().includes(ent));
+                  if (match) {
+                    match.tna = roundNumber(tnaVal, 2);
+                    match.tea = roundNumber((Math.pow(1 + (tnaVal / 100 / 12), 12) - 1) * 100, 2);
+                    match.tem = roundNumber(tnaVal / 12, 2);
+                    updatedCount++;
+                  }
+                }
+              });
+            }
+          }).catch(e => console.warn('Live Tasas:', e));
+        promises.push(pTasas);
+
+        // Esperar que todas las consultas completen
+        await Promise.allSettled(promises);
+
+        // Establecer estado de Sesión en Vivo
+        IS_LIVE_SESSION = true;
+        LIVE_SESSION_TIME = new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+        updateFreshnessBadge();
+        renderHeroHighlights();
+        renderActiveSection();
+
+        showLiveToast(
+          '⚡ Sesión Actualizada en Vivo',
+          `Se sincronizaron ${updatedCount} cotizaciones en tiempo real en tu navegador.`,
+          'success'
+        );
+
+      } catch (err) {
+        console.error('Error en actualización en vivo:', err);
+        showLiveToast('Aviso de Actualización', 'Algunos proveedores no respondieron, pero se conservaron los datos activos.', 'info');
+      } finally {
+        updateFreshnessBadge();
+      }
+    }
+
+    function restoreOfficialDataset() {
+      if (BACKUP_OFFICIAL_DATASET) {
+        DATASET = JSON.parse(JSON.stringify(BACKUP_OFFICIAL_DATASET));
+      }
+      IS_LIVE_SESSION = false;
+      LIVE_SESSION_TIME = null;
+
+      updateFreshnessBadge();
+      renderHeroHighlights();
+      renderActiveSection();
+
+      showLiveToast(
+        '↩️ Cierre Oficial Restaurado',
+        'Has vuelto a los datos consolidados oficiales del servidor.',
+        'info'
+      );
+    }
+
 
     // Polling en segundo plano cada 60 segundos
     setInterval(async () => {
@@ -2919,5 +3220,64 @@ function handleFciSearch(query) {
     }, 60000);
 
 </script>
+
+  <!-- MODAL INFORMATIVO: ACTUALIZACIÓN EN VIVO (SESIÓN LOCAL) -->
+  <div id="liveInfoModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs hidden p-4" onclick="closeLiveInfoModal(event)">
+    <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-5 sm:p-6 max-w-lg w-full space-y-4 animate-in fade-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center space-x-2.5">
+          <span class="p-2 bg-amber-50 text-amber-600 rounded-lg"><i data-lucide="zap" class="w-5 h-5 fill-amber-500"></i></span>
+          <div>
+            <h3 class="text-base font-bold text-slate-900">Actualización en Vivo (Sesión Local)</h3>
+            <p class="text-[11px] text-slate-400 font-medium">Cotizaciones en tiempo real en tu navegador</p>
+          </div>
+        </div>
+        <button onclick="closeLiveInfoModal()" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition-all cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
+        <div class="bg-emerald-50/80 border border-emerald-200 rounded-xl p-3.5 space-y-1.5">
+          <p class="font-bold text-emerald-950 flex items-center gap-1.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+            ¿QUÉ HACE ESTA ACTUALIZACIÓN?
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-emerald-900 text-[11.5px]">
+            <li>Consulta en tiempo real las cotizaciones financieras directamente desde tu navegador (Dólares, Cripto, Riesgo País, Tasas, Bonos y Acciones).</li>
+            <li>Actualiza los precios y las variaciones del día en tu pantalla de inmediato, permitiéndote ver los movimientos de la rueda en vivo sin esperar al cierre programado.</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-1.5">
+          <p class="font-bold text-slate-900 flex items-center gap-1.5">
+            <i data-lucide="shield-alert" class="w-4 h-4 text-slate-600 shrink-0"></i>
+            ¿QUÉ NO HACE?
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-slate-700 text-[11.5px]">
+            <li><strong>No modifica el servidor:</strong> No altera los archivos consolidados en GitHub ni la base de datos oficial.</li>
+            <li><strong>No afecta a otros usuarios:</strong> La actualización se almacena exclusivamente en la memoria local de tu sesión activa.</li>
+            <li><strong>No altera históricos:</strong> Preserva intactas las series históricas de largo plazo.</li>
+          </ul>
+        </div>
+
+        <div class="bg-amber-50/60 border border-amber-200 rounded-xl p-3">
+          <p class="text-amber-900 text-[11.5px]">
+            💡 <strong>Reversibilidad total:</strong> Puedes hacer clic en el botón <span class="font-semibold text-amber-950">"Restaurar Cierre Oficial"</span> en cualquier momento o recargar la página (<kbd class="px-1 py-0.5 bg-white border border-amber-300 rounded font-mono text-[10px]">F5</kbd>) para volver a los valores consolidados del servidor.
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-2 flex justify-end gap-2">
+        <button onclick="closeLiveInfoModal()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-semibold hover:bg-slate-800 transition-all cursor-pointer">
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="liveToastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
 </body>
 </html>
