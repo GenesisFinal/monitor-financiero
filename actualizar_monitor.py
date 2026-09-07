@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import os, json, time, math, requests
+import os, json, time, math, requests, datetime
 import yfinance as yf
 import pandas as pd
 import numpy as np
