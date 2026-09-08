@@ -1321,62 +1321,62 @@ def build_yield_curves(bonos_list, ons_list):
     return final_curves
 
 CONFIG_INDICES = [
-    {'symbol': '^GSPC', 'name': 'S&P 500', 'id': 'IDX_SP500', 'currency': 'USD', 'subtitulo': 'Estados Unidos - 500 Empresas Líderes'},
-    {'symbol': '^IXIC', 'name': 'Nasdaq Composite', 'id': 'IDX_NASDAQ', 'currency': 'USD', 'subtitulo': 'Estados Unidos - Tecnológico'},
-    {'symbol': '^DJI', 'name': 'Dow Jones Industrial', 'id': 'IDX_DOW', 'currency': 'USD', 'subtitulo': 'Estados Unidos - Industriales'},
-    {'symbol': '^RUT', 'name': 'Russell 2000', 'id': 'IDX_RUSSELL2000', 'currency': 'USD', 'subtitulo': 'Estados Unidos - Small Caps'},
+    {'symbol': '^GSPC', 'name': 'S&P 500', 'id': 'IDX_SP500', 'currency': 'Pts', 'subtitulo': 'Estados Unidos - 500 Empresas Líderes'},
+    {'symbol': '^IXIC', 'name': 'Nasdaq Composite', 'id': 'IDX_NASDAQ', 'currency': 'Pts', 'subtitulo': 'Estados Unidos - Tecnológico'},
+    {'symbol': '^DJI', 'name': 'Dow Jones Industrial', 'id': 'IDX_DOW', 'currency': 'Pts', 'subtitulo': 'Estados Unidos - Industriales'},
+    {'symbol': '^RUT', 'name': 'Russell 2000', 'id': 'IDX_RUSSELL2000', 'currency': 'Pts', 'subtitulo': 'Estados Unidos - Small Caps'},
     {'symbol': '^VIX', 'name': 'Índice de Volatilidad VIX', 'id': 'IDX_VIX', 'currency': 'Pts', 'subtitulo': 'CBOE - Volatilidad Implícita (Termómetro de Riesgo)'},
     {'symbol': 'DX-Y.NYB', 'name': 'DXY (US Dollar Index)', 'id': 'IDX_DXY', 'currency': 'Pts', 'subtitulo': 'Fuerza Global del Dólar vs Canasta de Monedas'},
-    {'symbol': '^MERV', 'name': 'S&P Merval (ARS)', 'id': 'IDX_MERVAL_ARS', 'currency': 'ARS', 'subtitulo': 'Argentina - Índice Líder BYMA'},
+    {'symbol': '^MERV', 'name': 'S&P Merval', 'id': 'IDX_MERVAL_ARS', 'currency': 'Pts', 'subtitulo': 'Argentina - Índice Líder BYMA (Puntos)'},
     {'symbol': 'ARGT', 'name': 'S&P Merval en USD (ARGT)', 'id': 'IDX_MERVAL_USD', 'currency': 'USD', 'subtitulo': 'Global X MSCI Argentina ETF (Merval en Dólares)'},
     {'symbol': 'EEM', 'name': 'MSCI Emerging Markets (EEM)', 'id': 'IDX_EEM', 'currency': 'USD', 'subtitulo': 'Benchmark Global de Mercados Emergentes'},
-    {'symbol': '^GDAXI', 'name': 'DAX 40', 'id': 'IDX_DAX', 'currency': 'EUR', 'subtitulo': 'Alemania - Índice Principal Frankfurt'},
-    {'symbol': '^STOXX50E', 'name': 'Euro Stoxx 50', 'id': 'IDX_EUROSTOXX50', 'currency': 'EUR', 'subtitulo': 'Eurozona - 50 Empresas Blue Chip'},
-    {'symbol': '^FCHI', 'name': 'CAC 40', 'id': 'IDX_CAC40', 'currency': 'EUR', 'subtitulo': 'Francia - Bolsa de París'},
-    {'symbol': '^FTSE', 'name': 'FTSE 100', 'id': 'IDX_FTSE', 'currency': 'GBP', 'subtitulo': 'Reino Unido - Bolsa de Londres'},
-    {'symbol': '^N225', 'name': 'Nikkei 225', 'id': 'IDX_NIKKEI', 'currency': 'JPY', 'subtitulo': 'Japón - Bolsa de Tokio'},
-    {'symbol': '^HSI', 'name': 'Hang Seng', 'id': 'IDX_HANGSENG', 'currency': 'HKD', 'subtitulo': 'Hong Kong - Gigantes Tecnológicos y Financieros Asia'},
-    {'symbol': '^BVSP', 'name': 'Bovespa (Ibovespa)', 'id': 'IDX_BOVESPA', 'currency': 'BRL', 'subtitulo': 'Brasil - Bolsa de São Paulo'},
+    {'symbol': '^GDAXI', 'name': 'DAX 40', 'id': 'IDX_DAX', 'currency': 'Pts', 'subtitulo': 'Alemania - Índice Principal Frankfurt'},
+    {'symbol': '^STOXX50E', 'name': 'Euro Stoxx 50', 'id': 'IDX_EUROSTOXX50', 'currency': 'Pts', 'subtitulo': 'Eurozona - 50 Empresas Blue Chip'},
+    {'symbol': '^FCHI', 'name': 'CAC 40', 'id': 'IDX_CAC40', 'currency': 'Pts', 'subtitulo': 'Francia - Bolsa de París'},
+    {'symbol': '^FTSE', 'name': 'FTSE 100', 'id': 'IDX_FTSE', 'currency': 'Pts', 'subtitulo': 'Reino Unido - Bolsa de Londres'},
+    {'symbol': '^N225', 'name': 'Nikkei 225', 'id': 'IDX_NIKKEI', 'currency': 'Pts', 'subtitulo': 'Japón - Bolsa de Tokio'},
+    {'symbol': '^HSI', 'name': 'Hang Seng', 'id': 'IDX_HANGSENG', 'currency': 'Pts', 'subtitulo': 'Hong Kong - Gigantes Tecnológicos y Financieros Asia'},
+    {'symbol': '^BVSP', 'name': 'Bovespa (Ibovespa)', 'id': 'IDX_BOVESPA', 'currency': 'Pts', 'subtitulo': 'Brasil - Bolsa de São Paulo'},
 ]
 
 CONFIG_DIVISAS = [
-    {'symbol': 'EURUSD=X', 'name': 'Euro / Dólar (EUR/USD)', 'id': 'FX_EURUSD', 'currency': 'USD', 'subtitulo': 'Zona Euro'},
-    {'symbol': 'GBPUSD=X', 'name': 'Libra / Dólar (GBP/USD)', 'id': 'FX_GBPUSD', 'currency': 'USD', 'subtitulo': 'Reino Unido'},
-    {'symbol': 'BRL=X', 'name': 'Dólar / Real Brasileño (USD/BRL)', 'id': 'FX_USDBRL', 'currency': 'BRL', 'subtitulo': 'Brasil'},
-    {'symbol': 'JPY=X', 'name': 'Dólar / Yen Japonés (USD/JPY)', 'id': 'FX_USDJPY', 'currency': 'JPY', 'subtitulo': 'Japón'},
-    {'symbol': 'CNY=X', 'name': 'Dólar / Yuan Chino (USD/CNY)', 'id': 'FX_USDCNY', 'currency': 'CNY', 'subtitulo': 'China'},
-    {'symbol': 'CLP=X', 'name': 'Dólar / Peso Chileno (USD/CLP)', 'id': 'FX_USDCLP', 'currency': 'CLP', 'subtitulo': 'Chile'},
-    {'symbol': 'UYU=X', 'name': 'Dólar / Peso Uruguayo (USD/UYU)', 'id': 'FX_USDUYU', 'currency': 'UYU', 'subtitulo': 'Uruguay'},
+    {'symbol': 'EURUSD=X', 'name': 'Euro / Dólar (EUR/USD)', 'id': 'FX_EURUSD', 'currency': 'FX_4', 'subtitulo': 'Zona Euro (USD por 1 EUR)'},
+    {'symbol': 'GBPUSD=X', 'name': 'Libra / Dólar (GBP/USD)', 'id': 'FX_GBPUSD', 'currency': 'FX_4', 'subtitulo': 'Reino Unido (USD por 1 GBP)'},
+    {'symbol': 'BRL=X', 'name': 'Dólar / Real Brasileño (USD/BRL)', 'id': 'FX_USDBRL', 'currency': 'FX_4', 'subtitulo': 'Brasil (BRL por 1 USD)'},
+    {'symbol': 'JPY=X', 'name': 'Dólar / Yen Japonés (USD/JPY)', 'id': 'FX_USDJPY', 'currency': 'FX_2', 'subtitulo': 'Japón (JPY por 1 USD)'},
+    {'symbol': 'CNY=X', 'name': 'Dólar / Yuan Chino (USD/CNY)', 'id': 'FX_USDCNY', 'currency': 'FX_4', 'subtitulo': 'China (CNY por 1 USD)'},
+    {'symbol': 'CLP=X', 'name': 'Dólar / Peso Chileno (USD/CLP)', 'id': 'FX_USDCLP', 'currency': 'FX_2', 'subtitulo': 'Chile (CLP por 1 USD)'},
+    {'symbol': 'UYU=X', 'name': 'Dólar / Peso Uruguayo (USD/UYU)', 'id': 'FX_USDUYU', 'currency': 'FX_2', 'subtitulo': 'Uruguay (UYU por 1 USD)'},
 ]
 
 CONFIG_COMMODITIES = [
     # 1. Granos y Oleaginosas (Agro)
-    {'symbol': 'ZS=F', 'name': 'Soja (Soybeans)', 'id': 'COMM_SOJA', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'CBOT - Bushel (US$)'},
-    {'symbol': 'ZM=F', 'name': 'Harina de Soja (Soybean Meal)', 'id': 'COMM_HARINA_SOJA', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'CBOT - Tonelada Corta'},
-    {'symbol': 'ZL=F', 'name': 'Aceite de Soja (Soybean Oil)', 'id': 'COMM_ACEITE_SOJA', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'CBOT - Libras (Centavos US$)'},
-    {'symbol': 'ZC=F', 'name': 'Maíz (Corn)', 'id': 'COMM_MAIZ', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'CBOT - Bushel (US$)'},
-    {'symbol': 'ZW=F', 'name': 'Trigo Chicago (Wheat)', 'id': 'COMM_TRIGO', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'CBOT - Bushel (US$)'},
-    {'symbol': 'KE=F', 'name': 'Trigo Kansas (KC Wheat)', 'id': 'COMM_TRIGO_KANSAS', 'subtipo': 'Granos y Oleaginosas', 'currency': 'USD', 'subtitulo': 'KCBT - Trigo Duro Proteico'},
+    {'symbol': 'ZS=F', 'name': 'Soja (Soybeans)', 'id': 'COMM_SOJA', 'subtipo': 'Granos y Oleaginosas', 'currency': '¢/bu', 'subtitulo': 'CBOT Chicago - Centavos de US$ por Bushel'},
+    {'symbol': 'ZM=F', 'name': 'Harina de Soja (Soybean Meal)', 'id': 'COMM_HARINA_SOJA', 'subtipo': 'Granos y Oleaginosas', 'currency': 'US$/st', 'subtitulo': 'CBOT - Dólares por Tonelada Corta'},
+    {'symbol': 'ZL=F', 'name': 'Aceite de Soja (Soybean Oil)', 'id': 'COMM_ACEITE_SOJA', 'subtipo': 'Granos y Oleaginosas', 'currency': '¢/lb', 'subtitulo': 'CBOT - Centavos de US$ por Libra'},
+    {'symbol': 'ZC=F', 'name': 'Maíz (Corn)', 'id': 'COMM_MAIZ', 'subtipo': 'Granos y Oleaginosas', 'currency': '¢/bu', 'subtitulo': 'CBOT Chicago - Centavos de US$ por Bushel'},
+    {'symbol': 'ZW=F', 'name': 'Trigo Chicago (Wheat)', 'id': 'COMM_TRIGO', 'subtipo': 'Granos y Oleaginosas', 'currency': '¢/bu', 'subtitulo': 'CBOT Chicago - Centavos de US$ por Bushel'},
+    {'symbol': 'KE=F', 'name': 'Trigo Kansas (KC Wheat)', 'id': 'COMM_TRIGO_KANSAS', 'subtipo': 'Granos y Oleaginosas', 'currency': '¢/bu', 'subtitulo': 'KCBT - Centavos de US$ por Bushel'},
     
     # 2. Energía
-    {'symbol': 'CL=F', 'name': 'Petróleo WTI (Crude Oil)', 'id': 'COMM_WTI', 'subtipo': 'Energía', 'currency': 'USD', 'subtitulo': 'NYMEX - Barril (US$)'},
-    {'symbol': 'BZ=F', 'name': 'Petróleo Brent (Brent Oil)', 'id': 'COMM_BRENT', 'subtipo': 'Energía', 'currency': 'USD', 'subtitulo': 'ICE - Barril (US$)'},
-    {'symbol': 'NG=F', 'name': 'Gas Natural (Henry Hub)', 'id': 'COMM_GAS_NATURAL', 'subtipo': 'Energía', 'currency': 'USD', 'subtitulo': 'NYMEX - MMBtu (US$)'},
-    {'symbol': 'RB=F', 'name': 'Gasolina RBOB (Gasoline)', 'id': 'COMM_GASOLINA', 'subtipo': 'Energía', 'currency': 'USD', 'subtitulo': 'NYMEX - Galón (US$)'},
-    {'symbol': 'HO=F', 'name': 'Heating Oil / Diésel', 'id': 'COMM_DIESEL', 'subtipo': 'Energía', 'currency': 'USD', 'subtitulo': 'NYMEX - Galón (US$)'},
+    {'symbol': 'CL=F', 'name': 'Petróleo WTI (Crude Oil)', 'id': 'COMM_WTI', 'subtipo': 'Energía', 'currency': 'US$/bbl', 'subtitulo': 'NYMEX - Dólares por Barril'},
+    {'symbol': 'BZ=F', 'name': 'Petróleo Brent (Brent Oil)', 'id': 'COMM_BRENT', 'subtipo': 'Energía', 'currency': 'US$/bbl', 'subtitulo': 'ICE - Dólares por Barril'},
+    {'symbol': 'NG=F', 'name': 'Gas Natural (Henry Hub)', 'id': 'COMM_GAS_NATURAL', 'subtipo': 'Energía', 'currency': 'US$/MMBtu', 'subtitulo': 'NYMEX - Dólares por Millón de BTU'},
+    {'symbol': 'RB=F', 'name': 'Gasolina RBOB (Gasoline)', 'id': 'COMM_GASOLINA', 'subtipo': 'Energía', 'currency': 'US$/gal', 'subtitulo': 'NYMEX - Dólares por Galón'},
+    {'symbol': 'HO=F', 'name': 'Heating Oil / Diésel', 'id': 'COMM_DIESEL', 'subtipo': 'Energía', 'currency': 'US$/gal', 'subtitulo': 'NYMEX - Dólares por Galón'},
     
     # 3. Metales (Preciosos e Industriales)
-    {'symbol': 'GC=F', 'name': 'Oro (Gold Futures)', 'id': 'COMM_ORO', 'subtipo': 'Metales', 'currency': 'USD', 'subtitulo': 'COMEX - Onza Troy (US$)'},
-    {'symbol': 'SI=F', 'name': 'Plata (Silver Futures)', 'id': 'COMM_PLATA', 'subtipo': 'Metales', 'currency': 'USD', 'subtitulo': 'COMEX - Onza Troy (US$)'},
-    {'symbol': 'PL=F', 'name': 'Platino (Platinum)', 'id': 'COMM_PLATINO', 'subtipo': 'Metales', 'currency': 'USD', 'subtitulo': 'NYMEX - Onza Troy (US$)'},
-    {'symbol': 'HG=F', 'name': 'Cobre (Copper Futures)', 'id': 'COMM_COBRE', 'subtipo': 'Metales', 'currency': 'USD', 'subtitulo': 'COMEX - Libra (US$)'},
+    {'symbol': 'GC=F', 'name': 'Oro (Gold Futures)', 'id': 'COMM_ORO', 'subtipo': 'Metales', 'currency': 'US$/oz', 'subtitulo': 'COMEX - Dólares por Onza Troy'},
+    {'symbol': 'SI=F', 'name': 'Plata (Silver Futures)', 'id': 'COMM_PLATA', 'subtipo': 'Metales', 'currency': 'US$/oz', 'subtitulo': 'COMEX - Dólares por Onza Troy'},
+    {'symbol': 'PL=F', 'name': 'Platino (Platinum)', 'id': 'COMM_PLATINO', 'subtipo': 'Metales', 'currency': 'US$/oz', 'subtitulo': 'NYMEX - Dólares por Onza Troy'},
+    {'symbol': 'HG=F', 'name': 'Cobre (Copper Futures)', 'id': 'COMM_COBRE', 'subtipo': 'Metales', 'currency': 'US$/lb', 'subtitulo': 'COMEX - Dólares por Libra'},
     
     # 4. Agroindustriales & Ganadería (Softs & Livestock)
-    {'symbol': 'KC=F', 'name': 'Café Arábica (Coffee)', 'id': 'COMM_CAFE', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'USD', 'subtitulo': 'ICE - Libra (Centavos US$)'},
-    {'symbol': 'CC=F', 'name': 'Cacao (Cocoa)', 'id': 'COMM_CACAO', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'USD', 'subtitulo': 'ICE - Tonelada Métrica'},
-    {'symbol': 'SB=F', 'name': 'Azúcar Nº 11 (Sugar)', 'id': 'COMM_AZUCAR', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'USD', 'subtitulo': 'ICE - Libra (Centavos US$)'},
-    {'symbol': 'CT=F', 'name': 'Algodón (Cotton)', 'id': 'COMM_ALGODON', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'USD', 'subtitulo': 'ICE - Libra (Centavos US$)'},
-    {'symbol': 'LE=F', 'name': 'Ganado Vacuno en Pie (Live Cattle)', 'id': 'COMM_GANADO', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'USD', 'subtitulo': 'CME - Libra (Centavos US$)'},
+    {'symbol': 'KC=F', 'name': 'Café Arábica (Coffee)', 'id': 'COMM_CAFE', 'subtipo': 'Agroindustriales & Ganadería', 'currency': '¢/lb', 'subtitulo': 'ICE - Centavos de US$ por Libra'},
+    {'symbol': 'CC=F', 'name': 'Cacao (Cocoa)', 'id': 'COMM_CACAO', 'subtipo': 'Agroindustriales & Ganadería', 'currency': 'US$/tn', 'subtitulo': 'ICE - Dólares por Tonelada Métrica'},
+    {'symbol': 'SB=F', 'name': 'Azúcar Nº 11 (Sugar)', 'id': 'COMM_AZUCAR', 'subtipo': 'Agroindustriales & Ganadería', 'currency': '¢/lb', 'subtitulo': 'ICE - Centavos de US$ por Libra'},
+    {'symbol': 'CT=F', 'name': 'Algodón (Cotton)', 'id': 'COMM_ALGODON', 'subtipo': 'Agroindustriales & Ganadería', 'currency': '¢/lb', 'subtitulo': 'ICE - Centavos de US$ por Libra'},
+    {'symbol': 'LE=F', 'name': 'Ganado Vacuno en Pie (Live Cattle)', 'id': 'COMM_GANADO', 'subtipo': 'Agroindustriales & Ganadería', 'currency': '¢/lb', 'subtitulo': 'CME - Centavos de US$ por Libra'},
 ]
 
 CONFIG_TASAS_INT = [
