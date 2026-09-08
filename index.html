@@ -484,10 +484,28 @@
 
     function formatCurrency(val, currency = 'ARS', decimals = 2) {
       if (val === null || val === undefined || isNaN(val)) return '-';
-      const symb = currency === 'USD' ? 'US$' : (currency === '%' ? '%' : (currency === 'Pts' ? 'Pts' : '$'));
       if (currency === '%') return `${formatNumber(val, decimals)}%`;
-      if (currency === 'Pts') return `${formatNumber(val, decimals)}`;
-      return `${symb} ${formatNumber(val, decimals)}`;
+      if (currency === 'Pts') return `${formatNumber(val, decimals)} Pts`;
+      if (currency === 'FX_4') return `${formatNumber(val, 4)}`;
+      if (currency === 'FX_2') return `${formatNumber(val, 2)}`;
+      if (currency === '¢/bu') return `${formatNumber(val, decimals)} ¢/bu`;
+      if (currency === '¢/lb') return `${formatNumber(val, decimals)} ¢/lb`;
+      if (currency === 'US$/bbl') return `US$ ${formatNumber(val, decimals)} / bbl`;
+      if (currency === 'US$/oz') return `US$ ${formatNumber(val, decimals)} / oz`;
+      if (currency === 'US$/lb') return `US$ ${formatNumber(val, decimals)} / lb`;
+      if (currency === 'US$/tn') return `US$ ${formatNumber(val, decimals)} / Tn`;
+      if (currency === 'US$/st') return `US$ ${formatNumber(val, decimals)} / st`;
+      if (currency === 'US$/MMBtu') return `US$ ${formatNumber(val, decimals)} / MMBtu`;
+      if (currency === 'US$/gal') return `US$ ${formatNumber(val, decimals)} / gal`;
+      if (currency === 'USD') return `US$ ${formatNumber(val, decimals)}`;
+      if (currency === 'EUR') return `€ ${formatNumber(val, decimals)}`;
+      if (currency === 'GBP') return `£ ${formatNumber(val, decimals)}`;
+      if (currency === 'JPY') return `¥ ${formatNumber(val, decimals)}`;
+      if (currency === 'BRL') return `R$ ${formatNumber(val, decimals)}`;
+      if (currency === 'CNY') return `¥ ${formatNumber(val, decimals)}`;
+      if (currency === 'CLP') return `CLP$ ${formatNumber(val, decimals)}`;
+      if (currency === 'UYU') return `UYU$ ${formatNumber(val, decimals)}`;
+      return `$ ${formatNumber(val, decimals)}`;
     }
 
     function formatMcap(val) {
@@ -2055,23 +2073,21 @@ function handleFciSearch(query) {
         const segColor = item.subtipo === 'Granos y Oleaginosas' ? 'bg-amber-50 text-amber-800 border-amber-200' : (item.subtipo === 'Energía' ? 'bg-rose-50 text-rose-800 border-rose-200' : (item.subtipo === 'Metales' ? 'bg-blue-50 text-blue-800 border-blue-200' : 'bg-emerald-50 text-emerald-800 border-emerald-200'));
         return `
           <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[10px] font-semibold border ${segColor}">${item.subtipo || 'General'}</span></td>
-          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `$ ${formatNumber(item.ma50, 2)}` : '-'}</td>
-          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `$ ${formatNumber(item.ma200, 2)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `${formatCurrency(item.ma50, item.moneda)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `${formatCurrency(item.ma200, item.moneda)}` : '-'}</td>
         `;
       }
       if (secKey === 'indices_mundiales') {
-        const symb = item.moneda === 'Pts' ? '' : (item.moneda === 'USD' ? 'US$ ' : (item.moneda === 'EUR' ? '€ ' : (item.moneda === 'GBP' ? '£ ' : (item.moneda === 'JPY' ? '¥ ' : '$ '))));
         return `
-          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `${symb}${formatNumber(item.ma50, 2)}` : '-'}</td>
-          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `${symb}${formatNumber(item.ma200, 2)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `${formatCurrency(item.ma50, item.moneda)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `${formatCurrency(item.ma200, item.moneda)}` : '-'}</td>
         `;
       }
       if (secKey === 'acciones_mundiales' || secKey === 'acciones_argentinas' || secKey === 'criptomonedas') {
-        const symb = item.moneda === 'USD' ? 'US$ ' : '$ ';
         return `
           <td class="px-4 py-3 text-right font-mono text-slate-600">${formatMcap(item.cap_bursatil)}</td>
-          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `${symb}${formatNumber(item.ma50, 2)}` : '-'}</td>
-          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `${symb}${formatNumber(item.ma200, 2)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-amber-600">${item.ma50 ? `${formatCurrency(item.ma50, item.moneda)}` : '-'}</td>
+          <td class="px-4 py-3 text-right font-mono text-indigo-600">${item.ma200 ? `${formatCurrency(item.ma200, item.moneda)}` : '-'}</td>
         `;
       }
       if (secKey === 'fci') {
