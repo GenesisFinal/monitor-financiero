@@ -2315,11 +2315,17 @@ def main():
     compact_series = {}
     for k, v in all_series.items():
         if isinstance(v, list) and v:
-            compact_series[k] = v[-2600:]
+            clean_pts = []
+            for p in v[-2600:]:
+                dt = p.get('date') or p.get('time') or p.get('fecha')
+                c = safe_float(p.get('close'))
+                if dt and c is not None:
+                    clean_pts.append({'date': dt, 'close': round(c, 4)})
+            compact_series[k] = clean_pts
         elif isinstance(v, list):
             compact_series[k] = v
     with open('series_historicas.json', 'w', encoding='utf-8') as f:
-        json.dump(compact_series, f, ensure_ascii=False)
+        json.dump(compact_series, f, separators=(',', ':'), ensure_ascii=False)
 
     elapsed = round(time.time() - start_time, 2)
     total_assets = stats_skipped + stats_updated
