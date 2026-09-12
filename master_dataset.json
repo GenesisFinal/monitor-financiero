@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-09-11 21:03:40",
+  "ultima_actualizacion": "2026-09-11 22:07:52",
   "fecha_cierre": "2026-09-11",
   "secciones": {
     "dolar": {
@@ -18,9 +18,9 @@
           "venta": 1530.0,
           "moneda": "ARS",
           "fecha_actualizacion": "2026-09-11T18:00:00.000Z",
-          "var_1d": 0.0,
-          "var_1m": 0.99,
-          "var_12m": 2.68,
+          "var_1d": -0.33,
+          "var_1m": 0.66,
+          "var_12m": 2.34,
           "var_ytd": 3.38
         },
         {
@@ -33,7 +33,7 @@
           "venta": 1545.0,
           "moneda": "ARS",
           "fecha_actualizacion": "2026-09-11T20:57:00.000Z",
-          "var_1d": 0.32,
+          "var_1d": 0.0,
           "var_1m": -0.32,
           "var_12m": 0.98,
           "var_ytd": 0.98
@@ -48,9 +48,9 @@
           "venta": 1539.9,
           "moneda": "ARS",
           "fecha_actualizacion": "2026-09-11T20:57:00.000Z",
-          "var_1d": 0.31,
-          "var_1m": -0.48,
-          "var_12m": 2.0,
+          "var_1d": 0.13,
+          "var_1m": -0.35,
+          "var_12m": 2.13,
           "var_ytd": 2.56
         },
         {
@@ -63,9 +63,9 @@
           "venta": 1597.5,
           "moneda": "ARS",
           "fecha_actualizacion": "2026-09-11T20:57:00.000Z",
-          "var_1d": 0.13,
-          "var_1m": 0.54,
-          "var_12m": 4.16,
+          "var_1d": -0.05,
+          "var_1m": 0.49,
+          "var_12m": 4.11,
           "var_ytd": 4.87
         },
         {
@@ -78,9 +78,9 @@
           "venta": 1508.5,
           "moneda": "ARS",
           "fecha_actualizacion": "2026-09-11T16:49:00.000Z",
-          "var_1d": -0.13,
-          "var_1m": 0.87,
-          "var_12m": 2.51,
+          "var_1d": -0.23,
+          "var_1m": 0.63,
+          "var_12m": 2.27,
           "var_ytd": 3.68
         },
         {
@@ -94,8 +94,9 @@
           "moneda": "ARS",
           "fecha_actualizacion": "2026-09-11T20:57:00.000Z",
           "var_1d": 0.14,
-          "var_1m": 0.33,
-          "var_12m": 2.8
+          "var_1m": 0.5,
+          "var_12m": 2.7,
+          "var_ytd": 3.38
         },
         {
           "id": "USD_TARJETA",
@@ -107,24 +108,10 @@
           "venta": 1989.0,
           "moneda": "ARS",
           "fecha_actualizacion": "2026-09-11T18:00:00.000Z",
-          "var_1d": 0.0,
-          "var_1m": 0.99,
-          "var_12m": 2.68,
+          "var_1d": -0.33,
+          "var_1m": 0.66,
+          "var_12m": 2.34,
           "var_ytd": 3.38
-        },
-        {
-          "id": "USD_CRIPTO",
-          "nombre": "Dólar Cripto (USDT)",
-          "categoria": "Dólar",
-          "tipo": "single_price",
-          "precio": 1599.5,
-          "compra": 1591.5,
-          "venta": 1599.5,
-          "moneda": "ARS",
-          "fecha_actualizacion": "2026-09-11 21:03:40",
-          "var_1d": 0.15,
-          "var_1m": 3.2,
-          "var_12m": 42.5
         },
         {
           "id": "RIESGO_PAIS",
@@ -656,7 +643,7 @@
           "cap_bursatil": null,
           "ma50": 1216.06,
           "ma200": 1151.77,
-          "var_1d": -2.5,
+          "var_1d": 0.19,
           "var_1m": 11.53,
           "var_12m": 29.19,
           "subtitulo": "CBOT Chicago - Centavos de US$ por Bushel",
@@ -677,7 +664,7 @@
           "cap_bursatil": null,
           "ma50": 322.4,
           "ma200": 314.19,
-          "var_1d": -0.87,
+          "var_1d": 0.28,
           "var_1m": 13.76,
           "var_12m": 23.53,
           "subtitulo": "CBOT - Dólares por Tonelada Corta",
@@ -698,7 +685,7 @@
           "cap_bursatil": null,
           "ma50": 70.28,
           "ma200": 64.9,
-          "var_1d": -3.21,
+          "var_1d": -0.1,
           "var_1m": 0.94,
           "var_12m": 38.61,
           "subtitulo": "CBOT - Centavos de US$ por Libra",
@@ -719,7 +706,7 @@
           "cap_bursatil": null,
           "ma50": 466.74,
           "ma200": 446.9,
-          "var_1d": -0.33,
+          "var_1d": 0.33,
           "var_1m": 16.41,
           "var_12m": 33.92,
           "subtitulo": "CBOT Chicago - Centavos de US$ por Bushel",
@@ -740,7 +727,7 @@
           "cap_bursatil": null,
           "ma50": 674.46,
           "ma200": 597.7,
-          "var_1d": -2.02,
+          "var_1d": 0.14,
           "var_1m": 11.26,
           "var_12m": 46.72,
           "subtitulo": "CBOT Chicago - Centavos de US$ por Bushel",
@@ -761,7 +748,7 @@
           "cap_bursatil": null,
           "ma50": 735.88,
           "ma200": 626.99,
-          "var_1d": -2.35,
+          "var_1d": 0.13,
           "var_1m": 10.93,
           "var_12m": 64.59,
           "subtitulo": "KCBT - Centavos de US$ por Bushel",
@@ -1027,7 +1014,7 @@
           "subtipo": "Agroindustriales & Ganadería",
           "tipo": "market_asset",
           "precio": 87.37,
-          "open": 0.0,
+          "open": 63.15,
           "high": 87.8,
           "low": 86.33,
           "moneda": "¢/lb",
@@ -1245,16 +1232,16 @@
           "nombre": "Plazo Fijo 30 Días (Promedio Oficial BCRA)",
           "categoria": "Tasas Locales",
           "tipo": "rate",
-          "tna": 21.98,
-          "tea": 24.34,
-          "tem": 1.83,
-          "precio": 21.98,
+          "tna": 21.51,
+          "tea": 23.76,
+          "tem": 1.79,
+          "precio": 21.51,
           "moneda": "%",
-          "var_1d": 1.48,
-          "var_1m": 6.34,
-          "var_12m": -54.77,
+          "var_1d": -2.14,
+          "var_1m": 0.56,
+          "var_12m": -56.14,
           "subtitulo": "Tasa Nominal Anual Promedio Sistema Financiero",
-          "var_ytd": -13.67
+          "var_ytd": -15.51
         },
         {
           "id": "TASA_PF_BNA",
@@ -12662,7 +12649,7 @@
           "var_1m": -8.04,
           "var_12m": 48.63,
           "volumen": 1995600.0,
-          "cap_bursatil": 994915778560,
+          "cap_bursatil": 994487042048,
           "tags": [
             "top_mcap"
           ],
@@ -12700,7 +12687,7 @@
           "var_1m": -5.17,
           "var_12m": 4.41,
           "volumen": 17174900.0,
-          "cap_bursatil": 852708163584,
+          "cap_bursatil": 850100944896,
           "tags": [
             "top_mcap"
           ],
@@ -12988,7 +12975,7 @@
           "var_1m": -19.49,
           "var_12m": -31.43,
           "volumen": 995900.0,
-          "cap_bursatil": 3039057920,
+          "cap_bursatil": 3115212800,
           "tags": [
             "day_losers"
           ],
@@ -13007,7 +12994,7 @@
           "var_1m": -20.2,
           "var_12m": 12.6,
           "volumen": 856100.0,
-          "cap_bursatil": 5198936576,
+          "cap_bursatil": 5292411904,
           "tags": [
             "day_losers"
           ],
@@ -13045,7 +13032,7 @@
           "var_1m": 16.55,
           "var_12m": 247.31,
           "volumen": 6174300.0,
-          "cap_bursatil": 4468566528,
+          "cap_bursatil": 4395161088,
           "tags": [
             "day_losers"
           ],
@@ -13064,7 +13051,7 @@
           "var_1m": 1.73,
           "var_12m": 244.49,
           "volumen": 2248300.0,
-          "cap_bursatil": 14456406016,
+          "cap_bursatil": 14373850112,
           "tags": [
             "day_losers"
           ],
@@ -13083,7 +13070,7 @@
           "var_1m": -20.43,
           "var_12m": 0.7,
           "volumen": 4909800.0,
-          "cap_bursatil": 3316314880,
+          "cap_bursatil": 3320289280,
           "tags": [
             "day_losers"
           ],
@@ -13273,7 +13260,7 @@
           "var_1m": -24.48,
           "var_12m": -95.78,
           "volumen": 471774.0,
-          "cap_bursatil": 5245325312,
+          "cap_bursatil": 65566564,
           "tags": [
             "losers_52w"
           ],
@@ -13330,7 +13317,7 @@
           "var_1m": -11.76,
           "var_12m": -78.04,
           "volumen": 10309000.0,
-          "cap_bursatil": 3869088512,
+          "cap_bursatil": 2165573888,
           "tags": [
             "losers_52w"
           ],
@@ -13349,7 +13336,7 @@
           "var_1m": 21.11,
           "var_12m": -74.14,
           "volumen": 2002200.0,
-          "cap_bursatil": 3064928512,
+          "cap_bursatil": 1889167360,
           "tags": [
             "losers_52w"
           ],
@@ -13387,7 +13374,7 @@
           "var_1m": -22.07,
           "var_12m": -69.24,
           "volumen": 43856800.0,
-          "cap_bursatil": 2709344000,
+          "cap_bursatil": 2691615232,
           "tags": [
             "losers_52w"
           ],
@@ -13501,7 +13488,7 @@
           "var_1m": 13.44,
           "var_12m": -6.05,
           "volumen": 118598900.0,
-          "cap_bursatil": 1993217015808,
+          "cap_bursatil": 1992068956160,
           "tags": [
             "most_actives"
           ],
@@ -13676,7 +13663,7 @@
           "ccl_implicito": 1602.49,
           "var_1d": 0.0,
           "var_1m": -1.82,
-          "var_12m": 33.39,
+          "var_12m": 36.65,
           "volumen": 363197.0,
           "tags": [
             "top_volume",
@@ -13723,7 +13710,7 @@
           "ccl_implicito": 1626.6,
           "var_1d": 1.92,
           "var_1m": 9.93,
-          "var_12m": 53.7,
+          "var_12m": 59.33,
           "volumen": 169771.0,
           "tags": [
             "top_volume",
@@ -13771,7 +13758,7 @@
           "ccl_implicito": 1591.41,
           "var_1d": -0.32,
           "var_1m": 4.94,
-          "var_12m": -12.16,
+          "var_12m": -10.29,
           "volumen": 126179.0,
           "tags": [
             "top_volume",
@@ -13820,7 +13807,7 @@
           "ccl_implicito": 1645.5,
           "var_1d": 2.84,
           "var_1m": -6.93,
-          "var_12m": -27.03,
+          "var_12m": -28.39,
           "volumen": 102730.0,
           "tags": [
             "top_volume",
@@ -13867,7 +13854,7 @@
           "ccl_implicito": 1622.43,
           "var_1d": 1.6,
           "var_1m": -6.29,
-          "var_12m": 12.45,
+          "var_12m": 15.66,
           "volumen": 72266.0,
           "tags": [
             "top_volume",
@@ -13890,7 +13877,7 @@
           "ccl_implicito": 1646.77,
           "var_1d": 2.8,
           "var_1m": 11.73,
-          "var_12m": 21.8,
+          "var_12m": 24.5,
           "volumen": 71026.0,
           "tags": [
             "top_volume",
@@ -13937,7 +13924,7 @@
           "ccl_implicito": 1597.77,
           "var_1d": 0.35,
           "var_1m": 12.38,
-          "var_12m": 25.6,
+          "var_12m": 28.2,
           "volumen": 58283.0,
           "tags": [
             "top_volume"
@@ -14072,7 +14059,7 @@
           "ccl_implicito": 1588.55,
           "var_1d": -0.67,
           "var_1m": -3.25,
-          "var_12m": 51.01,
+          "var_12m": 54.76,
           "volumen": 8409.0,
           "tags": [
             "day_losers",
@@ -14095,7 +14082,7 @@
           "ccl_implicito": 1586.39,
           "var_1d": -0.49,
           "var_1m": 11.09,
-          "var_12m": 53.81,
+          "var_12m": 57.92,
           "volumen": 20329.0,
           "tags": [
             "day_losers",
@@ -14150,26 +14137,26 @@
           "var_ytd": 43.7
         },
         {
-          "id": "CEDEAR_CVX",
-          "symbol": "CVX",
-          "us_symbol": "CVX",
-          "nombre": "Chevron Corp.",
+          "id": "CEDEAR_SHEL",
+          "symbol": "SHEL",
+          "us_symbol": "SHEL",
+          "nombre": "Shell plc",
           "categoria": "CEDEARs",
-          "subtitulo": "Petróleo & Gas",
+          "subtitulo": "Energía & Gas / Europa",
           "moneda": "ARS",
-          "precio": 21350.0,
-          "precio_usd": 212.76,
-          "ratio": 16,
-          "ccl_implicito": 1605.56,
-          "var_1d": 0.19,
-          "var_1m": 9.15,
-          "var_12m": 47.14,
-          "volumen": 10336.0,
+          "precio": 77200.0,
+          "precio_usd": 96.77,
+          "ratio": 2,
+          "ccl_implicito": 1595.54,
+          "var_1d": 0.65,
+          "var_1m": 8.47,
+          "var_12m": 48.25,
+          "volumen": 342.0,
           "tags": [
             "gainers_52w"
           ],
           "tipo": "market_asset",
-          "var_ytd": 48.06
+          "var_ytd": 38.23
         },
         {
           "id": "CEDEAR_BABA",
@@ -14185,7 +14172,7 @@
           "ccl_implicito": 1612.47,
           "var_1d": 0.67,
           "var_1m": -11.91,
-          "var_12m": -22.14,
+          "var_12m": -15.1,
           "volumen": 13761.0,
           "tags": [
             "losers_52w"
@@ -14207,7 +14194,7 @@
           "ccl_implicito": 1610.2,
           "var_1d": 0.66,
           "var_1m": -10.21,
-          "var_12m": -13.05,
+          "var_12m": -11.61,
           "volumen": 7249.0,
           "tags": [
             "losers_52w"
@@ -14251,7 +14238,7 @@
           "ccl_implicito": 1608.26,
           "var_1d": 0.62,
           "var_1m": 8.82,
-          "var_12m": 0.36,
+          "var_12m": 9.93,
           "volumen": 44004.0,
           "tags": [
             "blue_chips"
@@ -14341,7 +14328,7 @@
           "high": 5645.0,
           "low": 5500.0,
           "moneda": "ARS",
-          "cap_bursatil": 7404020301824,
+          "cap_bursatil": 7423390646272,
           "ma50": 5278.2,
           "ma200": 5096.61,
           "var_1d": -2.3,
@@ -14363,11 +14350,11 @@
           "low": 12280.0,
           "moneda": "ARS",
           "cap_bursatil": 7941227282432,
-          "ma50": 13446.87,
-          "ma200": 12629.94,
+          "ma50": 13461.96,
+          "ma200": 12618.81,
           "var_1d": -1.74,
           "var_1m": -1.58,
-          "var_12m": 100.34,
+          "var_12m": 61.33,
           "subtitulo": "Sector Financiero / Bancario",
           "var_ytd": -5.38
         },
@@ -14426,11 +14413,11 @@
           "low": 860.5,
           "moneda": "ARS",
           "cap_bursatil": 2440199929856,
-          "ma50": 919.78,
-          "ma200": 950.66,
+          "ma50": 920.61,
+          "ma200": 950.93,
           "var_1d": -0.97,
           "var_1m": -4.23,
-          "var_12m": 25.95,
+          "var_12m": 25.5,
           "subtitulo": "Materiales Básicos / Aluminio",
           "var_ytd": -12.02
         },
@@ -14468,11 +14455,11 @@
           "low": 2233.0,
           "moneda": "ARS",
           "cap_bursatil": 3379190038528,
-          "ma50": 2241.92,
-          "ma200": 2324.55,
+          "ma50": 2244.62,
+          "ma200": 2324.13,
           "var_1d": -2.3,
           "var_1m": 7.29,
-          "var_12m": 83.17,
+          "var_12m": 78.53,
           "subtitulo": "Generación Eléctrica",
           "var_ytd": -13.76
         },
@@ -14488,7 +14475,7 @@
           "high": 2010.0,
           "low": 1945.0,
           "moneda": "ARS",
-          "cap_bursatil": null,
+          "cap_bursatil": 1711083225088,
           "ma50": 1947.0,
           "ma200": 2060.65,
           "var_1d": -2.1,
@@ -14510,11 +14497,11 @@
           "low": 9460.0,
           "moneda": "ARS",
           "cap_bursatil": 7162521714688,
-          "ma50": 9344.9,
-          "ma200": 9257.35,
+          "ma50": 9337.7,
+          "ma200": 9256.02,
           "var_1d": -3.35,
           "var_1m": 6.67,
-          "var_12m": 54.21,
+          "var_12m": 30.88,
           "subtitulo": "Transporte de Gas / Utilities",
           "var_ytd": 2.04
         },
@@ -14573,19 +14560,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 77252.68,
+          "precio": 77346.88,
           "open": 78260.3828,
           "high": 78520.9688,
           "low": 76470.6406,
           "moneda": "USD",
-          "cap_bursatil": 1551313534976,
+          "cap_bursatil": 1552220028928,
           "ma50": 70402.93,
           "ma200": 69962.4,
-          "var_1d": 0.49,
+          "var_1d": 0.52,
           "var_1m": 4.84,
           "var_12m": -13.71,
           "subtitulo": "Criptomoneda Líder / Reserva Digital",
-          "var_ytd": -11.72
+          "var_ytd": -11.61
         },
         {
           "id": "CRYPTO_ETH",
@@ -14594,19 +14581,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2512.09,
+          "precio": 2514.85,
           "open": 2466.9131,
           "high": 2483.72,
           "low": 2406.9065,
           "moneda": "USD",
-          "cap_bursatil": 306574393344,
+          "cap_bursatil": 306629738496,
           "ma50": 2147.9,
           "ma200": 2049.03,
-          "var_1d": 2.29,
+          "var_1d": 2.5,
           "var_1m": 4.76,
           "var_12m": -18.77,
           "subtitulo": "Contratos Inteligentes / Web3",
-          "var_ytd": -15.33
+          "var_ytd": -15.24
         },
         {
           "id": "CRYPTO_SOL",
@@ -14615,19 +14602,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 102.23,
+          "precio": 102.18,
           "open": 101.6081,
           "high": 102.1013,
           "low": 98.6899,
           "moneda": "USD",
-          "cap_bursatil": 60012392448,
+          "cap_bursatil": 59843543040,
           "ma50": 86.34,
           "ma200": 82.8,
-          "var_1d": 3.14,
+          "var_1d": 2.79,
           "var_1m": 12.61,
           "var_12m": -22.14,
           "subtitulo": "Blockchain de Alta Velocidad",
-          "var_ytd": -17.88
+          "var_ytd": -17.92
         },
         {
           "id": "CRYPTO_BNB",
@@ -14636,19 +14623,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 726.46,
+          "precio": 728.16,
           "open": 722.7344,
           "high": 725.4893,
           "low": 704.975,
           "moneda": "USD",
-          "cap_bursatil": 96756031488,
+          "cap_bursatil": 96779591680,
           "ma50": 642.97,
           "ma200": 623.35,
-          "var_1d": 1.85,
+          "var_1d": 2.09,
           "var_1m": 8.28,
           "var_12m": -17.83,
           "subtitulo": "Ecosistema BNB Chain",
-          "var_ytd": -15.85
+          "var_ytd": -15.65
         },
         {
           "id": "CRYPTO_XRP",
@@ -14657,19 +14644,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.3545,
+          "precio": 1.3605,
           "open": 1.3944,
           "high": 1.3952,
           "low": 1.3337,
           "moneda": "USD",
-          "cap_bursatil": 85204393984,
+          "cap_bursatil": 85352652800,
           "ma50": 1.21,
           "ma200": 1.27,
-          "var_1d": 0.99,
+          "var_1d": 1.08,
           "var_1m": 5.27,
           "var_12m": -28.89,
           "subtitulo": "Pagos y Liquidaciones",
-          "var_ytd": -26.39
+          "var_ytd": -26.06
         },
         {
           "id": "CRYPTO_ADA",
@@ -14678,19 +14665,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.2061,
+          "precio": 0.2071,
           "open": 0.2119,
           "high": 0.2148,
           "low": 0.2047,
           "moneda": "USD",
-          "cap_bursatil": 7581001728,
+          "cap_bursatil": 7586692096,
           "ma50": 0.19,
           "ma200": 0.22,
-          "var_1d": -0.17,
+          "var_1d": 0.17,
           "var_1m": 2.86,
           "var_12m": -42.53,
           "subtitulo": "Blockchain Proof of Stake",
-          "var_ytd": -38.07
+          "var_ytd": -37.77
         },
         {
           "id": "CRYPTO_DOGE",
@@ -14699,19 +14686,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0841,
+          "precio": 0.0844,
           "open": 0.0862,
           "high": 0.0862,
           "low": 0.0829,
           "moneda": "USD",
-          "cap_bursatil": 14442727424,
+          "cap_bursatil": 13124936704,
           "ma50": 0.08,
           "ma200": 0.09,
-          "var_1d": 0.84,
+          "var_1d": 1.07,
           "var_1m": 3.11,
           "var_12m": -34.57,
           "subtitulo": "Moneda Digital Memética",
-          "var_ytd": -28.3
+          "var_ytd": -28.05
         },
         {
           "id": "CRYPTO_USDT",
@@ -14725,10 +14712,10 @@
           "high": 1.0011,
           "low": 0.9992,
           "moneda": "USD",
-          "cap_bursatil": 183413850112,
+          "cap_bursatil": 183484203008,
           "ma50": 1.0,
           "ma200": 1.0,
-          "var_1d": 0.02,
+          "var_1d": 0.03,
           "var_1m": -0.02,
           "var_12m": 0.09,
           "subtitulo": "Stablecoin Dólar",
