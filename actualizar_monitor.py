@@ -50,7 +50,7 @@ def fetch_riesgo_pais():
     
     series_pts = [
         {'date': p['fecha'], 'time': p['fecha'], 'close': float(p['valor']), 'open': float(p['valor']), 'high': float(p['valor']), 'low': float(p['valor'])}
-        for p in data[-1200:]
+        for p in data[-2600:]
     ]
     
     item = {
@@ -1534,7 +1534,7 @@ def fetch_acciones_mundiales_screeners():
     ))
     
     try:
-        df_all = yf.download(all_candidates, period="5y", interval="1d", group_by='ticker', auto_adjust=True, progress=False)
+        df_all = yf.download(all_candidates, period="10y", interval="1d", group_by='ticker', auto_adjust=True, progress=False)
     except Exception as e:
         print(f"   [Error downloading stock history]: {e}")
         df_all = pd.DataFrame()
@@ -1733,7 +1733,7 @@ def fetch_cedears_screeners():
     us_syms = list(set([c['us'] for c in CEDEARS_MASTER_CONFIG]))
     
     try:
-        df_ba = yf.download(ba_syms, period="5y", interval="1d", group_by='ticker', auto_adjust=True, progress=False)
+        df_ba = yf.download(ba_syms, period="10y", interval="1d", group_by='ticker', auto_adjust=True, progress=False)
     except Exception as e:
         print(f"   [Error downloading CEDEARs BYMA]: {e}")
         df_ba = pd.DataFrame()
@@ -2315,7 +2315,7 @@ def main():
     compact_series = {}
     for k, v in all_series.items():
         if isinstance(v, list) and v:
-            compact_series[k] = v[-600:]
+            compact_series[k] = v[-2600:]
         elif isinstance(v, list):
             compact_series[k] = v
     with open('series_historicas.json', 'w', encoding='utf-8') as f:
