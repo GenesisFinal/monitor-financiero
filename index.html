@@ -2368,6 +2368,239 @@ function handleFciSearch(query) {
       renderModalChart();
     }
 
+    // Motor Financiero de Renta Fija (Paridad Exacta y TIR Continua sin saltos de cupón/amortización)
+    function getBondCashflowSchedule(asset) {
+      const sym = (asset.symbol || asset.ticker || asset.id || '').toUpperCase().replace('BONO_', '').replace('ON_', '');
+      
+      // Cronogramas oficiales de Soberanos Hard Dollar (Bonares y Globales)
+      if (sym.startsWith('AL30') || sym.startsWith('GD30')) {
+        const dates = [
+          '2021-01-09', '2021-07-09', '2022-01-09', '2022-07-09',
+          '2023-01-09', '2023-07-09', '2024-01-09', '2024-07-09',
+          '2025-01-09', '2025-07-09', '2026-01-09', '2026-07-09',
+          '2027-01-09', '2027-07-09', '2028-01-09', '2028-07-09',
+          '2029-01-09', '2029-07-09', '2030-01-09', '2030-07-09'
+        ];
+        const amortMap = {
+          '2024-07-09': 4.0, '2025-01-09': 4.0,
+          '2025-07-09': 8.0, '2026-01-09': 8.0, '2026-07-09': 8.0,
+          '2027-01-09': 8.0, '2027-07-09': 8.0, '2028-01-09': 8.0,
+          '2028-07-09': 8.0, '2029-01-09': 8.0, '2029-07-09': 8.0,
+          '2030-01-09': 10.0, '2030-07-09': 10.0
+        };
+        const getCoupon = (d) => (d <= '2021-07-09' ? 0.125 : (d <= '2023-07-09' ? 0.50 : (d <= '2027-07-09' ? 0.75 : 1.75)));
+        let vr = 100.0;
+        return dates.map(d => {
+          const a = amortMap[d] || 0.0;
+          const c = getCoupon(d);
+          const renta = vr * (c / 100.0) / 2.0;
+          const s = { date: d, coupon_annual: c, amort: a, renta: renta, vr_before: vr, vr_after: vr - a };
+          vr -= a;
+          return s;
+        });
+      }
+
+      if (sym.startsWith('AL29') || sym.startsWith('GD29')) {
+        const dates = [
+          '2021-01-09', '2021-07-09', '2022-01-09', '2022-07-09',
+          '2023-01-09', '2023-07-09', '2024-01-09', '2024-07-09',
+          '2025-01-09', '2025-07-09', '2026-01-09', '2026-07-09',
+          '2027-01-09', '2027-07-09', '2028-01-09', '2028-07-09',
+          '2029-01-09', '2029-07-09'
+        ];
+        const amortMap = {
+          '2025-01-09': 10.0, '2025-07-09': 10.0, '2026-01-09': 10.0, '2026-07-09': 10.0,
+          '2027-01-09': 10.0, '2027-07-09': 10.0, '2028-01-09': 10.0, '2028-07-09': 10.0,
+          '2029-01-09': 10.0, '2029-07-09': 10.0
+        };
+        const getCoupon = (d) => 1.0;
+        let vr = 100.0;
+        return dates.map(d => {
+          const a = amortMap[d] || 0.0;
+          const c = getCoupon(d);
+          const renta = vr * (c / 100.0) / 2.0;
+          const s = { date: d, coupon_annual: c, amort: a, renta: renta, vr_before: vr, vr_after: vr - a };
+          vr -= a;
+          return s;
+        });
+      }
+
+      if (sym.startsWith('AL35') || sym.startsWith('GD35')) {
+        const dates = [];
+        for (let y = 2021; y <= 2035; y++) {
+          dates.push(`${y}-01-09`);
+          dates.push(`${y}-07-09`);
+        }
+        let vr = 100.0;
+        return dates.map(d => {
+          const y = parseInt(d.slice(0, 4));
+          const a = (y >= 2031) ? 10.0 : 0.0;
+          const c = (y <= 2021 ? 0.125 : (y <= 2023 ? 0.50 : (y <= 2027 ? 1.50 : (y <= 2028 ? 3.625 : 4.125))));
+          const renta = vr * (c / 100.0) / 2.0;
+          const s = { date: d, coupon_annual: c, amort: a, renta: renta, vr_before: vr, vr_after: vr - a };
+          vr -= a;
+          return s;
+        });
+      }
+
+      if (sym.startsWith('AE38') || sym.startsWith('GD38')) {
+        const dates = [];
+        for (let y = 2021; y <= 2038; y++) {
+          dates.push(`${y}-01-09`);
+          if (y < 2038) dates.push(`${y}-07-09`);
+        }
+        let vr = 100.0;
+        return dates.map(d => {
+          const y = parseInt(d.slice(0, 4));
+          const isAmort = (d >= '2027-07-09');
+          const a = isAmort ? 4.545 : 0.0;
+          const c = (y <= 2021 ? 0.125 : (y <= 2024 ? 2.00 : (y <= 2027 ? 3.875 : 5.00)));
+          const renta = vr * (c / 100.0) / 2.0;
+          const s = { date: d, coupon_annual: c, amort: a, renta: renta, vr_before: vr, vr_after: vr - a };
+          vr -= a;
+          return s;
+        });
+      }
+
+      if (sym.startsWith('AL41') || sym.startsWith('GD41')) {
+        const dates = [];
+        for (let y = 2021; y <= 2041; y++) {
+          dates.push(`${y}-01-09`);
+          dates.push(`${y}-07-09`);
+        }
+        let vr = 100.0;
+        return dates.map(d => {
+          const y = parseInt(d.slice(0, 4));
+          const isAmort = (d >= '2028-01-09');
+          const a = isAmort ? 3.571 : 0.0;
+          const c = (y <= 2021 ? 0.125 : (y <= 2024 ? 1.75 : (y <= 2027 ? 3.50 : 4.875)));
+          const renta = vr * (c / 100.0) / 2.0;
+          const s = { date: d, coupon_annual: c, amort: a, renta: renta, vr_before: vr, vr_after: vr - a };
+          vr -= a;
+          return s;
+        });
+      }
+
+      // Cronograma genérico para ONs, BOPREALs, Bonos CER y Corporativos
+      const vto = asset.fecha_vto || '2028-06-30';
+      const emi = asset.fecha_emision || '2022-01-01';
+      const cuponAnual = parseFloat(asset.cupon_anual_pct) || 7.0;
+      const freq = (asset.frecuencia_pago && asset.frecuencia_pago.toLowerCase().includes('trimestral')) ? 4 : 2;
+      const isBullet = !(asset.amortizacion && asset.amortizacion.toLowerCase().includes('cuotas'));
+
+      const vtoD = new Date(vto);
+      const emiD = new Date(emi);
+      const monthsStep = 12 / freq;
+
+      const schedDates = [];
+      let currD = new Date(vtoD);
+      while (currD > emiD && schedDates.length < 50) {
+        schedDates.unshift(currD.toISOString().slice(0, 10));
+        currD.setMonth(currD.getMonth() - monthsStep);
+      }
+
+      let vr = 100.0;
+      const totalPeriods = schedDates.length || 1;
+      return schedDates.map((d, idx) => {
+        const isLast = (idx === totalPeriods - 1);
+        let a = 0.0;
+        if (isBullet) {
+          a = isLast ? 100.0 : 0.0;
+        } else {
+          a = (idx >= totalPeriods - 4) ? (100.0 / 4) : 0.0;
+        }
+        const renta = vr * (cuponAnual / 100.0) / freq;
+        const s = { date: d, coupon_annual: cuponAnual, amort: a, renta: renta, vr_before: vr, vr_after: Math.max(0, vr - a) };
+        vr = Math.max(0, vr - a);
+        return s;
+      });
+    }
+
+    function calculateBondHistoricalMetrics(asset, series) {
+      const schedule = getBondCashflowSchedule(asset);
+      if (!schedule || !schedule.length) {
+        const fallbackParidad = parseFloat(asset.paridad_pct) || 85.0;
+        const fallbackTir = parseFloat(asset.tir) || 9.5;
+        const lastPx = parseFloat(asset.precio) || 1.0;
+        return {
+          paridadSeries: series.map(x => roundNumber(fallbackParidad * ((parseFloat(x.close)||lastPx) / Math.max(0.001, lastPx)), 2)),
+          tirSeries: series.map(x => roundNumber(fallbackTir * Math.pow(lastPx / Math.max(0.001, parseFloat(x.close)||lastPx), 0.6), 2))
+        };
+      }
+
+      const cuponAnual = parseFloat(asset.cupon_anual_pct) || (schedule[0] ? schedule[0].coupon_annual : 5.0);
+      const freq = (asset.frecuencia_pago && asset.frecuencia_pago.toLowerCase().includes('trimestral')) ? 4 : 2;
+      const emiStr = asset.fecha_emision || '2020-09-04';
+
+      const paridadSeries = [];
+      const tirSeries = [];
+
+      for (let i = 0; i < series.length; i++) {
+        const pt = series[i];
+        const dtStr = pt.date || pt.time || pt.fecha;
+        const px = parseFloat(pt.close) || 0;
+        if (!dtStr || px <= 0) {
+          paridadSeries.push(null);
+          tirSeries.push(null);
+          continue;
+        }
+
+        // 1. Determinar VR(t) e IC(t) a la fecha histórica
+        let prevDateStr = emiStr;
+        let vr = 100.0;
+        for (let k = 0; k < schedule.length; k++) {
+          const s = schedule[k];
+          if (dtStr >= s.date) {
+            prevDateStr = s.date;
+            vr = s.vr_after;
+          } else {
+            break;
+          }
+        }
+
+        if (vr <= 0.001) vr = 0.001;
+
+        const dCurr = new Date(dtStr);
+        const dPrev = new Date(prevDateStr);
+        const daysElapsed = Math.max(0, (dCurr - dPrev) / (1000 * 60 * 60 * 24));
+        const ic = vr * (cuponAnual / 100.0) * (daysElapsed / 365.0);
+        const vt = vr + ic;
+
+        // Paridad Exacta (%) sin saltos
+        const paridad = roundNumber((px / Math.max(0.001, vt)) * 100.0, 2);
+        paridadSeries.push(paridad);
+
+        // 2. TIR Exacta (YTM)
+        const futureCfs = [];
+        for (let k = 0; k < schedule.length; k++) {
+          const s = schedule[k];
+          if (s.date >= dtStr) {
+            const dSched = new Date(s.date);
+            const tYears = Math.max(0.01, (dSched - dCurr) / (1000 * 60 * 60 * 24 * 365.25));
+            futureCfs.push({ t: tYears, cf: s.renta + s.amort });
+          }
+        }
+
+        let tir = null;
+        if (futureCfs.length > 0 && px > 0) {
+          let low = -0.50, high = 3.00, mid = 0.10;
+          for (let iter = 0; iter < 30; iter++) {
+            mid = (low + high) / 2.0;
+            let pv = 0;
+            for (let c = 0; c < futureCfs.length; c++) {
+              pv += futureCfs[c].cf / Math.pow(1.0 + mid / freq, freq * futureCfs[c].t);
+            }
+            if (pv > px) low = mid;
+            else high = mid;
+          }
+          tir = roundNumber(Math.max(0.1, mid * 100.0), 2);
+        }
+        tirSeries.push(tir);
+      }
+
+      return { paridadSeries, tirSeries };
+    }
+
     function renderModalChart() {
       if (!CURRENT_MODAL_ASSET || !HISTORICAL_SERIES) return;
       const rawSeries = HISTORICAL_SERIES[CURRENT_MODAL_ASSET.id] || [];
@@ -2443,25 +2676,14 @@ function handleFciSearch(query) {
         chartLabel = 'Paridad Bursátil (%)';
         chartColor = '#0284c7';
         chartBg = 'rgba(2, 132, 199, 0.06)';
-        const baseParidad = parseFloat(CURRENT_MODAL_ASSET.paridad_pct) || 88.0;
-        const lastPx = parseFloat(CURRENT_MODAL_ASSET.precio) || (series.length ? parseFloat(series[series.length-1].close) : 1);
-        chartData = series.map(x => {
-          const px = parseFloat(x.close) || lastPx;
-          return roundNumber(baseParidad * (px / Math.max(0.001, lastPx)), 2);
-        });
+        const bondMetrics = calculateBondHistoricalMetrics(CURRENT_MODAL_ASSET, series);
+        chartData = bondMetrics.paridadSeries;
       } else if (isMetricTIR) {
-        chartLabel = 'TIR Estimada (%)';
+        chartLabel = 'TIR Estimada Anual (%)';
         chartColor = '#10b981';
         chartBg = 'rgba(16, 185, 129, 0.06)';
-        const baseTir = parseFloat(CURRENT_MODAL_ASSET.tir) || 8.5;
-        const lastPx = parseFloat(CURRENT_MODAL_ASSET.precio) || (series.length ? parseFloat(series[series.length-1].close) : 1);
-        const dur = parseFloat(CURRENT_MODAL_ASSET.duration) || 1.5;
-        chartData = series.map(x => {
-          const px = parseFloat(x.close) || lastPx;
-          const ratio = lastPx / Math.max(0.001, px);
-          const val = baseTir * Math.pow(ratio, 1 / Math.max(0.5, dur));
-          return roundNumber(Math.max(0.1, val), 2);
-        });
+        const bondMetrics = calculateBondHistoricalMetrics(CURRENT_MODAL_ASSET, series);
+        chartData = bondMetrics.tirSeries;
       }
 
       datasets.push({
