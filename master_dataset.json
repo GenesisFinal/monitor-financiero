@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-09-26 04:51:12",
+  "ultima_actualizacion": "2026-09-26 06:18:52",
   "fecha_cierre": "2026-09-26",
   "secciones": {
     "dolar": {
@@ -12685,7 +12685,7 @@
           "var_1m": -0.5,
           "var_12m": 63.92,
           "volumen": 1923200.0,
-          "cap_bursatil": 1055340232704,
+          "cap_bursatil": 1054885412864,
           "tags": [
             "top_mcap"
           ],
@@ -12723,7 +12723,7 @@
           "var_1m": 3.49,
           "var_12m": 5.64,
           "volumen": 19614100.0,
-          "cap_bursatil": 859313405952,
+          "cap_bursatil": 856685936640,
           "tags": [
             "top_mcap"
           ],
@@ -12761,7 +12761,7 @@
           "var_1m": -24.78,
           "var_12m": 124.92,
           "volumen": 11517700.0,
-          "cap_bursatil": 3957955840,
+          "cap_bursatil": 3892938240,
           "tags": [
             "day_gainers"
           ],
@@ -12818,7 +12818,7 @@
           "var_1m": 7.58,
           "var_12m": 63.23,
           "volumen": 918000.0,
-          "cap_bursatil": 3031533056,
+          "cap_bursatil": 3036308992,
           "tags": [
             "day_gainers"
           ],
@@ -12970,7 +12970,7 @@
           "var_1m": -6.15,
           "var_12m": 263.55,
           "volumen": 169000.0,
-          "cap_bursatil": 2890903552,
+          "cap_bursatil": 2882514432,
           "tags": [
             "day_losers"
           ],
@@ -13046,7 +13046,7 @@
           "var_1m": -30.09,
           "var_12m": -3.0,
           "volumen": 3363800.0,
-          "cap_bursatil": 3563278080,
+          "cap_bursatil": 3541157888,
           "tags": [
             "day_losers"
           ],
@@ -13103,7 +13103,7 @@
           "var_1m": -0.51,
           "var_12m": 12.19,
           "volumen": 2962100.0,
-          "cap_bursatil": 3688588288,
+          "cap_bursatil": 3693008640,
           "tags": [
             "day_losers"
           ],
@@ -13407,7 +13407,7 @@
           "var_1m": -24.63,
           "var_12m": -68.66,
           "volumen": 22330700.0,
-          "cap_bursatil": 2495704064,
+          "cap_bursatil": 2479373056,
           "tags": [
             "losers_52w"
           ],
@@ -13578,7 +13578,7 @@
           "var_1m": 6.48,
           "var_12m": -7.62,
           "volumen": 54421300.0,
-          "cap_bursatil": 1959866925056,
+          "cap_bursatil": 1958738001920,
           "tags": [
             "most_actives"
           ],
@@ -13616,31 +13616,12 @@
           "var_1m": 15.7,
           "var_12m": -6.69,
           "volumen": 49236100.0,
-          "cap_bursatil": 28420321280,
+          "cap_bursatil": 27983726592,
           "tags": [
             "most_actives"
           ],
           "tipo": "market_asset",
           "var_ytd": 47.8
-        },
-        {
-          "id": "EQ_PATH",
-          "symbol": "PATH",
-          "nombre": "UiPath, Inc.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 12.46,
-          "var_1d": -1.11,
-          "var_1m": -25.66,
-          "var_12m": -0.8,
-          "volumen": 45634800.0,
-          "cap_bursatil": 6493596672,
-          "tags": [
-            "most_actives"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -23.98
         },
         {
           "id": "EQ_PLUG",
@@ -13660,6 +13641,25 @@
           ],
           "tipo": "market_asset",
           "var_ytd": 0.51
+        },
+        {
+          "id": "EQ_PATH",
+          "symbol": "PATH",
+          "nombre": "UiPath, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 12.46,
+          "var_1d": -1.11,
+          "var_1m": -25.66,
+          "var_12m": -0.8,
+          "volumen": 45634800.0,
+          "cap_bursatil": 6493596672,
+          "tags": [
+            "most_actives"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -23.98
         }
       ]
     },
@@ -13722,21 +13722,21 @@
           "categoria": "CEDEARs",
           "subtitulo": "Semiconductores & IA",
           "moneda": "ARS",
-          "precio": 15120.0,
+          "precio": 15200.0,
           "precio_usd": 225.07,
           "ratio": 24,
-          "ccl_implicito": 1612.3,
-          "var_1d": 0.27,
-          "var_1m": 7.46,
-          "var_12m": 45.95,
-          "volumen": 408443.0,
+          "ccl_implicito": 1620.83,
+          "var_1d": 0.53,
+          "var_1m": -0.07,
+          "var_12m": 46.72,
+          "volumen": 395420.0,
           "tags": [
             "top_volume",
             "gainers_52w",
             "blue_chips"
           ],
           "tipo": "market_asset",
-          "var_ytd": 26.95
+          "var_ytd": 27.62
         },
         {
           "id": "CEDEAR_MSTR",
@@ -13761,31 +13761,6 @@
           ],
           "tipo": "market_asset",
           "var_ytd": 8.42
-        },
-        {
-          "id": "CEDEAR_MELI",
-          "symbol": "MELI",
-          "us_symbol": "MELI",
-          "nombre": "MercadoLibre Inc.",
-          "categoria": "CEDEARs",
-          "subtitulo": "E-Commerce & Fintech Latam",
-          "moneda": "ARS",
-          "precio": 23590.0,
-          "precio_usd": 1752.61,
-          "ratio": 120,
-          "ccl_implicito": 1615.19,
-          "var_1d": -2.16,
-          "var_1m": -9.76,
-          "var_12m": -18.88,
-          "volumen": 280120.0,
-          "tags": [
-            "top_volume",
-            "day_losers",
-            "losers_52w",
-            "blue_chips"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -7.71
         },
         {
           "id": "CEDEAR_MSFT",
@@ -13836,6 +13811,30 @@
           "var_ytd": -19.33
         },
         {
+          "id": "CEDEAR_MELI",
+          "symbol": "MELI",
+          "us_symbol": "MELI",
+          "nombre": "MercadoLibre Inc.",
+          "categoria": "CEDEARs",
+          "subtitulo": "E-Commerce & Fintech Latam",
+          "moneda": "ARS",
+          "precio": 23680.0,
+          "precio_usd": 1752.61,
+          "ratio": 120,
+          "ccl_implicito": 1621.35,
+          "var_1d": 0.38,
+          "var_1m": -8.0,
+          "var_12m": -18.57,
+          "volumen": 228022.0,
+          "tags": [
+            "top_volume",
+            "losers_52w",
+            "blue_chips"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -7.36
+        },
+        {
           "id": "CEDEAR_MCD",
           "symbol": "MCD",
           "us_symbol": "MCD",
@@ -13859,30 +13858,6 @@
           "var_ytd": -18.16
         },
         {
-          "id": "CEDEAR_ORCL",
-          "symbol": "ORCL",
-          "us_symbol": "ORCL",
-          "nombre": "Oracle Corp.",
-          "categoria": "CEDEARs",
-          "subtitulo": "Bases de Datos & Cloud",
-          "moneda": "ARS",
-          "precio": 75300.0,
-          "precio_usd": 137.1,
-          "ratio": 3,
-          "ccl_implicito": 1647.7,
-          "var_1d": -2.74,
-          "var_1m": -5.73,
-          "var_12m": -44.54,
-          "volumen": 106121.0,
-          "tags": [
-            "top_volume",
-            "day_losers",
-            "losers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -24.96
-        },
-        {
           "id": "CEDEAR_GLOB",
           "symbol": "GLOB",
           "us_symbol": "GLOB",
@@ -13896,7 +13871,7 @@
           "ccl_implicito": 1620.0,
           "var_1d": -0.8,
           "var_1m": -12.84,
-          "var_12m": -34.04,
+          "var_12m": -28.99,
           "volumen": 84613.0,
           "tags": [
             "top_volume",
@@ -13920,7 +13895,7 @@
           "ccl_implicito": 1627.91,
           "var_1d": 5.76,
           "var_1m": -8.94,
-          "var_12m": -9.53,
+          "var_12m": -4.35,
           "volumen": 78344.0,
           "tags": [
             "top_volume",
@@ -13929,6 +13904,30 @@
           ],
           "tipo": "market_asset",
           "var_ytd": -0.62
+        },
+        {
+          "id": "CEDEAR_TSLA",
+          "symbol": "TSLA",
+          "us_symbol": "TSLA",
+          "nombre": "Tesla Inc.",
+          "categoria": "CEDEARs",
+          "subtitulo": "Vehículos Eléctricos & IA",
+          "moneda": "ARS",
+          "precio": 40180.0,
+          "precio_usd": 372.11,
+          "ratio": 15,
+          "ccl_implicito": 1619.68,
+          "var_1d": -1.66,
+          "var_1m": 6.47,
+          "var_12m": 1.41,
+          "volumen": 71279.0,
+          "tags": [
+            "top_volume",
+            "day_losers",
+            "blue_chips"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -13.22
         },
         {
           "id": "CEDEAR_INTC",
@@ -13968,7 +13967,7 @@
           "ccl_implicito": 1623.01,
           "var_1d": 4.49,
           "var_1m": 24.27,
-          "var_12m": 31.63,
+          "var_12m": 37.84,
           "volumen": 54169.0,
           "tags": [
             "top_volume",
@@ -13991,7 +13990,7 @@
           "ccl_implicito": 1622.34,
           "var_1d": 0.45,
           "var_1m": -9.88,
-          "var_12m": 40.64,
+          "var_12m": 44.89,
           "volumen": 54116.0,
           "tags": [
             "top_volume"
@@ -14013,7 +14012,7 @@
           "ccl_implicito": 1617.26,
           "var_1d": 1.55,
           "var_1m": 9.62,
-          "var_12m": 47.09,
+          "var_12m": 53.65,
           "volumen": 51972.0,
           "tags": [
             "top_volume",
@@ -14082,7 +14081,7 @@
           "ccl_implicito": 1618.44,
           "var_1d": 1.16,
           "var_1m": 2.2,
-          "var_12m": 31.26,
+          "var_12m": 28.26,
           "volumen": 198.0,
           "tags": [
             "day_gainers"
@@ -14104,10 +14103,11 @@
           "ccl_implicito": 1616.15,
           "var_1d": 1.09,
           "var_1m": -11.61,
-          "var_12m": 38.32,
+          "var_12m": 50.99,
           "volumen": 1406.0,
           "tags": [
-            "day_gainers"
+            "day_gainers",
+            "gainers_52w"
           ],
           "tipo": "market_asset",
           "var_ytd": -3.43
@@ -14126,7 +14126,7 @@
           "ccl_implicito": 1622.8,
           "var_1d": 0.83,
           "var_1m": 6.45,
-          "var_12m": 15.82,
+          "var_12m": 21.23,
           "volumen": 33035.0,
           "tags": [
             "day_gainers",
@@ -14181,6 +14181,29 @@
           "var_ytd": -6.28
         },
         {
+          "id": "CEDEAR_ORCL",
+          "symbol": "ORCL",
+          "us_symbol": "ORCL",
+          "nombre": "Oracle Corp.",
+          "categoria": "CEDEARs",
+          "subtitulo": "Bases de Datos & Cloud",
+          "moneda": "ARS",
+          "precio": 74050.0,
+          "precio_usd": 137.1,
+          "ratio": 3,
+          "ccl_implicito": 1620.35,
+          "var_1d": -1.66,
+          "var_1m": -8.58,
+          "var_12m": -46.66,
+          "volumen": 37004.0,
+          "tags": [
+            "day_losers",
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -26.21
+        },
+        {
           "id": "CEDEAR_PLTR",
           "symbol": "PLTR",
           "us_symbol": "PLTR",
@@ -14201,6 +14224,29 @@
           ],
           "tipo": "market_asset",
           "var_ytd": 10.66
+        },
+        {
+          "id": "CEDEAR_BABA",
+          "symbol": "BABA",
+          "us_symbol": "BABA",
+          "nombre": "Alibaba Group",
+          "categoria": "CEDEARs",
+          "subtitulo": "E-Commerce / China",
+          "moneda": "ARS",
+          "precio": 19720.0,
+          "precio_usd": 109.74,
+          "ratio": 9,
+          "ccl_implicito": 1617.28,
+          "var_1d": -0.95,
+          "var_1m": -4.73,
+          "var_12m": -27.71,
+          "volumen": 14626.0,
+          "tags": [
+            "day_losers",
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -20.99
         },
         {
           "id": "CEDEAR_XOM",
@@ -14224,29 +14270,6 @@
           ],
           "tipo": "market_asset",
           "var_ytd": 41.09
-        },
-        {
-          "id": "CEDEAR_CVX",
-          "symbol": "CVX",
-          "us_symbol": "CVX",
-          "nombre": "Chevron Corp.",
-          "categoria": "CEDEARs",
-          "subtitulo": "Petróleo & Gas",
-          "moneda": "ARS",
-          "precio": 20700.0,
-          "precio_usd": 204.45,
-          "ratio": 16,
-          "ccl_implicito": 1619.96,
-          "var_1d": -0.34,
-          "var_1m": 3.5,
-          "var_12m": 41.2,
-          "volumen": 29844.0,
-          "tags": [
-            "day_losers",
-            "gainers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": 43.55
         },
         {
           "id": "CEDEAR_AMD",
@@ -14294,29 +14317,6 @@
           "var_ytd": 39.42
         },
         {
-          "id": "CEDEAR_KO",
-          "symbol": "KO",
-          "us_symbol": "KO",
-          "nombre": "The Coca-Cola Co.",
-          "categoria": "CEDEARs",
-          "subtitulo": "Consumo Masivo / Bebidas",
-          "moneda": "ARS",
-          "precio": 28560.0,
-          "precio_usd": 87.81,
-          "ratio": 5,
-          "ccl_implicito": 1626.24,
-          "var_1d": 0.78,
-          "var_1m": -1.58,
-          "var_12m": 54.13,
-          "volumen": 33259.0,
-          "tags": [
-            "gainers_52w",
-            "blue_chips"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": 33.96
-        },
-        {
           "id": "CEDEAR_SHEL",
           "symbol": "SHEL",
           "us_symbol": "SHEL",
@@ -14325,12 +14325,12 @@
           "subtitulo": "Energía & Gas / Europa",
           "moneda": "ARS",
           "precio": 77450.0,
-          "precio_usd": 95.6,
+          "precio_usd": 95.78,
           "ratio": 2,
-          "ccl_implicito": 1620.29,
+          "ccl_implicito": 1617.25,
           "var_1d": 0.23,
           "var_1m": 6.35,
-          "var_12m": 43.96,
+          "var_12m": 51.57,
           "volumen": 1222.0,
           "tags": [
             "gainers_52w"
@@ -14339,26 +14339,27 @@
           "var_ytd": 38.68
         },
         {
-          "id": "CEDEAR_BABA",
-          "symbol": "BABA",
-          "us_symbol": "BABA",
-          "nombre": "Alibaba Group",
+          "id": "CEDEAR_KO",
+          "symbol": "KO",
+          "us_symbol": "KO",
+          "nombre": "The Coca-Cola Co.",
           "categoria": "CEDEARs",
-          "subtitulo": "E-Commerce / China",
+          "subtitulo": "Consumo Masivo / Bebidas",
           "moneda": "ARS",
-          "precio": 19910.0,
-          "precio_usd": 109.74,
-          "ratio": 9,
-          "ccl_implicito": 1632.86,
-          "var_1d": 0.4,
-          "var_1m": -7.31,
-          "var_12m": -27.02,
-          "volumen": 37968.0,
+          "precio": 28500.0,
+          "precio_usd": 87.81,
+          "ratio": 5,
+          "ccl_implicito": 1622.82,
+          "var_1d": -0.21,
+          "var_1m": -0.42,
+          "var_12m": 47.59,
+          "volumen": 24397.0,
           "tags": [
-            "losers_52w"
+            "gainers_52w",
+            "blue_chips"
           ],
           "tipo": "market_asset",
-          "var_ytd": -20.23
+          "var_ytd": 33.68
         },
         {
           "id": "CEDEAR_UBER",
@@ -14381,28 +14382,6 @@
           ],
           "tipo": "market_asset",
           "var_ytd": -9.76
-        },
-        {
-          "id": "CEDEAR_TSLA",
-          "symbol": "TSLA",
-          "us_symbol": "TSLA",
-          "nombre": "Tesla Inc.",
-          "categoria": "CEDEARs",
-          "subtitulo": "Vehículos Eléctricos & IA",
-          "moneda": "ARS",
-          "precio": 40860.0,
-          "precio_usd": 372.11,
-          "ratio": 15,
-          "ccl_implicito": 1647.09,
-          "var_1d": 0.44,
-          "var_1m": 10.13,
-          "var_12m": 3.13,
-          "volumen": 40652.0,
-          "tags": [
-            "blue_chips"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -11.75
         }
       ]
     },
@@ -14439,16 +14418,16 @@
           "subtipo": "",
           "tipo": "market_asset",
           "precio": 8440.0,
-          "open": 8760.0,
-          "high": 8850.0,
-          "low": 8525.0,
+          "open": 8585.0,
+          "high": 8585.0,
+          "low": 8400.0,
           "moneda": "ARS",
           "cap_bursatil": 33091135471616,
-          "ma50": 8237.1,
-          "ma200": 6811.73,
+          "ma50": 8250.1,
+          "ma200": 6826.95,
           "var_1d": -2.26,
-          "var_1m": 7.07,
-          "var_12m": 122.09,
+          "var_1m": 3.94,
+          "var_12m": 116.19,
           "subtitulo": "Energía / Petróleo y Gas",
           "var_ytd": 54.58
         },
@@ -14464,7 +14443,7 @@
           "high": 5120.0,
           "low": 5010.0,
           "moneda": "ARS",
-          "cap_bursatil": 6780876750848,
+          "cap_bursatil": 6798616559616,
           "ma50": 5293.8,
           "ma200": 5087.49,
           "var_1d": -0.49,
@@ -14486,11 +14465,11 @@
           "low": 11090.0,
           "moneda": "ARS",
           "cap_bursatil": 7103625822208,
-          "ma50": 12893.4,
-          "ma200": 12611.67,
+          "ma50": 12909.4,
+          "ma200": 12607.61,
           "var_1d": -2.88,
           "var_1m": -9.31,
-          "var_12m": 72.75,
+          "var_12m": 72.62,
           "subtitulo": "Sector Financiero / Bancario",
           "var_ytd": -15.36
         },
@@ -14549,11 +14528,11 @@
           "low": 835.0,
           "moneda": "ARS",
           "cap_bursatil": 2363200110592,
-          "ma50": 897.74,
-          "ma200": 941.08,
+          "ma50": 897.7,
+          "ma200": 941.44,
           "var_1d": 0.3,
           "var_1m": -0.59,
-          "var_12m": 32.37,
+          "var_12m": 31.65,
           "subtitulo": "Materiales Básicos / Aluminio",
           "var_ytd": -14.79
         },
@@ -14591,11 +14570,11 @@
           "low": 1971.0,
           "moneda": "ARS",
           "cap_bursatil": 3031221927936,
-          "ma50": 2060.74,
-          "ma200": 2145.39,
+          "ma50": 2062.15,
+          "ma200": 2147.08,
           "var_1d": -0.83,
           "var_1m": 0.49,
-          "var_12m": 69.91,
+          "var_12m": 73.71,
           "subtitulo": "Generación Eléctrica",
           "var_ytd": -16.68
         },
@@ -14611,7 +14590,7 @@
           "high": 1818.0,
           "low": 1730.0,
           "moneda": "ARS",
-          "cap_bursatil": null,
+          "cap_bursatil": 1520184459264,
           "ma50": 1927.8,
           "ma200": 2023.67,
           "var_1d": -3.18,
@@ -14633,11 +14612,11 @@
           "low": 8550.0,
           "moneda": "ARS",
           "cap_bursatil": 6503855554560,
-          "ma50": 9260.6,
-          "ma200": 9240.75,
+          "ma50": 9261.4,
+          "ma200": 9241.45,
           "var_1d": -1.71,
           "var_1m": -5.11,
-          "var_12m": 35.32,
+          "var_12m": 31.71,
           "subtitulo": "Transporte de Gas / Utilities",
           "var_ytd": -7.35
         },
@@ -14696,19 +14675,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 84061.37,
+          "precio": 83996.94,
           "open": 84081.9141,
-          "high": 84118.3203,
+          "high": 84284.6875,
           "low": 83799.75,
           "moneda": "USD",
-          "cap_bursatil": 1688773328896,
-          "ma50": 75706.58,
-          "ma200": 70999.74,
-          "var_1d": 0.05,
-          "var_1m": 5.31,
-          "var_12m": -11.61,
+          "cap_bursatil": 1687019061248,
+          "ma50": 75705.3,
+          "ma200": 70999.41,
+          "var_1d": -0.67,
+          "var_1m": 5.23,
+          "var_12m": -11.68,
           "subtitulo": "Criptomoneda Líder / Reserva Digital",
-          "var_ytd": -3.94
+          "var_ytd": -4.01
         },
         {
           "id": "CRYPTO_ETH",
@@ -14717,19 +14696,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2689.28,
+          "precio": 2682.8,
           "open": 2691.2156,
-          "high": 2694.7151,
+          "high": 2695.4595,
           "low": 2680.9338,
           "moneda": "USD",
-          "cap_bursatil": 328383791104,
-          "ma50": 2372.42,
-          "ma200": 2097.6,
-          "var_1d": 0.65,
-          "var_1m": 8.41,
-          "var_12m": -18.72,
+          "cap_bursatil": 327326302208,
+          "ma50": 2372.29,
+          "ma200": 2097.57,
+          "var_1d": -0.79,
+          "var_1m": 8.15,
+          "var_12m": -18.92,
           "subtitulo": "Contratos Inteligentes / Web3",
-          "var_ytd": -9.36
+          "var_ytd": -9.58
         },
         {
           "id": "CRYPTO_SOL",
@@ -14738,19 +14717,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 120.64,
+          "precio": 120.04,
           "open": 122.0363,
           "high": 122.2143,
-          "low": 120.2619,
+          "low": 120.1548,
           "moneda": "USD",
-          "cap_bursatil": 70917922816,
-          "ma50": 97.69,
+          "cap_bursatil": 70616514560,
+          "ma50": 97.68,
           "ma200": 84.78,
-          "var_1d": 3.68,
-          "var_1m": 16.91,
-          "var_12m": -16.06,
+          "var_1d": 1.42,
+          "var_1m": 16.33,
+          "var_12m": -16.48,
           "subtitulo": "Blockchain de Alta Velocidad",
-          "var_ytd": -3.09
+          "var_ytd": -3.57
         },
         {
           "id": "CRYPTO_BNB",
@@ -14759,19 +14738,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 773.34,
+          "precio": 771.09,
           "open": 776.8089,
           "high": 777.3668,
-          "low": 772.1412,
+          "low": 771.8199,
           "moneda": "USD",
-          "cap_bursatil": 102989676544,
-          "ma50": 698.2,
-          "ma200": 633.59,
-          "var_1d": -0.05,
-          "var_1m": 0.84,
-          "var_12m": -18.34,
+          "cap_bursatil": 102775390208,
+          "ma50": 698.15,
+          "ma200": 633.58,
+          "var_1d": -0.72,
+          "var_1m": 0.54,
+          "var_12m": -18.58,
           "subtitulo": "Ecosistema BNB Chain",
-          "var_ytd": -10.42
+          "var_ytd": -10.68
         },
         {
           "id": "CRYPTO_XRP",
@@ -14780,19 +14759,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.5521,
+          "precio": 1.5403,
           "open": 1.5684,
           "high": 1.5777,
-          "low": 1.5478,
+          "low": 1.5423,
           "moneda": "USD",
-          "cap_bursatil": 97681752064,
+          "cap_bursatil": 96978051072,
           "ma50": 1.32,
           "ma200": 1.28,
-          "var_1d": 1.18,
-          "var_1m": 9.88,
-          "var_12m": -24.74,
+          "var_1d": -0.82,
+          "var_1m": 9.05,
+          "var_12m": -25.32,
           "subtitulo": "Pagos y Liquidaciones",
-          "var_ytd": -15.65
+          "var_ytd": -16.29
         },
         {
           "id": "CRYPTO_ADA",
@@ -14801,19 +14780,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.2558,
+          "precio": 0.2538,
           "open": 0.2585,
           "high": 0.264,
-          "low": 0.2541,
+          "low": 0.2537,
           "moneda": "USD",
-          "cap_bursatil": 9413469184,
+          "cap_bursatil": 9327837184,
           "ma50": 0.21,
           "ma200": 0.21,
-          "var_1d": 2.62,
-          "var_1m": 17.07,
-          "var_12m": -35.52,
+          "var_1d": 0.27,
+          "var_1m": 16.16,
+          "var_12m": -36.02,
           "subtitulo": "Blockchain Proof of Stake",
-          "var_ytd": -23.14
+          "var_ytd": -23.74
         },
         {
           "id": "CRYPTO_DOGE",
@@ -14822,19 +14801,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0978,
+          "precio": 0.097,
           "open": 0.099,
           "high": 0.0993,
-          "low": 0.0973,
+          "low": 0.0971,
           "moneda": "USD",
-          "cap_bursatil": 15265040384,
+          "cap_bursatil": 16676234240,
           "ma50": 0.08,
           "ma200": 0.09,
-          "var_1d": 2.49,
-          "var_1m": 9.03,
-          "var_12m": -29.03,
+          "var_1d": 0.27,
+          "var_1m": 8.14,
+          "var_12m": -29.61,
           "subtitulo": "Moneda Digital Memética",
-          "var_ytd": -16.62
+          "var_ytd": -17.31
         },
         {
           "id": "CRYPTO_USDT",
@@ -14848,10 +14827,10 @@
           "high": 0.9999,
           "low": 0.9997,
           "moneda": "USD",
-          "cap_bursatil": 183779164160,
+          "cap_bursatil": 183763976192,
           "ma50": 1.0,
           "ma200": 1.0,
-          "var_1d": 0.0,
+          "var_1d": -0.0,
           "var_1m": -0.03,
           "var_12m": 0.02,
           "subtitulo": "Stablecoin Dólar",
