@@ -1,8 +1,8 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-09-25 22:35:38",
-  "fecha_cierre": "2026-09-25",
+  "ultima_actualizacion": "2026-09-26 02:25:29",
+  "fecha_cierre": "2026-09-26",
   "secciones": {
     "dolar": {
       "titulo": "Dólar & Riesgo País",
@@ -121,9 +121,9 @@
           "subtitulo": "Spread Soberano vs US Treasuries (JP Morgan)",
           "moneda": "Pts",
           "precio": 609.0,
-          "var_1d": 5.36,
-          "var_1m": 19.65,
-          "var_12m": -34.66,
+          "var_1d": 0.0,
+          "var_1m": 18.95,
+          "var_12m": -40.64,
           "var_ytd": 6.65,
           "tipo": "macro_index"
         }
@@ -162,9 +162,9 @@
           "subtipo": "",
           "tipo": "market_asset",
           "precio": 27068.717,
-          "open": 26970.9512,
-          "high": 27122.7637,
-          "low": 26876.2715,
+          "open": 26970.9492,
+          "high": 27122.7598,
+          "low": 26876.2695,
           "moneda": "Pts",
           "cap_bursatil": null,
           "ma50": 26169.53,
@@ -204,9 +204,9 @@
           "subtipo": "",
           "tipo": "market_asset",
           "precio": 2837.552,
-          "open": 2839.2219,
-          "high": 2851.6975,
-          "low": 2826.7927,
+          "open": 2839.22,
+          "high": 2851.7,
+          "low": 2826.79,
           "moneda": "Pts",
           "cap_bursatil": null,
           "ma50": 2957.86,
@@ -246,16 +246,16 @@
           "subtipo": "",
           "tipo": "market_asset",
           "precio": 101.035,
-          "open": 101.269,
-          "high": 101.305,
-          "low": 100.872,
+          "open": 101.27,
+          "high": 101.31,
+          "low": 100.87,
           "moneda": "Pts",
           "cap_bursatil": null,
           "ma50": 99.95,
           "ma200": 99.2,
-          "var_1d": -0.25,
-          "var_1m": 1.88,
-          "var_12m": 3.23,
+          "var_1d": 0.06,
+          "var_1m": 1.82,
+          "var_12m": 3.17,
           "subtitulo": "Fuerza Global del Dólar vs Canasta de Monedas",
           "var_ytd": 2.8
         },
@@ -267,13 +267,13 @@
           "subtipo": "",
           "tipo": "market_asset",
           "precio": 2893750.8,
-          "open": 2939964.25,
-          "high": 2955359.5,
-          "low": 2888335.5,
+          "open": 2939964.0,
+          "high": 2955360.0,
+          "low": 2888336.0,
           "moneda": "Pts",
           "cap_bursatil": null,
-          "ma50": 3087896.71,
-          "ma200": 3008008.43,
+          "ma50": 3087896.72,
+          "ma200": 3008008.44,
           "var_1d": -1.57,
           "var_1m": -3.58,
           "var_12m": 61.82,
@@ -456,9 +456,9 @@
           "subtipo": "",
           "tipo": "market_asset",
           "precio": 183476.86,
-          "open": 183963.2812,
-          "high": 184214.4844,
-          "low": 182151.0156,
+          "open": 183963.0,
+          "high": 184215.0,
+          "low": 182151.0,
           "moneda": "Pts",
           "cap_bursatil": null,
           "ma50": 177638.2,
@@ -546,16 +546,16 @@
           "subtipo": "",
           "tipo": "market_asset",
           "precio": 157.185,
-          "open": 158.778,
-          "high": 158.856,
-          "low": 156.932,
+          "open": 157.185,
+          "high": 157.185,
+          "low": 157.185,
           "moneda": "FX_2",
           "cap_bursatil": null,
-          "ma50": 158.67,
-          "ma200": 158.45,
+          "ma50": 158.6,
+          "ma200": 158.47,
           "var_1d": -1.0,
-          "var_1m": -1.3,
-          "var_12m": 5.07,
+          "var_1m": -1.34,
+          "var_12m": 4.56,
           "subtitulo": "Japón (JPY por 1 USD)",
           "var_ytd": 0.49
         },
@@ -566,9 +566,9 @@
           "categoria": "Divisas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 6.7123,
-          "open": 6.7123,
-          "high": 6.7128,
+          "precio": 6.7125,
+          "open": 6.7037,
+          "high": 6.7125,
           "low": 6.7037,
           "moneda": "FX_4",
           "cap_bursatil": null,
@@ -578,7 +578,7 @@
           "var_1m": -0.15,
           "var_12m": -5.71,
           "subtitulo": "China (CNY por 1 USD)",
-          "var_ytd": -4.06
+          "var_ytd": -4.05
         },
         {
           "id": "FX_USDCLP",
@@ -635,19 +635,19 @@
           "categoria": "Commodities",
           "subtipo": "Granos y Oleaginosas",
           "tipo": "market_asset",
-          "precio": 1320.0,
+          "precio": 1319.0,
           "open": 1317.5,
           "high": 1320.5,
           "low": 1297.5,
           "moneda": "¢/bu",
           "cap_bursatil": null,
-          "ma50": 1241.05,
-          "ma200": 1161.44,
-          "var_1d": 0.19,
-          "var_1m": 5.24,
-          "var_12m": 30.82,
+          "ma50": 1241.03,
+          "ma200": 1161.43,
+          "var_1d": 0.11,
+          "var_1m": 5.16,
+          "var_12m": 30.72,
           "subtitulo": "CBOT Chicago - Centavos de US$ por Bushel",
-          "var_ytd": 28.09
+          "var_ytd": 28.0
         },
         {
           "id": "COMM_HARINA_SOJA",
@@ -656,19 +656,19 @@
           "categoria": "Commodities",
           "subtipo": "Granos y Oleaginosas",
           "tipo": "market_asset",
-          "precio": 370.6,
-          "open": 370.7,
-          "high": 372.4,
-          "low": 365.0,
+          "precio": 371.0,
+          "open": 376.0,
+          "high": 376.9,
+          "low": 368.5,
           "moneda": "US$/st",
           "cap_bursatil": null,
-          "ma50": 331.67,
-          "ma200": 316.85,
-          "var_1d": -0.48,
-          "var_1m": 12.75,
-          "var_12m": 36.4,
+          "ma50": 331.74,
+          "ma200": 316.86,
+          "var_1d": -0.38,
+          "var_1m": 13.75,
+          "var_12m": 37.62,
           "subtitulo": "CBOT - Dólares por Tonelada Corta",
-          "var_ytd": 25.84
+          "var_ytd": 25.98
         },
         {
           "id": "COMM_ACEITE_SOJA",
@@ -677,19 +677,19 @@
           "categoria": "Commodities",
           "subtipo": "Granos y Oleaginosas",
           "tipo": "market_asset",
-          "precio": 67.82,
-          "open": 67.55,
-          "high": 67.89,
-          "low": 66.65,
+          "precio": 67.84,
+          "open": 66.93,
+          "high": 67.31,
+          "low": 66.06,
           "moneda": "¢/lb",
           "cap_bursatil": null,
-          "ma50": 69.75,
+          "ma50": 69.74,
           "ma200": 65.75,
-          "var_1d": 0.4,
-          "var_1m": 0.89,
-          "var_12m": 37.59,
+          "var_1d": 0.43,
+          "var_1m": 0.06,
+          "var_12m": 36.46,
           "subtitulo": "CBOT - Centavos de US$ por Libra",
-          "var_ytd": 41.09
+          "var_ytd": 41.13
         },
         {
           "id": "COMM_MAIZ",
@@ -698,19 +698,19 @@
           "categoria": "Commodities",
           "subtipo": "Granos y Oleaginosas",
           "tipo": "market_asset",
-          "precio": 528.75,
+          "precio": 528.25,
           "open": 526.5,
           "high": 529.0,
           "low": 514.75,
           "moneda": "¢/bu",
           "cap_bursatil": null,
-          "ma50": 485.01,
+          "ma50": 485.0,
           "ma200": 451.68,
-          "var_1d": 0.24,
-          "var_1m": 2.87,
-          "var_12m": 24.63,
+          "var_1d": 0.14,
+          "var_1m": 2.77,
+          "var_12m": 24.51,
           "subtitulo": "CBOT Chicago - Centavos de US$ por Bushel",
-          "var_ytd": 20.1
+          "var_ytd": 19.99
         },
         {
           "id": "COMM_TRIGO",
@@ -719,19 +719,19 @@
           "categoria": "Commodities",
           "subtipo": "Granos y Oleaginosas",
           "tipo": "market_asset",
-          "precio": 704.0,
+          "precio": 703.25,
           "open": 707.0,
           "high": 707.0,
           "low": 683.5,
           "moneda": "¢/bu",
           "cap_bursatil": null,
-          "ma50": 692.32,
-          "ma200": 606.81,
-          "var_1d": -0.42,
-          "var_1m": -3.63,
-          "var_12m": 35.51,
+          "ma50": 692.3,
+          "ma200": 606.8,
+          "var_1d": -0.53,
+          "var_1m": -3.73,
+          "var_12m": 35.37,
           "subtitulo": "CBOT Chicago - Centavos de US$ por Bushel",
-          "var_ytd": 38.86
+          "var_ytd": 38.71
         },
         {
           "id": "COMM_TRIGO_KANSAS",
@@ -761,7 +761,7 @@
           "categoria": "Commodities",
           "subtipo": "Energía",
           "tipo": "market_asset",
-          "precio": 92.44,
+          "precio": 92.41,
           "open": 94.75,
           "high": 94.75,
           "low": 91.51,
@@ -769,11 +769,11 @@
           "cap_bursatil": null,
           "ma50": 88.04,
           "ma200": 81.55,
-          "var_1d": -2.29,
-          "var_1m": 12.42,
-          "var_12m": 42.24,
+          "var_1d": -2.33,
+          "var_1m": 12.38,
+          "var_12m": 42.19,
           "subtitulo": "NYMEX - Dólares por Barril",
-          "var_ytd": 60.99
+          "var_ytd": 60.94
         },
         {
           "id": "COMM_BRENT",
@@ -782,19 +782,19 @@
           "categoria": "Commodities",
           "subtipo": "Energía",
           "tipo": "market_asset",
-          "precio": 97.47,
+          "precio": 97.44,
           "open": 106.52,
-          "high": 100.26,
-          "low": 96.39,
+          "high": 106.75,
+          "low": 103.11,
           "moneda": "US$/bbl",
           "cap_bursatil": null,
-          "ma50": 93.62,
-          "ma200": 86.66,
-          "var_1d": -2.74,
-          "var_1m": 10.96,
-          "var_12m": 40.63,
+          "ma50": 93.76,
+          "ma200": 86.69,
+          "var_1d": -2.77,
+          "var_1m": 18.76,
+          "var_12m": 50.51,
           "subtitulo": "ICE - Dólares por Barril",
-          "var_ytd": 60.18
+          "var_ytd": 60.13
         },
         {
           "id": "COMM_GAS_NATURAL",
@@ -803,19 +803,19 @@
           "categoria": "Commodities",
           "subtipo": "Energía",
           "tipo": "market_asset",
-          "precio": 3.251,
-          "open": 3.3,
-          "high": 3.3,
-          "low": 3.158,
+          "precio": 3.225,
+          "open": 3.209,
+          "high": 3.234,
+          "low": 3.09,
           "moneda": "US$/MMBtu",
           "cap_bursatil": null,
           "ma50": 2.84,
           "ma200": 3.18,
-          "var_1d": -3.53,
-          "var_1m": 14.39,
-          "var_12m": 13.75,
+          "var_1d": -4.3,
+          "var_1m": 12.46,
+          "var_12m": 11.83,
           "subtitulo": "NYMEX - Dólares por Millón de BTU",
-          "var_ytd": -11.8
+          "var_ytd": -12.51
         },
         {
           "id": "COMM_GASOLINA",
@@ -824,19 +824,19 @@
           "categoria": "Commodities",
           "subtipo": "Energía",
           "tipo": "market_asset",
-          "precio": 3.1968,
-          "open": 3.325,
-          "high": 3.325,
-          "low": 3.1673,
+          "precio": 3.1875,
+          "open": 3.5608,
+          "high": 3.5608,
+          "low": 3.3659,
           "moneda": "US$/gal",
           "cap_bursatil": null,
           "ma50": 3.29,
           "ma200": 2.83,
-          "var_1d": -4.09,
-          "var_1m": -3.71,
-          "var_12m": 58.35,
+          "var_1d": -4.37,
+          "var_1m": 2.21,
+          "var_12m": 68.09,
           "subtitulo": "NYMEX - Dólares por Galón",
-          "var_ytd": 87.45
+          "var_ytd": 86.91
         },
         {
           "id": "COMM_DIESEL",
@@ -845,19 +845,19 @@
           "categoria": "Commodities",
           "subtipo": "Energía",
           "tipo": "market_asset",
-          "precio": 4.5799,
-          "open": 4.57,
-          "high": 4.5961,
-          "low": 4.3789,
+          "precio": 4.4621,
+          "open": 4.785,
+          "high": 4.8433,
+          "low": 4.519,
           "moneda": "US$/gal",
           "cap_bursatil": null,
           "ma50": 4.44,
           "ma200": 3.54,
-          "var_1d": 1.15,
-          "var_1m": 7.51,
-          "var_12m": 92.66,
+          "var_1d": -1.46,
+          "var_1m": 9.97,
+          "var_12m": 97.07,
           "subtitulo": "NYMEX - Dólares por Galón",
-          "var_ytd": 115.97
+          "var_ytd": 110.42
         },
         {
           "id": "COMM_ORO",
@@ -866,19 +866,19 @@
           "categoria": "Commodities",
           "subtipo": "Metales",
           "tipo": "market_asset",
-          "precio": 4320.5,
+          "precio": 4321.2,
           "open": 4309.5,
           "high": 4351.6001,
           "low": 4289.2002,
           "moneda": "US$/oz",
           "cap_bursatil": null,
-          "ma50": 4354.53,
-          "ma200": 4556.05,
-          "var_1d": 0.52,
-          "var_1m": -7.15,
-          "var_12m": 14.66,
+          "ma50": 4354.55,
+          "ma200": 4556.06,
+          "var_1d": 0.54,
+          "var_1m": -7.14,
+          "var_12m": 14.68,
           "subtitulo": "COMEX - Dólares por Onza Troy",
-          "var_ytd": -0.47
+          "var_ytd": -0.46
         },
         {
           "id": "COMM_PLATA",
@@ -887,19 +887,19 @@
           "categoria": "Commodities",
           "subtipo": "Metales",
           "tipo": "market_asset",
-          "precio": 64.71,
-          "open": 64.265,
-          "high": 65.505,
-          "low": 63.785,
+          "precio": 64.801,
+          "open": 63.63,
+          "high": 64.245,
+          "low": 63.625,
           "moneda": "US$/oz",
           "cap_bursatil": null,
-          "ma50": 63.64,
+          "ma50": 63.63,
           "ma200": 72.66,
-          "var_1d": 1.11,
-          "var_1m": -4.82,
-          "var_12m": 47.82,
+          "var_1d": 1.25,
+          "var_1m": -5.51,
+          "var_12m": 46.76,
           "subtitulo": "COMEX - Dólares por Onza Troy",
-          "var_ytd": -7.73
+          "var_ytd": -7.6
         },
         {
           "id": "COMM_PLATINO",
@@ -908,19 +908,19 @@
           "categoria": "Commodities",
           "subtipo": "Metales",
           "tipo": "market_asset",
-          "precio": 1800.8,
-          "open": 1757.2,
-          "high": 1806.7,
-          "low": 1758.2,
+          "precio": 1797.7,
+          "open": 1774.7,
+          "high": 1774.7,
+          "low": 1774.7,
           "moneda": "US$/oz",
           "cap_bursatil": null,
-          "ma50": 1750.79,
-          "ma200": 1949.0,
-          "var_1d": 1.99,
-          "var_1m": -1.9,
-          "var_12m": 21.31,
+          "ma50": 1750.27,
+          "ma200": 1948.87,
+          "var_1d": 1.81,
+          "var_1m": -3.32,
+          "var_12m": 19.55,
           "subtitulo": "NYMEX - Dólares por Onza Troy",
-          "var_ytd": -11.49
+          "var_ytd": -11.64
         },
         {
           "id": "COMM_COBRE",
@@ -929,19 +929,19 @@
           "categoria": "Commodities",
           "subtipo": "Metales",
           "tipo": "market_asset",
-          "precio": 6.779,
-          "open": 6.7805,
-          "high": 6.797,
-          "low": 6.723,
+          "precio": 6.766,
+          "open": 6.697,
+          "high": 6.706,
+          "low": 6.6855,
           "moneda": "US$/lb",
           "cap_bursatil": null,
           "ma50": 6.54,
           "ma200": 6.09,
-          "var_1d": -0.16,
-          "var_1m": 2.8,
-          "var_12m": 42.64,
+          "var_1d": -0.35,
+          "var_1m": 1.53,
+          "var_12m": 40.88,
           "subtitulo": "COMEX - Dólares por Libra",
-          "var_ytd": 20.41
+          "var_ytd": 20.18
         },
         {
           "id": "COMM_CAFE",
@@ -956,11 +956,11 @@
           "low": 274.25,
           "moneda": "¢/lb",
           "cap_bursatil": null,
-          "ma50": 325.34,
+          "ma50": 325.35,
           "ma200": 313.93,
-          "var_1d": 1.0,
-          "var_1m": -22.23,
-          "var_12m": -24.38,
+          "var_1d": -0.18,
+          "var_1m": -22.09,
+          "var_12m": -24.24,
           "subtitulo": "ICE - Centavos de US$ por Libra",
           "var_ytd": -20.26
         },
@@ -977,11 +977,11 @@
           "low": 5462.0,
           "moneda": "US$/tn",
           "cap_bursatil": null,
-          "ma50": 5764.4,
-          "ma200": 4614.27,
-          "var_1d": 0.23,
-          "var_1m": -3.68,
-          "var_12m": -20.5,
+          "ma50": 5764.72,
+          "ma200": 4614.35,
+          "var_1d": -0.28,
+          "var_1m": -3.4,
+          "var_12m": -20.28,
           "subtitulo": "ICE - Dólares por Tonelada Métrica",
           "var_ytd": -7.62
         },
@@ -993,16 +993,16 @@
           "subtipo": "Agroindustriales & Ganadería",
           "tipo": "market_asset",
           "precio": 18.54,
-          "open": 18.54,
-          "high": 18.75,
-          "low": 18.43,
+          "open": 17.5,
+          "high": 17.71,
+          "low": 17.4,
           "moneda": "¢/lb",
           "cap_bursatil": null,
-          "ma50": 16.78,
+          "ma50": 16.76,
           "ma200": 15.08,
-          "var_1d": -0.38,
-          "var_1m": 5.4,
-          "var_12m": 18.54,
+          "var_1d": 0.22,
+          "var_1m": -0.51,
+          "var_12m": 11.89,
           "subtitulo": "ICE - Centavos de US$ por Libra",
           "var_ytd": 23.52
         },
@@ -1014,16 +1014,16 @@
           "subtipo": "Agroindustriales & Ganadería",
           "tipo": "market_asset",
           "precio": 82.49,
-          "open": 63.15,
-          "high": 87.8,
-          "low": 86.33,
+          "open": 78.91,
+          "high": 78.91,
+          "low": 78.91,
           "moneda": "¢/lb",
           "cap_bursatil": null,
-          "ma50": 82.62,
-          "ma200": 73.45,
+          "ma50": 82.55,
+          "ma200": 73.44,
           "var_1d": -0.98,
-          "var_1m": -6.02,
-          "var_12m": 28.81,
+          "var_1m": -10.09,
+          "var_12m": 23.22,
           "subtitulo": "ICE - Centavos de US$ por Libra",
           "var_ytd": 28.35
         },
@@ -1034,19 +1034,19 @@
           "categoria": "Commodities",
           "subtipo": "Agroindustriales & Ganadería",
           "tipo": "market_asset",
-          "precio": 222.1,
-          "open": 220.75,
-          "high": 223.2,
-          "low": 219.7,
+          "precio": 222.15,
+          "open": 218.475,
+          "high": 220.4,
+          "low": 217.275,
           "moneda": "¢/lb",
           "cap_bursatil": null,
-          "ma50": 223.09,
-          "ma200": 237.37,
-          "var_1d": 0.45,
-          "var_1m": 1.66,
-          "var_12m": -5.11,
+          "ma50": 223.02,
+          "ma200": 237.35,
+          "var_1d": 0.47,
+          "var_1m": 0.18,
+          "var_12m": -6.48,
           "subtitulo": "CME - Centavos de US$ por Libra",
-          "var_ytd": -4.27
+          "var_ytd": -4.25
         }
       ]
     },
@@ -3540,35 +3540,35 @@
           "dias_vto": 1016,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2029-07-09",
-          "proximo_pago_fecha": "2027-04-16",
+          "proximo_pago_fecha": "2027-04-17",
           "proximo_pago_monto": "US$ 0.15 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-16",
+              "fecha": "2027-04-17",
               "renta": 0.15,
               "amort": 0.0,
               "total": 0.15
             },
             {
-              "fecha": "2027-11-05",
+              "fecha": "2027-11-06",
               "renta": 0.15,
               "amort": 0.0,
               "total": 0.15
             },
             {
-              "fecha": "2028-05-26",
+              "fecha": "2028-05-27",
               "renta": 0.15,
               "amort": 0.0,
               "total": 0.15
             },
             {
-              "fecha": "2028-12-15",
+              "fecha": "2028-12-16",
               "renta": 0.15,
               "amort": 0.0,
               "total": 0.15
             },
             {
-              "fecha": "2029-07-07",
+              "fecha": "2029-07-08",
               "renta": 0.15,
               "amort": 100.0,
               "total": 100.15
@@ -3609,42 +3609,42 @@
           "dias_vto": 1016,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2029-07-09",
-          "proximo_pago_fecha": "2027-04-16",
+          "proximo_pago_fecha": "2027-04-17",
           "proximo_pago_monto": "US$ 0.15 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-16",
+              "fecha": "2027-04-17",
               "renta": 0.15,
               "amort": 0.0,
               "total": 0.15
             },
             {
-              "fecha": "2027-11-05",
+              "fecha": "2027-11-06",
               "renta": 0.15,
               "amort": 0.0,
               "total": 0.15
             },
             {
-              "fecha": "2028-05-26",
+              "fecha": "2028-05-27",
               "renta": 0.15,
               "amort": 0.0,
               "total": 0.15
             },
             {
-              "fecha": "2028-12-15",
+              "fecha": "2028-12-16",
               "renta": 0.15,
               "amort": 0.0,
               "total": 0.15
             },
             {
-              "fecha": "2029-07-07",
+              "fecha": "2029-07-08",
               "renta": 0.15,
               "amort": 100.0,
               "total": 100.15
             }
           ],
           "subtitulo": "Bono USD Ley NY - 1.00% - vto. 07/2029",
-          "var_1d": -0.02,
+          "var_1d": -2.32,
           "var_1m": -1.66,
           "var_12m": -15.99,
           "var_ytd": -24.58
@@ -3678,47 +3678,47 @@
           "dias_vto": 1381,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2030-07-09",
-          "proximo_pago_fecha": "2027-04-10",
+          "proximo_pago_fecha": "2027-04-11",
           "proximo_pago_monto": "US$ 0.12 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-10",
+              "fecha": "2027-04-11",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2027-10-24",
+              "fecha": "2027-10-25",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2028-05-08",
+              "fecha": "2028-05-09",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2028-11-22",
+              "fecha": "2028-11-23",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2029-06-07",
+              "fecha": "2029-06-08",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2029-12-21",
+              "fecha": "2029-12-22",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2030-07-07",
+              "fecha": "2030-07-08",
               "renta": 0.12,
               "amort": 100.0,
               "total": 100.12
@@ -3759,54 +3759,54 @@
           "dias_vto": 1381,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2030-07-09",
-          "proximo_pago_fecha": "2027-04-10",
+          "proximo_pago_fecha": "2027-04-11",
           "proximo_pago_monto": "US$ 0.12 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-10",
+              "fecha": "2027-04-11",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2027-10-24",
+              "fecha": "2027-10-25",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2028-05-08",
+              "fecha": "2028-05-09",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2028-11-22",
+              "fecha": "2028-11-23",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2029-06-07",
+              "fecha": "2029-06-08",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2029-12-21",
+              "fecha": "2029-12-22",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2030-07-07",
+              "fecha": "2030-07-08",
               "renta": 0.12,
               "amort": 100.0,
               "total": 100.12
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2030",
-          "var_1d": -0.01,
+          "var_1d": -0.94,
           "var_1m": -2.76,
           "var_12m": 4.12,
           "var_ytd": -20.09
@@ -3840,72 +3840,72 @@
           "dias_vto": 3207,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2035-07-09",
-          "proximo_pago_fecha": "2027-08-11",
+          "proximo_pago_fecha": "2027-08-12",
           "proximo_pago_monto": "US$ 1.03 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-08-11",
+              "fecha": "2027-08-12",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-06-27",
+              "fecha": "2028-06-28",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2029-05-14",
+              "fecha": "2029-05-15",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2030-03-30",
+              "fecha": "2030-03-31",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2031-02-14",
+              "fecha": "2031-02-15",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-01-01",
+              "fecha": "2032-01-02",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-11-16",
+              "fecha": "2032-11-17",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2033-10-03",
+              "fecha": "2033-10-04",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2034-08-20",
+              "fecha": "2034-08-21",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2035-07-07",
+              "fecha": "2035-07-08",
               "renta": 1.03,
               "amort": 100.0,
               "total": 101.03
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - vto. 07/2035",
-          "var_1d": -0.01,
+          "var_1d": -0.94,
           "var_1m": -7.77,
           "var_12m": 39.64,
           "var_ytd": -9.47
@@ -3939,72 +3939,72 @@
           "dias_vto": 3207,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2035-07-09",
-          "proximo_pago_fecha": "2027-08-11",
+          "proximo_pago_fecha": "2027-08-12",
           "proximo_pago_monto": "US$ 1.03 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-08-11",
+              "fecha": "2027-08-12",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-06-27",
+              "fecha": "2028-06-28",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2029-05-14",
+              "fecha": "2029-05-15",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2030-03-30",
+              "fecha": "2030-03-31",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2031-02-14",
+              "fecha": "2031-02-15",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-01-01",
+              "fecha": "2032-01-02",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-11-16",
+              "fecha": "2032-11-17",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2033-10-03",
+              "fecha": "2033-10-04",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2034-08-20",
+              "fecha": "2034-08-21",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2035-07-07",
+              "fecha": "2035-07-08",
               "renta": 1.03,
               "amort": 100.0,
               "total": 101.03
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2035",
-          "var_1d": -0.01,
+          "var_1d": -0.66,
           "var_1m": -6.32,
           "var_12m": 42.48,
           "var_ytd": -4.81
@@ -4038,72 +4038,72 @@
           "dias_vto": 4123,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2038-01-09",
-          "proximo_pago_fecha": "2027-11-11",
+          "proximo_pago_fecha": "2027-11-12",
           "proximo_pago_monto": "US$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-11-11",
+              "fecha": "2027-11-12",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2028-12-27",
+              "fecha": "2028-12-28",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2030-02-12",
+              "fecha": "2030-02-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2031-04-01",
+              "fecha": "2031-04-02",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2032-05-17",
+              "fecha": "2032-05-18",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2033-07-03",
+              "fecha": "2033-07-04",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2034-08-20",
+              "fecha": "2034-08-21",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2035-10-06",
+              "fecha": "2035-10-07",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2036-11-21",
+              "fecha": "2036-11-22",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2038-01-08",
+              "fecha": "2038-01-09",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - vto. 01/2038",
-          "var_1d": -0.01,
+          "var_1d": -1.34,
           "var_1m": -7.45,
           "var_12m": 45.43,
           "var_ytd": -8.52
@@ -4137,72 +4137,72 @@
           "dias_vto": 4123,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2038-01-09",
-          "proximo_pago_fecha": "2027-11-11",
+          "proximo_pago_fecha": "2027-11-12",
           "proximo_pago_monto": "US$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-11-11",
+              "fecha": "2027-11-12",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2028-12-27",
+              "fecha": "2028-12-28",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2030-02-12",
+              "fecha": "2030-02-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2031-04-01",
+              "fecha": "2031-04-02",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2032-05-17",
+              "fecha": "2032-05-18",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2033-07-03",
+              "fecha": "2033-07-04",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2034-08-20",
+              "fecha": "2034-08-21",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2035-10-06",
+              "fecha": "2035-10-07",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2036-11-21",
+              "fecha": "2036-11-22",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2038-01-08",
+              "fecha": "2038-01-09",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 01/2038",
-          "var_1d": -0.01,
+          "var_1d": -0.97,
           "var_1m": -6.0,
           "var_12m": 38.17,
           "var_ytd": -4.99
@@ -4236,72 +4236,72 @@
           "dias_vto": 5399,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2041-07-09",
-          "proximo_pago_fecha": "2028-03-17",
+          "proximo_pago_fecha": "2028-03-18",
           "proximo_pago_monto": "US$ 0.88 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2028-03-17",
+              "fecha": "2028-03-18",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2029-09-08",
+              "fecha": "2029-09-09",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2031-03-02",
+              "fecha": "2031-03-03",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2032-08-23",
+              "fecha": "2032-08-24",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2034-02-14",
+              "fecha": "2034-02-15",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2035-08-08",
+              "fecha": "2035-08-09",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2037-01-29",
+              "fecha": "2037-01-30",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2038-07-23",
+              "fecha": "2038-07-24",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2040-01-14",
+              "fecha": "2040-01-15",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2041-07-07",
+              "fecha": "2041-07-08",
               "renta": 0.875,
               "amort": 100.0,
               "total": 100.875
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - vto. 07/2041",
-          "var_1d": -0.02,
+          "var_1d": -2.11,
           "var_1m": -8.91,
           "var_12m": 36.75,
           "var_ytd": -12.01
@@ -4335,72 +4335,72 @@
           "dias_vto": 5399,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2041-07-09",
-          "proximo_pago_fecha": "2028-03-17",
+          "proximo_pago_fecha": "2028-03-18",
           "proximo_pago_monto": "US$ 0.88 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2028-03-17",
+              "fecha": "2028-03-18",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2029-09-08",
+              "fecha": "2029-09-09",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2031-03-02",
+              "fecha": "2031-03-03",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2032-08-23",
+              "fecha": "2032-08-24",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2034-02-14",
+              "fecha": "2034-02-15",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2035-08-08",
+              "fecha": "2035-08-09",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2037-01-29",
+              "fecha": "2037-01-30",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2038-07-23",
+              "fecha": "2038-07-24",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2040-01-14",
+              "fecha": "2040-01-15",
               "renta": 0.875,
               "amort": 0.0,
               "total": 0.875
             },
             {
-              "fecha": "2041-07-07",
+              "fecha": "2041-07-08",
               "renta": 0.875,
               "amort": 100.0,
               "total": 100.875
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2041",
-          "var_1d": -0.02,
+          "var_1d": -1.63,
           "var_1m": -6.53,
           "var_12m": 38.37,
           "var_ytd": -4.54
@@ -4434,72 +4434,72 @@
           "dias_vto": 7225,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2046-07-09",
-          "proximo_pago_fecha": "2028-09-16",
+          "proximo_pago_fecha": "2028-09-17",
           "proximo_pago_monto": "US$ 0.94 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2028-09-16",
+              "fecha": "2028-09-17",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2030-09-09",
+              "fecha": "2030-09-10",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2032-08-31",
+              "fecha": "2032-09-01",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2034-08-24",
+              "fecha": "2034-08-25",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2036-08-15",
+              "fecha": "2036-08-16",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2038-08-08",
+              "fecha": "2038-08-09",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2040-07-30",
+              "fecha": "2040-07-31",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2042-07-23",
+              "fecha": "2042-07-24",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2044-07-14",
+              "fecha": "2044-07-15",
               "renta": 0.94,
               "amort": 0.0,
               "total": 0.94
             },
             {
-              "fecha": "2046-07-07",
+              "fecha": "2046-07-08",
               "renta": 0.94,
               "amort": 100.0,
               "total": 100.94
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2046",
-          "var_1d": -0.02,
+          "var_1d": -1.98,
           "var_1m": -5.15,
           "var_12m": -2.05,
           "var_ytd": -9.97
@@ -4533,47 +4533,47 @@
           "dias_vto": 1381,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2030-07-09",
-          "proximo_pago_fecha": "2027-04-10",
+          "proximo_pago_fecha": "2027-04-11",
           "proximo_pago_monto": "$ 0.12 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-10",
+              "fecha": "2027-04-11",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2027-10-24",
+              "fecha": "2027-10-25",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2028-05-08",
+              "fecha": "2028-05-09",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2028-11-22",
+              "fecha": "2028-11-23",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2029-06-07",
+              "fecha": "2029-06-08",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2029-12-21",
+              "fecha": "2029-12-22",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2030-07-07",
+              "fecha": "2030-07-08",
               "renta": 0.12,
               "amort": 100.0,
               "total": 100.12
@@ -4614,54 +4614,54 @@
           "dias_vto": 1381,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2030-07-09",
-          "proximo_pago_fecha": "2027-04-10",
+          "proximo_pago_fecha": "2027-04-11",
           "proximo_pago_monto": "$ 0.12 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-10",
+              "fecha": "2027-04-11",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2027-10-24",
+              "fecha": "2027-10-25",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2028-05-08",
+              "fecha": "2028-05-09",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2028-11-22",
+              "fecha": "2028-11-23",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2029-06-07",
+              "fecha": "2029-06-08",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2029-12-21",
+              "fecha": "2029-12-22",
               "renta": 0.12,
               "amort": 0.0,
               "total": 0.12
             },
             {
-              "fecha": "2030-07-07",
+              "fecha": "2030-07-08",
               "renta": 0.12,
               "amort": 100.0,
               "total": 100.12
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 07/2030",
-          "var_1d": 0.01,
+          "var_1d": 0.67,
           "var_1m": -0.8,
           "var_12m": 10.46,
           "var_ytd": -15.51
@@ -4695,72 +4695,72 @@
           "dias_vto": 3207,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2035-07-09",
-          "proximo_pago_fecha": "2027-08-11",
+          "proximo_pago_fecha": "2027-08-12",
           "proximo_pago_monto": "$ 1.03 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-08-11",
+              "fecha": "2027-08-12",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-06-27",
+              "fecha": "2028-06-28",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2029-05-14",
+              "fecha": "2029-05-15",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2030-03-30",
+              "fecha": "2030-03-31",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2031-02-14",
+              "fecha": "2031-02-15",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-01-01",
+              "fecha": "2032-01-02",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-11-16",
+              "fecha": "2032-11-17",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2033-10-03",
+              "fecha": "2033-10-04",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2034-08-20",
+              "fecha": "2034-08-21",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2035-07-07",
+              "fecha": "2035-07-08",
               "renta": 1.03,
               "amort": 100.0,
               "total": 101.03
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - vto. 07/2035",
-          "var_1d": -0.01,
+          "var_1d": -1.02,
           "var_1m": -7.34,
           "var_12m": 44.95,
           "var_ytd": -6.05
@@ -4794,65 +4794,65 @@
           "dias_vto": 3207,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2035-07-09",
-          "proximo_pago_fecha": "2027-08-11",
+          "proximo_pago_fecha": "2027-08-12",
           "proximo_pago_monto": "$ 1.03 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-08-11",
+              "fecha": "2027-08-12",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2028-06-27",
+              "fecha": "2028-06-28",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2029-05-14",
+              "fecha": "2029-05-15",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2030-03-30",
+              "fecha": "2030-03-31",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2031-02-14",
+              "fecha": "2031-02-15",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-01-01",
+              "fecha": "2032-01-02",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2032-11-16",
+              "fecha": "2032-11-17",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2033-10-03",
+              "fecha": "2033-10-04",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2034-08-20",
+              "fecha": "2034-08-21",
               "renta": 1.03,
               "amort": 0.0,
               "total": 1.03
             },
             {
-              "fecha": "2035-07-07",
+              "fecha": "2035-07-08",
               "renta": 1.03,
               "amort": 100.0,
               "total": 101.03
@@ -4893,72 +4893,72 @@
           "dias_vto": 4123,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2038-01-09",
-          "proximo_pago_fecha": "2027-11-11",
+          "proximo_pago_fecha": "2027-11-12",
           "proximo_pago_monto": "$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-11-11",
+              "fecha": "2027-11-12",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2028-12-27",
+              "fecha": "2028-12-28",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2030-02-12",
+              "fecha": "2030-02-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2031-04-01",
+              "fecha": "2031-04-02",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2032-05-17",
+              "fecha": "2032-05-18",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2033-07-03",
+              "fecha": "2033-07-04",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2034-08-20",
+              "fecha": "2034-08-21",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2035-10-06",
+              "fecha": "2035-10-07",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2036-11-21",
+              "fecha": "2036-11-22",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2038-01-08",
+              "fecha": "2038-01-09",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
             }
           ],
           "subtitulo": "Bono USD Ley Arg. - vto. 01/2038",
-          "var_1d": -0.01,
+          "var_1d": -0.88,
           "var_1m": -6.67,
           "var_12m": 51.28,
           "var_ytd": -4.69
@@ -4992,72 +4992,72 @@
           "dias_vto": 4123,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2038-01-09",
-          "proximo_pago_fecha": "2027-11-11",
+          "proximo_pago_fecha": "2027-11-12",
           "proximo_pago_monto": "$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-11-11",
+              "fecha": "2027-11-12",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2028-12-27",
+              "fecha": "2028-12-28",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2030-02-12",
+              "fecha": "2030-02-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2031-04-01",
+              "fecha": "2031-04-02",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2032-05-17",
+              "fecha": "2032-05-18",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2033-07-03",
+              "fecha": "2033-07-04",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2034-08-20",
+              "fecha": "2034-08-21",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2035-10-06",
+              "fecha": "2035-10-07",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2036-11-21",
+              "fecha": "2036-11-22",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2038-01-08",
+              "fecha": "2038-01-09",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
             }
           ],
           "subtitulo": "Bono USD Ley NY - vto. 01/2038",
-          "var_1d": -0.01,
+          "var_1d": -0.58,
           "var_1m": -5.02,
           "var_12m": 44.39,
           "var_ytd": 0.31
@@ -5078,24 +5078,24 @@
           "open": 173.35,
           "high": 174.44,
           "low": 173.35,
-          "paridad_pct": 99.73,
-          "valor_tecnico": 174.86,
+          "paridad_pct": 99.66,
+          "valor_tecnico": 174.98,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 0.0,
           "cupon_anual_pct": 0.0,
           "tipo_cupon": "Cero Cupón + CER",
           "frecuencia_pago": "Al Vto",
           "amortizacion": "Al Vencimiento (10/2026)",
-          "tir": 3.12,
-          "duration": 0.09,
+          "tir": 3.93,
+          "duration": 0.08,
           "dias_vto": 32,
           "fecha_emision": "2024-10-31",
           "fecha_vto": "2026-10-30",
-          "proximo_pago_fecha": "2026-10-27",
+          "proximo_pago_fecha": "2026-10-28",
           "proximo_pago_monto": "$ 100.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2026-10-27",
+              "fecha": "2026-10-28",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -5123,24 +5123,24 @@
           "open": 744.3,
           "high": 748.5,
           "low": 742.6,
-          "paridad_pct": 99.69,
-          "valor_tecnico": 750.62,
+          "paridad_pct": 99.62,
+          "valor_tecnico": 751.12,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 1.86,
           "cupon_anual_pct": 7.45,
           "tipo_cupon": "Tasa Fija + CER",
           "frecuencia_pago": "Semestral",
           "amortizacion": "Al Vencimiento (11/2026)",
-          "tir": 4.76,
+          "tir": 5.37,
           "duration": 0.11,
           "dias_vto": 42,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2026-11-09",
-          "proximo_pago_fecha": "2026-11-06",
+          "proximo_pago_fecha": "2026-11-07",
           "proximo_pago_monto": "$ 103.72 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2026-11-06",
+              "fecha": "2026-11-07",
               "renta": 3.725,
               "amort": 100.0,
               "total": 103.725
@@ -5168,24 +5168,24 @@
           "open": 307.7,
           "high": 308.0,
           "low": 305.05,
-          "paridad_pct": 99.24,
-          "valor_tecnico": 309.77,
+          "paridad_pct": 99.17,
+          "valor_tecnico": 309.97,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 0.0,
           "cupon_anual_pct": 0.0,
           "tipo_cupon": "Cero Cupón + CER",
           "frecuencia_pago": "Al Vto",
           "amortizacion": "Al Vencimiento (12/2026)",
-          "tir": 3.66,
+          "tir": 3.97,
           "duration": 0.21,
           "dias_vto": 78,
           "fecha_emision": "2024-03-15",
           "fecha_vto": "2026-12-15",
-          "proximo_pago_fecha": "2026-12-12",
+          "proximo_pago_fecha": "2026-12-13",
           "proximo_pago_monto": "$ 100.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2026-12-12",
+              "fecha": "2026-12-13",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -5213,24 +5213,24 @@
           "open": 228.0,
           "high": 228.0,
           "low": 225.7,
-          "paridad_pct": 97.62,
-          "valor_tecnico": 232.38,
+          "paridad_pct": 97.56,
+          "valor_tecnico": 232.53,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 0.0,
           "cupon_anual_pct": 0.0,
           "tipo_cupon": "Cero Cupón + CER",
           "frecuencia_pago": "Al Vto",
           "amortizacion": "Al Vencimiento (03/2027)",
-          "tir": 4.89,
+          "tir": 5.03,
           "duration": 0.48,
           "dias_vto": 184,
           "fecha_emision": "2024-05-20",
           "fecha_vto": "2027-03-31",
-          "proximo_pago_fecha": "2027-03-28",
+          "proximo_pago_fecha": "2027-03-29",
           "proximo_pago_monto": "$ 100.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-03-28",
+              "fecha": "2027-03-29",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -5258,24 +5258,24 @@
           "open": 405.3,
           "high": 407.65,
           "low": 401.1,
-          "paridad_pct": 96.18,
-          "valor_tecnico": 418.99,
+          "paridad_pct": 96.12,
+          "valor_tecnico": 419.27,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 0.0,
           "cupon_anual_pct": 0.0,
           "tipo_cupon": "Cero Cupón + CER",
           "frecuencia_pago": "Al Vto",
           "amortizacion": "Al Vencimiento (06/2027)",
-          "tir": 5.3,
-          "duration": 0.72,
+          "tir": 5.39,
+          "duration": 0.71,
           "dias_vto": 275,
           "fecha_emision": "2024-02-01",
           "fecha_vto": "2027-06-30",
-          "proximo_pago_fecha": "2027-06-27",
+          "proximo_pago_fecha": "2027-06-28",
           "proximo_pago_monto": "$ 100.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-06-27",
+              "fecha": "2027-06-28",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -5303,30 +5303,30 @@
           "open": 98.6,
           "high": 98.6,
           "low": 98.6,
-          "paridad_pct": 92.95,
-          "valor_tecnico": 106.08,
+          "paridad_pct": 92.89,
+          "valor_tecnico": 106.15,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 0.0,
           "cupon_anual_pct": 0.0,
           "tipo_cupon": "Cero Cupón + CER",
           "frecuencia_pago": "Al Vto",
           "amortizacion": "Al Vencimiento (10/2027)",
-          "tir": 6.97,
+          "tir": 7.04,
           "duration": 1.01,
           "dias_vto": 396,
           "fecha_emision": "2026-06-30",
           "fecha_vto": "2027-10-29",
-          "proximo_pago_fecha": "2027-04-11",
+          "proximo_pago_fecha": "2027-04-12",
           "proximo_pago_monto": "$ 0.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-11",
+              "fecha": "2027-04-12",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2027-10-26",
+              "fecha": "2027-10-27",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -5353,30 +5353,30 @@
           "open": 284.95,
           "high": 284.95,
           "low": 279.55,
-          "paridad_pct": 90.49,
-          "valor_tecnico": 309.77,
+          "paridad_pct": 90.43,
+          "valor_tecnico": 309.97,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 0.0,
           "cupon_anual_pct": 0.0,
           "tipo_cupon": "Cero Cupón + CER",
           "frecuencia_pago": "Al Vto",
           "amortizacion": "Al Vencimiento (12/2027)",
-          "tir": 8.59,
+          "tir": 8.64,
           "duration": 1.12,
           "dias_vto": 443,
           "fecha_emision": "2024-03-15",
           "fecha_vto": "2027-12-15",
-          "proximo_pago_fecha": "2027-05-04",
+          "proximo_pago_fecha": "2027-05-05",
           "proximo_pago_monto": "$ 0.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-05-04",
+              "fecha": "2027-05-05",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2027-12-12",
+              "fecha": "2027-12-13",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -5404,36 +5404,36 @@
           "open": 351.35,
           "high": 354.85,
           "low": 351.05,
-          "paridad_pct": 84.07,
-          "valor_tecnico": 418.99,
+          "paridad_pct": 84.01,
+          "valor_tecnico": 419.27,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 0.0,
           "cupon_anual_pct": 0.0,
           "tipo_cupon": "Cero Cupón + CER",
           "frecuencia_pago": "Al Vto",
           "amortizacion": "Al Vencimiento (06/2028)",
-          "tir": 10.39,
+          "tir": 10.43,
           "duration": 1.59,
           "dias_vto": 641,
           "fecha_emision": "2024-02-01",
           "fecha_vto": "2028-06-30",
-          "proximo_pago_fecha": "2027-04-26",
+          "proximo_pago_fecha": "2027-04-27",
           "proximo_pago_monto": "$ 0.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-26",
+              "fecha": "2027-04-27",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2027-11-26",
+              "fecha": "2027-11-27",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2028-06-27",
+              "fecha": "2028-06-28",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -5461,45 +5461,45 @@
           "open": 1751.0,
           "high": 1764.5,
           "low": 1751.0,
-          "paridad_pct": 93.65,
-          "valor_tecnico": 1878.34,
+          "paridad_pct": 93.58,
+          "valor_tecnico": 1879.6,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 5.24,
-          "cupon_anual_pct": 20.95,
+          "cupon_anual_pct": 20.96,
           "tipo_cupon": "Tasa Fija + CER",
           "frecuencia_pago": "Semestral",
           "amortizacion": "Al Vencimiento (11/2028)",
-          "tir": 8.69,
+          "tir": 8.76,
           "duration": 1.02,
           "dias_vto": 773,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2028-11-09",
-          "proximo_pago_fecha": "2027-04-06",
-          "proximo_pago_monto": "$ 10.47 por 100 VN",
+          "proximo_pago_fecha": "2027-04-07",
+          "proximo_pago_monto": "$ 10.48 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-06",
-              "renta": 10.475,
+              "fecha": "2027-04-07",
+              "renta": 10.48,
               "amort": 0.0,
-              "total": 10.475
+              "total": 10.48
             },
             {
-              "fecha": "2027-10-16",
-              "renta": 10.475,
+              "fecha": "2027-10-17",
+              "renta": 10.48,
               "amort": 0.0,
-              "total": 10.475
+              "total": 10.48
             },
             {
-              "fecha": "2028-04-26",
-              "renta": 10.475,
+              "fecha": "2028-04-27",
+              "renta": 10.48,
               "amort": 0.0,
-              "total": 10.475
+              "total": 10.48
             },
             {
-              "fecha": "2028-11-06",
-              "renta": 10.475,
+              "fecha": "2028-11-07",
+              "renta": 10.48,
               "amort": 100.0,
-              "total": 110.475
+              "total": 110.48
             }
           ],
           "subtitulo": "Bono CER - vto. 11/2028",
@@ -5524,85 +5524,85 @@
           "open": 1436.0,
           "high": 1446.0,
           "low": 1431.0,
-          "paridad_pct": 80.03,
-          "valor_tecnico": 1804.39,
+          "paridad_pct": 79.97,
+          "valor_tecnico": 1805.6,
           "valor_residual_pct": 100.0,
-          "intereses_corridos": 5.59,
-          "cupon_anual_pct": 22.37,
+          "intereses_corridos": 5.6,
+          "cupon_anual_pct": 22.39,
           "tipo_cupon": "Tasa Fija + CER",
           "frecuencia_pago": "Semestral",
           "amortizacion": "Al Vencimiento (11/2031)",
-          "tir": 11.32,
+          "tir": 11.35,
           "duration": 2.48,
           "dias_vto": 1890,
           "fecha_emision": "2022-05-31",
           "fecha_vto": "2031-11-30",
-          "proximo_pago_fecha": "2027-04-02",
-          "proximo_pago_monto": "$ 11.19 por 100 VN",
+          "proximo_pago_fecha": "2027-04-03",
+          "proximo_pago_monto": "$ 11.20 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-02",
-              "renta": 11.185,
+              "fecha": "2027-04-03",
+              "renta": 11.195,
               "amort": 0.0,
-              "total": 11.185
+              "total": 11.195
             },
             {
-              "fecha": "2027-10-08",
-              "renta": 11.185,
+              "fecha": "2027-10-09",
+              "renta": 11.195,
               "amort": 0.0,
-              "total": 11.185
+              "total": 11.195
             },
             {
-              "fecha": "2028-04-14",
-              "renta": 11.185,
+              "fecha": "2028-04-15",
+              "renta": 11.195,
               "amort": 0.0,
-              "total": 11.185
+              "total": 11.195
             },
             {
-              "fecha": "2028-10-20",
-              "renta": 11.185,
+              "fecha": "2028-10-21",
+              "renta": 11.195,
               "amort": 0.0,
-              "total": 11.185
+              "total": 11.195
             },
             {
-              "fecha": "2029-04-27",
-              "renta": 11.185,
+              "fecha": "2029-04-28",
+              "renta": 11.195,
               "amort": 0.0,
-              "total": 11.185
+              "total": 11.195
             },
             {
-              "fecha": "2029-11-02",
-              "renta": 11.185,
+              "fecha": "2029-11-03",
+              "renta": 11.195,
               "amort": 0.0,
-              "total": 11.185
+              "total": 11.195
             },
             {
-              "fecha": "2030-05-10",
-              "renta": 11.185,
+              "fecha": "2030-05-11",
+              "renta": 11.195,
               "amort": 0.0,
-              "total": 11.185
+              "total": 11.195
             },
             {
-              "fecha": "2030-11-15",
-              "renta": 11.185,
+              "fecha": "2030-11-16",
+              "renta": 11.195,
               "amort": 0.0,
-              "total": 11.185
+              "total": 11.195
             },
             {
-              "fecha": "2031-05-23",
-              "renta": 11.185,
+              "fecha": "2031-05-24",
+              "renta": 11.195,
               "amort": 0.0,
-              "total": 11.185
+              "total": 11.195
             },
             {
-              "fecha": "2031-11-28",
-              "renta": 11.185,
+              "fecha": "2031-11-29",
+              "renta": 11.195,
               "amort": 100.0,
-              "total": 111.185
+              "total": 111.195
             }
           ],
           "subtitulo": "Bono CER - vto. 11/2031",
-          "var_1d": 0.01,
+          "var_1d": 0.63,
           "var_1m": 0.7,
           "var_12m": 1329.7,
           "var_ytd": 60.62
@@ -5623,81 +5623,81 @@
           "open": 48305.0,
           "high": 48695.0,
           "low": 48010.0,
-          "paridad_pct": 87.12,
-          "valor_tecnico": 55740.98,
+          "paridad_pct": 87.06,
+          "valor_tecnico": 55778.36,
           "valor_residual_pct": 100.0,
-          "intereses_corridos": 400.5,
-          "cupon_anual_pct": 1602.02,
+          "intereses_corridos": 400.77,
+          "cupon_anual_pct": 1603.09,
           "tipo_cupon": "Tasa Fija + CER",
           "frecuencia_pago": "Semestral",
           "amortizacion": "Semestral (2024-2033)",
-          "tir": 10.6,
+          "tir": 10.62,
           "duration": 2.93,
           "dias_vto": 2653,
           "fecha_emision": "2003-12-31",
           "fecha_vto": "2033-12-31",
-          "proximo_pago_fecha": "2027-06-17",
-          "proximo_pago_monto": "$ 801.01 por 100 VN",
+          "proximo_pago_fecha": "2027-06-18",
+          "proximo_pago_monto": "$ 801.54 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-06-17",
-              "renta": 801.01,
+              "fecha": "2027-06-18",
+              "renta": 801.545,
               "amort": 0.0,
-              "total": 801.01
+              "total": 801.545
             },
             {
-              "fecha": "2028-03-08",
-              "renta": 801.01,
+              "fecha": "2028-03-09",
+              "renta": 801.545,
               "amort": 0.0,
-              "total": 801.01
+              "total": 801.545
             },
             {
-              "fecha": "2028-11-28",
-              "renta": 801.01,
+              "fecha": "2028-11-29",
+              "renta": 801.545,
               "amort": 0.0,
-              "total": 801.01
+              "total": 801.545
             },
             {
-              "fecha": "2029-08-21",
-              "renta": 801.01,
+              "fecha": "2029-08-22",
+              "renta": 801.545,
               "amort": 0.0,
-              "total": 801.01
+              "total": 801.545
             },
             {
-              "fecha": "2030-05-13",
-              "renta": 801.01,
+              "fecha": "2030-05-14",
+              "renta": 801.545,
               "amort": 0.0,
-              "total": 801.01
+              "total": 801.545
             },
             {
-              "fecha": "2031-02-02",
-              "renta": 801.01,
+              "fecha": "2031-02-03",
+              "renta": 801.545,
               "amort": 0.0,
-              "total": 801.01
+              "total": 801.545
             },
             {
-              "fecha": "2031-10-26",
-              "renta": 801.01,
+              "fecha": "2031-10-27",
+              "renta": 801.545,
               "amort": 0.0,
-              "total": 801.01
+              "total": 801.545
             },
             {
-              "fecha": "2032-07-17",
-              "renta": 801.01,
+              "fecha": "2032-07-18",
+              "renta": 801.545,
               "amort": 0.0,
-              "total": 801.01
+              "total": 801.545
             },
             {
-              "fecha": "2033-04-08",
-              "renta": 801.01,
+              "fecha": "2033-04-09",
+              "renta": 801.545,
               "amort": 0.0,
-              "total": 801.01
+              "total": 801.545
             },
             {
-              "fecha": "2033-12-30",
-              "renta": 801.01,
+              "fecha": "2033-12-31",
+              "renta": 801.545,
               "amort": 100.0,
-              "total": 901.01
+              "total": 901.545
             }
           ],
           "subtitulo": "Bono CER - vto. 12/2033",
@@ -5722,78 +5722,78 @@
           "open": 34950.0,
           "high": 34950.0,
           "low": 34055.0,
-          "paridad_pct": 59.5,
-          "valor_tecnico": 58206.97,
+          "paridad_pct": 59.46,
+          "valor_tecnico": 58245.67,
           "valor_residual_pct": 100.0,
           "intereses_corridos": 127.82,
           "cupon_anual_pct": 511.29,
           "tipo_cupon": "Tasa Fija + CER",
           "frecuencia_pago": "Semestral",
           "amortizacion": "Al Vencimiento (12/2038)",
-          "tir": 10.49,
+          "tir": 10.5,
           "duration": 6.01,
           "dias_vto": 4477,
           "fecha_emision": "2003-12-31",
           "fecha_vto": "2038-12-31",
-          "proximo_pago_fecha": "2027-12-16",
+          "proximo_pago_fecha": "2027-12-17",
           "proximo_pago_monto": "$ 255.65 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-12-16",
+              "fecha": "2027-12-17",
               "renta": 255.645,
               "amort": 0.0,
               "total": 255.645
             },
             {
-              "fecha": "2029-03-08",
+              "fecha": "2029-03-09",
               "renta": 255.645,
               "amort": 0.0,
               "total": 255.645
             },
             {
-              "fecha": "2030-05-30",
+              "fecha": "2030-05-31",
               "renta": 255.645,
               "amort": 0.0,
               "total": 255.645
             },
             {
-              "fecha": "2031-08-20",
+              "fecha": "2031-08-21",
               "renta": 255.645,
               "amort": 0.0,
               "total": 255.645
             },
             {
-              "fecha": "2032-11-10",
+              "fecha": "2032-11-11",
               "renta": 255.645,
               "amort": 0.0,
               "total": 255.645
             },
             {
-              "fecha": "2034-02-01",
+              "fecha": "2034-02-02",
               "renta": 255.645,
               "amort": 0.0,
               "total": 255.645
             },
             {
-              "fecha": "2035-04-24",
+              "fecha": "2035-04-25",
               "renta": 255.645,
               "amort": 0.0,
               "total": 255.645
             },
             {
-              "fecha": "2036-07-15",
+              "fecha": "2036-07-16",
               "renta": 255.645,
               "amort": 0.0,
               "total": 255.645
             },
             {
-              "fecha": "2037-10-06",
+              "fecha": "2037-10-07",
               "renta": 255.645,
               "amort": 0.0,
               "total": 255.645
             },
             {
-              "fecha": "2038-12-28",
+              "fecha": "2038-12-29",
               "renta": 255.645,
               "amort": 100.0,
               "total": 355.645
@@ -5821,85 +5821,85 @@
           "open": 41705.0,
           "high": 42505.0,
           "low": 41030.0,
-          "paridad_pct": 51.26,
-          "valor_tecnico": 80771.92,
+          "paridad_pct": 51.22,
+          "valor_tecnico": 80826.09,
           "valor_residual_pct": 100.0,
-          "intereses_corridos": 331.51,
-          "cupon_anual_pct": 1326.05,
+          "intereses_corridos": 331.74,
+          "cupon_anual_pct": 1326.94,
           "tipo_cupon": "Tasa Fija + CER",
           "frecuencia_pago": "Semestral",
           "amortizacion": "Al Vencimiento (12/2045)",
-          "tir": 10.05,
-          "duration": 9.27,
+          "tir": 10.06,
+          "duration": 9.26,
           "dias_vto": 7036,
           "fecha_emision": "2003-12-31",
           "fecha_vto": "2045-12-31",
-          "proximo_pago_fecha": "2028-08-28",
-          "proximo_pago_monto": "$ 663.02 por 100 VN",
+          "proximo_pago_fecha": "2028-08-29",
+          "proximo_pago_monto": "$ 663.47 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2028-08-28",
-              "renta": 663.025,
+              "fecha": "2028-08-29",
+              "renta": 663.47,
               "amort": 0.0,
-              "total": 663.025
+              "total": 663.47
             },
             {
-              "fecha": "2030-08-02",
-              "renta": 663.025,
+              "fecha": "2030-08-03",
+              "renta": 663.47,
               "amort": 0.0,
-              "total": 663.025
+              "total": 663.47
             },
             {
-              "fecha": "2032-07-05",
-              "renta": 663.025,
+              "fecha": "2032-07-06",
+              "renta": 663.47,
               "amort": 0.0,
-              "total": 663.025
+              "total": 663.47
             },
             {
-              "fecha": "2034-06-09",
-              "renta": 663.025,
+              "fecha": "2034-06-10",
+              "renta": 663.47,
               "amort": 0.0,
-              "total": 663.025
+              "total": 663.47
             },
             {
-              "fecha": "2036-05-13",
-              "renta": 663.025,
+              "fecha": "2036-05-14",
+              "renta": 663.47,
               "amort": 0.0,
-              "total": 663.025
+              "total": 663.47
             },
             {
-              "fecha": "2038-04-16",
-              "renta": 663.025,
+              "fecha": "2038-04-17",
+              "renta": 663.47,
               "amort": 0.0,
-              "total": 663.025
+              "total": 663.47
             },
             {
-              "fecha": "2040-03-20",
-              "renta": 663.025,
+              "fecha": "2040-03-21",
+              "renta": 663.47,
               "amort": 0.0,
-              "total": 663.025
+              "total": 663.47
             },
             {
-              "fecha": "2042-02-21",
-              "renta": 663.025,
+              "fecha": "2042-02-22",
+              "renta": 663.47,
               "amort": 0.0,
-              "total": 663.025
+              "total": 663.47
             },
             {
-              "fecha": "2044-01-26",
-              "renta": 663.025,
+              "fecha": "2044-01-27",
+              "renta": 663.47,
               "amort": 0.0,
-              "total": 663.025
+              "total": 663.47
             },
             {
-              "fecha": "2045-12-30",
-              "renta": 663.025,
+              "fecha": "2045-12-31",
+              "renta": 663.47,
               "amort": 100.0,
-              "total": 763.025
+              "total": 763.47
             }
           ],
           "subtitulo": "Bono CER - vto. 12/2045",
-          "var_1d": -0.01,
+          "var_1d": -0.96,
           "var_1m": -2.24,
           "var_12m": 64.55,
           "var_ytd": 11.05
@@ -5933,29 +5933,29 @@
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-03-24",
+          "proximo_pago_fecha": "2027-03-25",
           "proximo_pago_monto": "$ 26.51 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-03-24",
+              "fecha": "2027-03-25",
               "renta": 26.51,
               "amort": 0.0,
               "total": 26.51
             },
             {
-              "fecha": "2027-09-20",
+              "fecha": "2027-09-21",
               "renta": 26.51,
               "amort": 0.0,
               "total": 26.51
             },
             {
-              "fecha": "2028-03-18",
+              "fecha": "2028-03-19",
               "renta": 26.51,
               "amort": 0.0,
               "total": 26.51
             },
             {
-              "fecha": "2028-09-14",
+              "fecha": "2028-09-15",
               "renta": 26.51,
               "amort": 100.0,
               "total": 126.51
@@ -5996,29 +5996,29 @@
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-03-24",
+          "proximo_pago_fecha": "2027-03-25",
           "proximo_pago_monto": "$ 27.94 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-03-24",
+              "fecha": "2027-03-25",
               "renta": 27.94,
               "amort": 0.0,
               "total": 27.94
             },
             {
-              "fecha": "2027-09-20",
+              "fecha": "2027-09-21",
               "renta": 27.94,
               "amort": 0.0,
               "total": 27.94
             },
             {
-              "fecha": "2028-03-18",
+              "fecha": "2028-03-19",
               "renta": 27.94,
               "amort": 0.0,
               "total": 27.94
             },
             {
-              "fecha": "2028-09-14",
+              "fecha": "2028-09-15",
               "renta": 27.94,
               "amort": 100.0,
               "total": 127.94
@@ -6058,11 +6058,11 @@
           "dias_vto": 2,
           "fecha_emision": "2026-03-16",
           "fecha_vto": "2026-09-30",
-          "proximo_pago_fecha": "2026-09-27",
+          "proximo_pago_fecha": "2026-09-28",
           "proximo_pago_monto": "$ 117.54 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2026-09-27",
+              "fecha": "2026-09-28",
               "renta": 17.54,
               "amort": 100.0,
               "total": 117.54
@@ -6103,11 +6103,11 @@
           "dias_vto": 21,
           "fecha_emision": "2016-10-17",
           "fecha_vto": "2026-10-17",
-          "proximo_pago_fecha": "2026-10-16",
+          "proximo_pago_fecha": "2026-10-17",
           "proximo_pago_monto": "$ 103.88 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2026-10-16",
+              "fecha": "2026-10-17",
               "renta": 3.875,
               "amort": 100.0,
               "total": 103.875
@@ -6148,11 +6148,11 @@
           "dias_vto": 32,
           "fecha_emision": "2025-10-31",
           "fecha_vto": "2026-10-30",
-          "proximo_pago_fecha": "2026-10-27",
+          "proximo_pago_fecha": "2026-10-28",
           "proximo_pago_monto": "$ 135.28 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2026-10-27",
+              "fecha": "2026-10-28",
               "renta": 35.28,
               "amort": 100.0,
               "total": 135.28
@@ -6193,11 +6193,11 @@
           "dias_vto": 46,
           "fecha_emision": "2026-06-30",
           "fecha_vto": "2026-11-13",
-          "proximo_pago_fecha": "2026-11-10",
+          "proximo_pago_fecha": "2026-11-11",
           "proximo_pago_monto": "$ 109.65 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2026-11-10",
+              "fecha": "2026-11-11",
               "renta": 9.65,
               "amort": 100.0,
               "total": 109.65
@@ -6237,11 +6237,11 @@
           "dias_vto": 63,
           "fecha_emision": "2025-12-15",
           "fecha_vto": "2026-11-30",
-          "proximo_pago_fecha": "2026-11-27",
+          "proximo_pago_fecha": "2026-11-28",
           "proximo_pago_monto": "$ 129.89 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2026-11-27",
+              "fecha": "2026-11-28",
               "renta": 29.89,
               "amort": 100.0,
               "total": 129.89
@@ -6282,29 +6282,29 @@
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-03-24",
+          "proximo_pago_fecha": "2027-03-25",
           "proximo_pago_monto": "$ 29.16 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-03-24",
+              "fecha": "2027-03-25",
               "renta": 29.16,
               "amort": 0.0,
               "total": 29.16
             },
             {
-              "fecha": "2027-09-20",
+              "fecha": "2027-09-21",
               "renta": 29.16,
               "amort": 0.0,
               "total": 29.16
             },
             {
-              "fecha": "2028-03-18",
+              "fecha": "2028-03-19",
               "renta": 29.16,
               "amort": 0.0,
               "total": 29.16
             },
             {
-              "fecha": "2028-09-14",
+              "fecha": "2028-09-15",
               "renta": 29.16,
               "amort": 100.0,
               "total": 129.16
@@ -6344,29 +6344,29 @@
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-03-24",
+          "proximo_pago_fecha": "2027-03-25",
           "proximo_pago_monto": "$ 8.14 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-03-24",
+              "fecha": "2027-03-25",
               "renta": 8.14,
               "amort": 0.0,
               "total": 8.14
             },
             {
-              "fecha": "2027-09-20",
+              "fecha": "2027-09-21",
               "renta": 8.14,
               "amort": 0.0,
               "total": 8.14
             },
             {
-              "fecha": "2028-03-18",
+              "fecha": "2028-03-19",
               "renta": 8.14,
               "amort": 0.0,
               "total": 8.14
             },
             {
-              "fecha": "2028-09-14",
+              "fecha": "2028-09-15",
               "renta": 8.14,
               "amort": 100.0,
               "total": 108.14
@@ -6406,11 +6406,11 @@
           "dias_vto": 78,
           "fecha_emision": "2025-01-29",
           "fecha_vto": "2026-12-15",
-          "proximo_pago_fecha": "2026-12-12",
+          "proximo_pago_fecha": "2026-12-13",
           "proximo_pago_monto": "$ 120.13 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2026-12-12",
+              "fecha": "2026-12-13",
               "renta": 20.133,
               "amort": 100.0,
               "total": 120.132
@@ -6450,11 +6450,11 @@
           "dias_vto": 151,
           "fecha_emision": "2026-02-13",
           "fecha_vto": "2027-02-26",
-          "proximo_pago_fecha": "2027-02-23",
+          "proximo_pago_fecha": "2027-02-24",
           "proximo_pago_monto": "$ 109.33 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-02-23",
+              "fecha": "2027-02-24",
               "renta": 9.335,
               "amort": 100.0,
               "total": 109.335
@@ -6495,11 +6495,11 @@
           "dias_vto": 305,
           "fecha_emision": "2026-06-30",
           "fecha_vto": "2027-07-30",
-          "proximo_pago_fecha": "2027-07-27",
+          "proximo_pago_fecha": "2027-07-28",
           "proximo_pago_monto": "$ 109.07 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-07-27",
+              "fecha": "2027-07-28",
               "renta": 9.068,
               "amort": 100.0,
               "total": 109.067
@@ -6539,18 +6539,18 @@
           "dias_vto": 337,
           "fecha_emision": "2026-03-31",
           "fecha_vto": "2027-08-31",
-          "proximo_pago_fecha": "2027-08-28",
+          "proximo_pago_fecha": "2027-08-29",
           "proximo_pago_monto": "$ 112.80 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-08-28",
+              "fecha": "2027-08-29",
               "renta": 12.803,
               "amort": 100.0,
               "total": 112.802
             }
           ],
           "subtitulo": "Bono TAMAR - vto. 08/2027",
-          "var_1d": 0.02,
+          "var_1d": 1.52,
           "var_1m": 4.17,
           "var_12m": 9.59,
           "var_ytd": 9.59
@@ -6584,24 +6584,24 @@
           "dias_vto": 515,
           "fecha_emision": "2026-04-15",
           "fecha_vto": "2028-02-25",
-          "proximo_pago_fecha": "2027-06-09",
+          "proximo_pago_fecha": "2027-06-10",
           "proximo_pago_monto": "$ 18.37 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-06-09",
+              "fecha": "2027-06-10",
               "renta": 18.372,
               "amort": 0.0,
               "total": 18.372
             },
             {
-              "fecha": "2028-02-22",
+              "fecha": "2028-02-23",
               "renta": 18.372,
               "amort": 100.0,
               "total": 118.373
             }
           ],
           "subtitulo": "Bono TAMAR - vto. 02/2028",
-          "var_1d": -0.01,
+          "var_1d": -0.9,
           "var_1m": 2.66,
           "var_12m": 4.27,
           "var_ytd": 4.27
@@ -6635,17 +6635,17 @@
           "dias_vto": 512,
           "fecha_emision": "2018-02-22",
           "fecha_vto": "2028-02-22",
-          "proximo_pago_fecha": "2027-06-08",
+          "proximo_pago_fecha": "2027-06-09",
           "proximo_pago_monto": "$ 1.66 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-06-08",
+              "fecha": "2027-06-09",
               "renta": 1.66,
               "amort": 0.0,
               "total": 1.66
             },
             {
-              "fecha": "2028-02-19",
+              "fecha": "2028-02-20",
               "renta": 1.66,
               "amort": 100.0,
               "total": 101.66
@@ -6686,23 +6686,23 @@
           "dias_vto": 703,
           "fecha_emision": "2026-04-30",
           "fecha_vto": "2028-08-31",
-          "proximo_pago_fecha": "2027-05-17",
+          "proximo_pago_fecha": "2027-05-18",
           "proximo_pago_monto": "$ 25.34 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-05-17",
+              "fecha": "2027-05-18",
               "renta": 25.335,
               "amort": 0.0,
               "total": 25.335
             },
             {
-              "fecha": "2028-01-06",
+              "fecha": "2028-01-07",
               "renta": 25.335,
               "amort": 0.0,
               "total": 25.335
             },
             {
-              "fecha": "2028-08-28",
+              "fecha": "2028-08-29",
               "renta": 25.335,
               "amort": 100.0,
               "total": 125.335
@@ -6743,30 +6743,30 @@
           "dias_vto": 641,
           "fecha_emision": "2026-05-15",
           "fecha_vto": "2028-06-30",
-          "proximo_pago_fecha": "2027-04-26",
+          "proximo_pago_fecha": "2027-04-27",
           "proximo_pago_monto": "$ 37.23 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-26",
+              "fecha": "2027-04-27",
               "renta": 37.235,
               "amort": 0.0,
               "total": 37.235
             },
             {
-              "fecha": "2027-11-26",
+              "fecha": "2027-11-27",
               "renta": 37.235,
               "amort": 0.0,
               "total": 37.235
             },
             {
-              "fecha": "2028-06-27",
+              "fecha": "2028-06-28",
               "renta": 37.235,
               "amort": 100.0,
               "total": 137.235
             }
           ],
           "subtitulo": "Bono ARS - vto. 06/2028",
-          "var_1d": -0.01,
+          "var_1d": 0.0,
           "var_1m": 3.5,
           "var_12m": 55.0
         },
@@ -6799,29 +6799,29 @@
           "dias_vto": 809,
           "fecha_emision": "2026-06-12",
           "fecha_vto": "2028-12-15",
-          "proximo_pago_fecha": "2027-04-15",
+          "proximo_pago_fecha": "2027-04-16",
           "proximo_pago_monto": "$ 46.53 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-15",
+              "fecha": "2027-04-16",
               "renta": 46.53,
               "amort": 0.0,
               "total": 46.53
             },
             {
-              "fecha": "2027-11-03",
+              "fecha": "2027-11-04",
               "renta": 46.53,
               "amort": 0.0,
               "total": 46.53
             },
             {
-              "fecha": "2028-05-23",
+              "fecha": "2028-05-24",
               "renta": 46.53,
               "amort": 0.0,
               "total": 46.53
             },
             {
-              "fecha": "2028-12-12",
+              "fecha": "2028-12-13",
               "renta": 46.53,
               "amort": 100.0,
               "total": 146.53
@@ -6861,35 +6861,35 @@
           "dias_vto": 1005,
           "fecha_emision": "2026-04-30",
           "fecha_vto": "2029-06-29",
-          "proximo_pago_fecha": "2027-04-14",
+          "proximo_pago_fecha": "2027-04-15",
           "proximo_pago_monto": "$ 54.40 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-14",
+              "fecha": "2027-04-15",
               "renta": 54.4,
               "amort": 0.0,
               "total": 54.4
             },
             {
-              "fecha": "2027-11-01",
+              "fecha": "2027-11-02",
               "renta": 54.4,
               "amort": 0.0,
               "total": 54.4
             },
             {
-              "fecha": "2028-05-20",
+              "fecha": "2028-05-21",
               "renta": 54.4,
               "amort": 0.0,
               "total": 54.4
             },
             {
-              "fecha": "2028-12-07",
+              "fecha": "2028-12-08",
               "renta": 54.4,
               "amort": 0.0,
               "total": 54.4
             },
             {
-              "fecha": "2029-06-26",
+              "fecha": "2029-06-27",
               "renta": 54.4,
               "amort": 100.0,
               "total": 154.4
@@ -6930,41 +6930,41 @@
           "dias_vto": 1173,
           "fecha_emision": "2026-06-12",
           "fecha_vto": "2029-12-14",
-          "proximo_pago_fecha": "2027-04-08",
+          "proximo_pago_fecha": "2027-04-09",
           "proximo_pago_monto": "$ 75.45 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-08",
+              "fecha": "2027-04-09",
               "renta": 75.455,
               "amort": 0.0,
               "total": 75.455
             },
             {
-              "fecha": "2027-10-21",
+              "fecha": "2027-10-22",
               "renta": 75.455,
               "amort": 0.0,
               "total": 75.455
             },
             {
-              "fecha": "2028-05-03",
+              "fecha": "2028-05-04",
               "renta": 75.455,
               "amort": 0.0,
               "total": 75.455
             },
             {
-              "fecha": "2028-11-15",
+              "fecha": "2028-11-16",
               "renta": 75.455,
               "amort": 0.0,
               "total": 75.455
             },
             {
-              "fecha": "2029-05-29",
+              "fecha": "2029-05-30",
               "renta": 75.455,
               "amort": 0.0,
               "total": 75.455
             },
             {
-              "fecha": "2029-12-11",
+              "fecha": "2029-12-12",
               "renta": 75.455,
               "amort": 100.0,
               "total": 175.455
@@ -7004,47 +7004,47 @@
           "dias_vto": 1369,
           "fecha_emision": "2026-06-12",
           "fecha_vto": "2030-06-28",
-          "proximo_pago_fecha": "2027-04-08",
+          "proximo_pago_fecha": "2027-04-09",
           "proximo_pago_monto": "$ 94.54 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-08",
+              "fecha": "2027-04-09",
               "renta": 94.54,
               "amort": 0.0,
               "total": 94.54
             },
             {
-              "fecha": "2027-10-21",
+              "fecha": "2027-10-22",
               "renta": 94.54,
               "amort": 0.0,
               "total": 94.54
             },
             {
-              "fecha": "2028-05-03",
+              "fecha": "2028-05-04",
               "renta": 94.54,
               "amort": 0.0,
               "total": 94.54
             },
             {
-              "fecha": "2028-11-15",
+              "fecha": "2028-11-16",
               "renta": 94.54,
               "amort": 0.0,
               "total": 94.54
             },
             {
-              "fecha": "2029-05-29",
+              "fecha": "2029-05-30",
               "renta": 94.54,
               "amort": 0.0,
               "total": 94.54
             },
             {
-              "fecha": "2029-12-11",
+              "fecha": "2029-12-12",
               "renta": 94.54,
               "amort": 0.0,
               "total": 94.54
             },
             {
-              "fecha": "2030-06-25",
+              "fecha": "2030-06-26",
               "renta": 94.54,
               "amort": 100.0,
               "total": 194.54
@@ -7084,29 +7084,29 @@
           "dias_vto": 720,
           "fecha_emision": "2020-09-04",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-03-24",
+          "proximo_pago_fecha": "2027-03-25",
           "proximo_pago_monto": "$ 0.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-03-24",
+              "fecha": "2027-03-25",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2027-09-20",
+              "fecha": "2027-09-21",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2028-03-18",
+              "fecha": "2028-03-19",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2028-09-14",
+              "fecha": "2028-09-15",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -7146,11 +7146,11 @@
           "dias_vto": 2,
           "fecha_emision": "2026-03-16",
           "fecha_vto": "2026-09-30",
-          "proximo_pago_fecha": "2026-09-27",
+          "proximo_pago_fecha": "2026-09-28",
           "proximo_pago_monto": "$ 100.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2026-09-27",
+              "fecha": "2026-09-28",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -7191,11 +7191,11 @@
           "dias_vto": 184,
           "fecha_emision": "2026-05-29",
           "fecha_vto": "2027-03-31",
-          "proximo_pago_fecha": "2027-03-28",
+          "proximo_pago_fecha": "2027-03-29",
           "proximo_pago_monto": "$ 100.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-03-28",
+              "fecha": "2027-03-29",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -7235,11 +7235,11 @@
           "dias_vto": 275,
           "fecha_emision": "2026-02-27",
           "fecha_vto": "2027-06-30",
-          "proximo_pago_fecha": "2027-06-27",
+          "proximo_pago_fecha": "2027-06-28",
           "proximo_pago_monto": "$ 100.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-06-27",
+              "fecha": "2027-06-28",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -7280,30 +7280,30 @@
           "dias_vto": 641,
           "fecha_emision": "2026-02-27",
           "fecha_vto": "2028-06-30",
-          "proximo_pago_fecha": "2027-04-26",
+          "proximo_pago_fecha": "2027-04-27",
           "proximo_pago_monto": "$ 0.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-26",
+              "fecha": "2027-04-27",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2027-11-26",
+              "fecha": "2027-11-27",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2028-06-27",
+              "fecha": "2028-06-28",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
             }
           ],
           "subtitulo": "Bono DL (sin cupón) - vto. 06/2028",
-          "var_1d": -0.01,
+          "var_1d": -0.51,
           "var_1m": 1.68,
           "var_12m": 1.27,
           "var_ytd": 1.27
@@ -7337,29 +7337,29 @@
           "dias_vto": 809,
           "fecha_emision": "2026-06-12",
           "fecha_vto": "2028-12-15",
-          "proximo_pago_fecha": "2027-04-15",
+          "proximo_pago_fecha": "2027-04-16",
           "proximo_pago_monto": "$ 0.00 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-15",
+              "fecha": "2027-04-16",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2027-11-03",
+              "fecha": "2027-11-04",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2028-05-23",
+              "fecha": "2028-05-24",
               "renta": 0.0,
               "amort": 0.0,
               "total": 0.0
             },
             {
-              "fecha": "2028-12-12",
+              "fecha": "2028-12-13",
               "renta": 0.0,
               "amort": 100.0,
               "total": 100.0
@@ -7399,24 +7399,24 @@
           "dias_vto": 399,
           "fecha_emision": "2024-01-05",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-04-12",
+          "proximo_pago_fecha": "2027-04-13",
           "proximo_pago_monto": "US$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-12",
+              "fecha": "2027-04-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2027-10-29",
+              "fecha": "2027-10-30",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
             }
           ],
           "subtitulo": "BOPREAL USD - vto. 10/2027",
-          "var_1d": -0.01,
+          "var_1d": -1.0,
           "var_1m": 0.15,
           "var_12m": 0.53,
           "var_ytd": 3.55
@@ -7450,17 +7450,17 @@
           "dias_vto": 399,
           "fecha_emision": "2024-01-05",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-04-12",
+          "proximo_pago_fecha": "2027-04-13",
           "proximo_pago_monto": "US$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-12",
+              "fecha": "2027-04-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2027-10-29",
+              "fecha": "2027-10-30",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
@@ -7501,17 +7501,17 @@
           "dias_vto": 399,
           "fecha_emision": "2024-01-05",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-04-12",
+          "proximo_pago_fecha": "2027-04-13",
           "proximo_pago_monto": "US$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-12",
+              "fecha": "2027-04-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2027-10-29",
+              "fecha": "2027-10-30",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
@@ -7552,17 +7552,17 @@
           "dias_vto": 399,
           "fecha_emision": "2024-01-05",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-04-12",
+          "proximo_pago_fecha": "2027-04-13",
           "proximo_pago_monto": "US$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-12",
+              "fecha": "2027-04-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2027-10-29",
+              "fecha": "2027-10-30",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
@@ -7603,36 +7603,36 @@
           "dias_vto": 764,
           "fecha_emision": "2025-06-24",
           "fecha_vto": "2028-10-31",
-          "proximo_pago_fecha": "2027-04-04",
+          "proximo_pago_fecha": "2027-04-05",
           "proximo_pago_monto": "US$ 0.75 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-04",
+              "fecha": "2027-04-05",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2027-10-12",
+              "fecha": "2027-10-13",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2028-04-20",
+              "fecha": "2028-04-21",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2028-10-28",
+              "fecha": "2028-10-29",
               "renta": 0.75,
               "amort": 100.0,
               "total": 100.75
             }
           ],
           "subtitulo": "BOPREAL USD - vto. 10/2028",
-          "var_1d": -0.01,
+          "var_1d": 0.0,
           "var_1m": 3.5,
           "var_12m": 55.0
         },
@@ -7665,36 +7665,36 @@
           "dias_vto": 764,
           "fecha_emision": "2025-06-24",
           "fecha_vto": "2028-10-31",
-          "proximo_pago_fecha": "2027-04-04",
+          "proximo_pago_fecha": "2027-04-05",
           "proximo_pago_monto": "US$ 0.75 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-04",
+              "fecha": "2027-04-05",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2027-10-12",
+              "fecha": "2027-10-13",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2028-04-20",
+              "fecha": "2028-04-21",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2028-10-28",
+              "fecha": "2028-10-29",
               "renta": 0.75,
               "amort": 100.0,
               "total": 100.75
             }
           ],
           "subtitulo": "BOPREAL USD - vto. 10/2028",
-          "var_1d": -0.01,
+          "var_1d": 0.0,
           "var_1m": 3.5,
           "var_12m": 55.0
         },
@@ -7727,17 +7727,17 @@
           "dias_vto": 399,
           "fecha_emision": "2024-01-05",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-04-12",
+          "proximo_pago_fecha": "2027-04-13",
           "proximo_pago_monto": "$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-12",
+              "fecha": "2027-04-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2027-10-29",
+              "fecha": "2027-10-30",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
@@ -7778,24 +7778,24 @@
           "dias_vto": 399,
           "fecha_emision": "2024-01-05",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-04-12",
+          "proximo_pago_fecha": "2027-04-13",
           "proximo_pago_monto": "$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-12",
+              "fecha": "2027-04-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2027-10-29",
+              "fecha": "2027-10-30",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
             }
           ],
           "subtitulo": "BOPREAL USD - vto. 10/2027",
-          "var_1d": 0.02,
+          "var_1d": 1.53,
           "var_1m": 1.92,
           "var_12m": 11.32,
           "var_ytd": 10.54
@@ -7829,24 +7829,24 @@
           "dias_vto": 399,
           "fecha_emision": "2024-01-05",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-04-12",
+          "proximo_pago_fecha": "2027-04-13",
           "proximo_pago_monto": "$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-12",
+              "fecha": "2027-04-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2027-10-29",
+              "fecha": "2027-10-30",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
             }
           ],
           "subtitulo": "BOPREAL USD - vto. 10/2027",
-          "var_1d": 0.01,
+          "var_1d": 0.9,
           "var_1m": 1.81,
           "var_12m": 19.41,
           "var_ytd": 11.34
@@ -7880,24 +7880,24 @@
           "dias_vto": 399,
           "fecha_emision": "2024-01-05",
           "fecha_vto": "2027-10-31",
-          "proximo_pago_fecha": "2027-04-12",
+          "proximo_pago_fecha": "2027-04-13",
           "proximo_pago_monto": "$ 1.25 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-12",
+              "fecha": "2027-04-13",
               "renta": 1.25,
               "amort": 0.0,
               "total": 1.25
             },
             {
-              "fecha": "2027-10-29",
+              "fecha": "2027-10-30",
               "renta": 1.25,
               "amort": 100.0,
               "total": 101.25
             }
           ],
           "subtitulo": "BOPREAL USD - vto. 10/2027",
-          "var_1d": 0.01,
+          "var_1d": 0.63,
           "var_1m": 1.54,
           "var_12m": 21.14,
           "var_ytd": 10.92
@@ -7931,36 +7931,36 @@
           "dias_vto": 764,
           "fecha_emision": "2025-06-24",
           "fecha_vto": "2028-10-31",
-          "proximo_pago_fecha": "2027-04-04",
+          "proximo_pago_fecha": "2027-04-05",
           "proximo_pago_monto": "$ 0.75 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-04",
+              "fecha": "2027-04-05",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2027-10-12",
+              "fecha": "2027-10-13",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2028-04-20",
+              "fecha": "2028-04-21",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2028-10-28",
+              "fecha": "2028-10-29",
               "renta": 0.75,
               "amort": 100.0,
               "total": 100.75
             }
           ],
           "subtitulo": "BOPREAL USD - vto. 10/2028",
-          "var_1d": -0.01,
+          "var_1d": -1.01,
           "var_1m": -1.56,
           "var_12m": 37.52,
           "var_ytd": 8.28
@@ -7994,29 +7994,29 @@
           "dias_vto": 764,
           "fecha_emision": "2025-06-24",
           "fecha_vto": "2028-10-31",
-          "proximo_pago_fecha": "2027-04-04",
+          "proximo_pago_fecha": "2027-04-05",
           "proximo_pago_monto": "$ 0.75 por 100 VN",
           "cashflow": [
             {
-              "fecha": "2027-04-04",
+              "fecha": "2027-04-05",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2027-10-12",
+              "fecha": "2027-10-13",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2028-04-20",
+              "fecha": "2028-04-21",
               "renta": 0.75,
               "amort": 0.0,
               "total": 0.75
             },
             {
-              "fecha": "2028-10-28",
+              "fecha": "2028-10-29",
               "renta": 0.75,
               "amort": 100.0,
               "total": 100.75
@@ -8060,9 +8060,9 @@
           "fecha_vto": "2026-10-03",
           "dias_vto": 7,
           "dias_cupon": 7,
-          "intereses_corridos": 1.44,
+          "intereses_corridos": 1.45,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.44,
+          "valor_tecnico": 101.45,
           "cashflow": [
             {
               "fecha": "2026-10-03",
@@ -8168,9 +8168,9 @@
           "fecha_vto": "2027-03-06",
           "dias_vto": 161,
           "dias_cupon": 161,
-          "intereses_corridos": 0.17,
+          "intereses_corridos": 0.18,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.17,
+          "valor_tecnico": 100.18,
           "cashflow": [
             {
               "fecha": "2027-03-06",
@@ -8193,7 +8193,7 @@
           "proximo_pago_monto": "101.612%",
           "var_1d": -0.33,
           "var_1m": -2.16,
-          "var_12m": 4.72,
+          "var_12m": -0.37,
           "var_ytd": 2.06
         },
         {
@@ -8329,7 +8329,7 @@
           "proximo_pago_monto": "0.812%",
           "var_1d": -0.44,
           "var_1m": 0.49,
-          "var_12m": 0.2,
+          "var_12m": 0.54,
           "var_ytd": -1.4
         },
         {
@@ -8358,9 +8358,9 @@
           "fecha_vto": "2027-08-11",
           "dias_vto": 317,
           "dias_cupon": 136,
-          "intereses_corridos": 0.4,
+          "intereses_corridos": 0.41,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.4,
+          "valor_tecnico": 100.41,
           "cashflow": [
             {
               "fecha": "2027-02-11",
@@ -8397,7 +8397,7 @@
           "proximo_pago_monto": "1.638%",
           "var_1d": 0.37,
           "var_1m": 1.13,
-          "var_12m": 4.39,
+          "var_12m": 3.48,
           "var_ytd": 2.98
         },
         {
@@ -8426,9 +8426,9 @@
           "fecha_vto": "2027-09-02",
           "dias_vto": 339,
           "dias_cupon": 155,
-          "intereses_corridos": 0.23,
+          "intereses_corridos": 0.24,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.23,
+          "valor_tecnico": 100.24,
           "cashflow": [
             {
               "fecha": "2027-03-02",
@@ -8465,7 +8465,7 @@
           "proximo_pago_monto": "1.798%",
           "var_1d": 0.45,
           "var_1m": -4.96,
-          "var_12m": 1.01,
+          "var_12m": 0.0,
           "var_ytd": -2.9
         },
         {
@@ -8494,9 +8494,9 @@
           "fecha_vto": "2027-09-27",
           "dias_vto": 364,
           "dias_cupon": 182,
-          "intereses_corridos": 1.23,
+          "intereses_corridos": 1.24,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.23,
+          "valor_tecnico": 101.24,
           "cashflow": [
             {
               "fecha": "2026-09-27",
@@ -8547,7 +8547,7 @@
           "proximo_pago_monto": "1.232%",
           "var_1d": -2.97,
           "var_1m": -1.14,
-          "var_12m": 11.38,
+          "var_12m": 6.46,
           "var_ytd": 6.07
         },
         {
@@ -8576,9 +8576,9 @@
           "fecha_vto": "2027-10-16",
           "dias_vto": 385,
           "dias_cupon": 18,
-          "intereses_corridos": 1.45,
+          "intereses_corridos": 1.46,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.45,
+          "valor_tecnico": 101.46,
           "cashflow": [
             {
               "fecha": "2026-10-16",
@@ -8658,9 +8658,9 @@
           "fecha_vto": "2028-04-30",
           "dias_vto": 580,
           "dias_cupon": 126,
-          "intereses_corridos": 1.5,
+          "intereses_corridos": 1.51,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.5,
+          "valor_tecnico": 101.51,
           "cashflow": [
             {
               "fecha": "2026-10-28",
@@ -8725,7 +8725,7 @@
           "proximo_pago_monto": "1.827%",
           "var_1d": -0.29,
           "var_1m": 0.38,
-          "var_12m": -0.62,
+          "var_12m": 2.25,
           "var_ytd": -1.93
         },
         {
@@ -8850,9 +8850,9 @@
           "fecha_vto": "2028-08-06",
           "dias_vto": 679,
           "dias_cupon": 133,
-          "intereses_corridos": 0.5,
+          "intereses_corridos": 0.51,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.5,
+          "valor_tecnico": 100.51,
           "cashflow": [
             {
               "fecha": "2027-02-06",
@@ -8917,7 +8917,7 @@
           "proximo_pago_monto": "1.827%",
           "var_1d": -0.42,
           "var_1m": 0.28,
-          "var_12m": 2.2,
+          "var_12m": 1.71,
           "var_ytd": 2.01
         },
         {
@@ -9013,7 +9013,7 @@
           "proximo_pago_monto": "0.945%",
           "var_1d": -0.05,
           "var_1m": 0.1,
-          "var_12m": 1.94,
+          "var_12m": 2.94,
           "var_ytd": 0.48
         },
         {
@@ -9042,9 +9042,9 @@
           "fecha_vto": "2028-11-15",
           "dias_vto": 779,
           "dias_cupon": 49,
-          "intereses_corridos": 1.29,
+          "intereses_corridos": 1.3,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.29,
+          "valor_tecnico": 101.3,
           "cashflow": [
             {
               "fecha": "2026-11-15",
@@ -9152,9 +9152,9 @@
           "fecha_vto": "2029-03-10",
           "dias_vto": 896,
           "dias_cupon": 163,
-          "intereses_corridos": 0.16,
+          "intereses_corridos": 0.17,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.16,
+          "valor_tecnico": 100.17,
           "cashflow": [
             {
               "fecha": "2027-03-10",
@@ -9233,7 +9233,7 @@
           "proximo_pago_monto": "1.959%",
           "var_1d": -0.1,
           "var_1m": -4.82,
-          "var_12m": 9.46,
+          "var_12m": 8.89,
           "var_ytd": -0.2
         },
         {
@@ -9262,9 +9262,9 @@
           "fecha_vto": "2029-08-27",
           "dias_vto": 1064,
           "dias_cupon": 154,
-          "intereses_corridos": 0.3,
+          "intereses_corridos": 0.31,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.3,
+          "valor_tecnico": 100.31,
           "cashflow": [
             {
               "fecha": "2027-02-27",
@@ -9357,7 +9357,7 @@
           "proximo_pago_monto": "1.890%",
           "var_1d": 0.24,
           "var_1m": -0.43,
-          "var_12m": 3.69,
+          "var_12m": 2.23,
           "var_ytd": -0.52
         },
         {
@@ -9386,9 +9386,9 @@
           "fecha_vto": "2029-10-24",
           "dias_vto": 1122,
           "dias_cupon": 28,
-          "intereses_corridos": 1.44,
+          "intereses_corridos": 1.45,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.44,
+          "valor_tecnico": 101.45,
           "cashflow": [
             {
               "fecha": "2026-10-24",
@@ -9495,7 +9495,7 @@
           "proximo_pago_monto": "1.705%",
           "var_1d": -1.15,
           "var_1m": 0.55,
-          "var_12m": 14.66,
+          "var_12m": 9.47,
           "var_ytd": 7.04
         },
         {
@@ -9524,9 +9524,9 @@
           "fecha_vto": "2029-09-27",
           "dias_vto": 1095,
           "dias_cupon": 182,
-          "intereses_corridos": 1.73,
+          "intereses_corridos": 1.74,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.73,
+          "valor_tecnico": 101.74,
           "cashflow": [
             {
               "fecha": "2026-09-27",
@@ -9633,7 +9633,7 @@
           "proximo_pago_monto": "1.736%",
           "var_1d": -3.45,
           "var_1m": -3.54,
-          "var_12m": -0.48,
+          "var_12m": -0.38,
           "var_ytd": 0.88
         },
         {
@@ -9662,9 +9662,9 @@
           "fecha_vto": "2030-01-27",
           "dias_vto": 1217,
           "dias_cupon": 29,
-          "intereses_corridos": 0.62,
+          "intereses_corridos": 0.63,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.62,
+          "valor_tecnico": 100.63,
           "cashflow": [
             {
               "fecha": "2027-01-27",
@@ -9771,7 +9771,7 @@
           "proximo_pago_monto": "1.880%",
           "var_1d": 0.24,
           "var_1m": 1.0,
-          "var_12m": 10.9,
+          "var_12m": 13.46,
           "var_ytd": 5.07
         },
         {
@@ -9800,9 +9800,9 @@
           "fecha_vto": "2030-03-07",
           "dias_vto": 1256,
           "dias_cupon": 161,
-          "intereses_corridos": 0.18,
+          "intereses_corridos": 0.19,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.18,
+          "valor_tecnico": 100.19,
           "cashflow": [
             {
               "fecha": "2027-03-07",
@@ -9909,7 +9909,7 @@
           "proximo_pago_monto": "1.860%",
           "var_1d": 0.19,
           "var_1m": -3.04,
-          "var_12m": 2.69,
+          "var_12m": 3.19,
           "var_ytd": 2.4
         },
         {
@@ -9938,9 +9938,9 @@
           "fecha_vto": "2031-10-10",
           "dias_vto": 1838,
           "dias_cupon": 15,
-          "intereses_corridos": 1.77,
+          "intereses_corridos": 1.78,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.77,
+          "valor_tecnico": 101.78,
           "cashflow": [
             {
               "fecha": "2026-10-10",
@@ -10103,7 +10103,7 @@
           "proximo_pago_monto": "1.918%",
           "var_1d": -1.68,
           "var_1m": -1.45,
-          "var_12m": 0.6,
+          "var_12m": 0.14,
           "var_ytd": 2.46
         },
         {
@@ -10132,9 +10132,9 @@
           "fecha_vto": "2030-11-03",
           "dias_vto": 1498,
           "dias_cupon": 36,
-          "intereses_corridos": 1.51,
+          "intereses_corridos": 1.53,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.51,
+          "valor_tecnico": 101.53,
           "cashflow": [
             {
               "fecha": "2026-11-03",
@@ -10298,9 +10298,9 @@
           "fecha_vto": "2031-09-11",
           "dias_vto": 1809,
           "dias_cupon": 164,
-          "intereses_corridos": 0.17,
+          "intereses_corridos": 0.18,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.17,
+          "valor_tecnico": 100.18,
           "cashflow": [
             {
               "fecha": "2027-03-11",
@@ -10449,7 +10449,7 @@
           "proximo_pago_monto": "2.188%",
           "var_1d": 0.42,
           "var_1m": -4.73,
-          "var_12m": 3.32,
+          "var_12m": 2.16,
           "var_ytd": -0.37
         },
         {
@@ -10478,9 +10478,9 @@
           "fecha_vto": "2031-07-24",
           "dias_vto": 1760,
           "dias_cupon": 119,
-          "intereses_corridos": 0.73,
+          "intereses_corridos": 0.75,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.73,
+          "valor_tecnico": 100.75,
           "cashflow": [
             {
               "fecha": "2027-01-24",
@@ -10629,7 +10629,7 @@
           "proximo_pago_monto": "2.125%",
           "var_1d": -0.86,
           "var_1m": -2.07,
-          "var_12m": 2.39,
+          "var_12m": 1.44,
           "var_ytd": -0.32
         },
         {
@@ -10658,9 +10658,9 @@
           "fecha_vto": "2031-09-10",
           "dias_vto": 1808,
           "dias_cupon": 163,
-          "intereses_corridos": 0.16,
+          "intereses_corridos": 0.17,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.16,
+          "valor_tecnico": 100.17,
           "cashflow": [
             {
               "fecha": "2027-03-10",
@@ -10809,7 +10809,7 @@
           "proximo_pago_monto": "1.988%",
           "var_1d": -0.78,
           "var_1m": -4.78,
-          "var_12m": 3.46,
+          "var_12m": 0.56,
           "var_ytd": -0.74
         },
         {
@@ -10838,9 +10838,9 @@
           "fecha_vto": "2032-05-30",
           "dias_vto": 2072,
           "dias_cupon": 63,
-          "intereses_corridos": 1.4,
+          "intereses_corridos": 1.41,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.4,
+          "valor_tecnico": 101.41,
           "cashflow": [
             {
               "fecha": "2026-11-28",
@@ -11017,7 +11017,7 @@
           "proximo_pago_monto": "2.125%",
           "var_1d": 0.09,
           "var_1m": -0.84,
-          "var_12m": 15.43,
+          "var_12m": 9.61,
           "var_ytd": 8.53
         },
         {
@@ -11046,9 +11046,9 @@
           "fecha_vto": "2033-06-10",
           "dias_vto": 2447,
           "dias_cupon": 73,
-          "intereses_corridos": 1.25,
+          "intereses_corridos": 1.26,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.25,
+          "valor_tecnico": 101.26,
           "cashflow": [
             {
               "fecha": "2026-12-10",
@@ -11253,7 +11253,7 @@
           "proximo_pago_monto": "2.125%",
           "var_1d": -0.45,
           "var_1m": -1.11,
-          "var_12m": 4.15,
+          "var_12m": 3.57,
           "var_ytd": 5.28
         },
         {
@@ -11282,9 +11282,9 @@
           "fecha_vto": "2034-01-17",
           "dias_vto": 2668,
           "dias_cupon": 112,
-          "intereses_corridos": 0.79,
+          "intereses_corridos": 0.8,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 100.79,
+          "valor_tecnico": 100.8,
           "cashflow": [
             {
               "fecha": "2027-01-17",
@@ -11503,7 +11503,7 @@
           "proximo_pago_monto": "2.062%",
           "var_1d": -0.74,
           "var_1m": -2.86,
-          "var_12m": 4.7,
+          "var_12m": 4.55,
           "var_ytd": -2.73
         },
         {
@@ -11532,9 +11532,9 @@
           "fecha_vto": "2034-12-16",
           "dias_vto": 3003,
           "dias_cupon": 79,
-          "intereses_corridos": 1.09,
+          "intereses_corridos": 1.1,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.09,
+          "valor_tecnico": 101.1,
           "cashflow": [
             {
               "fecha": "2026-12-16",
@@ -11781,7 +11781,7 @@
           "proximo_pago_monto": "1.969%",
           "var_1d": -1.08,
           "var_1m": -3.88,
-          "var_12m": 1.59,
+          "var_12m": 1.44,
           "var_ytd": 2.08
         },
         {
@@ -11810,9 +11810,9 @@
           "fecha_vto": "2035-03-31",
           "dias_vto": 3105,
           "dias_cupon": 2,
-          "intereses_corridos": 1.98,
+          "intereses_corridos": 1.99,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.98,
+          "valor_tecnico": 101.99,
           "cashflow": [
             {
               "fecha": "2026-09-28",
@@ -12073,7 +12073,7 @@
           "proximo_pago_monto": "2.000%",
           "var_1d": -0.96,
           "var_1m": -1.63,
-          "var_12m": 2.46,
+          "var_12m": 1.31,
           "var_ytd": 2.7
         },
         {
@@ -12102,9 +12102,9 @@
           "fecha_vto": "2037-11-14",
           "dias_vto": 4067,
           "dias_cupon": 49,
-          "intereses_corridos": 1.42,
+          "intereses_corridos": 1.43,
           "valor_residual_pct": 100.0,
-          "valor_tecnico": 101.42,
+          "valor_tecnico": 101.43,
           "cashflow": [
             {
               "fecha": "2026-11-14",
@@ -12685,7 +12685,7 @@
           "var_1m": -0.5,
           "var_12m": 63.92,
           "volumen": 1923200.0,
-          "cap_bursatil": 1054885412864,
+          "cap_bursatil": 1055340232704,
           "tags": [
             "top_mcap"
           ],
@@ -12723,7 +12723,7 @@
           "var_1m": 3.49,
           "var_12m": 5.64,
           "volumen": 19614100.0,
-          "cap_bursatil": 856685936640,
+          "cap_bursatil": 859313405952,
           "tags": [
             "top_mcap"
           ],
@@ -12761,7 +12761,7 @@
           "var_1m": -24.78,
           "var_12m": 124.92,
           "volumen": 11517700.0,
-          "cap_bursatil": 3892938240,
+          "cap_bursatil": 3957955840,
           "tags": [
             "day_gainers"
           ],
@@ -12818,7 +12818,7 @@
           "var_1m": 7.58,
           "var_12m": 63.23,
           "volumen": 918000.0,
-          "cap_bursatil": 3036308992,
+          "cap_bursatil": 3031533056,
           "tags": [
             "day_gainers"
           ],
@@ -12970,7 +12970,7 @@
           "var_1m": -6.15,
           "var_12m": 263.55,
           "volumen": 169000.0,
-          "cap_bursatil": 2882514432,
+          "cap_bursatil": 2890903552,
           "tags": [
             "day_losers"
           ],
@@ -13046,7 +13046,7 @@
           "var_1m": -30.09,
           "var_12m": -3.0,
           "volumen": 3363800.0,
-          "cap_bursatil": 3541157888,
+          "cap_bursatil": 3563278080,
           "tags": [
             "day_losers"
           ],
@@ -13103,31 +13103,12 @@
           "var_1m": -0.51,
           "var_12m": 12.19,
           "volumen": 2962100.0,
-          "cap_bursatil": 3693008640,
+          "cap_bursatil": 3688588288,
           "tags": [
             "day_losers"
           ],
           "tipo": "market_asset",
           "var_ytd": 42.33
-        },
-        {
-          "id": "EQ_SNDK",
-          "symbol": "SNDK",
-          "nombre": "Sandisk Corporation",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 1777.8,
-          "var_1d": 1.38,
-          "var_1m": 18.57,
-          "var_12m": 1466.34,
-          "volumen": 7322300.0,
-          "cap_bursatil": 260303716352,
-          "tags": [
-            "gainers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": 648.93
         },
         {
           "id": "EQ_AXTI",
@@ -13149,6 +13130,25 @@
           "var_ytd": 382.81
         },
         {
+          "id": "EQ_SNDK",
+          "symbol": "SNDK",
+          "nombre": "Sandisk Corporation",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 1777.8,
+          "var_1d": 1.38,
+          "var_1m": 18.57,
+          "var_12m": 1466.34,
+          "volumen": 7322300.0,
+          "cap_bursatil": 260303716352,
+          "tags": [
+            "gainers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": 648.93
+        },
+        {
           "id": "EQ_MRNA",
           "symbol": "MRNA",
           "nombre": "Moderna, Inc.",
@@ -13166,25 +13166,6 @@
           ],
           "tipo": "market_asset",
           "var_ytd": 574.4
-        },
-        {
-          "id": "EQ_SLS",
-          "symbol": "SLS",
-          "nombre": "SELLAS Life Sciences Group, Inc.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 11.61,
-          "var_1d": -3.09,
-          "var_1m": -15.44,
-          "var_12m": 644.23,
-          "volumen": 4439500.0,
-          "cap_bursatil": 2344589568,
-          "tags": [
-            "gainers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": 207.96
         },
         {
           "id": "EQ_TXG",
@@ -13206,6 +13187,25 @@
           "var_ytd": 425.51
         },
         {
+          "id": "EQ_SLS",
+          "symbol": "SLS",
+          "nombre": "SELLAS Life Sciences Group, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 11.61,
+          "var_1d": -3.09,
+          "var_1m": -15.44,
+          "var_12m": 644.23,
+          "volumen": 4439500.0,
+          "cap_bursatil": 2344589568,
+          "tags": [
+            "gainers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": 207.96
+        },
+        {
           "id": "EQ_ERAS",
           "symbol": "ERAS",
           "nombre": "Erasca, Inc.",
@@ -13225,25 +13225,6 @@
           "var_ytd": 283.06
         },
         {
-          "id": "EQ_MU",
-          "symbol": "MU",
-          "nombre": "Micron Technology, Inc.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 1082.28,
-          "var_1d": 0.16,
-          "var_1m": 15.33,
-          "var_12m": 561.39,
-          "volumen": 20870400.0,
-          "cap_bursatil": 1222319669248,
-          "tags": [
-            "gainers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": 279.41
-        },
-        {
           "id": "EQ_TWST",
           "symbol": "TWST",
           "nombre": "Twist Bioscience Corporation",
@@ -13261,6 +13242,25 @@
           ],
           "tipo": "market_asset",
           "var_ytd": 476.39
+        },
+        {
+          "id": "EQ_MU",
+          "symbol": "MU",
+          "nombre": "Micron Technology, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 1082.28,
+          "var_1d": 0.16,
+          "var_1m": 15.33,
+          "var_12m": 561.39,
+          "volumen": 20870400.0,
+          "cap_bursatil": 1222319669248,
+          "tags": [
+            "gainers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": 279.41
         },
         {
           "id": "EQ_LITE",
@@ -13377,25 +13377,6 @@
           "var_ytd": -66.81
         },
         {
-          "id": "EQ_OPEN",
-          "symbol": "OPEN",
-          "nombre": "Opendoor Technologies Inc.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 2.57,
-          "var_1d": 1.58,
-          "var_1m": -24.63,
-          "var_12m": -68.66,
-          "volumen": 22330700.0,
-          "cap_bursatil": 2479373056,
-          "tags": [
-            "losers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -55.92
-        },
-        {
           "id": "EQ_FLUT",
           "symbol": "FLUT",
           "nombre": "Flutter Entertainment plc",
@@ -13413,6 +13394,44 @@
           ],
           "tipo": "market_asset",
           "var_ytd": -61.3
+        },
+        {
+          "id": "EQ_OPEN",
+          "symbol": "OPEN",
+          "nombre": "Opendoor Technologies Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 2.57,
+          "var_1d": 1.58,
+          "var_1m": -24.63,
+          "var_12m": -68.66,
+          "volumen": 22330700.0,
+          "cap_bursatil": 2495704064,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -55.92
+        },
+        {
+          "id": "EQ_PONY",
+          "symbol": "PONY",
+          "nombre": "Pony AI Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 6.89,
+          "var_1d": -2.82,
+          "var_1m": -5.36,
+          "var_12m": -69.67,
+          "volumen": 3569800.0,
+          "cap_bursatil": 2993109760,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -52.48
         },
         {
           "id": "EQ_STUB",
@@ -13434,61 +13453,42 @@
           "var_ytd": -59.79
         },
         {
-          "id": "EQ_KLAR",
-          "symbol": "KLAR",
-          "nombre": "Klarna Group plc",
+          "id": "EQ_XXI",
+          "symbol": "XXI",
+          "nombre": "Twenty One Capital, Inc.",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 12.8,
-          "var_1d": -0.54,
-          "var_1m": -9.92,
-          "var_12m": -66.7,
-          "volumen": 4242100.0,
-          "cap_bursatil": 4853249024,
+          "precio": 6.64,
+          "var_1d": 0.15,
+          "var_1m": 5.4,
+          "var_12m": -68.31,
+          "volumen": 1287400.0,
+          "cap_bursatil": 4325820416,
           "tags": [
             "losers_52w"
           ],
           "tipo": "market_asset",
-          "var_ytd": -55.72
+          "var_ytd": -24.2
         },
         {
-          "id": "EQ_CSGP",
-          "symbol": "CSGP",
-          "nombre": "CoStar Group, Inc.",
+          "id": "EQ_OKLO",
+          "symbol": "OKLO",
+          "nombre": "Oklo Inc.",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 28.09,
-          "var_1d": 0.84,
-          "var_1m": -12.6,
-          "var_12m": -66.65,
-          "volumen": 6662500.0,
-          "cap_bursatil": 11382000640,
+          "precio": 38.04,
+          "var_1d": -0.65,
+          "var_1m": -8.56,
+          "var_12m": -67.35,
+          "volumen": 6763000.0,
+          "cap_bursatil": 7076111360,
           "tags": [
             "losers_52w"
           ],
           "tipo": "market_asset",
-          "var_ytd": -58.22
-        },
-        {
-          "id": "EQ_PONY",
-          "symbol": "PONY",
-          "nombre": "Pony AI Inc.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 6.89,
-          "var_1d": -2.82,
-          "var_1m": -5.36,
-          "var_12m": -69.67,
-          "volumen": 3569800.0,
-          "cap_bursatil": 2993109760,
-          "tags": [
-            "losers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -52.48
+          "var_ytd": -46.99
         },
         {
           "id": "EQ_INTC",
@@ -13578,7 +13578,7 @@
           "var_1m": 6.48,
           "var_12m": -7.62,
           "volumen": 54421300.0,
-          "cap_bursatil": 1958738001920,
+          "cap_bursatil": 1959866925056,
           "tags": [
             "most_actives"
           ],
@@ -13616,31 +13616,12 @@
           "var_1m": 15.7,
           "var_12m": -6.69,
           "volumen": 49236100.0,
-          "cap_bursatil": 27983726592,
+          "cap_bursatil": 28420321280,
           "tags": [
             "most_actives"
           ],
           "tipo": "market_asset",
           "var_ytd": 47.8
-        },
-        {
-          "id": "EQ_PLUG",
-          "symbol": "PLUG",
-          "nombre": "Plug Power Inc.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 1.98,
-          "var_1d": 1.02,
-          "var_1m": -8.76,
-          "var_12m": -12.78,
-          "volumen": 45554100.0,
-          "cap_bursatil": 2766446592,
-          "tags": [
-            "most_actives"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": 0.51
         },
         {
           "id": "EQ_PATH",
@@ -13660,6 +13641,25 @@
           ],
           "tipo": "market_asset",
           "var_ytd": -23.98
+        },
+        {
+          "id": "EQ_PLUG",
+          "symbol": "PLUG",
+          "nombre": "Plug Power Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 1.98,
+          "var_1d": 1.02,
+          "var_1m": -8.76,
+          "var_12m": -12.78,
+          "volumen": 45554100.0,
+          "cap_bursatil": 2766446592,
+          "tags": [
+            "most_actives"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": 0.51
         }
       ]
     },
@@ -13705,7 +13705,7 @@
           "var_1d": 0.63,
           "var_1m": 2.02,
           "var_12m": 54.46,
-          "volumen": 978527.0,
+          "volumen": 978485.0,
           "tags": [
             "top_volume",
             "gainers_52w",
@@ -13722,21 +13722,21 @@
           "categoria": "CEDEARs",
           "subtitulo": "Semiconductores & IA",
           "moneda": "ARS",
-          "precio": 15200.0,
+          "precio": 15120.0,
           "precio_usd": 225.07,
           "ratio": 24,
-          "ccl_implicito": 1620.83,
-          "var_1d": 0.53,
-          "var_1m": -0.07,
-          "var_12m": 46.72,
-          "volumen": 395420.0,
+          "ccl_implicito": 1612.3,
+          "var_1d": 0.27,
+          "var_1m": 7.46,
+          "var_12m": 45.95,
+          "volumen": 408443.0,
           "tags": [
             "top_volume",
             "gainers_52w",
             "blue_chips"
           ],
           "tipo": "market_asset",
-          "var_ytd": 27.62
+          "var_ytd": 26.95
         },
         {
           "id": "CEDEAR_MSTR",
@@ -13761,6 +13761,31 @@
           ],
           "tipo": "market_asset",
           "var_ytd": 8.42
+        },
+        {
+          "id": "CEDEAR_MELI",
+          "symbol": "MELI",
+          "us_symbol": "MELI",
+          "nombre": "MercadoLibre Inc.",
+          "categoria": "CEDEARs",
+          "subtitulo": "E-Commerce & Fintech Latam",
+          "moneda": "ARS",
+          "precio": 23590.0,
+          "precio_usd": 1752.61,
+          "ratio": 120,
+          "ccl_implicito": 1615.19,
+          "var_1d": -2.16,
+          "var_1m": -9.76,
+          "var_12m": -18.88,
+          "volumen": 280120.0,
+          "tags": [
+            "top_volume",
+            "day_losers",
+            "losers_52w",
+            "blue_chips"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -7.71
         },
         {
           "id": "CEDEAR_MSFT",
@@ -13811,30 +13836,6 @@
           "var_ytd": -19.33
         },
         {
-          "id": "CEDEAR_MELI",
-          "symbol": "MELI",
-          "us_symbol": "MELI",
-          "nombre": "MercadoLibre Inc.",
-          "categoria": "CEDEARs",
-          "subtitulo": "E-Commerce & Fintech Latam",
-          "moneda": "ARS",
-          "precio": 23680.0,
-          "precio_usd": 1752.61,
-          "ratio": 120,
-          "ccl_implicito": 1621.35,
-          "var_1d": 0.38,
-          "var_1m": -8.0,
-          "var_12m": -18.57,
-          "volumen": 228022.0,
-          "tags": [
-            "top_volume",
-            "losers_52w",
-            "blue_chips"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -7.36
-        },
-        {
           "id": "CEDEAR_MCD",
           "symbol": "MCD",
           "us_symbol": "MCD",
@@ -13849,13 +13850,37 @@
           "var_1d": -0.06,
           "var_1m": -7.89,
           "var_12m": -14.35,
-          "volumen": 114698.0,
+          "volumen": 114654.0,
           "tags": [
             "top_volume",
             "losers_52w"
           ],
           "tipo": "market_asset",
           "var_ytd": -18.16
+        },
+        {
+          "id": "CEDEAR_ORCL",
+          "symbol": "ORCL",
+          "us_symbol": "ORCL",
+          "nombre": "Oracle Corp.",
+          "categoria": "CEDEARs",
+          "subtitulo": "Bases de Datos & Cloud",
+          "moneda": "ARS",
+          "precio": 75300.0,
+          "precio_usd": 137.1,
+          "ratio": 3,
+          "ccl_implicito": 1647.7,
+          "var_1d": -2.74,
+          "var_1m": -5.73,
+          "var_12m": -44.54,
+          "volumen": 106121.0,
+          "tags": [
+            "top_volume",
+            "day_losers",
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -24.96
         },
         {
           "id": "CEDEAR_GLOB",
@@ -13871,7 +13896,7 @@
           "ccl_implicito": 1620.0,
           "var_1d": -0.8,
           "var_1m": -12.84,
-          "var_12m": -28.99,
+          "var_12m": -34.04,
           "volumen": 84613.0,
           "tags": [
             "top_volume",
@@ -13895,7 +13920,7 @@
           "ccl_implicito": 1627.91,
           "var_1d": 5.76,
           "var_1m": -8.94,
-          "var_12m": -4.35,
+          "var_12m": -9.53,
           "volumen": 78344.0,
           "tags": [
             "top_volume",
@@ -13904,30 +13929,6 @@
           ],
           "tipo": "market_asset",
           "var_ytd": -0.62
-        },
-        {
-          "id": "CEDEAR_TSLA",
-          "symbol": "TSLA",
-          "us_symbol": "TSLA",
-          "nombre": "Tesla Inc.",
-          "categoria": "CEDEARs",
-          "subtitulo": "Vehículos Eléctricos & IA",
-          "moneda": "ARS",
-          "precio": 40180.0,
-          "precio_usd": 372.11,
-          "ratio": 15,
-          "ccl_implicito": 1619.68,
-          "var_1d": -1.66,
-          "var_1m": 6.47,
-          "var_12m": 1.41,
-          "volumen": 71279.0,
-          "tags": [
-            "top_volume",
-            "day_losers",
-            "blue_chips"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -13.22
         },
         {
           "id": "CEDEAR_INTC",
@@ -13967,7 +13968,7 @@
           "ccl_implicito": 1623.01,
           "var_1d": 4.49,
           "var_1m": 24.27,
-          "var_12m": 37.84,
+          "var_12m": 31.63,
           "volumen": 54169.0,
           "tags": [
             "top_volume",
@@ -13990,7 +13991,7 @@
           "ccl_implicito": 1622.34,
           "var_1d": 0.45,
           "var_1m": -9.88,
-          "var_12m": 44.89,
+          "var_12m": 40.64,
           "volumen": 54116.0,
           "tags": [
             "top_volume"
@@ -14012,7 +14013,7 @@
           "ccl_implicito": 1617.26,
           "var_1d": 1.55,
           "var_1m": 9.62,
-          "var_12m": 53.65,
+          "var_12m": 47.09,
           "volumen": 51972.0,
           "tags": [
             "top_volume",
@@ -14081,7 +14082,7 @@
           "ccl_implicito": 1618.44,
           "var_1d": 1.16,
           "var_1m": 2.2,
-          "var_12m": 28.26,
+          "var_12m": 31.26,
           "volumen": 198.0,
           "tags": [
             "day_gainers"
@@ -14103,11 +14104,10 @@
           "ccl_implicito": 1616.15,
           "var_1d": 1.09,
           "var_1m": -11.61,
-          "var_12m": 50.99,
+          "var_12m": 38.32,
           "volumen": 1406.0,
           "tags": [
-            "day_gainers",
-            "gainers_52w"
+            "day_gainers"
           ],
           "tipo": "market_asset",
           "var_ytd": -3.43
@@ -14126,7 +14126,7 @@
           "ccl_implicito": 1622.8,
           "var_1d": 0.83,
           "var_1m": 6.45,
-          "var_12m": 21.23,
+          "var_12m": 15.82,
           "volumen": 33035.0,
           "tags": [
             "day_gainers",
@@ -14181,29 +14181,6 @@
           "var_ytd": -6.28
         },
         {
-          "id": "CEDEAR_ORCL",
-          "symbol": "ORCL",
-          "us_symbol": "ORCL",
-          "nombre": "Oracle Corp.",
-          "categoria": "CEDEARs",
-          "subtitulo": "Bases de Datos & Cloud",
-          "moneda": "ARS",
-          "precio": 74050.0,
-          "precio_usd": 137.1,
-          "ratio": 3,
-          "ccl_implicito": 1620.35,
-          "var_1d": -1.66,
-          "var_1m": -8.58,
-          "var_12m": -46.66,
-          "volumen": 37004.0,
-          "tags": [
-            "day_losers",
-            "losers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -26.21
-        },
-        {
           "id": "CEDEAR_PLTR",
           "symbol": "PLTR",
           "us_symbol": "PLTR",
@@ -14224,29 +14201,6 @@
           ],
           "tipo": "market_asset",
           "var_ytd": 10.66
-        },
-        {
-          "id": "CEDEAR_BABA",
-          "symbol": "BABA",
-          "us_symbol": "BABA",
-          "nombre": "Alibaba Group",
-          "categoria": "CEDEARs",
-          "subtitulo": "E-Commerce / China",
-          "moneda": "ARS",
-          "precio": 19720.0,
-          "precio_usd": 109.74,
-          "ratio": 9,
-          "ccl_implicito": 1617.28,
-          "var_1d": -0.95,
-          "var_1m": -4.73,
-          "var_12m": -27.71,
-          "volumen": 14626.0,
-          "tags": [
-            "day_losers",
-            "losers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -20.99
         },
         {
           "id": "CEDEAR_XOM",
@@ -14270,6 +14224,29 @@
           ],
           "tipo": "market_asset",
           "var_ytd": 41.09
+        },
+        {
+          "id": "CEDEAR_CVX",
+          "symbol": "CVX",
+          "us_symbol": "CVX",
+          "nombre": "Chevron Corp.",
+          "categoria": "CEDEARs",
+          "subtitulo": "Petróleo & Gas",
+          "moneda": "ARS",
+          "precio": 20700.0,
+          "precio_usd": 204.45,
+          "ratio": 16,
+          "ccl_implicito": 1619.96,
+          "var_1d": -0.34,
+          "var_1m": 3.5,
+          "var_12m": 41.2,
+          "volumen": 29844.0,
+          "tags": [
+            "day_losers",
+            "gainers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": 43.55
         },
         {
           "id": "CEDEAR_AMD",
@@ -14317,6 +14294,29 @@
           "var_ytd": 39.42
         },
         {
+          "id": "CEDEAR_KO",
+          "symbol": "KO",
+          "us_symbol": "KO",
+          "nombre": "The Coca-Cola Co.",
+          "categoria": "CEDEARs",
+          "subtitulo": "Consumo Masivo / Bebidas",
+          "moneda": "ARS",
+          "precio": 28560.0,
+          "precio_usd": 87.81,
+          "ratio": 5,
+          "ccl_implicito": 1626.24,
+          "var_1d": 0.78,
+          "var_1m": -1.58,
+          "var_12m": 54.13,
+          "volumen": 33259.0,
+          "tags": [
+            "gainers_52w",
+            "blue_chips"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": 33.96
+        },
+        {
           "id": "CEDEAR_SHEL",
           "symbol": "SHEL",
           "us_symbol": "SHEL",
@@ -14330,7 +14330,7 @@
           "ccl_implicito": 1620.29,
           "var_1d": 0.23,
           "var_1m": 6.35,
-          "var_12m": 51.57,
+          "var_12m": 43.96,
           "volumen": 1222.0,
           "tags": [
             "gainers_52w"
@@ -14339,27 +14339,26 @@
           "var_ytd": 38.68
         },
         {
-          "id": "CEDEAR_KO",
-          "symbol": "KO",
-          "us_symbol": "KO",
-          "nombre": "The Coca-Cola Co.",
+          "id": "CEDEAR_BABA",
+          "symbol": "BABA",
+          "us_symbol": "BABA",
+          "nombre": "Alibaba Group",
           "categoria": "CEDEARs",
-          "subtitulo": "Consumo Masivo / Bebidas",
+          "subtitulo": "E-Commerce / China",
           "moneda": "ARS",
-          "precio": 28500.0,
-          "precio_usd": 87.81,
-          "ratio": 5,
-          "ccl_implicito": 1622.82,
-          "var_1d": -0.21,
-          "var_1m": -0.42,
-          "var_12m": 47.59,
-          "volumen": 24397.0,
+          "precio": 19910.0,
+          "precio_usd": 109.74,
+          "ratio": 9,
+          "ccl_implicito": 1632.86,
+          "var_1d": 0.4,
+          "var_1m": -7.31,
+          "var_12m": -27.02,
+          "volumen": 37968.0,
           "tags": [
-            "gainers_52w",
-            "blue_chips"
+            "losers_52w"
           ],
           "tipo": "market_asset",
-          "var_ytd": 33.68
+          "var_ytd": -20.23
         },
         {
           "id": "CEDEAR_UBER",
@@ -14382,6 +14381,28 @@
           ],
           "tipo": "market_asset",
           "var_ytd": -9.76
+        },
+        {
+          "id": "CEDEAR_TSLA",
+          "symbol": "TSLA",
+          "us_symbol": "TSLA",
+          "nombre": "Tesla Inc.",
+          "categoria": "CEDEARs",
+          "subtitulo": "Vehículos Eléctricos & IA",
+          "moneda": "ARS",
+          "precio": 40860.0,
+          "precio_usd": 372.11,
+          "ratio": 15,
+          "ccl_implicito": 1647.09,
+          "var_1d": 0.44,
+          "var_1m": 10.13,
+          "var_12m": 3.13,
+          "volumen": 40652.0,
+          "tags": [
+            "blue_chips"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -11.75
         }
       ]
     },
@@ -14418,16 +14439,16 @@
           "subtipo": "",
           "tipo": "market_asset",
           "precio": 8440.0,
-          "open": 8585.0,
-          "high": 8585.0,
-          "low": 8400.0,
+          "open": 8760.0,
+          "high": 8850.0,
+          "low": 8525.0,
           "moneda": "ARS",
           "cap_bursatil": 33091135471616,
-          "ma50": 8250.1,
-          "ma200": 6826.95,
+          "ma50": 8237.1,
+          "ma200": 6811.73,
           "var_1d": -2.26,
-          "var_1m": 3.94,
-          "var_12m": 116.19,
+          "var_1m": 7.07,
+          "var_12m": 122.09,
           "subtitulo": "Energía / Petróleo y Gas",
           "var_ytd": 54.58
         },
@@ -14443,7 +14464,7 @@
           "high": 5120.0,
           "low": 5010.0,
           "moneda": "ARS",
-          "cap_bursatil": 6798616559616,
+          "cap_bursatil": 6780876750848,
           "ma50": 5293.8,
           "ma200": 5087.49,
           "var_1d": -0.49,
@@ -14465,11 +14486,11 @@
           "low": 11090.0,
           "moneda": "ARS",
           "cap_bursatil": 7103625822208,
-          "ma50": 12909.4,
-          "ma200": 12607.61,
+          "ma50": 12893.4,
+          "ma200": 12611.67,
           "var_1d": -2.88,
           "var_1m": -9.31,
-          "var_12m": 72.62,
+          "var_12m": 72.75,
           "subtitulo": "Sector Financiero / Bancario",
           "var_ytd": -15.36
         },
@@ -14528,11 +14549,11 @@
           "low": 835.0,
           "moneda": "ARS",
           "cap_bursatil": 2363200110592,
-          "ma50": 897.7,
-          "ma200": 941.44,
+          "ma50": 897.74,
+          "ma200": 941.08,
           "var_1d": 0.3,
           "var_1m": -0.59,
-          "var_12m": 31.65,
+          "var_12m": 32.37,
           "subtitulo": "Materiales Básicos / Aluminio",
           "var_ytd": -14.79
         },
@@ -14570,11 +14591,11 @@
           "low": 1971.0,
           "moneda": "ARS",
           "cap_bursatil": 3031221927936,
-          "ma50": 2062.15,
-          "ma200": 2147.08,
+          "ma50": 2060.74,
+          "ma200": 2145.39,
           "var_1d": -0.83,
           "var_1m": 0.49,
-          "var_12m": 73.71,
+          "var_12m": 69.91,
           "subtitulo": "Generación Eléctrica",
           "var_ytd": -16.68
         },
@@ -14590,7 +14611,7 @@
           "high": 1818.0,
           "low": 1730.0,
           "moneda": "ARS",
-          "cap_bursatil": 1520184459264,
+          "cap_bursatil": null,
           "ma50": 1927.8,
           "ma200": 2023.67,
           "var_1d": -3.18,
@@ -14612,11 +14633,11 @@
           "low": 8550.0,
           "moneda": "ARS",
           "cap_bursatil": 6503855554560,
-          "ma50": 9261.4,
-          "ma200": 9241.45,
+          "ma50": 9260.6,
+          "ma200": 9240.75,
           "var_1d": -1.71,
           "var_1m": -5.11,
-          "var_12m": 31.71,
+          "var_12m": 35.32,
           "subtitulo": "Transporte de Gas / Utilities",
           "var_ytd": -7.35
         },
@@ -14675,19 +14696,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 83985.15,
-          "open": 84381.5938,
-          "high": 84876.2266,
-          "low": 82906.6172,
+          "precio": 83932.17,
+          "open": 84081.9141,
+          "high": 84118.3203,
+          "low": 83799.75,
           "moneda": "USD",
-          "cap_bursatil": 1686437363712,
-          "ma50": 74927.5,
-          "ma200": 70850.9,
-          "var_1d": -0.72,
-          "var_1m": 3.82,
-          "var_12m": -11.69,
+          "cap_bursatil": 1686684827648,
+          "ma50": 75320.91,
+          "ma200": 70928.55,
+          "var_1d": -0.3,
+          "var_1m": 5.35,
+          "var_12m": -12.14,
           "subtitulo": "Criptomoneda Líder / Reserva Digital",
-          "var_ytd": -4.03
+          "var_ytd": -4.09
         },
         {
           "id": "CRYPTO_ETH",
@@ -14696,19 +14717,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2691.06,
-          "open": 2684.4395,
-          "high": 2703.6628,
-          "low": 2628.6892,
+          "precio": 2687.7,
+          "open": 2691.2156,
+          "high": 2694.7151,
+          "low": 2680.9338,
           "moneda": "USD",
-          "cap_bursatil": 328227880960,
-          "ma50": 2341.14,
-          "ma200": 2090.85,
-          "var_1d": 0.07,
-          "var_1m": 7.15,
-          "var_12m": -18.99,
+          "cap_bursatil": 328340307968,
+          "ma50": 2356.85,
+          "ma200": 2094.33,
+          "var_1d": 0.3,
+          "var_1m": 9.43,
+          "var_12m": -18.44,
           "subtitulo": "Contratos Inteligentes / Web3",
-          "var_ytd": -9.3
+          "var_ytd": -9.41
         },
         {
           "id": "CRYPTO_SOL",
@@ -14717,19 +14738,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 121.9,
-          "open": 114.9752,
-          "high": 117.6061,
-          "low": 112.8366,
+          "precio": 120.44,
+          "open": 122.0363,
+          "high": 122.2143,
+          "low": 120.4026,
           "moneda": "USD",
-          "cap_bursatil": 71503175680,
-          "ma50": 95.76,
-          "ma200": 84.42,
-          "var_1d": 3.76,
-          "var_1m": 12.53,
-          "var_12m": -17.79,
+          "cap_bursatil": 70826254336,
+          "ma50": 96.72,
+          "ma200": 84.6,
+          "var_1d": 3.46,
+          "var_1m": 18.14,
+          "var_12m": -16.86,
           "subtitulo": "Blockchain de Alta Velocidad",
-          "var_ytd": -2.08
+          "var_ytd": -3.25
         },
         {
           "id": "CRYPTO_BNB",
@@ -14738,19 +14759,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 776.08,
-          "open": 767.2523,
-          "high": 784.6324,
-          "low": 763.8808,
+          "precio": 773.34,
+          "open": 776.8089,
+          "high": 777.3668,
+          "low": 773.4568,
           "moneda": "USD",
-          "cap_bursatil": 103277125632,
-          "ma50": 690.87,
-          "ma200": 632.22,
-          "var_1d": -0.26,
-          "var_1m": 7.1,
-          "var_12m": -16.58,
+          "cap_bursatil": 103024820224,
+          "ma50": 694.51,
+          "ma200": 632.91,
+          "var_1d": -0.14,
+          "var_1m": 7.22,
+          "var_12m": -17.51,
           "subtitulo": "Ecosistema BNB Chain",
-          "var_ytd": -10.1
+          "var_ytd": -10.42
         },
         {
           "id": "CRYPTO_XRP",
@@ -14759,19 +14780,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.5765,
-          "open": 1.5006,
-          "high": 1.5464,
-          "low": 1.4549,
+          "precio": 1.552,
+          "open": 1.5684,
+          "high": 1.5777,
+          "low": 1.5515,
           "moneda": "USD",
-          "cap_bursatil": 98813476864,
-          "ma50": 1.3,
+          "cap_bursatil": 97670365184,
+          "ma50": 1.31,
           "ma200": 1.28,
-          "var_1d": 2.29,
-          "var_1m": 5.64,
-          "var_12m": -26.23,
+          "var_1d": 1.57,
+          "var_1m": 10.94,
+          "var_12m": -24.96,
           "subtitulo": "Pagos y Liquidaciones",
-          "var_ytd": -14.32
+          "var_ytd": -15.65
         },
         {
           "id": "CRYPTO_ADA",
@@ -14780,19 +14801,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.2598,
-          "open": 0.2384,
-          "high": 0.2505,
-          "low": 0.2339,
+          "precio": 0.2549,
+          "open": 0.2585,
+          "high": 0.264,
+          "low": 0.2554,
           "moneda": "USD",
-          "cap_bursatil": 9523650560,
+          "cap_bursatil": 9391965184,
           "ma50": 0.21,
           "ma200": 0.21,
-          "var_1d": 3.99,
-          "var_1m": 12.12,
-          "var_12m": -36.98,
+          "var_1d": 3.02,
+          "var_1m": 20.63,
+          "var_12m": -35.55,
           "subtitulo": "Blockchain Proof of Stake",
-          "var_ytd": -21.94
+          "var_ytd": -23.41
         },
         {
           "id": "CRYPTO_DOGE",
@@ -14801,19 +14822,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0993,
-          "open": 0.0927,
-          "high": 0.097,
-          "low": 0.0918,
+          "precio": 0.0976,
+          "open": 0.099,
+          "high": 0.0993,
+          "low": 0.0975,
           "moneda": "USD",
-          "cap_bursatil": 16986648576,
+          "cap_bursatil": 15246158848,
           "ma50": 0.08,
           "ma200": 0.09,
-          "var_1d": 3.49,
-          "var_1m": 9.0,
-          "var_12m": -31.64,
+          "var_1d": 2.58,
+          "var_1m": 15.09,
+          "var_12m": -29.33,
           "subtitulo": "Moneda Digital Memética",
-          "var_ytd": -15.35
+          "var_ytd": -16.79
         },
         {
           "id": "CRYPTO_USDT",
@@ -14825,14 +14846,14 @@
           "precio": 0.9998,
           "open": 0.9998,
           "high": 0.9999,
-          "low": 0.9991,
+          "low": 0.9997,
           "moneda": "USD",
-          "cap_bursatil": 183777820672,
+          "cap_bursatil": 183786586112,
           "ma50": 1.0,
           "ma200": 1.0,
-          "var_1d": 0.01,
-          "var_1m": -0.03,
-          "var_12m": 0.01,
+          "var_1d": 0.0,
+          "var_1m": -0.04,
+          "var_12m": 0.03,
           "subtitulo": "Stablecoin Dólar",
           "var_ytd": 0.14
         }
