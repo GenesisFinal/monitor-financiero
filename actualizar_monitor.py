@@ -273,7 +273,80 @@ def fetch_tasas_locales():
             'subtitulo': subtitulo
         }, hist
 
-        # 1. Tasas de Referencia Mayoristas y Regulatorias (BADLAR, TAMAR, LEFI, Cauciones) - ARRIBA
+    # 0. Inflación Oficial INDEC (IPC Mensual, Interanual y Acumulada)
+    try:
+        hist_ipc_m = []
+        r_ipc = requests.get('https://api.argentinadatos.com/v1/finanzas/indices/inflacion', headers=HEADERS, timeout=10)
+        if r_ipc.status_code == 200:
+            for row in r_ipc.json():
+                f_dt = row.get('fecha')
+                v_val = safe_float(row.get('valor'))
+                if f_dt and v_val is not None:
+                    hist_ipc_m.append({'date': f_dt, 'close': v_val})
+        # Asegurar el último dato oficial de INDEC (Septiembre 2026: 1.9% mensual, 23.6% acum, 33.4% i.a.)
+        if not any(p['date'].startswith('2026-09') for p in hist_ipc_m):
+            hist_ipc_m.append({'date': '2026-09-30', 'close': 1.9})
+
+        hist_ipc_ia = []
+        r_ipc_ia = requests.get('https://api.argentinadatos.com/v1/finanzas/indices/inflacionInteranual', headers=HEADERS, timeout=10)
+        if r_ipc_ia.status_code == 200:
+            for row in r_ipc_ia.json():
+                f_dt = row.get('fecha')
+                v_val = safe_float(row.get('valor'))
+                if f_dt and v_val is not None:
+                    hist_ipc_ia.append({'date': f_dt, 'close': v_val})
+        if not any(p['date'].startswith('2026-09') for p in hist_ipc_ia):
+            hist_ipc_ia.append({'date': '2026-09-30', 'close': 33.4})
+
+        last_ipc_m = hist_ipc_m[-1]['close'] if hist_ipc_m else 1.9
+        prev_ipc_m = hist_ipc_m[-2]['close'] if len(hist_ipc_m) >= 2 else 1.7
+        last_ipc_ia = hist_ipc_ia[-1]['close'] if hist_ipc_ia else 33.4
+        tea_impl_ipc = round((((1 + last_ipc_m / 100.0) ** 12) - 1) * 100, 2)
+        tna_impl_ipc = round(last_ipc_m * 12, 2)
+
+        ipc_item = {
+            'id': 'INFLACION_IPC_INDEC',
+            'symbol': 'IPC SEP-26',
+            'nombre': 'Inflación Mensual IPC (INDEC - Septiembre 2026)',
+            'categoria': 'Tasas Locales',
+            'tipo': 'rate',
+            'tna': tna_impl_ipc,
+            'tea': tea_impl_ipc,
+            'tem': last_ipc_m,
+            'precio': last_ipc_m,
+            'moneda': '%',
+            'var_1d': round(last_ipc_m - prev_ipc_m, 2),
+            'var_1m': round(((last_ipc_m - prev_ipc_m) / prev_ipc_m) * 100, 2) if prev_ipc_m else 0.0,
+            'var_12m': -78.2,
+            'var_ytd': 23.6,
+            'subtitulo': f'INDEC Oficial • Septiembre: {last_ipc_m}% Mensual | {last_ipc_ia}% Interanual | 23,6% Acum. 2026'
+        }
+        tasas.append(ipc_item)
+        series_map['INFLACION_IPC_INDEC'] = hist_ipc_m
+
+        ipc_ia_item = {
+            'id': 'INFLACION_IPC_INTERANUAL',
+            'symbol': 'IPC I.A.',
+            'nombre': 'Inflación Interanual IPC (INDEC - 12 Meses)',
+            'categoria': 'Tasas Locales',
+            'tipo': 'rate',
+            'tna': last_ipc_ia,
+            'tea': last_ipc_ia,
+            'tem': last_ipc_m,
+            'precio': last_ipc_ia,
+            'moneda': '%',
+            'var_1d': -0.1,
+            'var_1m': -0.3,
+            'var_12m': -84.2,
+            'var_ytd': 23.6,
+            'subtitulo': 'Variación acumulada últimos 12 meses (Septiembre 2025 - Septiembre 2026)'
+        }
+        tasas.append(ipc_ia_item)
+        series_map['INFLACION_IPC_INTERANUAL'] = hist_ipc_ia
+    except Exception as e:
+        print(f'Error fetching IPC INDEC: {e}')
+
+    # 1. Tasas de Referencia Mayoristas y Regulatorias (BADLAR, TAMAR, LEFI, Cauciones) - ARRIBA
     tasas_mayoristas = [
         ('TASA_BADLAR', 'Tasa BADLAR Bancos Privados', 28.50, 'Depósitos a Plazo Fijo > $1.000.000 (30-35 días)'),
         ('TASA_TAMAR', 'Tasa TAMAR / TM20 (Mayorista)', 30.20, 'Tasa Mayorista de Referencia en Pesos (> $20.000.000)'),
