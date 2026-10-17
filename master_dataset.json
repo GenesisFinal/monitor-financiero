@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-10-17 01:57:28",
+  "ultima_actualizacion": "2026-10-17 04:03:07",
   "fecha_cierre": "2026-10-17",
   "secciones": {
     "dolar": {
@@ -914,11 +914,11 @@
           "low": 1623.3,
           "moneda": "US$/oz",
           "cap_bursatil": null,
-          "ma50": 1759.9,
-          "ma200": 1927.89,
+          "ma50": 1757.98,
+          "ma200": 1924.89,
           "var_1d": 0.72,
-          "var_1m": -8.97,
-          "var_12m": -1.92,
+          "var_1m": -9.38,
+          "var_12m": -2.72,
           "subtitulo": "NYMEX - Dólares por Onza Troy",
           "var_ytd": -19.73
         },
@@ -1019,11 +1019,11 @@
           "low": 79.6,
           "moneda": "¢/lb",
           "cap_bursatil": null,
-          "ma50": 82.26,
-          "ma200": 74.37,
+          "ma50": 82.01,
+          "ma200": 74.48,
           "var_1d": 0.16,
-          "var_1m": -1.36,
-          "var_12m": 25.81,
+          "var_1m": 2.03,
+          "var_12m": 25.47,
           "subtitulo": "ICE - Centavos de US$ por Libra",
           "var_ytd": 24.77
         },
@@ -1947,33 +1947,6 @@
           "subtitulo": "Consultatio • Renta Fija Dólar HARD (USD)"
         },
         {
-          "id": "FCI_bell_bavsa_renta_plus",
-          "nombre": "Bell BAVSA Renta Plus - Clase B",
-          "categoria": "Renta Fija Dólar HARD (USD)",
-          "tipo": "fci",
-          "subtipo": "Renta Fija Dólar HARD (USD)",
-          "gestora": "BAVSA",
-          "moneda": "USD",
-          "precio": 1000.0,
-          "vcp": 1000.0,
-          "fecha_vcp": "2026-10-16",
-          "patrimonio": 5000000000.0,
-          "patrimonio_formato": "5,00 MM",
-          "var_1d": 0.0,
-          "var_1m": 0.0,
-          "var_12m": 0.0,
-          "var_ytd": null,
-          "tna": null,
-          "volatilidad": null,
-          "max_drawdown": null,
-          "dias_positivos": null,
-          "costo_total": 12.0,
-          "costo_gerente": 8.0,
-          "costo_depositario": 1.5,
-          "plazo_liquidacion": "T+1",
-          "subtitulo": "BAVSA • Renta Fija Dólar HARD (USD)"
-        },
-        {
           "id": "FCI_megaqm_latam_corporativo",
           "nombre": "MEGAQM Latam Corporativo - Clase BP",
           "categoria": "Renta Fija Dólar HARD (USD)",
@@ -2188,6 +2161,33 @@
           "costo_depositario": 0.73,
           "plazo_liquidacion": "T+2",
           "subtitulo": "Santander AM • Renta Fija Dólar HARD (USD)"
+        },
+        {
+          "id": "FCI_balanz_capital_estrategia_i_usd",
+          "nombre": "Balanz Capital Estrategia I USD - Clase A",
+          "categoria": "Renta Fija Dólar HARD (USD)",
+          "tipo": "fci",
+          "subtipo": "Renta Fija Dólar HARD (USD)",
+          "gestora": "Balanz",
+          "moneda": "USD",
+          "precio": 1175.408,
+          "vcp": 1175.408,
+          "fecha_vcp": "2026-10-16",
+          "patrimonio": 380486052.44,
+          "patrimonio_formato": "380,49 M",
+          "var_1d": 0.0397,
+          "var_1m": 0.3884,
+          "var_12m": 5.89,
+          "var_ytd": 4.02,
+          "tna": null,
+          "volatilidad": 0.5,
+          "max_drawdown": -0.18,
+          "dias_positivos": 67.0,
+          "costo_total": 0.59,
+          "costo_gerente": 0.5,
+          "costo_depositario": 0.1,
+          "plazo_liquidacion": "T+1",
+          "subtitulo": "Balanz • Renta Fija Dólar HARD (USD)"
         },
         {
           "id": "FCI_max_cobertura",
@@ -12436,7 +12436,8 @@
           "volumen": 59895300.0,
           "cap_bursatil": 5012516765696,
           "tags": [
-            "top_mcap"
+            "top_mcap",
+            "most_actives"
           ],
           "tipo": "market_asset",
           "var_ytd": 26.68
@@ -12531,8 +12532,7 @@
           "volumen": 61855000.0,
           "cap_bursatil": 1400983519232,
           "tags": [
-            "top_mcap",
-            "most_actives"
+            "top_mcap"
           ],
           "tipo": "market_asset",
           "var_ytd": -21.12
@@ -12644,7 +12644,7 @@
           "var_1m": 9.08,
           "var_12m": 56.37,
           "volumen": 2412800.0,
-          "cap_bursatil": 1120945700864,
+          "cap_bursatil": 1120462569472,
           "tags": [
             "top_mcap"
           ],
@@ -12682,7 +12682,7 @@
           "var_1m": 11.26,
           "var_12m": 11.92,
           "volumen": 20612400.0,
-          "cap_bursatil": 945499340800,
+          "cap_bursatil": 942608351232,
           "tags": [
             "top_mcap"
           ],
@@ -12701,7 +12701,7 @@
           "var_1m": -2.41,
           "var_12m": 77.34,
           "volumen": 22792800.0,
-          "cap_bursatil": 5417160704,
+          "cap_bursatil": 4549659136,
           "tags": [
             "day_gainers"
           ],
@@ -12834,7 +12834,7 @@
           "var_1m": 10.75,
           "var_12m": 57.58,
           "volumen": 1532100.0,
-          "cap_bursatil": 5983411200,
+          "cap_bursatil": 5984728064,
           "tags": [
             "day_gainers"
           ],
@@ -12967,7 +12967,7 @@
           "var_1m": -24.09,
           "var_12m": 51.81,
           "volumen": 34962100.0,
-          "cap_bursatil": 44983885824,
+          "cap_bursatil": 42012532736,
           "tags": [
             "day_losers"
           ],
@@ -13319,6 +13319,25 @@
           "var_ytd": -67.78
         },
         {
+          "id": "EQ_SOUN",
+          "symbol": "SOUN",
+          "nombre": "SoundHound AI, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 4.72,
+          "var_1d": -3.48,
+          "var_1m": -21.33,
+          "var_12m": -75.24,
+          "volumen": 17905800.0,
+          "cap_bursatil": 2096209280,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -52.66
+        },
+        {
           "id": "EQ_QS",
           "symbol": "QS",
           "nombre": "QuantumScape Corporation",
@@ -13357,23 +13376,23 @@
           "var_ytd": -66.0
         },
         {
-          "id": "EQ_SOUN",
-          "symbol": "SOUN",
-          "nombre": "SoundHound AI, Inc.",
+          "id": "EQ_JOBY",
+          "symbol": "JOBY",
+          "nombre": "Joby Aviation, Inc.",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 4.72,
-          "var_1d": -3.48,
-          "var_1m": -21.33,
-          "var_12m": -75.24,
-          "volumen": 17905800.0,
-          "cap_bursatil": 2096209280,
+          "precio": 4.66,
+          "var_1d": -3.12,
+          "var_1m": -24.72,
+          "var_12m": -73.26,
+          "volumen": 16413900.0,
+          "cap_bursatil": 4642731008,
           "tags": [
             "losers_52w"
           ],
           "tipo": "market_asset",
-          "var_ytd": -52.66
+          "var_ytd": -64.7
         },
         {
           "id": "EQ_FRVO",
@@ -13393,25 +13412,6 @@
           ],
           "tipo": "market_asset",
           "var_ytd": -73.51
-        },
-        {
-          "id": "EQ_JOBY",
-          "symbol": "JOBY",
-          "nombre": "Joby Aviation, Inc.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 4.66,
-          "var_1d": -3.12,
-          "var_1m": -24.72,
-          "var_12m": -73.26,
-          "volumen": 16413900.0,
-          "cap_bursatil": 4642731008,
-          "tags": [
-            "losers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -64.7
         },
         {
           "id": "EQ_RGTI",
@@ -13482,7 +13482,7 @@
           "var_1m": -5.67,
           "var_12m": -9.27,
           "volumen": 88193900.0,
-          "cap_bursatil": 1924935319552,
+          "cap_bursatil": 1923826450432,
           "tags": [
             "most_actives"
           ],
@@ -13509,6 +13509,25 @@
           "var_ytd": 41.27
         },
         {
+          "id": "EQ_IREN",
+          "symbol": "IREN",
+          "nombre": "IREN Limited",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 26.99,
+          "var_1d": -11.19,
+          "var_1m": -37.93,
+          "var_12m": -54.42,
+          "volumen": 68160900.0,
+          "cap_bursatil": 10635642880,
+          "tags": [
+            "most_actives"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -28.54
+        },
+        {
           "id": "EQ_OPEN",
           "symbol": "OPEN",
           "nombre": "Opendoor Technologies Inc.",
@@ -13520,7 +13539,7 @@
           "var_1m": -17.38,
           "var_12m": -71.3,
           "volumen": 65243100.0,
-          "cap_bursatil": 2053857664,
+          "cap_bursatil": 2040418048,
           "tags": [
             "most_actives"
           ],
@@ -13545,25 +13564,6 @@
           ],
           "tipo": "market_asset",
           "var_ytd": -5.36
-        },
-        {
-          "id": "EQ_IREN",
-          "symbol": "IREN",
-          "nombre": "IREN Limited",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 26.99,
-          "var_1d": -11.19,
-          "var_1m": -37.93,
-          "var_12m": -54.42,
-          "volumen": 68160900.0,
-          "cap_bursatil": 10635642880,
-          "tags": [
-            "most_actives"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -28.54
         }
       ]
     },
@@ -14347,7 +14347,7 @@
           "high": 5260.0,
           "low": 5170.0,
           "moneda": "ARS",
-          "cap_bursatil": 7022093795328,
+          "cap_bursatil": 7040464846848,
           "ma50": 5206.4,
           "ma200": 5074.01,
           "var_1d": 0.67,
@@ -14494,7 +14494,7 @@
           "high": 1678.0,
           "low": 1631.0,
           "moneda": "ARS",
-          "cap_bursatil": null,
+          "cap_bursatil": 1453632651264,
           "ma50": 1823.58,
           "ma200": 1988.01,
           "var_1d": -0.72,
@@ -14579,19 +14579,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 81416.35,
+          "precio": 81525.63,
           "open": 81501.6094,
           "high": 81546.8906,
           "low": 81302.6484,
           "moneda": "USD",
-          "cap_bursatil": 1636249763840,
-          "ma50": 81250.17,
-          "ma200": 72359.52,
-          "var_1d": -0.78,
-          "var_1m": -3.12,
-          "var_12m": 15.39,
+          "cap_bursatil": 1638411665408,
+          "ma50": 81252.36,
+          "ma200": 72360.07,
+          "var_1d": -0.8,
+          "var_1m": -2.99,
+          "var_12m": 15.55,
           "subtitulo": "Criptomoneda Líder / Reserva Digital",
-          "var_ytd": -6.96
+          "var_ytd": -6.84
         },
         {
           "id": "CRYPTO_ETH",
@@ -14600,19 +14600,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2422.43,
+          "precio": 2430.62,
           "open": 2419.9055,
-          "high": 2425.8904,
+          "high": 2430.1301,
           "low": 2414.8032,
           "moneda": "USD",
-          "cap_bursatil": 295894417408,
-          "ma50": 2552.5,
-          "ma200": 2144.73,
-          "var_1d": -0.8,
-          "var_1m": -9.96,
-          "var_12m": 17.4,
+          "cap_bursatil": 296767520768,
+          "ma50": 2552.67,
+          "ma200": 2144.77,
+          "var_1d": -0.87,
+          "var_1m": -9.65,
+          "var_12m": 17.81,
           "subtitulo": "Contratos Inteligentes / Web3",
-          "var_ytd": -18.36
+          "var_ytd": -18.08
         },
         {
           "id": "CRYPTO_SOL",
@@ -14621,19 +14621,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 104.63,
+          "precio": 104.88,
           "open": 104.2928,
           "high": 104.9936,
           "low": 104.0909,
           "moneda": "USD",
-          "cap_bursatil": 61635305472,
-          "ma50": 109.37,
+          "cap_bursatil": 61776416768,
+          "ma50": 109.38,
           "ma200": 87.36,
-          "var_1d": -0.92,
-          "var_1m": -14.24,
-          "var_12m": 19.63,
+          "var_1d": -1.28,
+          "var_1m": -14.04,
+          "var_12m": 19.91,
           "subtitulo": "Blockchain de Alta Velocidad",
-          "var_ytd": -15.95
+          "var_ytd": -15.75
         },
         {
           "id": "CRYPTO_BNB",
@@ -14642,19 +14642,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 720.96,
+          "precio": 721.85,
           "open": 720.8853,
-          "high": 721.8578,
+          "high": 722.1127,
           "low": 718.7577,
           "moneda": "USD",
-          "cap_bursatil": 96031342592,
-          "ma50": 744.51,
-          "ma200": 645.29,
-          "var_1d": -1.18,
-          "var_1m": -7.19,
-          "var_12m": 9.66,
+          "cap_bursatil": 96046710784,
+          "ma50": 744.53,
+          "ma200": 645.3,
+          "var_1d": -1.12,
+          "var_1m": -7.07,
+          "var_12m": 9.8,
           "subtitulo": "Ecosistema BNB Chain",
-          "var_ytd": -16.48
+          "var_ytd": -16.38
         },
         {
           "id": "CRYPTO_XRP",
@@ -14663,19 +14663,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.3067,
+          "precio": 1.3088,
           "open": 1.31,
           "high": 1.31,
           "low": 1.3021,
           "moneda": "USD",
-          "cap_bursatil": 82492940288,
+          "cap_bursatil": 82587451392,
           "ma50": 1.42,
           "ma200": 1.28,
-          "var_1d": -2.03,
-          "var_1m": -16.69,
-          "var_12m": -11.2,
+          "var_1d": -2.23,
+          "var_1m": -16.55,
+          "var_12m": -11.05,
           "subtitulo": "Pagos y Liquidaciones",
-          "var_ytd": -28.98
+          "var_ytd": -28.87
         },
         {
           "id": "CRYPTO_ADA",
@@ -14684,19 +14684,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.2246,
+          "precio": 0.2239,
           "open": 0.2255,
           "high": 0.2255,
           "low": 0.2237,
           "moneda": "USD",
-          "cap_bursatil": 8274394624,
+          "cap_bursatil": 8239100928,
           "ma50": 0.23,
           "ma200": 0.21,
-          "var_1d": -2.25,
-          "var_1m": -13.11,
-          "var_12m": -18.68,
+          "var_1d": -3.0,
+          "var_1m": -13.38,
+          "var_12m": -18.94,
           "subtitulo": "Blockchain Proof of Stake",
-          "var_ytd": -32.51
+          "var_ytd": -32.72
         },
         {
           "id": "CRYPTO_DOGE",
@@ -14705,19 +14705,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0803,
+          "precio": 0.0805,
           "open": 0.0808,
           "high": 0.0808,
           "low": 0.0799,
           "moneda": "USD",
-          "cap_bursatil": 13818568704,
+          "cap_bursatil": 13850080256,
           "ma50": 0.09,
           "ma200": 0.09,
-          "var_1d": -1.93,
-          "var_1m": -18.81,
-          "var_12m": -18.48,
+          "var_1d": -1.95,
+          "var_1m": -18.6,
+          "var_12m": -18.27,
           "subtitulo": "Moneda Digital Memética",
-          "var_ytd": -31.54
+          "var_ytd": -31.37
         },
         {
           "id": "CRYPTO_USDT",
@@ -14731,12 +14731,12 @@
           "high": 0.9986,
           "low": 0.9984,
           "moneda": "USD",
-          "cap_bursatil": 183394418688,
+          "cap_bursatil": 183409754112,
           "ma50": 1.0,
           "ma200": 1.0,
           "var_1d": -0.01,
-          "var_1m": -0.13,
-          "var_12m": -0.07,
+          "var_1m": -0.12,
+          "var_12m": -0.06,
           "subtitulo": "Stablecoin Dólar",
           "var_ytd": 0.02
         }
