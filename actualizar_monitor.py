@@ -5,37 +5,22 @@ import pandas as pd
 import numpy as np
 
 def fetch_riesgo_pais():
-    print('-> Obteniendo Riesgo País oficial (ArgentinaDatos + Rava en tiempo real)...')
+    print('-> Obteniendo Riesgo País oficial (ArgentinaDatos)...')
     data = []
     try:
         r = requests.get('https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais', timeout=10)
         if r.status_code == 200:
-            data = r.json()
+            raw_data = r.json()
+            data = [
+                p for p in raw_data
+                if p.get('fecha') and p.get('valor') is not None
+                and datetime.date.fromisoformat(p['fecha']).weekday() < 5
+            ]
     except Exception as e:
         print(f"   [Error ArgentinaDatos]: {e}")
         
     last_val = data[-1]['valor'] if data else 509
     prev_val = data[-2]['valor'] if len(data) >= 2 else last_val
-    today_str = datetime.date.today().strftime('%Y-%m-%d')
-    
-    # Obtener el último valor en tiempo real de Rava si ya tiene la rueda de hoy
-    try:
-        r_rava = requests.get('https://www.rava.com/perfil/RIESGO%20PAIS', headers={'User-Agent': 'Mozilla/5.0'}, timeout=5)
-        if r_rava.status_code == 200:
-            soup = BeautifulSoup(r_rava.text, 'html.parser')
-            p_el = soup.find(class_='p2-price')
-            if p_el:
-                txt = p_el.text.strip().replace('.', '').replace(',', '.')
-                live_val = float(txt)
-                if live_val > 0:
-                    if data and data[-1]['fecha'] < today_str:
-                        prev_val = data[-1]['valor']
-                        last_val = live_val
-                        data.append({'fecha': today_str, 'valor': live_val})
-                    else:
-                        last_val = live_val
-    except Exception as e:
-        print(f"   [Error Rava live]: {e}")
         
     var_1d = round(((last_val - prev_val) / prev_val) * 100, 2)
     prev_1m = data[-22]['valor'] if len(data) >= 22 else last_val
@@ -155,6 +140,7 @@ def fetch_dolar():
                 if code in seen_codes:
                     continue
                 seen_codes.add(code)
+                is_cripto = (code == 'USD_CRIPTO')
                 
                 hist_series = []
                 try:
@@ -165,18 +151,14 @@ def fetch_dolar():
                             fecha = row.get('fecha')
                             v = safe_float(row.get('venta', row.get('compra')))
                             if fecha and v and v > 0:
-                                pts_by_dt[fecha] = round(v, 2)
+                                if is_cripto or datetime.date.fromisoformat(fecha).weekday() < 5:
+                                    pts_by_dt[fecha] = round(v, 2)
                         hist_series = [{'date': d, 'close': pts_by_dt[d]} for d in sorted(pts_by_dt.keys())]
                 except Exception:
                     pass
                 
-                if not hist_series and precio:
-                    hist_series = [{'date': TODAY_STR, 'close': precio}]
-                elif hist_series and precio:
-                    if hist_series[-1]['date'] < TODAY_STR:
-                        hist_series.append({'date': TODAY_STR, 'close': precio})
-                    else:
-                        hist_series[-1]['close'] = precio
+                if hist_series:
+                    precio = hist_series[-1]['close']
                     
                 vars_dict = calc_variations(hist_series)
                 dolar_data.append({
@@ -2481,19 +2463,47 @@ def main():
                         if c_start > 0:
                             item['var_ytd'] = round(((float(item['precio']) - c_start) / c_start) * 100, 2)
 
+    # Filtrar estrictamente días sin operación (fines de semana y feriados bursátiles)
+    byma_op_dates = set()
+    for ref_k in ['ARG_GGAL', 'ARG_YPFD', 'ARG_PAMP', 'BONO_AL30', 'BONO_GD30']:
+        for p in all_series.get(ref_k, []):
+            dt = p.get('date') or p.get('time')
+            if dt and datetime.date.fromisoformat(dt).weekday() < 5:
+                byma_op_dates.add(dt)
+    us_op_dates = set()
+    for ref_k in ['IDX_SPX', 'ETF_SPY', 'EQ_AAPL']:
+        for p in all_series.get(ref_k, []):
+            dt = p.get('date') or p.get('time')
+            if dt and datetime.date.fromisoformat(dt).weekday() < 5:
+                us_op_dates.add(dt)
+
     print('-> Guardando master_dataset.json...')
     with open('master_dataset.json', 'w', encoding='utf-8') as f:
         json.dump(master_dataset, f, ensure_ascii=False, indent=2)
         
-    print('-> Compactando y guardando series_historicas.json...')
+    print('-> Compactando y guardando series_historicas.json (solo ruedas con operación real)...')
     compact_series = {}
     for k, v in all_series.items():
         if isinstance(v, list) and v:
             clean_pts = []
+            is_24_7 = (k.startswith('CRYPTO_') or k == 'USD_CRIPTO' or k in ['INFLACION_IPC_INDEC', 'INFLACION_IPC_INTERANUAL'])
+            is_arg = (
+                k.startswith('USD_') or k == 'RIESGO_PAIS' or
+                (k.startswith('TASA_') and k not in ['TASA_FED_FUNDS', 'TASA_ECB_DEP']) or
+                k.startswith('BONO_') or k.startswith('ON_') or
+                k.startswith('ARG_') or k.startswith('CEDEAR_') or k.startswith('FCI_')
+            )
             for p in v[-2600:]:
                 dt = p.get('date') or p.get('time') or p.get('fecha')
                 c = safe_float(p.get('close'))
                 if dt and c is not None:
+                    if not is_24_7:
+                        if datetime.date.fromisoformat(dt).weekday() >= 5:
+                            continue
+                        if is_arg and byma_op_dates and dt >= '2016-10-20' and dt not in byma_op_dates:
+                            continue
+                        if not is_arg and us_op_dates and dt >= '2016-10-20' and not k.startswith('IDX_') and not k.startswith('FX_') and k != 'TASA_ECB_DEP' and dt not in us_op_dates:
+                            continue
                     pt_d = {'date': dt, 'close': round(c, 4)}
                     if p.get('open') is not None:
                         pt_d['open'] = round(safe_float(p['open'], c), 4)
