@@ -2575,14 +2575,7 @@ def main():
                             continue
                         if not is_arg and us_op_dates and dt >= '2016-10-20' and not k.startswith('IDX_') and not k.startswith('FX_') and k != 'TASA_ECB_DEP' and dt not in us_op_dates:
                             continue
-                    pt_d = {'date': dt, 'close': round(c, 4)}
-                    if p.get('open') is not None:
-                        pt_d['open'] = round(safe_float(p['open'], c), 4)
-                        pt_d['high'] = round(safe_float(p.get('high'), c), 4)
-                        pt_d['low'] = round(safe_float(p.get('low'), c), 4)
-                    if p.get('volume') is not None:
-                        pt_d['volume'] = safe_float(p['volume'], 0)
-                    clean_pts.append(pt_d)
+                    clean_pts.append({'date': dt, 'close': round(c, 4)})
             compact_series[k] = clean_pts
         elif isinstance(v, list):
             compact_series[k] = v
