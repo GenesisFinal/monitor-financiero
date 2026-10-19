@@ -138,55 +138,8 @@ def calc_mas(series):
     ma200 = round(float(np.mean(closes[-200:])), 2) if len(closes) >= 200 else round(float(np.mean(closes)), 2)
     return ma50, ma200
 
-def fill_business_day_gaps(series, decimals=4, target_end_date=None):
-    """Rellena todos los días hábiles intermedios sin huecos y opcionalmente extiende hasta target_end_date."""
-    if not series:
-        return []
-    by_date = {}
-    for pt in series:
-        d = pt.get('date') or pt.get('time') or pt.get('fecha')
-        c = safe_float(pt.get('close'))
-        if d and c is not None and c > 0:
-            by_date[d] = round(c, decimals)
-    if target_end_date and by_date:
-        max_existing = max(by_date.keys())
-        if max_existing < target_end_date:
-            by_date[target_end_date] = by_date[max_existing]
-    sorted_dates = sorted(by_date.keys())
-    if len(sorted_dates) < 2:
-        return [{'date': d, 'close': by_date[d]} for d in sorted_dates]
-    filled = []
-    for i in range(len(sorted_dates) - 1):
-        d1_str = sorted_dates[i]
-        d2_str = sorted_dates[i + 1]
-        v1 = by_date[d1_str]
-        v2 = by_date[d2_str]
-        filled.append({'date': d1_str, 'close': v1})
-        d1 = datetime.datetime.strptime(d1_str, '%Y-%m-%d').date()
-        d2 = datetime.datetime.strptime(d2_str, '%Y-%m-%d').date()
-        gap_days = (d2 - d1).days
-        if gap_days > 1:
-            bdays = []
-            curr = d1 + datetime.timedelta(days=1)
-            while curr < d2:
-                if curr.weekday() < 5:
-                    bdays.append(curr)
-                curr += datetime.timedelta(days=1)
-            if bdays:
-                steps = len(bdays) + 1
-                for idx_b, b_dt in enumerate(bdays, start=1):
-                    frac = idx_b / steps
-                    if v1 > 0 and v2 > 0:
-                        val_interp = v1 * ((v2 / v1) ** frac)
-                    else:
-                        val_interp = v1 + (v2 - v1) * frac
-                    filled.append({'date': b_dt.strftime('%Y-%m-%d'), 'close': round(val_interp, decimals)})
-    last_d = sorted_dates[-1]
-    filled.append({'date': last_d, 'close': by_date[last_d]})
-    return filled
-
 def fetch_dolar():
-    print('-> Obteniendo cotizaciones de Dólar...')
+    print('-> Obteniendo cotizaciones de Dólar (100% cierres reales ArgentinaDatos + DolarAPI)...')
     dolar_data, series_map = [], {}
     seen_codes = set()
     try:
@@ -207,11 +160,15 @@ def fetch_dolar():
                 try:
                     r_hist = requests.get(f'https://api.argentinadatos.com/v1/cotizaciones/dolares/{casa}', headers=HEADERS, timeout=10)
                     if r_hist.status_code == 200:
+                        pts_by_dt = {}
                         for row in r_hist.json():
                             fecha = row.get('fecha')
                             v = safe_float(row.get('venta', row.get('compra')))
-                            if fecha and v: hist_series.append({'date': fecha, 'close': v})
-                except: pass
+                            if fecha and v and v > 0:
+                                pts_by_dt[fecha] = round(v, 2)
+                        hist_series = [{'date': d, 'close': pts_by_dt[d]} for d in sorted(pts_by_dt.keys())]
+                except Exception:
+                    pass
                 
                 if not hist_series and precio:
                     hist_series = [{'date': TODAY_STR, 'close': precio}]
@@ -220,7 +177,6 @@ def fetch_dolar():
                         hist_series.append({'date': TODAY_STR, 'close': precio})
                     else:
                         hist_series[-1]['close'] = precio
-                hist_series = fill_business_day_gaps(hist_series, decimals=2)
                     
                 vars_dict = calc_variations(hist_series)
                 dolar_data.append({
@@ -247,15 +203,13 @@ def fetch_dolar():
             usdt_price = safe_float(r_binance.json().get('price'))
             if usdt_price:
                 cripto_hist = series_map.get('USD_CRIPTO', [])
-                if len(cripto_hist) < 30 and series_map.get('USD_BOLSA'):
-                    mep_hist = series_map['USD_BOLSA']
-                    ratio = usdt_price / mep_hist[-1]['close'] if mep_hist[-1]['close'] else 1.01
-                    cripto_hist = [{'date': p['date'], 'close': round(p['close'] * ratio, 2)} for p in mep_hist]
                 if cripto_hist:
-                    cripto_hist[-1]['close'] = usdt_price
+                    if cripto_hist[-1]['date'] < TODAY_STR:
+                        cripto_hist.append({'date': TODAY_STR, 'close': usdt_price})
+                    else:
+                        cripto_hist[-1]['close'] = usdt_price
                 else:
                     cripto_hist = [{'date': TODAY_STR, 'close': usdt_price}]
-                cripto_hist = fill_business_day_gaps(cripto_hist, decimals=2)
                 series_map['USD_CRIPTO'] = cripto_hist
                 vars_c = calc_variations(cripto_hist)
                 existing_c = next((x for x in dolar_data if x['id'] == 'USD_CRIPTO'), None)
@@ -287,62 +241,49 @@ def fetch_dolar():
     return dolar_data, series_map
 
 def fetch_tasas_locales():
-    print('-> Obteniendo Tasas Locales y Plazos Fijos por Bancos de Referencia...')
+    import urllib.parse, urllib3
+    urllib3.disable_warnings()
+    print('-> Obteniendo Tasas Locales 100% Oficiales (BCRA API v4.0 + Rava Histórico + INDEC)...')
     tasas, series_map = [], {}
     
-    # 1. Traer lista de bancos de ArgentinaDatos
-    banks_data = []
-    try:
-        r_b = requests.get('https://api.argentinadatos.com/v1/finanzas/tasas/plazoFijo', headers=HEADERS, timeout=10)
-        if r_b.status_code == 200:
-            banks_data = r_b.json()
-    except Exception as e:
-        print(f'Error fetching plazoFijo bancos: {e}')
-        
-    def get_bank_rate(name_sub):
-        for b in banks_data:
-            if name_sub.lower() in b.get('entidad', '').lower():
-                tna_dec = b.get('tnaClientes') or b.get('tnaNoClientes') or 0
-                return round(tna_dec * 100 if tna_dec < 1 else tna_dec, 2)
-        return None
+    def fetch_bcra_v4(var_id, desde='2018-01-01'):
+        pts = {}
+        try:
+            url = f'https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/{var_id}?desde={desde}&hasta={TODAY_STR}&limit=3000'
+            r = requests.get(url, verify=False, timeout=12)
+            if r.status_code == 200:
+                det = r.json().get('results', [{}])[0].get('detalle', [])
+                for row in det:
+                    dt = row.get('fecha')
+                    val = safe_float(row.get('valor'))
+                    if dt and val is not None and val > 0:
+                        pts[dt] = round(val, 2)
+        except Exception as e:
+            print(f'   [Warn BCRA v4 {var_id}]: {e}')
+        return pts
 
-    # 2. Histórico de Depósitos 30 Días BCRA
-    hist_bcra = []
-    tna_bcra_prom = 21.08
-    try:
-        r_dep = requests.get('https://api.argentinadatos.com/v1/finanzas/tasas/depositos30Dias', headers=HEADERS, timeout=10)
-        if r_dep.status_code == 200:
-            data_dep = r_dep.json()
-            for row in data_dep:
-                f_dt = row.get('fecha')
-                v_val = safe_float(row.get('valor'))
-                if f_dt and v_val:
-                    hist_bcra.append({'date': f_dt, 'close': v_val})
-            if hist_bcra:
-                tna_bcra_prom = hist_bcra[-1]['close']
-                hist_bcra = fill_business_day_gaps(hist_bcra, decimals=2, target_end_date=TODAY_STR)
-    except Exception as e:
-        print(f'Error fetching depositos30Dias BCRA: {e}')
-        
-    # Helper para calcular TEA y TEM
-    def build_rate_item(rate_id, nombre, tna_val, subtitulo, custom_hist=None):
-        if not tna_val: tna_val = 20.0
+    def fetch_rava_ind(ind_name):
+        pts = {}
+        try:
+            enc = urllib.parse.quote(ind_name)
+            url = f'https://mercado.rava.com/api/prices/historico/ind/{enc}?dias=3650'
+            r = requests.get(url, headers=HEADERS, timeout=10)
+            if r.status_code == 200:
+                for row in r.json().get('datos', []):
+                    dt = str(row.get('fecha', ''))[:10]
+                    val = safe_float(row.get('precio'))
+                    if dt and val is not None and val > 0:
+                        pts[dt] = round(val, 2)
+        except Exception as e:
+            print(f'   [Warn Rava Ind {ind_name}]: {e}')
+        return pts
+
+    def build_rate_item_from_real_series(rate_id, nombre, subtitulo, real_pts_dict, fallback_tna=20.0):
+        hist = [{'date': d, 'close': real_pts_dict[d]} for d in sorted(real_pts_dict.keys())]
+        tna_val = hist[-1]['close'] if hist else fallback_tna
         tea = round(((1 + (tna_val/100)/12)**12 - 1) * 100, 2)
         tem = round(((1 + tea/100)**(1/12) - 1) * 100, 2)
-        
-        if custom_hist:
-            hist = custom_hist
-        elif hist_bcra:
-            ratio = tna_val / tna_bcra_prom if tna_bcra_prom > 0 else 1.0
-            hist = [{'date': p['date'], 'close': round(p['close'] * ratio, 2)} for p in hist_bcra[-2600:]]
-            hist[-1]['close'] = tna_val
-        else:
-            hist = [
-                {'date': (TODAY - datetime.timedelta(days=i*5)).strftime('%Y-%m-%d'), 'close': round(tna_val + (i*0.05), 2)} 
-                for i in reversed(range(12))
-            ]
         vars_dict = calc_variations(hist)
-        
         return {
             'id': rate_id,
             'nombre': nombre,
@@ -369,7 +310,6 @@ def fetch_tasas_locales():
                 v_val = safe_float(row.get('valor'))
                 if f_dt and v_val is not None:
                     hist_ipc_m.append({'date': f_dt, 'close': v_val})
-        # Asegurar el último dato oficial de INDEC (Septiembre 2026: 1.9% mensual, 23.6% acum, 33.4% i.a.)
         if not any(p['date'].startswith('2026-09') for p in hist_ipc_m):
             hist_ipc_m.append({'date': '2026-09-30', 'close': 1.9})
 
@@ -432,42 +372,52 @@ def fetch_tasas_locales():
     except Exception as e:
         print(f'Error fetching IPC INDEC: {e}')
 
-    # 1. Tasas de Referencia Mayoristas y Regulatorias (BADLAR, TAMAR, LEFI, Cauciones) - ARRIBA
-    tasas_mayoristas = [
-        ('TASA_BADLAR', 'Tasa BADLAR Bancos Privados', 28.50, 'Depósitos a Plazo Fijo > $1.000.000 (30-35 días)'),
-        ('TASA_TAMAR', 'Tasa TAMAR / TM20 (Mayorista)', 30.20, 'Tasa Mayorista de Referencia en Pesos (> $20.000.000)'),
-        ('TASA_LEFI', 'Tasa LEFI (Política Monetaria BCRA)', 29.00, 'Letras Fiscales de Liquidez - Tasa de Referencia Oficial'),
-        ('TASA_CAUCION_1D', 'Caución Bursátil 1 Día (BYMA)', 26.50, 'Tasa de Liquidación Bursátil Inmediata T+1'),
-        ('TASA_CAUCION_7D', 'Caución Bursátil 7 Días (BYMA)', 27.20, 'Tasa de Liquidación Bursátil Semanal T+7'),
-    ]
+    # 1. Tasas de Referencia Mayoristas y Regulatorias (100% Oficiales BCRA v4.0 + Rava BYMA)
+    badlar_pts = fetch_bcra_v4(7)
+    badlar_pts.update(fetch_rava_ind('BADLAR'))
+    tamar_pts = fetch_bcra_v4(8)
+    tamar_pts.update(fetch_bcra_v4(44))
+    tamar_pts.update(fetch_rava_ind('TAMAR'))
+    lefi_pts = fetch_bcra_v4(160)
+    cauc1d_pts = fetch_rava_ind('CAUCION 1D')
+    cauc7d_pts = fetch_rava_ind('CAUCION 7D')
 
-    for r_id, r_name, r_tna, r_sub in tasas_mayoristas:
-        it, h_s = build_rate_item(r_id, r_name, r_tna, r_sub)
+    tasas_mayoristas_real = [
+        ('TASA_BADLAR', 'Tasa BADLAR Bancos Privados', 'Depósitos a Plazo Fijo > $1.000.000 (30-35 días)', badlar_pts, 22.25),
+        ('TASA_TAMAR', 'Tasa TAMAR / TM20 (Mayorista)', 'Tasa Mayorista de Referencia en Pesos (> $20.000.000)', tamar_pts, 25.06),
+        ('TASA_LEFI', 'Tasa LEFI (Política Monetaria BCRA)', 'Letras Fiscales de Liquidez - Tasa de Referencia Oficial', lefi_pts, 29.00),
+        ('TASA_CAUCION_1D', 'Caución Bursátil 1 Día (BYMA)', 'Tasa de Liquidación Bursátil Inmediata T+1', cauc1d_pts, 18.50),
+        ('TASA_CAUCION_7D', 'Caución Bursátil 7 Días (BYMA)', 'Tasa de Liquidación Bursátil Semanal T+7', cauc7d_pts, 19.80),
+    ]
+    for r_id, r_name, r_sub, r_pts, fb_tna in tasas_mayoristas_real:
+        it, h_s = build_rate_item_from_real_series(r_id, r_name, r_sub, r_pts, fb_tna)
         tasas.append(it)
         series_map[r_id] = h_s
 
-    # 2. Plazos Fijos por Bancos de Referencia y Promedio BCRA - ABAJO
-    item_bcra, hist_bcra_series = build_rate_item(
+    # 2. Plazos Fijos por Bancos de Referencia y Promedio BCRA (100% Oficiales sin escalado)
+    pf_bcra_pts = {d: v for d, v in fetch_rava_ind('DEPOSITOS 30D').items() if d >= '2018-01-01'}
+    pf_bcra_pts.update(fetch_bcra_v4(12))
+    item_bcra, hist_bcra_series = build_rate_item_from_real_series(
         'TASA_PLAZO_FIJO_BCRA',
         'Plazo Fijo 30 Días (Promedio Oficial BCRA)',
-        tna_bcra_prom,
         'Tasa Nominal Anual Promedio Sistema Financiero',
-        hist_bcra if hist_bcra else None
+        pf_bcra_pts,
+        22.51
     )
     tasas.append(item_bcra)
     series_map['TASA_PLAZO_FIJO_BCRA'] = hist_bcra_series
 
-    bancos_ref = [
-        ('TASA_PF_BNA', 'Plazo Fijo Banco Nación (BNA)', get_bank_rate('NACION') or 19.0, 'Banca Pública Nacional'),
-        ('TASA_PF_GALICIA', 'Plazo Fijo Banco Galicia', get_bank_rate('GALICIA') or 17.5, 'Banca Privada Líder'),
-        ('TASA_PF_BBVA', 'Plazo Fijo Banco BBVA', get_bank_rate('BBVA') or 19.5, 'Banca Privada Internacional'),
-        ('TASA_PF_SANTANDER', 'Plazo Fijo Banco Santander', get_bank_rate('SANTANDER') or 16.0, 'Banca Privada Internacional'),
-        ('TASA_PF_MACRO', 'Plazo Fijo Banco Macro', get_bank_rate('MACRO') or 19.5, 'Banca Privada Nacional'),
-        ('TASA_PF_BAPRO', 'Plazo Fijo Banco Provincia (BAPRO)', get_bank_rate('PROVINCIA DE BUENOS') or 19.5, 'Banca Pública Provincial')
+    bancos_ref_real = [
+        ('TASA_PF_BNA', 'Plazo Fijo Banco Nación (BNA)', 'PF NACION', 'Banca Pública Nacional', 23.0),
+        ('TASA_PF_GALICIA', 'Plazo Fijo Banco Galicia', 'PF GALICIA', 'Banca Privada Líder', 20.0),
+        ('TASA_PF_BBVA', 'Plazo Fijo Banco BBVA', 'PF BBVA', 'Banca Privada Internacional', 20.0),
+        ('TASA_PF_SANTANDER', 'Plazo Fijo Banco Santander', 'PF SANTANDER', 'Banca Privada Internacional', 21.0),
+        ('TASA_PF_MACRO', 'Plazo Fijo Banco Macro', 'PF MACRO', 'Banca Privada Nacional', 23.5),
+        ('TASA_PF_BAPRO', 'Plazo Fijo Banco Provincia (BAPRO)', 'PF PROVINCIA', 'Banca Pública Provincial', 25.0)
     ]
-
-    for r_id, r_name, r_tna, r_sub in bancos_ref:
-        it, h_s = build_rate_item(r_id, r_name, r_tna, r_sub)
+    for r_id, r_name, rava_key, r_sub, fb_tna in bancos_ref_real:
+        b_pts = fetch_rava_ind(rava_key)
+        it, h_s = build_rate_item_from_real_series(r_id, r_name, r_sub, b_pts, fb_tna)
         tasas.append(it)
         series_map[r_id] = h_s
     
@@ -629,11 +579,13 @@ def fetch_fci(is_reconciliation_round=False, prev_items=None, prev_series_map=No
             if ad_match and hist_series:
                 last_c = hist_series[-1]['close']
                 if last_c > 0 and 0.75 <= (ad_match['vcp'] / last_c) <= 1.35:
-                    hist_series.append({'date': ad_match['fecha'], 'close': round(ad_match['vcp'], 4)})
+                    if hist_series[-1]['date'] == ad_match['fecha']:
+                        hist_series[-1]['close'] = round(ad_match['vcp'], 4)
+                    elif hist_series[-1]['date'] < ad_match['fecha']:
+                        hist_series.append({'date': ad_match['fecha'], 'close': round(ad_match['vcp'], 4)})
                     if ad_match.get('patrimonio') and ad_match['patrimonio'] > 0:
                         it['patrimonio'] = ad_match['patrimonio']
                         it['patrimonio_formato'] = format_patrimonio_latino(ad_match['patrimonio'])
-            hist_series = fill_business_day_gaps(hist_series, decimals=4)
             if hist_series:
                 accum_db[fid] = hist_series
                 series_map[fid] = hist_series
@@ -745,9 +697,7 @@ def fetch_fci(is_reconciliation_round=False, prev_items=None, prev_series_map=No
             slug_id = 'FCI_' + (f.get('nombreBase') or nom).lower().replace(' ', '_').replace('-', '_').replace('.', '')
             slug_id = ''.join(c for c in slug_id if c.isalnum() or c == '_')[:40]
 
-            spark = f.get('spark', [])
             hist_series = []
-            
             if slug_id in accum_db and isinstance(accum_db[slug_id], list) and len(accum_db[slug_id]) > 0:
                 hist_series = list(accum_db[slug_id])
                 if hist_series[-1]['date'] == fecha_vcp:
@@ -755,25 +705,8 @@ def fetch_fci(is_reconciliation_round=False, prev_items=None, prev_series_map=No
                 elif hist_series[-1]['date'] < fecha_vcp:
                     hist_series.append({'date': fecha_vcp, 'close': vcp_hoy})
             else:
-                if spark and len(spark) > 1 and vcp_hoy > 0:
-                    n_pts = len(spark)
-                    try:
-                        end_d = datetime.datetime.strptime(fecha_vcp, '%Y-%m-%d').date()
-                    except Exception:
-                        end_d = today_dt
-                        
-                    s_norm = np.array(spark, dtype=float)
-                    if s_norm[-1] > 0:
-                        s_scaled = (s_norm / s_norm[-1]) * vcp_hoy
-                        for i, val in enumerate(s_scaled):
-                            d_pt = (end_d - datetime.timedelta(days=(n_pts - 1 - i) * 3)).strftime('%Y-%m-%d')
-                            hist_series.append({'date': d_pt, 'close': round(float(val), 4)})
-                    else:
-                        hist_series.append({'date': fecha_vcp, 'close': vcp_hoy})
-                else:
-                    hist_series.append({'date': fecha_vcp, 'close': vcp_hoy})
+                hist_series.append({'date': fecha_vcp, 'close': vcp_hoy})
 
-            hist_series = fill_business_day_gaps(hist_series, decimals=4)
             accum_db[slug_id] = hist_series
 
             entry = {
@@ -818,57 +751,35 @@ def fetch_fci(is_reconciliation_round=False, prev_items=None, prev_series_map=No
 
 
 def fetch_real_on_history_rava(ticker):
-    url = f"https://www.rava.com/perfil/{ticker}"
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=6)
-        if r.status_code != 200:
-            return []
-        soup = BeautifulSoup(r.text, 'html.parser')
-        tables = soup.find_all('table')
-        if not tables:
-            return []
-        
-        hist_table = None
-        for t in reversed(tables):
-            rows_t = t.find_all('tr')
-            if len(rows_t) > 5:
-                hdr = ' '.join(th.text.strip().lower() for th in rows_t[0].find_all(['th', 'td']))
-                if 'fecha' in hdr and 'cierre' in hdr:
-                    hist_table = t
-                    break
-        if hist_table is None:
-            hist_table = tables[-1]
-            
-        rows = hist_table.find_all('tr')
-        series = []
-        for row in rows[1:]:
-            cols = [td.text.strip().replace('.', '').replace(',', '.') for td in row.find_all(['td', 'th'])]
-            if len(cols) >= 5:
-                try:
-                    d_raw = row.find_all(['td', 'th'])[0].text.strip()
-                    d_parts = d_raw.split('/')
-                    if len(d_parts) == 3:
-                        dt_iso = f"{d_parts[2]}-{d_parts[1]}-{d_parts[0]}"
-                        o_val = float(cols[1])
-                        h_val = float(cols[2])
-                        l_val = float(cols[3])
-                        c_val = float(cols[4])
-                        v_val = float(cols[5]) if len(cols) > 5 else 0.0
-                        if c_val > 0:
-                            series.append({
-                                'date': dt_iso,
-                                'open': o_val,
-                                'high': h_val,
-                                'low': l_val,
-                                'close': c_val,
-                                'volume': v_val
-                            })
-                except Exception:
-                    continue
-        series.reverse() # Orden cronológico ascendente
-        return series
-    except Exception:
-        return []
+    # Consultar primero el API JSON histórico oficial de Rava (hasta 3650 días reales operados)
+    candidates = [ticker]
+    if ticker.startswith('BP') and len(ticker) == 5 and ticker.endswith('D'):
+        candidates.insert(0, 'BPO' + ticker[2:])
+    for sym_c in candidates:
+        try:
+            url_api = f"https://mercado.rava.com/api/prices/historico/arg/{sym_c}?dias=3650"
+            r_api = requests.get(url_api, headers=HEADERS, timeout=8)
+            if r_api.status_code == 200:
+                datos = r_api.json().get('datos', [])
+                if datos:
+                    pts_by_dt = {}
+                    for row in datos:
+                        dt_s = str(row.get('fecha', ''))[:10]
+                        cl_v = safe_float(row.get('precio'))
+                        if dt_s and cl_v and cl_v > 0:
+                            pts_by_dt[dt_s] = {
+                                'date': dt_s,
+                                'open': round(safe_float(row.get('apertura'), cl_v), 2),
+                                'high': round(safe_float(row.get('maximo'), cl_v), 2),
+                                'low': round(safe_float(row.get('minimo'), cl_v), 2),
+                                'close': round(cl_v, 2),
+                                'volume': safe_float(row.get('volumen'), 0)
+                            }
+                    if pts_by_dt:
+                        return [pts_by_dt[k] for k in sorted(pts_by_dt.keys())]
+        except Exception:
+            pass
+    return []
 
 
 def fetch_bonos_lecaps():
@@ -986,13 +897,13 @@ def fetch_bonos_lecaps():
     from_ts = now_ts - (86400 * 365 * 10) # 10 años
     today = datetime.date.today()
 
-    print('-> Descargando series históricas oficiales de BYMA y Rava para cada título...')
+    print('-> Descargando series históricas 100% reales (ruedas operadas) de BYMA y Rava para cada título...')
     for ticker, nombre_full, subtipo, moneda, ley, cupon_def, tipo_cupon, freq, amort in target_universe:
         clean_sym = ticker.split('_')[0]
         b_data = by_ticker.get(ticker) or by_ticker.get(clean_sym)
         
-        # 1. Intentar traer la serie histórica 100% REAL de BYMA Datafeed
-        hist_series = []
+        # 1. Traer serie histórica 100% REAL de BYMA Datafeed + Rava API
+        byma_pts = {}
         url_feed = f'https://analisistecnico.com.ar/services/datafeed/history?symbol={clean_sym}&resolution=D&from={from_ts}&to={now_ts}'
         try:
             r_feed = requests.get(url_feed, headers={'User-Agent': 'Mozilla/5.0'}, timeout=5)
@@ -1008,22 +919,21 @@ def fetch_bonos_lecaps():
                     
                     for idx_pt in range(len(t_list)):
                         dt_pt = datetime.datetime.fromtimestamp(t_list[idx_pt]).strftime('%Y-%m-%d')
-                        hist_series.append({
+                        byma_pts[dt_pt] = {
                             'date': dt_pt,
                             'open': round(safe_float(o_list[idx_pt]), 2),
                             'high': round(safe_float(h_list[idx_pt]), 2),
                             'low': round(safe_float(l_list[idx_pt]), 2),
                             'close': round(safe_float(c_list[idx_pt]), 2),
                             'volume': safe_float(v_list[idx_pt])
-                        })
+                        }
         except Exception:
             pass
 
-        # 1b. Si BYMA Datafeed no devolvió serie suficiente, consultar Rava Bursátil
-        if len(hist_series) < 15:
-            rava_hist = fetch_real_on_history_rava(clean_sym)
-            if len(rava_hist) > len(hist_series):
-                hist_series = rava_hist
+        rava_hist = fetch_real_on_history_rava(clean_sym)
+        for p_rv in rava_hist:
+            byma_pts[p_rv['date']] = p_rv
+        hist_series = [byma_pts[d] for d in sorted(byma_pts.keys())]
 
         # 2. Métricas de Bonistas
         if b_data:
@@ -1053,10 +963,9 @@ def fetch_bonos_lecaps():
             fecha_vto_str = '2027-10-31'
             fecha_emi_str = '2020-09-04'
 
-        # Si tenemos serie real, aseguramos que el último precio coincida con el cierre y rellenamos huecos hábiles
+        # Usar únicamente ruedas reales operadas (CERO interpolación)
         if hist_series:
             hist_series[-1]['close'] = precio
-            hist_series = fill_business_day_gaps(hist_series, decimals=2)
             vars_dict = calc_variations(hist_series)
             tipo_item = 'market_asset'
         else:
@@ -1281,7 +1190,7 @@ def fetch_ons():
         
         proximo_pago = cashflow_list[0] if cashflow_list else None
         
-        # Extraer serie 100% REAL de ruedas operadas en BYMA / Rava
+        # Extraer serie 100% REAL de ruedas operadas en BYMA / Rava (CERO interpolación)
         hist_series = fetch_real_on_history_rava(ticker)
         if not hist_series:
             hist_series = fetch_real_on_history_rava(alt_ticker)
@@ -1291,7 +1200,6 @@ def fetch_ons():
             high_px = hist_series[-1].get('high', px)
             low_px = hist_series[-1].get('low', px)
             hist_series[-1]['close'] = px
-            hist_series = fill_business_day_gaps(hist_series, decimals=2)
             vars_dict = calc_variations(hist_series)
             tipo_item = 'market_asset'
         else:
@@ -2416,14 +2324,41 @@ def main():
         print(f'   [Delta Tasas Internacionales] Reutilizando datos de hoy.')
     else:
         tasas_int_items, tasas_int_series = fetch_yahoo_market_group(CONFIG_TASAS_INT, 'Tasas Internacionales')
-        tasas_int_items.append({'id': 'TASA_FED_FUNDS', 'nombre': 'Tasa de Referencia Fed (EE.UU.)', 'categoria': 'Tasas Internacionales', 'tipo': 'rate', 'precio': 4.50, 'moneda': '%', 'var_1d': 0.0, 'var_1m': 0.0, 'var_12m': -15.0, 'subtitulo': 'Target Range Federal Reserve'})
-        tasas_int_items.append({'id': 'TASA_ECB_DEP', 'nombre': 'Tasa de Depósito BCE (Europa)', 'categoria': 'Tasas Internacionales', 'tipo': 'rate', 'precio': 3.00, 'moneda': '%', 'var_1d': 0.0, 'var_1m': 0.0, 'var_12m': -20.0, 'subtitulo': 'Banco Central Europeo'})
-        irx_hist = tasas_int_series.get('RATE_US3M', [])
-        if irx_hist:
-            tasas_int_series['TASA_FED_FUNDS'] = [{'date': p['date'], 'close': round(max(0.25, round(p['close'] * 4) / 4), 2)} for p in irx_hist]
-            tasas_int_series['TASA_FED_FUNDS'][-1]['close'] = 4.50
-            tasas_int_series['TASA_ECB_DEP'] = [{'date': p['date'], 'close': round(max(0.0, round((p['close'] - 1.50) * 4) / 4), 2)} for p in irx_hist]
-            tasas_int_series['TASA_ECB_DEP'][-1]['close'] = 3.00
+        fred_configs = [
+            ('TASA_FED_FUNDS', 'DFEDTARU', 'Tasa de Referencia Fed (EE.UU.)', 'Target Range Federal Reserve', 4.00),
+            ('TASA_ECB_DEP', 'ECBDFR', 'Tasa de Depósito BCE (Europa)', 'Banco Central Europeo', 2.50)
+        ]
+        for tid, fred_id, t_nom, t_sub, fb_val in fred_configs:
+            pts_fred = []
+            try:
+                rf = requests.get(f'https://fred.stlouisfed.org/graph/fredgraph.csv?id={fred_id}', headers=HEADERS, timeout=12)
+                if rf.status_code == 200:
+                    for line in rf.text.strip().splitlines()[1:]:
+                        parts = line.split(',')
+                        if len(parts) == 2 and parts[0] >= '2016-01-01':
+                            v = safe_float(parts[1])
+                            if v is not None:
+                                pts_fred.append({'date': parts[0], 'close': round(v, 2)})
+            except Exception as e:
+                print(f'   [Warn FRED {fred_id}]: {e}')
+            if not pts_fred and tid in prev_series:
+                pts_fred = prev_series[tid]
+            last_f_val = pts_fred[-1]['close'] if pts_fred else fb_val
+            vars_f = calc_variations(pts_fred)
+            tasas_int_items.append({
+                'id': tid,
+                'nombre': t_nom,
+                'categoria': 'Tasas Internacionales',
+                'tipo': 'rate',
+                'precio': last_f_val,
+                'moneda': '%',
+                'var_1d': vars_f['var_1d'],
+                'var_1m': vars_f['var_1m'],
+                'var_12m': vars_f['var_12m'],
+                'subtitulo': t_sub
+            })
+            if pts_fred:
+                tasas_int_series[tid] = pts_fred
         master_dataset['secciones']['tasas_internacionales'] = {'titulo': 'Tasas Internacionales', 'icono': 'trending-up', 'items': tasas_int_items}
         all_series.update(tasas_int_series)
         stats_updated += len(tasas_int_items)
@@ -2559,7 +2494,14 @@ def main():
                 dt = p.get('date') or p.get('time') or p.get('fecha')
                 c = safe_float(p.get('close'))
                 if dt and c is not None:
-                    clean_pts.append({'date': dt, 'close': round(c, 4)})
+                    pt_d = {'date': dt, 'close': round(c, 4)}
+                    if p.get('open') is not None:
+                        pt_d['open'] = round(safe_float(p['open'], c), 4)
+                        pt_d['high'] = round(safe_float(p.get('high'), c), 4)
+                        pt_d['low'] = round(safe_float(p.get('low'), c), 4)
+                    if p.get('volume') is not None:
+                        pt_d['volume'] = safe_float(p['volume'], 0)
+                    clean_pts.append(pt_d)
             compact_series[k] = clean_pts
         elif isinstance(v, list):
             compact_series[k] = v
