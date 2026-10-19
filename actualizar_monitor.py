@@ -5,39 +5,52 @@ import pandas as pd
 import numpy as np
 
 def fetch_riesgo_pais():
-    print('-> Obteniendo Riesgo País oficial (ArgentinaDatos)...')
-    data = []
+    print('-> Obteniendo Riesgo País oficial (Rava EMBI+ + ArgentinaDatos)...')
+    pts_by_dt = {}
     try:
         r = requests.get('https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais', timeout=10)
         if r.status_code == 200:
-            raw_data = r.json()
-            data = [
-                p for p in raw_data
-                if p.get('fecha') and p.get('valor') is not None
-                and datetime.date.fromisoformat(p['fecha']).weekday() < 5
-            ]
+            for p in r.json():
+                dt = p.get('fecha')
+                v = p.get('valor')
+                if dt and v is not None and float(v) > 0:
+                    if datetime.date.fromisoformat(dt).weekday() < 5:
+                        fv = float(v)
+                        pts_by_dt[dt] = {'date': dt, 'time': dt, 'close': fv, 'open': fv, 'high': fv, 'low': fv}
     except Exception as e:
-        print(f"   [Error ArgentinaDatos]: {e}")
-        
-    last_val = data[-1]['valor'] if data else 509
-    prev_val = data[-2]['valor'] if len(data) >= 2 else last_val
-        
-    var_1d = round(((last_val - prev_val) / prev_val) * 100, 2)
-    prev_1m = data[-22]['valor'] if len(data) >= 22 else last_val
-    var_1m = round(((last_val - prev_1m) / prev_1m) * 100, 2)
-    prev_12m = data[-250]['valor'] if len(data) >= 250 else data[0]['valor']
-    var_12m = round(((last_val - prev_12m) / prev_12m) * 100, 2)
-    
+        print(f"   [Error ArgentinaDatos Riesgo País]: {e}")
+
+    try:
+        r_rv = requests.get('https://mercado.rava.com/api/prices/historico/ind/RIESGO%20PAIS?dias=3650', headers={'User-Agent': 'Mozilla/5.0'}, timeout=12)
+        if r_rv.status_code == 200:
+            for row in r_rv.json().get('datos', []):
+                dt = str(row.get('fecha', ''))[:10]
+                cl = row.get('precio')
+                if dt and cl is not None and float(cl) > 0:
+                    if datetime.date.fromisoformat(dt).weekday() < 5:
+                        fcl = float(cl)
+                        fop = float(row.get('apertura') or fcl)
+                        fhi = float(row.get('maximo') or fcl)
+                        flo = float(row.get('minimo') or fcl)
+                        pts_by_dt[dt] = {'date': dt, 'time': dt, 'close': fcl, 'open': fop, 'high': fhi, 'low': flo}
+    except Exception as e:
+        print(f"   [Error Rava Riesgo País]: {e}")
+
+    series_pts = [pts_by_dt[d] for d in sorted(pts_by_dt.keys())][-2600:]
+    last_val = series_pts[-1]['close'] if series_pts else 675.0
+    prev_val = series_pts[-2]['close'] if len(series_pts) >= 2 else last_val
+
+    var_1d = round(((last_val - prev_val) / prev_val) * 100, 2) if prev_val else 0.0
+    prev_1m = series_pts[-22]['close'] if len(series_pts) >= 22 else last_val
+    var_1m = round(((last_val - prev_1m) / prev_1m) * 100, 2) if prev_1m else 0.0
+    prev_12m = series_pts[-250]['close'] if len(series_pts) >= 250 else (series_pts[0]['close'] if series_pts else last_val)
+    var_12m = round(((last_val - prev_12m) / prev_12m) * 100, 2) if prev_12m else 0.0
+
     current_year = datetime.datetime.now().year
-    prev_year_pts = [p for p in data if p['fecha'] < f"{current_year}-01-01"]
-    close_eoy = prev_year_pts[-1]['valor'] if prev_year_pts else data[0]['valor']
-    var_ytd = round(((last_val - close_eoy) / close_eoy) * 100, 2)
-    
-    series_pts = [
-        {'date': p['fecha'], 'time': p['fecha'], 'close': float(p['valor']), 'open': float(p['valor']), 'high': float(p['valor']), 'low': float(p['valor'])}
-        for p in data[-2600:]
-    ]
-    
+    prev_year_pts = [p for p in series_pts if p['date'] < f"{current_year}-01-01"]
+    close_eoy = prev_year_pts[-1]['close'] if prev_year_pts else (series_pts[0]['close'] if series_pts else last_val)
+    var_ytd = round(((last_val - close_eoy) / close_eoy) * 100, 2) if close_eoy else 0.0
+
     item = {
         'id': 'RIESGO_PAIS',
         'symbol': 'EMBI+ ARG',
@@ -46,6 +59,9 @@ def fetch_riesgo_pais():
         'subtitulo': 'Spread Soberano vs US Treasuries (JP Morgan)',
         'moneda': 'Pts',
         'precio': float(last_val),
+        'open': series_pts[-1]['open'] if series_pts else float(last_val),
+        'high': series_pts[-1]['high'] if series_pts else float(last_val),
+        'low': series_pts[-1]['low'] if series_pts else float(last_val),
         'var_1d': var_1d,
         'var_1m': var_1m,
         'var_12m': var_12m,
@@ -157,7 +173,16 @@ def fetch_dolar():
                 except Exception:
                     pass
                 
-                if hist_series:
+                f_act_dt = str(item.get('fechaActualizacion', ''))[:10]
+                if precio and f_act_dt == TODAY_STR and (is_cripto or TODAY.weekday() < 5):
+                    if hist_series:
+                        if hist_series[-1]['date'] == TODAY_STR:
+                            hist_series[-1]['close'] = round(precio, 2)
+                        elif hist_series[-1]['date'] < TODAY_STR:
+                            hist_series.append({'date': TODAY_STR, 'close': round(precio, 2)})
+                    else:
+                        hist_series = [{'date': TODAY_STR, 'close': round(precio, 2)}]
+                elif hist_series:
                     precio = hist_series[-1]['close']
                     
                 vars_dict = calc_variations(hist_series)
@@ -361,13 +386,15 @@ def fetch_tasas_locales():
     tamar_pts.update(fetch_bcra_v4(44))
     tamar_pts.update(fetch_rava_ind('TAMAR'))
     lefi_pts = fetch_bcra_v4(160)
+    for dt_p, val_p in fetch_bcra_v4(150, desde='2025-07-11').items():
+        lefi_pts[dt_p] = val_p
     cauc1d_pts = fetch_rava_ind('CAUCION 1D')
     cauc7d_pts = fetch_rava_ind('CAUCION 7D')
 
     tasas_mayoristas_real = [
         ('TASA_BADLAR', 'Tasa BADLAR Bancos Privados', 'Depósitos a Plazo Fijo > $1.000.000 (30-35 días)', badlar_pts, 22.25),
         ('TASA_TAMAR', 'Tasa TAMAR / TM20 (Mayorista)', 'Tasa Mayorista de Referencia en Pesos (> $20.000.000)', tamar_pts, 25.06),
-        ('TASA_LEFI', 'Tasa LEFI (Política Monetaria BCRA)', 'Letras Fiscales de Liquidez - Tasa de Referencia Oficial', lefi_pts, 29.00),
+        ('TASA_LEFI', 'Tasa Pases / LEFI (Referencia Monetaria BCRA)', 'Pases entre Terceros 1D MAE / Hist. LEFI - Referencia Oficial BCRA', lefi_pts, 22.54),
         ('TASA_CAUCION_1D', 'Caución Bursátil 1 Día (BYMA)', 'Tasa de Liquidación Bursátil Inmediata T+1', cauc1d_pts, 18.50),
         ('TASA_CAUCION_7D', 'Caución Bursátil 7 Días (BYMA)', 'Tasa de Liquidación Bursátil Semanal T+7', cauc7d_pts, 19.80),
     ]
@@ -632,8 +659,13 @@ def fetch_fci(is_reconciliation_round=False, prev_items=None, prev_series_map=No
     series_map = {}
     today_dt = datetime.date.today()
 
+    def _fci_slug(f_obj):
+        nom_s = f_obj.get('nombre', '').strip()
+        s_id = 'FCI_' + (f_obj.get('nombreBase') or nom_s).lower().replace(' ', '_').replace('-', '_').replace('.', '')
+        return ''.join(c for c in s_id if c.isalnum() or c == '_')[:40]
+
     for cat_name, items in cat_buckets.items():
-        items.sort(key=lambda x: safe_float(x.get('patrimonio', 0)), reverse=True)
+        items.sort(key=lambda x: (1 if len(accum_db.get(_fci_slug(x), [])) >= 30 else 0, safe_float(x.get('patrimonio', 0))), reverse=True)
         
         unique_top = []
         seen_bases = set()
@@ -733,34 +765,65 @@ def fetch_fci(is_reconciliation_round=False, prev_items=None, prev_series_map=No
 
 
 def fetch_real_on_history_rava(ticker):
-    # Consultar primero el API JSON histórico oficial de Rava (hasta 3650 días reales operados)
+    import urllib3
+    urllib3.disable_warnings()
+    now_ts = int(time.time())
     candidates = [ticker]
     if ticker.startswith('BP') and len(ticker) == 5 and ticker.endswith('D'):
         candidates.insert(0, 'BPO' + ticker[2:])
     for sym_c in candidates:
+        pts_by_dt = {}
         try:
             url_api = f"https://mercado.rava.com/api/prices/historico/arg/{sym_c}?dias=3650"
             r_api = requests.get(url_api, headers=HEADERS, timeout=8)
             if r_api.status_code == 200:
                 datos = r_api.json().get('datos', [])
-                if datos:
-                    pts_by_dt = {}
-                    for row in datos:
-                        dt_s = str(row.get('fecha', ''))[:10]
-                        cl_v = safe_float(row.get('precio'))
-                        if dt_s and cl_v and cl_v > 0:
-                            pts_by_dt[dt_s] = {
-                                'date': dt_s,
-                                'open': round(safe_float(row.get('apertura'), cl_v), 2),
-                                'high': round(safe_float(row.get('maximo'), cl_v), 2),
-                                'low': round(safe_float(row.get('minimo'), cl_v), 2),
-                                'close': round(cl_v, 2),
-                                'volume': safe_float(row.get('volumen'), 0)
-                            }
-                    if pts_by_dt:
-                        return [pts_by_dt[k] for k in sorted(pts_by_dt.keys())]
+                prev_cl = None
+                for row in datos:
+                    dt_s = str(row.get('fecha', ''))[:10]
+                    cl_v = safe_float(row.get('precio'))
+                    vol_v = safe_float(row.get('volumen'), 0)
+                    if dt_s and cl_v and cl_v > 0:
+                        if (vol_v is None or vol_v == 0) and prev_cl is not None and round(cl_v, 2) == round(prev_cl, 2):
+                            continue
+                        prev_cl = cl_v
+                        pts_by_dt[dt_s] = {
+                            'date': dt_s,
+                            'open': round(safe_float(row.get('apertura'), cl_v), 2),
+                            'high': round(safe_float(row.get('maximo'), cl_v), 2),
+                            'low': round(safe_float(row.get('minimo'), cl_v), 2),
+                            'close': round(cl_v, 2),
+                            'volume': vol_v or 0
+                        }
         except Exception:
             pass
+        try:
+            url_byma = f"https://open.bymadata.com.ar/vanoms-be-core/rest/api/bymadata/free/chart/historical-series/history?symbol={sym_c}%2024HS&resolution=D&from=1400000000&to={now_ts}"
+            r_b = requests.get(url_byma, headers=HEADERS, verify=False, timeout=8)
+            if r_b.status_code == 200:
+                d_b = r_b.json()
+                t_l = d_b.get('t', [])
+                c_l = d_b.get('c', [])
+                o_l = d_b.get('o', c_l)
+                h_l = d_b.get('h', c_l)
+                l_l = d_b.get('l', c_l)
+                v_l = d_b.get('v', [0]*len(t_l))
+                for idx_b in range(len(t_l)):
+                    dt_b = time.strftime('%Y-%m-%d', time.gmtime(t_l[idx_b]))
+                    cl_b = safe_float(c_l[idx_b])
+                    if dt_b and cl_b and cl_b > 0:
+                        pts_by_dt[dt_b] = {
+                            'date': dt_b,
+                            'open': round(safe_float(o_l[idx_b], cl_b), 2),
+                            'high': round(safe_float(h_l[idx_b], cl_b), 2),
+                            'low': round(safe_float(l_l[idx_b], cl_b), 2),
+                            'close': round(cl_b, 2),
+                            'volume': safe_float(v_l[idx_b], 0)
+                        }
+        except Exception:
+            pass
+        if pts_by_dt:
+            return [pts_by_dt[k] for k in sorted(pts_by_dt.keys())]
     return []
 
 
@@ -787,7 +850,7 @@ def fetch_bonos_lecaps():
         if t not in by_ticker or settle == '24hs':
             by_ticker[t] = b
 
-    # Lista curada de bonos 100% auditados y cotejados contra Bonistas.com
+    # Lista curada de bonos 100% auditados y cotejados contra Bonistas.com (todos vigentes con operación activa en BYMA)
     target_universe = [
         # Soberanos Dólar Hard - Especie D (USD)
         ('AL29D', 'Bonar 2029 USD (AL29D)', 'Soberanos Dólar Hard (AL/GD)', 'USD', 'Argentina', 1.00, 'Step-Up Semestral', 'Semestral', 'Semestral (2025-2029)'),
@@ -825,18 +888,17 @@ def fetch_bonos_lecaps():
         ('PARP', 'Par en Pesos CER (PARP)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 3.11, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (12/2038)'),
         ('CUAP', 'Cuasipar en Pesos CER (CUAP)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 3.31, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (12/2045)'),
 
-        # LECAPs & Tasa Fija
-        ('S31G6', 'LECAP Vto. 31/08/2026 (S31G6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 26.51, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
-        ('S15S6', 'LECAP Vto. 15/09/2026 (S15S6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 27.94, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
-        ('S30S6', 'LECAP Vto. 30/09/2026 (S30S6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 27.90, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
-        ('TO26', 'Bono Tasa Fija 2026 (TO26)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 15.50, 'Fijo Semestral', 'Semestral', 'Bullet'),
-        ('S30O6', 'LECAP Vto. 30/10/2026 (S30O6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 27.89, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
-        ('S13N6', 'LECAP Vto. 13/11/2026 (S13N6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 29.38, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
-        ('S30N6', 'LECAP Vto. 30/11/2026 (S30N6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 28.48, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
-        ('M31G6', 'BONCAP Vto. 31/08/2026 (M31G6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 29.16, 'Cupón Fijo', 'Al Vto', 'Bullet'),
+        # LECAPs, BONCAPs & Tasa Fija (Curva Activa Vigente)
+        ('S30O6', 'LECAP Vto. 30/10/2026 (S30O6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 35.28, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('S13N6', 'LECAP Vto. 13/11/2026 (S13N6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 28.32, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('S30N6', 'LECAP Vto. 30/11/2026 (S30N6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 31.37, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('T15E7', 'BONCAP Vto. 15/01/2027 (T15E7)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 27.57, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('T30A7', 'BONCAP Vto. 30/04/2027 (T30A7)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 35.28, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('T31Y7', 'BONCAP Vto. 31/05/2027 (T31Y7)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 32.92, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('T30J7', 'BONCAP Vto. 30/06/2027 (T30J7)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 35.75, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
+        ('TY30P', 'Bono Tasa Fija Mayo 2030 (TY30P)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 29.50, 'Tasa Fija Capitalizable', 'Al Vto', 'Bullet'),
 
-        # Bonos TAMAR / Badlar
-        ('TTS26_TAM', 'Bono TAMAR Sep-2026 (TTS26)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 32.56, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
+        # Bonos TAMAR / Badlar (Curva Activa Vigente)
         ('TTD26_TAM', 'Bono TAMAR Dic-2026 (TTD26)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 30.36, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
         ('TMF27', 'Bono TAMAR Feb-2027 (TMF27)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 30.95, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
         ('TML27', 'Bono TAMAR Jul-2027 (TML27)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 32.39, 'Tasa TAMAR', 'Trimestral', 'Bullet'),
@@ -850,10 +912,9 @@ def fetch_bonos_lecaps():
         ('TXMD9', 'Bono Dual TAMAR/CER Dic-2029 (TXMD9)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 40.07, 'Dual TAMAR / CER', 'Semestral', 'Bullet'),
         ('TXMJ0', 'Bono Dual TAMAR/CER Jun-2030 (TXMJ0)', 'Bonos TAMAR / Badlar', 'ARS', 'Argentina', 40.02, 'Dual TAMAR / CER', 'Semestral', 'Bullet'),
 
-        # Dólar Linked
-        ('D31G6', 'Bono Dólar Linked Ago-2026 (D31G6)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
-        ('D30S6', 'Bono Dólar Linked Sep-2026 (D30S6)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
+        # Dólar Linked (Curva Activa Vigente)
         ('D31M7', 'Bono Dólar Linked Mar-2027 (D31M7)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
+        ('D10Y7', 'Bono Dólar Linked May-2027 (D10Y7)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
         ('TZV27', 'Bono Dólar Linked Jun-2027 (TZV27)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
         ('TZV28', 'Bono Dólar Linked Jun-2028 (TZV28)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
         ('TZVD8', 'Bono Dólar Linked Dic-2028 (TZVD8)', 'Dólar Linked & Duales', 'ARS', 'Argentina', 0.00, 'Dólar Oficial Mayorista', 'Al Vto', 'Bullet'),
@@ -1087,18 +1148,18 @@ def fetch_ons():
         ('YM34D', 'YM34O', 'YPF S.A.', 'YPF S.A. 2034 (YM34D)', 'Petróleo & Gas / Vaca Muerta', 8.25, 2, 'Nueva York', '2034-01-17', 'Bullet al Vencimiento'),
         ('YM40D', 'YM40O', 'YPF S.A.', 'YPF S.A. 2028 (YM40D)', 'Petróleo & Gas / Vaca Muerta', 7.50, 2, 'Argentina', '2028-08-28', 'Bullet al Vencimiento'),
         ('YM41D', 'YM41O', 'YPF S.A.', 'YPF S.A. 2029 (YM41D)', 'Petróleo & Gas / Vaca Muerta', 8.00, 2, 'Argentina', '2029-07-15', 'Bullet al Vencimiento'),
-        ('YFCND', 'YFCNO', 'YPF Energía Eléctrica', 'YPF Energía Eléctrica 2026 (YFCND)', 'Energía Eléctrica', 6.00, 2, 'Argentina', '2026-10-03', 'Bullet al Vencimiento'),
-        ('YFCMD', 'YFCMO', 'YPF Energía Eléctrica', 'YPF Energía Eléctrica 2028 (YFCMD)', 'Energía Eléctrica', 7.50, 2, 'Argentina', '2028-12-15', 'Bullet al Vencimiento'),
+        ('YFCJD', 'YFCJO', 'YPF Energía Eléctrica', 'YPF Energía Eléctrica 2032 (YFCJD)', 'Energía Eléctrica', 7.88, 2, 'Nueva York', '2032-10-16', 'Bullet al Vencimiento'),
+        ('YFCMD', 'YFCMO', 'YPF Energía Eléctrica', 'YPF Energía Eléctrica 2027 (YFCMD)', 'Energía Eléctrica', 6.50, 2, 'Argentina', '2027-05-20', 'Bullet al Vencimiento'),
         
         # Pampa Energía
         ('MGCMD', 'MGCMO', 'Pampa Energía', 'Pampa Energía 2031 (MGCMD)', 'Generación & Petróleo', 7.95, 2, 'Nueva York', '2031-09-10', 'Bullet al Vencimiento'),
         ('MGCRD', 'MGCRC', 'Pampa Energía', 'Pampa Energía 2037 (MGCRD)', 'Generación & Petróleo', 7.75, 2, 'Nueva York', '2037-11-14', 'Bullet al Vencimiento'),
         ('MGCQD', 'MGCQO', 'Pampa Energía', 'Pampa Energía 2028 (MGCQD)', 'Generación & Petróleo', 7.30, 2, 'Argentina', '2028-08-06', 'Bullet al Vencimiento'),
-        ('MGCOD', 'MGCOO', 'Pampa Energía', 'Pampa Energía 2027 (MGCOD)', 'Generación & Petróleo', 6.85, 2, 'Argentina', '2027-12-08', 'Bullet al Vencimiento'),
+        ('MGCOD', 'MGCOO', 'Pampa Energía', 'Pampa Energía 2034 (MGCOD)', 'Generación & Petróleo', 7.88, 2, 'Nueva York', '2034-12-16', 'Bullet al Vencimiento'),
         
         # Vista Energy
-        ('VSCOD', 'VSCOO', 'Vista Energy', 'Vista Energy 2027 (VSCOD)', 'Shale Oil / Vaca Muerta', 6.45, 2, 'Argentina', '2027-03-06', 'Bullet al Vencimiento'),
-        ('VSCWD', 'VSCWO', 'Vista Energy', 'Vista Energy 2027 (VSCWD)', 'Shale Oil / Vaca Muerta', 6.00, 2, 'Argentina', '2027-04-15', 'Bullet al Vencimiento'),
+        ('VSCPD', 'VSCPO', 'Vista Energy', 'Vista Energy 2029 (VSCPD)', 'Shale Oil / Vaca Muerta', 8.00, 2, 'Argentina', '2029-05-03', 'Bullet al Vencimiento'),
+        ('VSCTD', 'VSCTO', 'Vista Energy', 'Vista Energy 2035 (VSCTD)', 'Shale Oil / Vaca Muerta', 7.62, 2, 'Nueva York', '2035-12-10', 'Bullet al Vencimiento'),
         ('VSCUD', 'VSCUO', 'Vista Energy', 'Vista Energy 2030 (VSCUD)', 'Shale Oil / Vaca Muerta', 7.45, 2, 'Argentina', '2030-03-07', 'Bullet al Vencimiento'),
         ('VSCVD', 'VSCVO', 'Vista Energy', 'Vista Energy 2033 (VSCVD)', 'Shale Oil / Vaca Muerta', 7.87, 2, 'Nueva York', '2033-06-10', 'Bullet al Vencimiento'),
         ('VSCRD', 'VSCRO', 'Vista Energy', 'Vista Energy 2031 (VSCRD)', 'Shale Oil / Vaca Muerta', 7.68, 2, 'Argentina', '2031-10-10', 'Bullet al Vencimiento'),
@@ -1117,7 +1178,7 @@ def fetch_ons():
         # Tecpetrol & Pecom
         ('TTCDD', 'TTCDO', 'Tecpetrol (Techint)', 'Tecpetrol 2030 (TTCDD)', 'Gas No Convencional', 7.62, 2, 'Nueva York', '2030-11-03', 'Bullet al Vencimiento'),
         ('TTCBD', 'TTCBO', 'Tecpetrol (Techint)', 'Tecpetrol 2027 (TTCBD)', 'Gas No Convencional', 6.50, 2, 'Argentina', '2027-10-16', 'Bullet al Vencimiento'),
-        ('TTC9O', 'TTC9D', 'Tecpetrol (Techint)', 'Tecpetrol 2026 (TTC9O)', 'Gas No Convencional', 6.25, 2, 'Argentina', '2026-06-25', 'Bullet al Vencimiento'),
+        ('TTC9O', 'TTC9D', 'Tecpetrol (Techint)', 'Tecpetrol 2029 (TTC9O)', 'Gas No Convencional', 6.25, 2, 'Argentina', '2029-10-24', 'Bullet al Vencimiento'),
         ('MCC1D', 'MCC1O', 'Pecom Servicios Energía', 'Pecom 2029 (MCC1D)', 'Servicios Petroleros', 7.95, 2, 'Argentina', '2029-03-10', 'Bullet al Vencimiento'),
         
         # Utilities: TGS, Capex
@@ -1126,7 +1187,7 @@ def fetch_ons():
         
         # Agro & Real Estate: Cresud, IRSA
         ('CS47D', 'CS47O', 'Cresud', 'Cresud 2028 (CS47D)', 'Agroindustria & Tierras', 7.05, 2, 'Argentina', '2028-11-15', 'Bullet al Vencimiento'),
-        ('CS49D', 'CS49O', 'Cresud', 'Cresud 2029 (CS49D)', 'Agroindustria & Tierras', 7.50, 2, 'Argentina', '2029-04-18', 'Bullet al Vencimiento'),
+        ('CS48D', 'CS48O', 'Cresud', 'Cresud 2028 Clase 48 (CS48D)', 'Agroindustria & Tierras', 8.00, 2, 'Argentina', '2028-07-11', 'Bullet al Vencimiento'),
         ('IRCPD', 'IRCPO', 'IRSA', 'IRSA 2035 (IRCPD)', 'Bienes Raíces & Shoppings', 8.00, 2, 'Nueva York', '2035-03-31', 'Bullet al Vencimiento'),
     ]
 
@@ -2236,7 +2297,7 @@ def main():
         except Exception:
             prev_master = {}
 
-    if os.path.exists('series_historicas.json') and not args.force_all:
+    if os.path.exists('series_historicas.json'):
         try:
             with open('series_historicas.json', 'r', encoding='utf-8') as f:
                 prev_series = json.load(f)
@@ -2372,6 +2433,9 @@ def main():
     else:
         bonos_items, bonos_series = fetch_bonos_lecaps()
         master_dataset['secciones']['bonos_lecaps'] = {'titulo': 'Bonos - LECAPs', 'icono': 'file-text', 'items': bonos_items}
+        for k in list(all_series.keys()):
+            if k.startswith('BONO_') and k not in bonos_series:
+                del all_series[k]
         all_series.update(bonos_series)
         stats_updated += len(bonos_items)
 
@@ -2383,6 +2447,9 @@ def main():
     else:
         ons_items, ons_series = fetch_ons()
         master_dataset['secciones']['ons'] = {'titulo': 'ONs (Obligaciones Negociables)', 'icono': 'briefcase', 'items': ons_items}
+        for k in list(all_series.keys()):
+            if k.startswith('ON_') and k not in ons_series:
+                del all_series[k]
         all_series.update(ons_series)
         stats_updated += len(ons_items)
 
@@ -2465,17 +2532,21 @@ def main():
 
     # Filtrar estrictamente días sin operación (fines de semana y feriados bursátiles)
     byma_op_dates = set()
-    for ref_k in ['ARG_GGAL', 'ARG_YPFD', 'ARG_PAMP', 'BONO_AL30', 'BONO_GD30']:
+    for ref_k in ['ARG_GGAL', 'ARG_YPFD', 'ARG_PAMP']:
         for p in all_series.get(ref_k, []):
             dt = p.get('date') or p.get('time')
             if dt and datetime.date.fromisoformat(dt).weekday() < 5:
                 byma_op_dates.add(dt)
+    if TODAY.weekday() < 5:
+        byma_op_dates.add(TODAY_STR)
     us_op_dates = set()
-    for ref_k in ['IDX_SPX', 'ETF_SPY', 'EQ_AAPL']:
+    for ref_k in ['IDX_SP500', 'ETF_SPY', 'EQ_AAPL']:
         for p in all_series.get(ref_k, []):
             dt = p.get('date') or p.get('time')
             if dt and datetime.date.fromisoformat(dt).weekday() < 5:
                 us_op_dates.add(dt)
+    if TODAY.weekday() < 5:
+        us_op_dates.add(TODAY_STR)
 
     print('-> Guardando master_dataset.json...')
     with open('master_dataset.json', 'w', encoding='utf-8') as f:
