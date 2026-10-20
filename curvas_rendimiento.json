@@ -6,9 +6,9 @@
         "symbol": "AL29D",
         "nombre": "Bonar 2029 USD (AL29D)",
         "emisor": "República Argentina",
-        "tir": 8.21,
+        "tir": 8.23,
         "duration": 1.35,
-        "dias_vto": 994,
+        "dias_vto": 993,
         "precio": 54.5,
         "paridad": 90.58,
         "cupon": 0.3,
@@ -19,9 +19,9 @@
         "symbol": "GD29D",
         "nombre": "Global 2029 USD (GD29D)",
         "emisor": "República Argentina",
-        "tir": 6.88,
+        "tir": 6.9,
         "duration": 1.37,
-        "dias_vto": 994,
+        "dias_vto": 993,
         "precio": 55.46,
         "paridad": 92.17,
         "cupon": 0.3,
@@ -32,9 +32,9 @@
         "symbol": "AL30D",
         "nombre": "Bonar 2030 USD (AL30D)",
         "emisor": "República Argentina",
-        "tir": 9.69,
+        "tir": 9.71,
         "duration": 1.76,
-        "dias_vto": 1359,
+        "dias_vto": 1358,
         "precio": 55.27,
         "paridad": 86.18,
         "cupon": 0.24,
@@ -45,9 +45,9 @@
         "symbol": "AL30",
         "nombre": "Bonar 2030 en Pesos (AL30)",
         "emisor": "República Argentina",
-        "tir": 9.69,
+        "tir": 9.71,
         "duration": 1.76,
-        "dias_vto": 1359,
+        "dias_vto": 1358,
         "precio": 85160.0,
         "paridad": 86.18,
         "cupon": 0.24,
@@ -58,9 +58,9 @@
         "symbol": "GD30D",
         "nombre": "Global 2030 USD (GD30D)",
         "emisor": "República Argentina",
-        "tir": 8.07,
+        "tir": 8.08,
         "duration": 1.79,
-        "dias_vto": 1359,
+        "dias_vto": 1358,
         "precio": 56.82,
         "paridad": 88.59,
         "cupon": 0.24,
@@ -71,9 +71,9 @@
         "symbol": "GD30",
         "nombre": "Global 2030 en Pesos (GD30)",
         "emisor": "República Argentina",
-        "tir": 8.07,
+        "tir": 8.08,
         "duration": 1.79,
-        "dias_vto": 1359,
+        "dias_vto": 1358,
         "precio": 87710.0,
         "paridad": 88.59,
         "cupon": 0.24,
@@ -84,11 +84,11 @@
         "symbol": "AE38D",
         "nombre": "Bonar 2038 USD (AE38D)",
         "emisor": "República Argentina",
-        "tir": 12.85,
-        "duration": 4.05,
-        "dias_vto": 4101,
+        "tir": 12.86,
+        "duration": 4.04,
+        "dias_vto": 4100,
         "precio": 72.77,
-        "paridad": 71.76,
+        "paridad": 71.75,
         "cupon": 2.5,
         "ley": "Argentina"
       },
@@ -97,26 +97,13 @@
         "symbol": "AE38",
         "nombre": "Bonar 2038 en Pesos (AE38)",
         "emisor": "República Argentina",
-        "tir": 12.85,
-        "duration": 4.05,
-        "dias_vto": 4101,
+        "tir": 12.86,
+        "duration": 4.04,
+        "dias_vto": 4100,
         "precio": 112100.0,
-        "paridad": 71.75,
+        "paridad": 71.74,
         "cupon": 2.5,
         "ley": "Argentina"
-      },
-      {
-        "id": "BONO_GD38D",
-        "symbol": "GD38D",
-        "nombre": "Global 2038 USD (GD38D)",
-        "emisor": "República Argentina",
-        "tir": 10.84,
-        "duration": 4.24,
-        "dias_vto": 4101,
-        "precio": 78.73,
-        "paridad": 77.64,
-        "cupon": 2.5,
-        "ley": "Nueva York"
       },
       {
         "id": "BONO_GD38",
@@ -124,10 +111,23 @@
         "nombre": "Global 2038 en Pesos (GD38)",
         "emisor": "República Argentina",
         "tir": 10.88,
-        "duration": 4.24,
-        "dias_vto": 4101,
+        "duration": 4.23,
+        "dias_vto": 4100,
         "precio": 121350.0,
-        "paridad": 77.53,
+        "paridad": 77.51,
+        "cupon": 2.5,
+        "ley": "Nueva York"
+      },
+      {
+        "id": "BONO_GD38D",
+        "symbol": "GD38D",
+        "nombre": "Global 2038 USD (GD38D)",
+        "emisor": "República Argentina",
+        "tir": 10.85,
+        "duration": 4.24,
+        "dias_vto": 4100,
+        "precio": 78.73,
+        "paridad": 77.63,
         "cupon": 2.5,
         "ley": "Nueva York"
       },
@@ -136,9 +136,9 @@
         "symbol": "AL35D",
         "nombre": "Bonar 2035 USD (AL35D)",
         "emisor": "República Argentina",
-        "tir": 12.45,
+        "tir": 12.46,
         "duration": 4.92,
-        "dias_vto": 3185,
+        "dias_vto": 3184,
         "precio": 69.52,
         "paridad": 68.72,
         "cupon": 2.06,
@@ -151,7 +151,7 @@
         "emisor": "República Argentina",
         "tir": 12.36,
         "duration": 4.93,
-        "dias_vto": 3185,
+        "dias_vto": 3184,
         "precio": 107600.0,
         "paridad": 69.03,
         "cupon": 2.06,
@@ -162,9 +162,9 @@
         "symbol": "GD35D",
         "nombre": "Global 2035 USD (GD35D)",
         "emisor": "República Argentina",
-        "tir": 11.15,
-        "duration": 5.01,
-        "dias_vto": 3185,
+        "tir": 11.16,
+        "duration": 5.0,
+        "dias_vto": 3184,
         "precio": 73.9,
         "paridad": 73.05,
         "cupon": 2.06,
@@ -175,9 +175,9 @@
         "symbol": "GD35",
         "nombre": "Global 2035 en Pesos (GD35)",
         "emisor": "República Argentina",
-        "tir": 11.13,
+        "tir": 11.14,
         "duration": 5.01,
-        "dias_vto": 3185,
+        "dias_vto": 3184,
         "precio": 114200.0,
         "paridad": 73.13,
         "cupon": 2.06,
@@ -188,11 +188,11 @@
         "symbol": "AL41D",
         "nombre": "Bonar 2041 USD (AL41D)",
         "emisor": "República Argentina",
-        "tir": 12.27,
+        "tir": 12.28,
         "duration": 5.21,
-        "dias_vto": 5377,
+        "dias_vto": 5376,
         "precio": 65.0,
-        "paridad": 64.37,
+        "paridad": 64.36,
         "cupon": 1.75,
         "ley": "Argentina"
       },
@@ -201,9 +201,9 @@
         "symbol": "GD41D",
         "nombre": "Global 2041 USD (GD41D)",
         "emisor": "República Argentina",
-        "tir": 11.21,
+        "tir": 11.22,
         "duration": 5.36,
-        "dias_vto": 5377,
+        "dias_vto": 5376,
         "precio": 68.54,
         "paridad": 67.87,
         "cupon": 1.75,
@@ -215,8 +215,8 @@
         "nombre": "Global 2046 USD (GD46D)",
         "emisor": "República Argentina",
         "tir": 11.11,
-        "duration": 5.68,
-        "dias_vto": 7203,
+        "duration": 5.67,
+        "dias_vto": 7202,
         "precio": 62.51,
         "paridad": 67.97,
         "cupon": 1.88,
@@ -226,83 +226,83 @@
     "regresion": [
       {
         "x": 1.35,
-        "y": 7.66
+        "y": 7.68
       },
       {
         "x": 1.46,
-        "y": 7.98
+        "y": 7.99
       },
       {
         "x": 1.57,
-        "y": 8.28
+        "y": 8.3
       },
       {
         "x": 1.68,
-        "y": 8.57
+        "y": 8.59
       },
       {
         "x": 1.79,
-        "y": 8.86
+        "y": 8.87
       },
       {
-        "x": 1.91,
-        "y": 9.12
+        "x": 1.9,
+        "y": 9.14
       },
       {
-        "x": 2.02,
-        "y": 9.38
+        "x": 2.01,
+        "y": 9.39
       },
       {
         "x": 2.13,
-        "y": 9.62
+        "y": 9.64
       },
       {
         "x": 2.24,
-        "y": 9.86
+        "y": 9.87
       },
       {
         "x": 2.35,
-        "y": 10.08
+        "y": 10.09
       },
       {
         "x": 2.46,
-        "y": 10.29
+        "y": 10.3
       },
       {
         "x": 2.57,
-        "y": 10.48
+        "y": 10.49
       },
       {
         "x": 2.68,
-        "y": 10.67
+        "y": 10.68
       },
       {
         "x": 2.79,
-        "y": 10.84
+        "y": 10.85
       },
       {
         "x": 2.9,
-        "y": 11.0
+        "y": 11.01
       },
       {
-        "x": 3.02,
-        "y": 11.15
+        "x": 3.01,
+        "y": 11.16
       },
       {
-        "x": 3.13,
-        "y": 11.28
+        "x": 3.12,
+        "y": 11.29
       },
       {
-        "x": 3.24,
-        "y": 11.41
+        "x": 3.23,
+        "y": 11.42
       },
       {
-        "x": 3.35,
-        "y": 11.52
+        "x": 3.34,
+        "y": 11.53
       },
       {
-        "x": 3.46,
-        "y": 11.62
+        "x": 3.45,
+        "y": 11.63
       },
       {
         "x": 3.57,
@@ -310,7 +310,7 @@
       },
       {
         "x": 3.68,
-        "y": 11.78
+        "y": 11.79
       },
       {
         "x": 3.79,
@@ -318,75 +318,75 @@
       },
       {
         "x": 3.9,
-        "y": 11.9
+        "y": 11.91
       },
       {
         "x": 4.01,
         "y": 11.94
       },
       {
-        "x": 4.13,
-        "y": 11.96
-      },
-      {
-        "x": 4.24,
-        "y": 11.98
-      },
-      {
-        "x": 4.35,
-        "y": 11.98
-      },
-      {
-        "x": 4.46,
+        "x": 4.12,
         "y": 11.97
       },
       {
-        "x": 4.57,
-        "y": 11.95
+        "x": 4.23,
+        "y": 11.99
       },
       {
-        "x": 4.68,
-        "y": 11.92
+        "x": 4.34,
+        "y": 11.99
       },
       {
-        "x": 4.79,
+        "x": 4.45,
+        "y": 11.98
+      },
+      {
+        "x": 4.56,
+        "y": 11.96
+      },
+      {
+        "x": 4.67,
+        "y": 11.93
+      },
+      {
+        "x": 4.78,
         "y": 11.88
       },
       {
-        "x": 4.9,
-        "y": 11.82
+        "x": 4.89,
+        "y": 11.83
       },
       {
         "x": 5.01,
-        "y": 11.75
+        "y": 11.76
       },
       {
         "x": 5.12,
-        "y": 11.67
+        "y": 11.68
       },
       {
-        "x": 5.24,
-        "y": 11.57
+        "x": 5.23,
+        "y": 11.59
       },
       {
-        "x": 5.35,
-        "y": 11.47
+        "x": 5.34,
+        "y": 11.48
       },
       {
-        "x": 5.46,
-        "y": 11.35
+        "x": 5.45,
+        "y": 11.36
       },
       {
-        "x": 5.57,
-        "y": 11.22
+        "x": 5.56,
+        "y": 11.24
       },
       {
-        "x": 5.68,
-        "y": 11.08
+        "x": 5.67,
+        "y": 11.09
       }
     ],
     "modelo_seleccionado": "Cuadrática",
-    "r2_score": 0.817
+    "r2_score": 0.8153
   },
   "bonos_cer": {
     "puntos": [
@@ -395,11 +395,11 @@
         "symbol": "TZXO6",
         "nombre": "Boncer Cero Cupón Oct-2026 (TZXO6)",
         "emisor": "República Argentina",
-        "tir": 25.87,
+        "tir": 29.13,
         "duration": 0.02,
-        "dias_vto": 10,
+        "dias_vto": 9,
         "precio": 176.94,
-        "paridad": 99.99,
+        "paridad": 99.93,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -408,11 +408,11 @@
         "symbol": "TX26",
         "nombre": "Boncer 2026 (TX26)",
         "emisor": "República Argentina",
-        "tir": 5.74,
+        "tir": 7.21,
         "duration": 0.05,
-        "dias_vto": 20,
+        "dias_vto": 19,
         "precio": 759.0,
-        "paridad": 99.8,
+        "paridad": 99.74,
         "cupon": 7.54,
         "ley": "Argentina"
       },
@@ -421,11 +421,11 @@
         "symbol": "TZXD6",
         "nombre": "Boncer Cero Cupón Dic-2026 (TZXD6)",
         "emisor": "República Argentina",
-        "tir": 2.6,
+        "tir": 3.01,
         "duration": 0.15,
-        "dias_vto": 56,
+        "dias_vto": 55,
         "precio": 312.25,
-        "paridad": 99.61,
+        "paridad": 99.55,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -434,11 +434,11 @@
         "symbol": "TZXM7",
         "nombre": "Boncer Cero Cupón Mar-2027 (TZXM7)",
         "emisor": "República Argentina",
-        "tir": 2.2,
+        "tir": 2.34,
         "duration": 0.43,
-        "dias_vto": 162,
+        "dias_vto": 161,
         "precio": 232.9,
-        "paridad": 99.04,
+        "paridad": 98.98,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -447,11 +447,11 @@
         "symbol": "TZX27",
         "nombre": "Boncer Cero Cupón Jun-2027 (TZX27)",
         "emisor": "República Argentina",
-        "tir": 3.34,
+        "tir": 3.44,
         "duration": 0.67,
-        "dias_vto": 253,
+        "dias_vto": 252,
         "precio": 414.45,
-        "paridad": 97.74,
+        "paridad": 97.69,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -460,11 +460,11 @@
         "symbol": "TZXO7",
         "nombre": "Boncer Cero Cupón Oct-2027 (TZXO7)",
         "emisor": "República Argentina",
-        "tir": 5.47,
+        "tir": 5.54,
         "duration": 0.97,
-        "dias_vto": 374,
+        "dias_vto": 373,
         "precio": 101.65,
-        "paridad": 94.69,
+        "paridad": 94.64,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -473,12 +473,12 @@
         "symbol": "TX28",
         "nombre": "Boncer 2028 (TX28)",
         "emisor": "República Argentina",
-        "tir": 7.61,
+        "tir": 7.69,
         "duration": 0.97,
-        "dias_vto": 751,
+        "dias_vto": 750,
         "precio": 1807.0,
-        "paridad": 94.93,
-        "cupon": 21.2,
+        "paridad": 94.87,
+        "cupon": 21.21,
         "ley": "Argentina"
       },
       {
@@ -486,11 +486,11 @@
         "symbol": "TZXD7",
         "nombre": "Boncer Cero Cupón Dic-2027 (TZXD7)",
         "emisor": "República Argentina",
-        "tir": 7.14,
-        "duration": 1.08,
-        "dias_vto": 421,
+        "tir": 7.21,
+        "duration": 1.07,
+        "dias_vto": 420,
         "precio": 289.5,
-        "paridad": 92.35,
+        "paridad": 92.3,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -499,11 +499,11 @@
         "symbol": "TXMJ8",
         "nombre": "Bono Dual TAMAR/CER Jun-2028 (TXMJ8)",
         "emisor": "República Argentina",
-        "tir": 33.81,
-        "duration": 1.27,
-        "dias_vto": 619,
+        "tir": 33.87,
+        "duration": 1.26,
+        "dias_vto": 618,
         "precio": 103.35,
-        "paridad": 90.63,
+        "paridad": 90.55,
         "cupon": 69.29,
         "ley": "Argentina"
       },
@@ -512,11 +512,11 @@
         "symbol": "TZX28",
         "nombre": "Boncer Cero Cupón Jun-2028 (TZX28)",
         "emisor": "República Argentina",
-        "tir": 9.71,
+        "tir": 9.76,
         "duration": 1.54,
-        "dias_vto": 619,
+        "dias_vto": 618,
         "precio": 362.4,
-        "paridad": 85.47,
+        "paridad": 85.42,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -525,11 +525,11 @@
         "symbol": "TXMD8",
         "nombre": "Bono Dual TAMAR/CER Dic-2028 (TXMD8)",
         "emisor": "República Argentina",
-        "tir": 35.2,
+        "tir": 35.25,
         "duration": 1.59,
-        "dias_vto": 787,
+        "dias_vto": 786,
         "precio": 97.05,
-        "paridad": 86.53,
+        "paridad": 86.45,
         "cupon": 85.81,
         "ley": "Argentina"
       },
@@ -538,11 +538,11 @@
         "symbol": "TXMJ9",
         "nombre": "Bono Dual TAMAR/CER Jun-2029 (TXMJ9)",
         "emisor": "República Argentina",
-        "tir": 31.74,
+        "tir": 31.78,
         "duration": 2.04,
-        "dias_vto": 983,
+        "dias_vto": 982,
         "precio": 94.8,
-        "paridad": 82.59,
+        "paridad": 82.53,
         "cupon": 99.02,
         "ley": "Argentina"
       },
@@ -551,11 +551,11 @@
         "symbol": "TXMD9",
         "nombre": "Bono Dual TAMAR/CER Dic-2029 (TXMD9)",
         "emisor": "República Argentina",
-        "tir": 36.97,
+        "tir": 37.01,
         "duration": 2.3,
-        "dias_vto": 1151,
+        "dias_vto": 1150,
         "precio": 88.04,
-        "paridad": 77.28,
+        "paridad": 77.21,
         "cupon": 137.24,
         "ley": "Argentina"
       },
@@ -564,12 +564,12 @@
         "symbol": "TX31",
         "nombre": "Boncer 2031 (TX31)",
         "emisor": "República Argentina",
-        "tir": 11.65,
+        "tir": 11.68,
         "duration": 2.41,
-        "dias_vto": 1868,
+        "dias_vto": 1867,
         "precio": 1460.0,
-        "paridad": 79.84,
-        "cupon": 22.64,
+        "paridad": 79.78,
+        "cupon": 22.65,
         "ley": "Argentina"
       },
       {
@@ -577,11 +577,11 @@
         "symbol": "TXMJ0",
         "nombre": "Bono Dual TAMAR/CER Jun-2030 (TXMJ0)",
         "emisor": "República Argentina",
-        "tir": 36.84,
+        "tir": 36.88,
         "duration": 2.69,
-        "dias_vto": 1347,
+        "dias_vto": 1346,
         "precio": 85.15,
-        "paridad": 74.04,
+        "paridad": 73.96,
         "cupon": 170.73,
         "ley": "Argentina"
       },
@@ -590,12 +590,12 @@
         "symbol": "DICP",
         "nombre": "Discount en Pesos CER (DICP)",
         "emisor": "República Argentina",
-        "tir": 10.55,
+        "tir": 10.58,
         "duration": 2.87,
-        "dias_vto": 2631,
+        "dias_vto": 2630,
         "precio": 49500.0,
-        "paridad": 87.45,
-        "cupon": 1621.21,
+        "paridad": 87.38,
+        "cupon": 1622.12,
         "ley": "Argentina"
       },
       {
@@ -603,12 +603,12 @@
         "symbol": "PARP",
         "nombre": "Par en Pesos CER (PARP)",
         "emisor": "República Argentina",
-        "tir": 10.87,
-        "duration": 6.01,
-        "dias_vto": 4455,
+        "tir": 10.88,
+        "duration": 6.0,
+        "dias_vto": 4454,
         "precio": 33995.0,
-        "paridad": 58.16,
-        "cupon": 516.77,
+        "paridad": 58.13,
+        "cupon": 517.07,
         "ley": "Argentina"
       },
       {
@@ -616,51 +616,51 @@
         "symbol": "CUAP",
         "nombre": "Cuasipar en Pesos CER (CUAP)",
         "emisor": "República Argentina",
-        "tir": 10.38,
+        "tir": 10.39,
         "duration": 9.11,
-        "dias_vto": 7014,
+        "dias_vto": 7013,
         "precio": 40950.0,
-        "paridad": 50.0,
-        "cupon": 1341.93,
+        "paridad": 49.97,
+        "cupon": 1342.69,
         "ley": "Argentina"
       }
     ],
     "regresion": [
       {
         "x": 0.02,
-        "y": 8.25
+        "y": 9.31
       },
       {
         "x": 0.25,
-        "y": 10.02
+        "y": 10.94
       },
       {
         "x": 0.49,
-        "y": 11.7
+        "y": 12.48
       },
       {
         "x": 0.72,
-        "y": 13.28
+        "y": 13.93
       },
       {
         "x": 0.95,
-        "y": 14.76
+        "y": 15.29
       },
       {
         "x": 1.19,
-        "y": 16.15
+        "y": 16.56
       },
       {
         "x": 1.42,
-        "y": 17.44
+        "y": 17.74
       },
       {
         "x": 1.65,
-        "y": 18.64
+        "y": 18.83
       },
       {
         "x": 1.88,
-        "y": 19.74
+        "y": 19.83
       },
       {
         "x": 2.12,
@@ -668,107 +668,107 @@
       },
       {
         "x": 2.35,
-        "y": 21.65
+        "y": 21.56
       },
       {
         "x": 2.58,
-        "y": 22.46
+        "y": 22.29
       },
       {
         "x": 2.82,
-        "y": 23.17
+        "y": 22.93
       },
       {
         "x": 3.05,
-        "y": 23.79
+        "y": 23.49
       },
       {
         "x": 3.28,
-        "y": 24.31
+        "y": 23.95
       },
       {
         "x": 3.52,
-        "y": 24.73
+        "y": 24.32
       },
       {
         "x": 3.75,
-        "y": 25.06
+        "y": 24.6
       },
       {
         "x": 3.98,
-        "y": 25.29
+        "y": 24.79
       },
       {
         "x": 4.22,
-        "y": 25.43
+        "y": 24.9
       },
       {
         "x": 4.45,
-        "y": 25.47
+        "y": 24.91
       },
       {
         "x": 4.68,
-        "y": 25.41
+        "y": 24.83
       },
       {
         "x": 4.91,
-        "y": 25.26
+        "y": 24.67
       },
       {
         "x": 5.15,
-        "y": 25.01
+        "y": 24.41
       },
       {
         "x": 5.38,
-        "y": 24.66
+        "y": 24.06
       },
       {
         "x": 5.61,
-        "y": 24.22
+        "y": 23.63
       },
       {
         "x": 5.85,
-        "y": 23.68
+        "y": 23.1
       },
       {
         "x": 6.08,
-        "y": 23.05
+        "y": 22.49
       },
       {
         "x": 6.31,
-        "y": 22.31
+        "y": 21.78
       },
       {
         "x": 6.55,
-        "y": 21.49
+        "y": 20.99
       },
       {
         "x": 6.78,
-        "y": 20.56
+        "y": 20.1
       },
       {
         "x": 7.01,
-        "y": 19.54
+        "y": 19.13
       },
       {
         "x": 7.25,
-        "y": 18.42
+        "y": 18.06
       },
       {
         "x": 7.48,
-        "y": 17.21
+        "y": 16.91
       },
       {
         "x": 7.71,
-        "y": 15.9
+        "y": 15.66
       },
       {
         "x": 7.94,
-        "y": 14.5
+        "y": 14.33
       },
       {
         "x": 8.18,
-        "y": 12.99
+        "y": 12.91
       },
       {
         "x": 8.41,
@@ -776,19 +776,19 @@
       },
       {
         "x": 8.64,
-        "y": 9.7
+        "y": 9.79
       },
       {
         "x": 8.88,
-        "y": 7.91
+        "y": 8.1
       },
       {
         "x": 9.11,
-        "y": 6.02
+        "y": 6.31
       }
     ],
     "modelo_seleccionado": "Cuadrática",
-    "r2_score": 0.1839
+    "r2_score": 0.1567
   },
   "lecaps": {
     "puntos": [
@@ -797,11 +797,11 @@
         "symbol": "S30O6",
         "nombre": "LECAP Vto. 30/10/2026 (S30O6)",
         "emisor": "República Argentina",
-        "tir": 18.04,
+        "tir": 20.23,
         "duration": 0.02,
-        "dias_vto": 10,
+        "dias_vto": 9,
         "precio": 134.66,
-        "paridad": 100.27,
+        "paridad": 100.2,
         "cupon": 35.28,
         "ley": "Argentina"
       },
@@ -810,11 +810,11 @@
         "symbol": "S13N6",
         "nombre": "LECAP Vto. 13/11/2026 (S13N6)",
         "emisor": "República Argentina",
-        "tir": 25.98,
+        "tir": 27.25,
         "duration": 0.05,
-        "dias_vto": 24,
+        "dias_vto": 23,
         "precio": 108.0,
-        "paridad": 100.02,
+        "paridad": 99.95,
         "cupon": 9.65,
         "ley": "Argentina"
       },
@@ -823,11 +823,11 @@
         "symbol": "S30N6",
         "nombre": "LECAP Vto. 30/11/2026 (S30N6)",
         "emisor": "República Argentina",
-        "tir": 25.82,
+        "tir": 26.54,
         "duration": 0.09,
-        "dias_vto": 41,
+        "dias_vto": 40,
         "precio": 126.58,
-        "paridad": 100.12,
+        "paridad": 100.06,
         "cupon": 29.89,
         "ley": "Argentina"
       },
@@ -836,11 +836,11 @@
         "symbol": "T15E7",
         "nombre": "BONCAP Vto. 15/01/2027 (T15E7)",
         "emisor": "República Argentina",
-        "tir": 26.34,
+        "tir": 26.69,
         "duration": 0.19,
-        "dias_vto": 87,
+        "dias_vto": 86,
         "precio": 152.37,
-        "paridad": 99.11,
+        "paridad": 99.06,
         "cupon": 61.1,
         "ley": "Argentina"
       },
@@ -849,11 +849,11 @@
         "symbol": "T30A7",
         "nombre": "BONCAP Vto. 30/04/2027 (T30A7)",
         "emisor": "República Argentina",
-        "tir": 28.42,
+        "tir": 28.59,
         "duration": 0.41,
-        "dias_vto": 192,
+        "dias_vto": 191,
         "precio": 137.94,
-        "paridad": 100.56,
+        "paridad": 100.49,
         "cupon": 57.34,
         "ley": "Argentina"
       },
@@ -862,11 +862,11 @@
         "symbol": "T31Y7",
         "nombre": "BONCAP Vto. 31/05/2027 (T31Y7)",
         "emisor": "República Argentina",
-        "tir": 28.88,
+        "tir": 29.03,
         "duration": 0.47,
-        "dias_vto": 223,
+        "dias_vto": 222,
         "precio": 129.8,
-        "paridad": 99.92,
+        "paridad": 99.85,
         "cupon": 51.56,
         "ley": "Argentina"
       },
@@ -875,11 +875,11 @@
         "symbol": "T30J7",
         "nombre": "BONCAP Vto. 30/06/2027 (T30J7)",
         "emisor": "República Argentina",
-        "tir": 27.44,
+        "tir": 27.56,
         "duration": 0.54,
-        "dias_vto": 253,
+        "dias_vto": 252,
         "precio": 131.9,
-        "paridad": 102.01,
+        "paridad": 101.92,
         "cupon": 56.04,
         "ley": "Argentina"
       },
@@ -888,179 +888,179 @@
         "symbol": "TY30P",
         "nombre": "Bono Tasa Fija Mayo 2030 (TY30P)",
         "emisor": "República Argentina",
-        "tir": 30.79,
+        "tir": 30.83,
         "duration": 1.92,
-        "dias_vto": 1318,
+        "dias_vto": 1317,
         "precio": 113.0,
-        "paridad": 101.37,
+        "paridad": 101.3,
         "cupon": 14.75,
         "ley": "Argentina"
       }
     ],
     "regresion": [
       {
-        "x": 10.0,
-        "y": 21.33
+        "x": 9.0,
+        "y": 22.93
       },
       {
-        "x": 43.54,
-        "y": 24.28
+        "x": 42.54,
+        "y": 25.43
       },
       {
-        "x": 77.08,
-        "y": 25.53
+        "x": 76.08,
+        "y": 26.43
       },
       {
-        "x": 110.62,
-        "y": 26.36
+        "x": 109.62,
+        "y": 27.08
       },
       {
-        "x": 144.15,
-        "y": 26.98
+        "x": 143.15,
+        "y": 27.56
       },
       {
-        "x": 177.69,
-        "y": 27.49
+        "x": 176.69,
+        "y": 27.95
       },
       {
-        "x": 211.23,
-        "y": 27.91
+        "x": 210.23,
+        "y": 28.28
       },
       {
-        "x": 244.77,
-        "y": 28.27
+        "x": 243.77,
+        "y": 28.56
       },
       {
-        "x": 278.31,
-        "y": 28.59
+        "x": 277.31,
+        "y": 28.8
       },
       {
-        "x": 311.85,
-        "y": 28.88
+        "x": 310.85,
+        "y": 29.02
       },
       {
-        "x": 345.38,
-        "y": 29.14
+        "x": 344.38,
+        "y": 29.22
       },
       {
-        "x": 378.92,
-        "y": 29.38
+        "x": 377.92,
+        "y": 29.4
       },
       {
-        "x": 412.46,
-        "y": 29.6
+        "x": 411.46,
+        "y": 29.57
       },
       {
-        "x": 446.0,
-        "y": 29.81
+        "x": 445.0,
+        "y": 29.72
       },
       {
-        "x": 479.54,
+        "x": 478.54,
+        "y": 29.87
+      },
+      {
+        "x": 512.08,
         "y": 30.0
       },
       {
-        "x": 513.08,
-        "y": 30.18
+        "x": 545.62,
+        "y": 30.13
       },
       {
-        "x": 546.62,
-        "y": 30.35
+        "x": 579.15,
+        "y": 30.25
       },
       {
-        "x": 580.15,
-        "y": 30.51
+        "x": 612.69,
+        "y": 30.36
       },
       {
-        "x": 613.69,
-        "y": 30.66
+        "x": 646.23,
+        "y": 30.47
       },
       {
-        "x": 647.23,
-        "y": 30.8
+        "x": 679.77,
+        "y": 30.57
       },
       {
-        "x": 680.77,
+        "x": 713.31,
+        "y": 30.67
+      },
+      {
+        "x": 746.85,
+        "y": 30.76
+      },
+      {
+        "x": 780.38,
+        "y": 30.85
+      },
+      {
+        "x": 813.92,
         "y": 30.94
       },
       {
-        "x": 714.31,
-        "y": 31.07
+        "x": 847.46,
+        "y": 31.02
       },
       {
-        "x": 747.85,
-        "y": 31.2
+        "x": 881.0,
+        "y": 31.1
       },
       {
-        "x": 781.38,
-        "y": 31.32
+        "x": 914.54,
+        "y": 31.18
       },
       {
-        "x": 814.92,
-        "y": 31.43
+        "x": 948.08,
+        "y": 31.25
       },
       {
-        "x": 848.46,
-        "y": 31.54
+        "x": 981.62,
+        "y": 31.33
       },
       {
-        "x": 882.0,
-        "y": 31.65
+        "x": 1015.15,
+        "y": 31.4
       },
       {
-        "x": 915.54,
-        "y": 31.76
+        "x": 1048.69,
+        "y": 31.46
       },
       {
-        "x": 949.08,
-        "y": 31.86
+        "x": 1082.23,
+        "y": 31.53
       },
       {
-        "x": 982.62,
-        "y": 31.96
+        "x": 1115.77,
+        "y": 31.59
       },
       {
-        "x": 1016.15,
-        "y": 32.05
+        "x": 1149.31,
+        "y": 31.66
       },
       {
-        "x": 1049.69,
-        "y": 32.14
+        "x": 1182.85,
+        "y": 31.72
       },
       {
-        "x": 1083.23,
-        "y": 32.23
+        "x": 1216.38,
+        "y": 31.78
       },
       {
-        "x": 1116.77,
-        "y": 32.32
+        "x": 1249.92,
+        "y": 31.83
       },
       {
-        "x": 1150.31,
-        "y": 32.4
+        "x": 1283.46,
+        "y": 31.89
       },
       {
-        "x": 1183.85,
-        "y": 32.48
-      },
-      {
-        "x": 1217.38,
-        "y": 32.56
-      },
-      {
-        "x": 1250.92,
-        "y": 32.64
-      },
-      {
-        "x": 1284.46,
-        "y": 32.72
-      },
-      {
-        "x": 1318.0,
-        "y": 32.79
+        "x": 1317.0,
+        "y": 31.94
       }
     ],
     "modelo_seleccionado": "Potencial",
-    "r2_score": 0.7164
+    "r2_score": 0.7065
   },
   "tamar_badlar": {
     "puntos": [
@@ -1069,11 +1069,11 @@
         "symbol": "TTD26_TAM",
         "nombre": "Bono TAMAR Dic-2026 (TTD26)",
         "emisor": "República Argentina",
-        "tir": 23.1,
+        "tir": 23.56,
         "duration": 0.12,
-        "dias_vto": 56,
+        "dias_vto": 55,
         "precio": 174.38,
-        "paridad": 100.5,
+        "paridad": 100.43,
         "cupon": 80.03,
         "ley": "Argentina"
       },
@@ -1082,11 +1082,11 @@
         "symbol": "TMF27",
         "nombre": "Bono TAMAR Feb-2027 (TMF27)",
         "emisor": "República Argentina",
-        "tir": 25.08,
+        "tir": 25.29,
         "duration": 0.28,
-        "dias_vto": 129,
+        "dias_vto": 128,
         "precio": 126.1,
-        "paridad": 101.57,
+        "paridad": 101.49,
         "cupon": 36.48,
         "ley": "Argentina"
       },
@@ -1095,11 +1095,11 @@
         "symbol": "TML27",
         "nombre": "Bono TAMAR Jul-2027 (TML27)",
         "emisor": "República Argentina",
-        "tir": 27.48,
+        "tir": 27.59,
         "duration": 0.61,
-        "dias_vto": 283,
+        "dias_vto": 282,
         "precio": 111.35,
-        "paridad": 101.5,
+        "paridad": 101.42,
         "cupon": 34.41,
         "ley": "Argentina"
       },
@@ -1108,11 +1108,11 @@
         "symbol": "TMG27",
         "nombre": "Bono TAMAR Ago-2027 (TMG27)",
         "emisor": "República Argentina",
-        "tir": 26.95,
+        "tir": 27.05,
         "duration": 0.68,
-        "dias_vto": 315,
+        "dias_vto": 314,
         "precio": 121.2,
-        "paridad": 101.69,
+        "paridad": 101.61,
         "cupon": 48.92,
         "ley": "Argentina"
       },
@@ -1121,11 +1121,11 @@
         "symbol": "TMF28",
         "nombre": "Bono TAMAR Feb-2028 (TMF28)",
         "emisor": "República Argentina",
-        "tir": 33.65,
+        "tir": 33.73,
         "duration": 1.01,
-        "dias_vto": 493,
+        "dias_vto": 492,
         "precio": 114.5,
-        "paridad": 96.09,
+        "paridad": 96.01,
         "cupon": 69.39,
         "ley": "Argentina"
       },
@@ -1134,11 +1134,11 @@
         "symbol": "BDC28",
         "nombre": "Ciudad de Bs As Badlar 2028 (BDC28)",
         "emisor": "República Argentina",
-        "tir": 31.47,
+        "tir": 31.57,
         "duration": 1.04,
-        "dias_vto": 490,
+        "dias_vto": 489,
         "precio": 102.2,
-        "paridad": 98.01,
+        "paridad": 97.94,
         "cupon": 6.67,
         "ley": "CABA"
       },
@@ -1147,11 +1147,11 @@
         "symbol": "TMG28",
         "nombre": "Bono TAMAR Ago-2028 (TMG28)",
         "emisor": "República Argentina",
-        "tir": 35.78,
+        "tir": 35.84,
         "duration": 1.37,
-        "dias_vto": 681,
+        "dias_vto": 680,
         "precio": 110.15,
-        "paridad": 92.42,
+        "paridad": 92.33,
         "cupon": 94.8,
         "ley": "Argentina"
       }
@@ -1159,167 +1159,167 @@
     "regresion": [
       {
         "x": 0.12,
-        "y": 23.23
+        "y": 23.63
       },
       {
         "x": 0.15,
-        "y": 23.48
+        "y": 23.85
       },
       {
         "x": 0.18,
-        "y": 23.74
+        "y": 24.09
       },
       {
         "x": 0.22,
-        "y": 24.0
+        "y": 24.32
       },
       {
         "x": 0.25,
-        "y": 24.26
+        "y": 24.57
       },
       {
         "x": 0.28,
-        "y": 24.53
+        "y": 24.81
       },
       {
         "x": 0.31,
-        "y": 24.8
-      },
-      {
-        "x": 0.34,
         "y": 25.07
       },
       {
+        "x": 0.34,
+        "y": 25.33
+      },
+      {
         "x": 0.38,
-        "y": 25.36
+        "y": 25.59
       },
       {
         "x": 0.41,
-        "y": 25.64
+        "y": 25.86
       },
       {
         "x": 0.44,
-        "y": 25.93
+        "y": 26.13
       },
       {
         "x": 0.47,
-        "y": 26.22
+        "y": 26.41
       },
       {
         "x": 0.5,
-        "y": 26.52
+        "y": 26.69
       },
       {
         "x": 0.54,
-        "y": 26.82
+        "y": 26.98
       },
       {
         "x": 0.57,
-        "y": 27.13
+        "y": 27.27
       },
       {
         "x": 0.6,
-        "y": 27.44
+        "y": 27.57
       },
       {
         "x": 0.63,
-        "y": 27.75
+        "y": 27.87
       },
       {
         "x": 0.66,
-        "y": 28.07
+        "y": 28.18
       },
       {
         "x": 0.7,
-        "y": 28.39
+        "y": 28.49
       },
       {
         "x": 0.73,
-        "y": 28.72
+        "y": 28.81
       },
       {
         "x": 0.76,
-        "y": 29.05
+        "y": 29.13
       },
       {
         "x": 0.79,
-        "y": 29.38
+        "y": 29.46
       },
       {
         "x": 0.83,
-        "y": 29.72
+        "y": 29.8
       },
       {
         "x": 0.86,
-        "y": 30.07
+        "y": 30.13
       },
       {
         "x": 0.89,
-        "y": 30.41
+        "y": 30.48
       },
       {
         "x": 0.92,
-        "y": 30.77
+        "y": 30.83
       },
       {
         "x": 0.95,
-        "y": 31.12
+        "y": 31.18
       },
       {
         "x": 0.99,
-        "y": 31.48
+        "y": 31.54
       },
       {
         "x": 1.02,
-        "y": 31.85
+        "y": 31.9
       },
       {
         "x": 1.05,
-        "y": 32.22
+        "y": 32.27
       },
       {
         "x": 1.08,
-        "y": 32.59
+        "y": 32.64
       },
       {
         "x": 1.11,
-        "y": 32.97
+        "y": 33.02
       },
       {
         "x": 1.15,
-        "y": 33.35
+        "y": 33.41
       },
       {
         "x": 1.18,
-        "y": 33.73
+        "y": 33.79
       },
       {
         "x": 1.21,
-        "y": 34.13
+        "y": 34.19
       },
       {
         "x": 1.24,
-        "y": 34.52
+        "y": 34.59
       },
       {
         "x": 1.27,
-        "y": 34.92
+        "y": 34.99
       },
       {
         "x": 1.31,
-        "y": 35.32
+        "y": 35.4
       },
       {
         "x": 1.34,
-        "y": 35.73
+        "y": 35.81
       },
       {
         "x": 1.37,
-        "y": 36.14
+        "y": 36.23
       }
     ],
     "modelo_seleccionado": "Cuadrática",
-    "r2_score": 0.9537
+    "r2_score": 0.9516
   },
   "dolar_linked": {
     "puntos": [
@@ -1328,11 +1328,11 @@
         "symbol": "D31M7",
         "nombre": "Bono Dólar Linked Mar-2027 (D31M7)",
         "emisor": "República Argentina",
-        "tir": 1.8,
-        "duration": 0.44,
-        "dias_vto": 162,
+        "tir": 1.91,
+        "duration": 0.43,
+        "dias_vto": 161,
         "precio": 150200.0,
-        "paridad": 99.21,
+        "paridad": 99.17,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -1341,11 +1341,11 @@
         "symbol": "D10Y7",
         "nombre": "Bono Dólar Linked May-2027 (D10Y7)",
         "emisor": "República Argentina",
-        "tir": 1.68,
+        "tir": 1.77,
         "duration": 0.54,
-        "dias_vto": 202,
+        "dias_vto": 201,
         "precio": 150000.0,
-        "paridad": 99.08,
+        "paridad": 99.04,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -1354,11 +1354,11 @@
         "symbol": "TZV27",
         "nombre": "Bono Dólar Linked Jun-2027 (TZV27)",
         "emisor": "República Argentina",
-        "tir": 2.82,
+        "tir": 2.9,
         "duration": 0.67,
-        "dias_vto": 253,
+        "dias_vto": 252,
         "precio": 148500.0,
-        "paridad": 98.09,
+        "paridad": 98.05,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -1367,11 +1367,11 @@
         "symbol": "TZV28",
         "nombre": "Bono Dólar Linked Jun-2028 (TZV28)",
         "emisor": "República Argentina",
-        "tir": 10.69,
+        "tir": 10.74,
         "duration": 1.53,
-        "dias_vto": 619,
+        "dias_vto": 618,
         "precio": 127450.0,
-        "paridad": 84.18,
+        "paridad": 84.15,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -1380,139 +1380,139 @@
         "symbol": "TZVD8",
         "nombre": "Bono Dólar Linked Dic-2028 (TZVD8)",
         "emisor": "República Argentina",
-        "tir": 11.39,
+        "tir": 11.43,
         "duration": 1.93,
-        "dias_vto": 787,
+        "dias_vto": 786,
         "precio": 120000.0,
-        "paridad": 79.26,
+        "paridad": 79.23,
         "cupon": 0.0,
         "ley": "Argentina"
       }
     ],
     "regresion": [
       {
-        "x": 0.44,
-        "y": 0.98
+        "x": 0.43,
+        "y": 1.05
       },
       {
-        "x": 0.48,
-        "y": 1.42
+        "x": 0.47,
+        "y": 1.48
       },
       {
-        "x": 0.52,
-        "y": 1.85
+        "x": 0.51,
+        "y": 1.9
       },
       {
         "x": 0.55,
-        "y": 2.27
+        "y": 2.31
       },
       {
-        "x": 0.59,
-        "y": 2.69
+        "x": 0.58,
+        "y": 2.71
       },
       {
-        "x": 0.63,
-        "y": 3.09
+        "x": 0.62,
+        "y": 3.11
       },
       {
-        "x": 0.67,
-        "y": 3.49
+        "x": 0.66,
+        "y": 3.5
       },
       {
-        "x": 0.71,
-        "y": 3.87
+        "x": 0.7,
+        "y": 3.88
       },
       {
-        "x": 0.75,
+        "x": 0.74,
         "y": 4.25
       },
       {
         "x": 0.78,
-        "y": 4.62
+        "y": 4.61
       },
       {
-        "x": 0.82,
-        "y": 4.98
+        "x": 0.81,
+        "y": 4.96
       },
       {
-        "x": 0.86,
-        "y": 5.33
+        "x": 0.85,
+        "y": 5.31
       },
       {
-        "x": 0.9,
-        "y": 5.68
+        "x": 0.89,
+        "y": 5.65
       },
       {
-        "x": 0.94,
-        "y": 6.01
+        "x": 0.93,
+        "y": 5.98
       },
       {
         "x": 0.97,
-        "y": 6.34
+        "y": 6.3
       },
       {
         "x": 1.01,
-        "y": 6.66
+        "y": 6.62
       },
       {
         "x": 1.05,
-        "y": 6.97
+        "y": 6.93
       },
       {
-        "x": 1.09,
-        "y": 7.27
+        "x": 1.08,
+        "y": 7.22
       },
       {
-        "x": 1.13,
-        "y": 7.56
+        "x": 1.12,
+        "y": 7.51
       },
       {
-        "x": 1.17,
-        "y": 7.84
+        "x": 1.16,
+        "y": 7.8
       },
       {
         "x": 1.2,
-        "y": 8.11
+        "y": 8.07
       },
       {
         "x": 1.24,
-        "y": 8.38
+        "y": 8.34
       },
       {
         "x": 1.28,
-        "y": 8.64
+        "y": 8.6
       },
       {
-        "x": 1.32,
-        "y": 8.89
+        "x": 1.31,
+        "y": 8.85
       },
       {
-        "x": 1.36,
-        "y": 9.13
+        "x": 1.35,
+        "y": 9.09
       },
       {
-        "x": 1.4,
-        "y": 9.36
+        "x": 1.39,
+        "y": 9.32
       },
       {
         "x": 1.43,
-        "y": 9.58
+        "y": 9.55
       },
       {
         "x": 1.47,
-        "y": 9.79
+        "y": 9.77
       },
       {
         "x": 1.51,
-        "y": 10.0
+        "y": 9.98
       },
       {
         "x": 1.55,
-        "y": 10.2
+        "y": 10.18
       },
       {
-        "x": 1.59,
-        "y": 10.38
+        "x": 1.58,
+        "y": 10.37
       },
       {
         "x": 1.62,
@@ -1520,39 +1520,39 @@
       },
       {
         "x": 1.66,
-        "y": 10.73
+        "y": 10.74
       },
       {
         "x": 1.7,
-        "y": 10.9
+        "y": 10.91
       },
       {
         "x": 1.74,
-        "y": 11.05
+        "y": 11.07
       },
       {
         "x": 1.78,
-        "y": 11.19
+        "y": 11.22
       },
       {
-        "x": 1.82,
-        "y": 11.33
+        "x": 1.81,
+        "y": 11.37
       },
       {
         "x": 1.85,
-        "y": 11.46
+        "y": 11.5
       },
       {
         "x": 1.89,
-        "y": 11.58
+        "y": 11.63
       },
       {
         "x": 1.93,
-        "y": 11.69
+        "y": 11.75
       }
     ],
     "modelo_seleccionado": "Cuadrática",
-    "r2_score": 0.9821
+    "r2_score": 0.9796
   },
   "bopreal": {
     "puntos": [
@@ -1563,9 +1563,9 @@
         "emisor": "República Argentina",
         "tir": 1.96,
         "duration": 0.75,
-        "dias_vto": 377,
+        "dias_vto": 376,
         "precio": 104.7,
-        "paridad": 102.28,
+        "paridad": 102.27,
         "cupon": 2.5,
         "ley": "Argentina"
       },
@@ -1576,9 +1576,9 @@
         "emisor": "República Argentina",
         "tir": 1.51,
         "duration": 0.75,
-        "dias_vto": 377,
+        "dias_vto": 376,
         "precio": 105.05,
-        "paridad": 102.63,
+        "paridad": 102.61,
         "cupon": 2.5,
         "ley": "Argentina"
       },
@@ -1587,11 +1587,11 @@
         "symbol": "BPC7D",
         "nombre": "BOPREAL Serie 1 Strip C 2027 USD (BPC7D)",
         "emisor": "República Argentina",
-        "tir": 1.38,
+        "tir": 1.39,
         "duration": 0.75,
-        "dias_vto": 377,
+        "dias_vto": 376,
         "precio": 105.15,
-        "paridad": 102.72,
+        "paridad": 102.71,
         "cupon": 2.5,
         "ley": "Argentina"
       },
@@ -1602,9 +1602,9 @@
         "emisor": "República Argentina",
         "tir": 1.51,
         "duration": 0.75,
-        "dias_vto": 377,
+        "dias_vto": 376,
         "precio": 105.05,
-        "paridad": 102.63,
+        "paridad": 102.61,
         "cupon": 2.5,
         "ley": "Argentina"
       },
@@ -1613,11 +1613,11 @@
         "symbol": "BPOA7",
         "nombre": "BOPREAL Serie 1 Strip A 2027 Pesos (BPOA7)",
         "emisor": "República Argentina",
-        "tir": 1.79,
+        "tir": 1.8,
         "duration": 0.75,
-        "dias_vto": 377,
+        "dias_vto": 376,
         "precio": 161520.0,
-        "paridad": 102.41,
+        "paridad": 102.4,
         "cupon": 2.5,
         "ley": "Argentina"
       },
@@ -1626,11 +1626,11 @@
         "symbol": "BPOB7",
         "nombre": "BOPREAL Serie 1 Strip B 2027 Pesos (BPOB7)",
         "emisor": "República Argentina",
-        "tir": 1.56,
+        "tir": 1.57,
         "duration": 0.75,
-        "dias_vto": 377,
+        "dias_vto": 376,
         "precio": 161800.0,
-        "paridad": 102.59,
+        "paridad": 102.57,
         "cupon": 2.5,
         "ley": "Argentina"
       },
@@ -1641,9 +1641,9 @@
         "emisor": "República Argentina",
         "tir": 1.15,
         "duration": 0.75,
-        "dias_vto": 377,
+        "dias_vto": 376,
         "precio": 162300.0,
-        "paridad": 102.91,
+        "paridad": 102.89,
         "cupon": 2.5,
         "ley": "Argentina"
       },
@@ -1652,11 +1652,11 @@
         "symbol": "BPOD7",
         "nombre": "BOPREAL Serie 1 Strip D 2027 Pesos (BPOD7)",
         "emisor": "República Argentina",
-        "tir": 1.56,
+        "tir": 1.57,
         "duration": 0.75,
-        "dias_vto": 377,
+        "dias_vto": 376,
         "precio": 161800.0,
-        "paridad": 102.59,
+        "paridad": 102.57,
         "cupon": 2.5,
         "ley": "Argentina"
       },
@@ -1665,11 +1665,11 @@
         "symbol": "BPB8D",
         "nombre": "BOPREAL Serie 1 Strip B 2028 USD (BPB8D)",
         "emisor": "República Argentina",
-        "tir": 8.34,
+        "tir": 8.35,
         "duration": 1.87,
-        "dias_vto": 742,
+        "dias_vto": 741,
         "precio": 91.91,
-        "paridad": 90.63,
+        "paridad": 90.62,
         "cupon": 1.5,
         "ley": "Argentina"
       },
@@ -1678,11 +1678,11 @@
         "symbol": "BPOB8",
         "nombre": "BOPREAL Serie 1 Strip B 2028 Pesos (BPOB8)",
         "emisor": "República Argentina",
-        "tir": 8.28,
+        "tir": 8.29,
         "duration": 1.87,
-        "dias_vto": 742,
+        "dias_vto": 741,
         "precio": 141760.0,
-        "paridad": 90.72,
+        "paridad": 90.71,
         "cupon": 1.5,
         "ley": "Argentina"
       },
@@ -1691,11 +1691,11 @@
         "symbol": "BPA8D",
         "nombre": "BOPREAL Serie 1 Strip A 2028 USD (BPA8D)",
         "emisor": "República Argentina",
-        "tir": 7.74,
+        "tir": 7.76,
         "duration": 1.88,
-        "dias_vto": 742,
+        "dias_vto": 741,
         "precio": 92.9,
-        "paridad": 91.6,
+        "paridad": 91.59,
         "cupon": 1.5,
         "ley": "Argentina"
       },
@@ -1704,11 +1704,11 @@
         "symbol": "BPOA8",
         "nombre": "BOPREAL Serie 1 Strip A 2028 Pesos (BPOA8)",
         "emisor": "República Argentina",
-        "tir": 7.84,
+        "tir": 7.86,
         "duration": 1.88,
-        "dias_vto": 742,
+        "dias_vto": 741,
         "precio": 142880.0,
-        "paridad": 91.44,
+        "paridad": 91.43,
         "cupon": 1.5,
         "ley": "Argentina"
       }
@@ -1716,167 +1716,167 @@
     "regresion": [
       {
         "x": 0.75,
-        "y": 1.55
+        "y": 1.56
       },
       {
         "x": 0.78,
-        "y": 3.35
+        "y": 3.33
       },
       {
         "x": 0.81,
-        "y": 5.06
+        "y": 5.01
       },
       {
         "x": 0.84,
-        "y": 6.69
+        "y": 6.61
       },
       {
         "x": 0.87,
-        "y": 8.23
+        "y": 8.13
       },
       {
         "x": 0.89,
-        "y": 9.68
+        "y": 9.56
       },
       {
         "x": 0.92,
-        "y": 11.05
+        "y": 10.91
       },
       {
         "x": 0.95,
-        "y": 12.33
+        "y": 12.17
       },
       {
         "x": 0.98,
-        "y": 13.52
+        "y": 13.35
       },
       {
         "x": 1.01,
-        "y": 14.63
+        "y": 14.44
       },
       {
         "x": 1.04,
-        "y": 15.66
+        "y": 15.45
       },
       {
         "x": 1.07,
-        "y": 16.59
+        "y": 16.37
       },
       {
         "x": 1.1,
-        "y": 17.44
+        "y": 17.21
       },
       {
         "x": 1.13,
-        "y": 18.2
+        "y": 17.96
       },
       {
         "x": 1.16,
-        "y": 18.88
+        "y": 18.63
       },
       {
         "x": 1.18,
-        "y": 19.47
+        "y": 19.22
       },
       {
         "x": 1.21,
-        "y": 19.98
+        "y": 19.72
       },
       {
         "x": 1.24,
-        "y": 20.4
+        "y": 20.13
       },
       {
         "x": 1.27,
-        "y": 20.73
+        "y": 20.46
       },
       {
         "x": 1.3,
-        "y": 20.97
+        "y": 20.71
       },
       {
         "x": 1.33,
-        "y": 21.13
+        "y": 20.87
       },
       {
         "x": 1.36,
-        "y": 21.21
+        "y": 20.94
       },
       {
         "x": 1.39,
-        "y": 21.2
+        "y": 20.93
       },
       {
         "x": 1.42,
-        "y": 21.1
+        "y": 20.84
       },
       {
         "x": 1.45,
-        "y": 20.91
+        "y": 20.66
       },
       {
         "x": 1.47,
-        "y": 20.64
+        "y": 20.4
       },
       {
         "x": 1.5,
-        "y": 20.28
+        "y": 20.05
       },
       {
         "x": 1.53,
-        "y": 19.84
+        "y": 19.62
       },
       {
         "x": 1.56,
-        "y": 19.31
+        "y": 19.1
       },
       {
         "x": 1.59,
-        "y": 18.69
+        "y": 18.5
       },
       {
         "x": 1.62,
-        "y": 17.99
+        "y": 17.81
       },
       {
         "x": 1.65,
-        "y": 17.2
+        "y": 17.04
       },
       {
         "x": 1.68,
-        "y": 16.33
+        "y": 16.18
       },
       {
         "x": 1.71,
-        "y": 15.37
+        "y": 15.24
       },
       {
         "x": 1.74,
-        "y": 14.32
+        "y": 14.21
       },
       {
         "x": 1.76,
-        "y": 13.19
+        "y": 13.1
       },
       {
         "x": 1.79,
-        "y": 11.97
+        "y": 11.91
       },
       {
         "x": 1.82,
-        "y": 10.66
+        "y": 10.63
       },
       {
         "x": 1.85,
-        "y": 9.27
+        "y": 9.26
       },
       {
         "x": 1.88,
-        "y": 7.79
+        "y": 7.81
       }
     ],
     "modelo_seleccionado": "Cuadrática",
-    "r2_score": 0.9963
+    "r2_score": 0.9962
   },
   "ons_usd": {
     "puntos": [
@@ -1885,11 +1885,11 @@
         "symbol": "YM41D",
         "nombre": "YPF S.A. 2029 (YM41D)",
         "emisor": "YPF S.A.",
-        "tir": 3.03,
-        "duration": 0.22,
-        "dias_vto": 80,
+        "tir": 3.07,
+        "duration": 0.21,
+        "dias_vto": 79,
         "precio": 100.85,
-        "paridad": 100.65,
+        "paridad": 100.63,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -1898,11 +1898,11 @@
         "symbol": "YFCMD",
         "nombre": "YPF Energía Eléctrica 2027 (YFCMD)",
         "emisor": "YPF Energía Eléctrica",
-        "tir": 3.22,
+        "tir": 3.23,
         "duration": 0.56,
-        "dias_vto": 212,
+        "dias_vto": 211,
         "precio": 103.0,
-        "paridad": 101.9,
+        "paridad": 101.88,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -1913,9 +1913,9 @@
         "emisor": "Pan American Energy (PAE)",
         "tir": -0.02,
         "duration": 0.8,
-        "dias_vto": 295,
+        "dias_vto": 294,
         "precio": 108.55,
-        "paridad": 107.21,
+        "paridad": 107.19,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -1924,11 +1924,11 @@
         "symbol": "PN34O",
         "nombre": "PAE 2027 Clase 34 (PN34O)",
         "emisor": "Pan American Energy (PAE)",
-        "tir": 3.41,
+        "tir": 3.42,
         "duration": 0.91,
-        "dias_vto": 342,
+        "dias_vto": 341,
         "precio": 156800.0,
-        "paridad": 101.45,
+        "paridad": 101.43,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -1937,11 +1937,11 @@
         "symbol": "TTCBD",
         "nombre": "Tecpetrol 2027 (TTCBD)",
         "emisor": "Tecpetrol (Techint)",
-        "tir": 4.56,
-        "duration": 0.96,
-        "dias_vto": 363,
+        "tir": 4.57,
+        "duration": 0.95,
+        "dias_vto": 362,
         "precio": 101.95,
-        "paridad": 101.88,
+        "paridad": 101.86,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -1950,11 +1950,11 @@
         "symbol": "PLC3D",
         "nombre": "Pluspetrol 2028 (PLC3D)",
         "emisor": "Pluspetrol",
-        "tir": 5.52,
+        "tir": 5.53,
         "duration": 1.41,
-        "dias_vto": 558,
+        "dias_vto": 557,
         "precio": 104.25,
-        "paridad": 102.58,
+        "paridad": 102.56,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -1963,11 +1963,11 @@
         "symbol": "CACBO",
         "nombre": "Capex 2028 (CACBO)",
         "emisor": "Capex",
-        "tir": 7.44,
+        "tir": 7.45,
         "duration": 1.54,
-        "dias_vto": 609,
+        "dias_vto": 608,
         "precio": 156300.0,
-        "paridad": 100.73,
+        "paridad": 100.71,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -1976,11 +1976,11 @@
         "symbol": "CS48D",
         "nombre": "Cresud 2028 Clase 48 (CS48D)",
         "emisor": "Cresud",
-        "tir": 6.08,
-        "duration": 1.57,
-        "dias_vto": 630,
+        "tir": 6.09,
+        "duration": 1.56,
+        "dias_vto": 629,
         "precio": 105.45,
-        "paridad": 103.17,
+        "paridad": 103.14,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -1989,11 +1989,11 @@
         "symbol": "VSCPD",
         "nombre": "Vista Energy 2029 (VSCPD)",
         "emisor": "Vista Energy",
-        "tir": 4.93,
+        "tir": 4.94,
         "duration": 1.6,
-        "dias_vto": 926,
+        "dias_vto": 925,
         "precio": 109.0,
-        "paridad": 105.08,
+        "paridad": 105.06,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2004,9 +2004,9 @@
         "emisor": "Pampa Energía",
         "tir": 3.62,
         "duration": 1.67,
-        "dias_vto": 657,
+        "dias_vto": 656,
         "precio": 107.8,
-        "paridad": 106.22,
+        "paridad": 106.2,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2015,11 +2015,11 @@
         "symbol": "YM40D",
         "nombre": "YPF S.A. 2028 (YM40D)",
         "emisor": "YPF S.A.",
-        "tir": 5.47,
+        "tir": 5.48,
         "duration": 1.71,
-        "dias_vto": 678,
+        "dias_vto": 677,
         "precio": 104.85,
-        "paridad": 103.72,
+        "paridad": 103.7,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2028,11 +2028,11 @@
         "symbol": "CS47D",
         "nombre": "Cresud 2028 (CS47D)",
         "emisor": "Cresud",
-        "tir": 5.86,
-        "duration": 1.86,
-        "dias_vto": 757,
+        "tir": 5.87,
+        "duration": 1.85,
+        "dias_vto": 756,
         "precio": 105.4,
-        "paridad": 102.3,
+        "paridad": 102.28,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2041,11 +2041,11 @@
         "symbol": "MCC1D",
         "nombre": "Pecom 2029 (MCC1D)",
         "emisor": "Pecom Servicios Energía",
-        "tir": 7.28,
+        "tir": 7.29,
         "duration": 2.13,
-        "dias_vto": 874,
+        "dias_vto": 873,
         "precio": 102.45,
-        "paridad": 101.57,
+        "paridad": 101.55,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2056,9 +2056,9 @@
         "emisor": "Pan American Energy (PAE)",
         "tir": 6.09,
         "duration": 2.52,
-        "dias_vto": 1042,
+        "dias_vto": 1041,
         "precio": 105.0,
-        "paridad": 103.85,
+        "paridad": 103.83,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2067,11 +2067,11 @@
         "symbol": "PN35D",
         "nombre": "PAE 2028 Clase 35 (PN35D)",
         "emisor": "Pan American Energy (PAE)",
-        "tir": 5.94,
+        "tir": 5.95,
         "duration": 2.62,
-        "dias_vto": 1073,
+        "dias_vto": 1072,
         "precio": 103.5,
-        "paridad": 103.05,
+        "paridad": 103.03,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2081,10 +2081,10 @@
         "nombre": "Tecpetrol 2029 (TTC9O)",
         "emisor": "Tecpetrol (Techint)",
         "tir": 5.19,
-        "duration": 2.63,
-        "dias_vto": 1100,
+        "duration": 2.62,
+        "dias_vto": 1099,
         "precio": 166370.0,
-        "paridad": 104.49,
+        "paridad": 104.47,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2095,9 +2095,9 @@
         "emisor": "Pluspetrol",
         "tir": 6.27,
         "duration": 2.78,
-        "dias_vto": 1195,
+        "dias_vto": 1194,
         "precio": 165680.0,
-        "paridad": 103.78,
+        "paridad": 103.76,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2106,11 +2106,11 @@
         "symbol": "VSCUD",
         "nombre": "Vista Energy 2030 (VSCUD)",
         "emisor": "Vista Energy",
-        "tir": 6.01,
+        "tir": 6.02,
         "duration": 2.94,
-        "dias_vto": 1234,
+        "dias_vto": 1233,
         "precio": 105.65,
-        "paridad": 104.72,
+        "paridad": 104.7,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2120,10 +2120,10 @@
         "nombre": "Tecpetrol 2030 (TTCDD)",
         "emisor": "Tecpetrol (Techint)",
         "tir": 6.28,
-        "duration": 3.35,
-        "dias_vto": 1476,
+        "duration": 3.34,
+        "dias_vto": 1475,
         "precio": 108.6,
-        "paridad": 104.89,
+        "paridad": 104.87,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2134,9 +2134,9 @@
         "emisor": "Vista Energy",
         "tir": 6.11,
         "duration": 3.4,
-        "dias_vto": 1816,
+        "dias_vto": 1815,
         "precio": 105.9,
-        "paridad": 105.68,
+        "paridad": 105.66,
         "cupon": null,
         "ley": "Argentina"
       },
@@ -2145,11 +2145,11 @@
         "symbol": "YMCXD",
         "nombre": "YPF S.A. 2031 (YMCXD)",
         "emisor": "YPF S.A.",
-        "tir": 6.55,
+        "tir": 6.56,
         "duration": 3.54,
-        "dias_vto": 1787,
+        "dias_vto": 1786,
         "precio": 109.4,
-        "paridad": 108.37,
+        "paridad": 108.35,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2158,11 +2158,11 @@
         "symbol": "TSC3D",
         "nombre": "TGS 2031 (TSC3D)",
         "emisor": "Transportadora de Gas del Sur (TGS)",
-        "tir": 6.48,
+        "tir": 6.49,
         "duration": 3.85,
-        "dias_vto": 1738,
+        "dias_vto": 1737,
         "precio": 110.6,
-        "paridad": 108.4,
+        "paridad": 108.37,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2173,9 +2173,9 @@
         "emisor": "Pampa Energía",
         "tir": 6.19,
         "duration": 4.02,
-        "dias_vto": 1786,
+        "dias_vto": 1785,
         "precio": 108.6,
-        "paridad": 107.65,
+        "paridad": 107.63,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2184,11 +2184,11 @@
         "symbol": "PLC4O",
         "nombre": "Pluspetrol 2032 (PLC4O)",
         "emisor": "Pluspetrol",
-        "tir": 7.08,
+        "tir": 7.09,
         "duration": 4.33,
-        "dias_vto": 2050,
+        "dias_vto": 2049,
         "precio": 170000.0,
-        "paridad": 106.8,
+        "paridad": 106.78,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2199,9 +2199,9 @@
         "emisor": "Vista Energy",
         "tir": 6.83,
         "duration": 4.36,
-        "dias_vto": 2425,
+        "dias_vto": 2424,
         "precio": 111.3,
-        "paridad": 107.99,
+        "paridad": 107.96,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2211,10 +2211,10 @@
         "nombre": "YPF Energía Eléctrica 2032 (YFCJD)",
         "emisor": "YPF Energía Eléctrica",
         "tir": 7.06,
-        "duration": 4.43,
-        "dias_vto": 2190,
+        "duration": 4.42,
+        "dias_vto": 2189,
         "precio": 104.3,
-        "paridad": 104.21,
+        "paridad": 104.19,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2225,9 +2225,9 @@
         "emisor": "YPF S.A.",
         "tir": 7.06,
         "duration": 4.83,
-        "dias_vto": 2646,
+        "dias_vto": 2645,
         "precio": 108.7,
-        "paridad": 106.43,
+        "paridad": 106.41,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2236,11 +2236,11 @@
         "symbol": "MGCOD",
         "nombre": "Pampa Energía 2034 (MGCOD)",
         "emisor": "Pampa Energía",
-        "tir": 7.01,
+        "tir": 7.02,
         "duration": 5.88,
-        "dias_vto": 2981,
+        "dias_vto": 2980,
         "precio": 108.7,
-        "paridad": 105.83,
+        "paridad": 105.81,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2251,9 +2251,9 @@
         "emisor": "Vista Energy",
         "tir": 7.08,
         "duration": 5.88,
-        "dias_vto": 3338,
+        "dias_vto": 3337,
         "precio": 106.8,
-        "paridad": 103.94,
+        "paridad": 103.92,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2262,11 +2262,11 @@
         "symbol": "IRCPD",
         "nombre": "IRSA 2035 (IRCPD)",
         "emisor": "IRSA",
-        "tir": 7.35,
+        "tir": 7.36,
         "duration": 6.1,
-        "dias_vto": 3083,
+        "dias_vto": 3082,
         "precio": 105.3,
-        "paridad": 104.83,
+        "paridad": 104.81,
         "cupon": null,
         "ley": "Nueva York"
       },
@@ -2277,64 +2277,64 @@
         "emisor": "Pampa Energía",
         "tir": 7.75,
         "duration": 7.13,
-        "dias_vto": 4045,
+        "dias_vto": 4044,
         "precio": 104.4,
-        "paridad": 101.01,
+        "paridad": 100.99,
         "cupon": null,
         "ley": "Nueva York"
       }
     ],
     "regresion": [
       {
-        "x": 0.22,
+        "x": 0.21,
         "y": 2.93
       },
       {
-        "x": 0.4,
-        "y": 3.46
+        "x": 0.39,
+        "y": 3.47
       },
       {
-        "x": 0.57,
-        "y": 3.84
+        "x": 0.56,
+        "y": 3.86
       },
       {
-        "x": 0.75,
-        "y": 4.15
+        "x": 0.74,
+        "y": 4.17
       },
       {
-        "x": 0.93,
-        "y": 4.41
+        "x": 0.92,
+        "y": 4.42
       },
       {
-        "x": 1.11,
-        "y": 4.63
+        "x": 1.1,
+        "y": 4.65
       },
       {
-        "x": 1.28,
-        "y": 4.83
+        "x": 1.27,
+        "y": 4.85
       },
       {
-        "x": 1.46,
-        "y": 5.01
+        "x": 1.45,
+        "y": 5.03
       },
       {
-        "x": 1.64,
-        "y": 5.18
+        "x": 1.63,
+        "y": 5.19
       },
       {
         "x": 1.81,
-        "y": 5.33
+        "y": 5.34
       },
       {
-        "x": 1.99,
-        "y": 5.48
+        "x": 1.98,
+        "y": 5.49
       },
       {
-        "x": 2.17,
-        "y": 5.61
+        "x": 2.16,
+        "y": 5.62
       },
       {
-        "x": 2.35,
+        "x": 2.34,
         "y": 5.74
       },
       {
@@ -2342,27 +2342,27 @@
         "y": 5.86
       },
       {
-        "x": 2.7,
-        "y": 5.97
+        "x": 2.69,
+        "y": 5.98
       },
       {
-        "x": 2.88,
+        "x": 2.87,
         "y": 6.08
       },
       {
         "x": 3.05,
-        "y": 6.18
+        "y": 6.19
       },
       {
         "x": 3.23,
-        "y": 6.28
+        "y": 6.29
       },
       {
-        "x": 3.41,
+        "x": 3.4,
         "y": 6.38
       },
       {
-        "x": 3.59,
+        "x": 3.58,
         "y": 6.47
       },
       {
@@ -2371,27 +2371,27 @@
       },
       {
         "x": 3.94,
-        "y": 6.65
+        "y": 6.64
       },
       {
-        "x": 4.12,
+        "x": 4.11,
         "y": 6.73
       },
       {
-        "x": 4.3,
+        "x": 4.29,
         "y": 6.81
       },
       {
         "x": 4.47,
-        "y": 6.89
+        "y": 6.88
       },
       {
         "x": 4.65,
-        "y": 6.97
+        "y": 6.96
       },
       {
-        "x": 4.83,
-        "y": 7.04
+        "x": 4.82,
+        "y": 7.03
       },
       {
         "x": 5.0,
@@ -2399,54 +2399,54 @@
       },
       {
         "x": 5.18,
-        "y": 7.19
+        "y": 7.17
       },
       {
         "x": 5.36,
-        "y": 7.25
+        "y": 7.24
       },
       {
-        "x": 5.54,
-        "y": 7.32
+        "x": 5.53,
+        "y": 7.31
       },
       {
         "x": 5.71,
-        "y": 7.39
+        "y": 7.37
       },
       {
         "x": 5.89,
-        "y": 7.45
+        "y": 7.44
       },
       {
         "x": 6.07,
-        "y": 7.52
+        "y": 7.5
       },
       {
         "x": 6.24,
-        "y": 7.58
+        "y": 7.56
       },
       {
         "x": 6.42,
-        "y": 7.64
+        "y": 7.62
       },
       {
         "x": 6.6,
-        "y": 7.7
+        "y": 7.68
       },
       {
         "x": 6.78,
-        "y": 7.75
+        "y": 7.73
       },
       {
         "x": 6.95,
-        "y": 7.81
+        "y": 7.79
       },
       {
         "x": 7.13,
-        "y": 7.87
+        "y": 7.85
       }
     ],
     "modelo_seleccionado": "Potencial",
-    "r2_score": 0.6867
+    "r2_score": 0.6849
   }
 }
