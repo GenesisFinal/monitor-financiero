@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-10-31 07:19:19",
+  "ultima_actualizacion": "2026-10-31 12:22:18",
   "fecha_cierre": "2026-10-31",
   "secciones": {
     "dolar": {
@@ -17,7 +17,7 @@
           "compra": 1510.0,
           "venta": 1560.0,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-10-30T18:00:00.000Z",
+          "fecha_actualizacion": "2026-10-30T18:55:00.000Z",
           "var_1d": 0.0,
           "var_1m": 1.3,
           "var_12m": 8.71,
@@ -32,7 +32,7 @@
           "compra": 1545.0,
           "venta": 1565.0,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-10-30T20:57:00.000Z",
+          "fecha_actualizacion": "2026-10-31T14:57:00.000Z",
           "var_1d": 0.0,
           "var_1m": 0.32,
           "var_12m": 9.06,
@@ -47,7 +47,7 @@
           "compra": 1565.4,
           "venta": 1575.0,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-10-30T20:57:00.000Z",
+          "fecha_actualizacion": "2026-10-31T14:57:00.000Z",
           "var_1d": -0.27,
           "var_1m": 1.3,
           "var_12m": 7.84,
@@ -62,7 +62,7 @@
           "compra": 1655.3,
           "venta": 1658.5,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-10-30T20:57:00.000Z",
+          "fecha_actualizacion": "2026-10-31T14:57:00.000Z",
           "var_1d": -0.91,
           "var_1m": 2.24,
           "var_12m": 12.01,
@@ -88,15 +88,15 @@
           "nombre": "Dólar Cripto",
           "categoria": "Dólar",
           "tipo": "single_price",
-          "precio": 1653.91,
-          "compra": 1649.75,
-          "venta": 1653.91,
+          "precio": 1650.54,
+          "compra": 1645.6,
+          "venta": 1650.54,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-10-30T20:57:00.000Z",
-          "var_1d": 0.6,
-          "var_1m": 2.93,
-          "var_12m": 13.44,
-          "var_ytd": 7.35
+          "fecha_actualizacion": "2026-10-31T14:57:00.000Z",
+          "var_1d": 0.4,
+          "var_1m": 2.72,
+          "var_12m": 13.21,
+          "var_ytd": 7.13
         },
         {
           "id": "USD_TARJETA",
@@ -107,7 +107,7 @@
           "compra": 1963.0,
           "venta": 2028.0,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-10-30T18:00:00.000Z",
+          "fecha_actualizacion": "2026-10-30T18:55:00.000Z",
           "var_1d": 0.0,
           "var_1m": 1.3,
           "var_12m": 8.71,
@@ -12854,7 +12854,7 @@
           "var_1m": -3.17,
           "var_12m": -5.37,
           "volumen": 104775800.0,
-          "cap_bursatil": 2598423756800,
+          "cap_bursatil": 2598937821184,
           "tags": [
             "top_mcap",
             "most_actives"
@@ -13064,7 +13064,7 @@
           "var_1m": 18.46,
           "var_12m": 22.6,
           "volumen": 29769400.0,
-          "cap_bursatil": 982902374400,
+          "cap_bursatil": 979897024512,
           "tags": [
             "top_mcap"
           ],
@@ -13083,32 +13083,13 @@
           "var_1m": 31.98,
           "var_12m": 491.81,
           "volumen": 3553600.0,
-          "cap_bursatil": 4522088960,
+          "cap_bursatil": 4592764928,
           "tags": [
             "day_gainers",
             "gainers_52w"
           ],
           "tipo": "market_asset",
           "var_ytd": 363.96
-        },
-        {
-          "id": "EQ_CPRI",
-          "symbol": "CPRI",
-          "nombre": "Capri Holdings Limited",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 18.68,
-          "var_1d": 16.31,
-          "var_1m": 29.01,
-          "var_12m": -9.85,
-          "volumen": 9812300.0,
-          "cap_bursatil": 2144391296,
-          "tags": [
-            "day_gainers"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -23.44
         },
         {
           "id": "EQ_FDXF",
@@ -13122,7 +13103,7 @@
           "var_1m": 13.89,
           "var_12m": -16.53,
           "volumen": 3597000.0,
-          "cap_bursatil": 18845265920,
+          "cap_bursatil": 18845661184,
           "tags": [
             "day_gainers"
           ],
@@ -13160,7 +13141,7 @@
           "var_1m": 26.28,
           "var_12m": 45.22,
           "volumen": 2870600.0,
-          "cap_bursatil": 95530909696,
+          "cap_bursatil": 95988236288,
           "tags": [
             "day_gainers"
           ],
@@ -13179,7 +13160,7 @@
           "var_1m": 7.24,
           "var_12m": 15.61,
           "volumen": 248700.0,
-          "cap_bursatil": 4759739904,
+          "cap_bursatil": 4742723072,
           "tags": [
             "day_gainers"
           ],
@@ -13217,7 +13198,7 @@
           "var_1m": 16.82,
           "var_12m": 99.73,
           "volumen": 5934400.0,
-          "cap_bursatil": 13235138560,
+          "cap_bursatil": 13310080000,
           "tags": [
             "day_gainers"
           ],
@@ -13263,6 +13244,25 @@
           "var_ytd": -13.26
         },
         {
+          "id": "EQ_INTA",
+          "symbol": "INTA",
+          "nombre": "Intapp, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 42.21,
+          "var_1d": 7.95,
+          "var_1m": 12.29,
+          "var_12m": 11.08,
+          "volumen": 1135000.0,
+          "cap_bursatil": 3235454464,
+          "tags": [
+            "day_gainers"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -7.88
+        },
+        {
           "id": "EQ_RDDT",
           "symbol": "RDDT",
           "nombre": "Reddit, Inc.",
@@ -13274,7 +13274,7 @@
           "var_1m": -38.65,
           "var_12m": -55.25,
           "volumen": 33313200.0,
-          "cap_bursatil": 17648533504,
+          "cap_bursatil": 17712488448,
           "tags": [
             "day_losers"
           ],
@@ -13293,7 +13293,7 @@
           "var_1m": -45.2,
           "var_12m": 66.48,
           "volumen": 454221300.0,
-          "cap_bursatil": 349185605632,
+          "cap_bursatil": 349514399744,
           "tags": [
             "day_losers",
             "most_actives"
@@ -13313,7 +13313,7 @@
           "var_1m": -9.19,
           "var_12m": 1.73,
           "volumen": 386300.0,
-          "cap_bursatil": 4825827840,
+          "cap_bursatil": 4712806400,
           "tags": [
             "day_losers"
           ],
@@ -13351,7 +13351,7 @@
           "var_1m": -0.02,
           "var_12m": -60.07,
           "volumen": 29379600.0,
-          "cap_bursatil": 30711023616,
+          "cap_bursatil": 30768517120,
           "tags": [
             "day_losers"
           ],
@@ -13522,7 +13522,7 @@
           "var_1m": -35.62,
           "var_12m": 455.96,
           "volumen": 17378500.0,
-          "cap_bursatil": 166335332352,
+          "cap_bursatil": 163759407104,
           "tags": [
             "gainers_52w"
           ],
@@ -13587,25 +13587,6 @@
           "var_ytd": 381.65
         },
         {
-          "id": "EQ_MXL",
-          "symbol": "MXL",
-          "nombre": "MaxLinear, Inc.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 67.47,
-          "var_1d": -5.78,
-          "var_1m": -26.76,
-          "var_12m": 331.95,
-          "volumen": 2718700.0,
-          "cap_bursatil": 6119069696,
-          "tags": [
-            "gainers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": 287.09
-        },
-        {
           "id": "EQ_IOVA",
           "symbol": "IOVA",
           "nombre": "Iovance Biotherapeutics, Inc.",
@@ -13623,6 +13604,25 @@
           ],
           "tipo": "market_asset",
           "var_ytd": 210.62
+        },
+        {
+          "id": "EQ_MXL",
+          "symbol": "MXL",
+          "nombre": "MaxLinear, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 67.47,
+          "var_1d": -5.78,
+          "var_1m": -26.76,
+          "var_12m": 331.95,
+          "volumen": 2718700.0,
+          "cap_bursatil": 6119069696,
+          "tags": [
+            "gainers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": 287.09
         },
         {
           "id": "EQ_SMR",
@@ -13663,25 +13663,6 @@
           "var_ytd": -64.81
         },
         {
-          "id": "EQ_QS",
-          "symbol": "QS",
-          "nombre": "QuantumScape Corporation",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 4.06,
-          "var_1d": -3.33,
-          "var_1m": -11.55,
-          "var_12m": -74.95,
-          "volumen": 13957600.0,
-          "cap_bursatil": 2513601024,
-          "tags": [
-            "losers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -61.04
-        },
-        {
           "id": "EQ_FRVO",
           "symbol": "FRVO",
           "nombre": "Fervo Energy Company",
@@ -13718,6 +13699,25 @@
           ],
           "tipo": "market_asset",
           "var_ytd": -67.62
+        },
+        {
+          "id": "EQ_QS",
+          "symbol": "QS",
+          "nombre": "QuantumScape Corporation",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 4.06,
+          "var_1d": -3.33,
+          "var_1m": -11.55,
+          "var_12m": -74.95,
+          "volumen": 13957600.0,
+          "cap_bursatil": 2513601024,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -61.04
         },
         {
           "id": "EQ_PONY",
@@ -13758,25 +13758,6 @@
           "var_ytd": -49.21
         },
         {
-          "id": "EQ_LEU",
-          "symbol": "LEU",
-          "nombre": "Centrus Energy Corp.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 103.29,
-          "var_1d": -6.57,
-          "var_1m": -25.75,
-          "var_12m": -69.89,
-          "volumen": 676800.0,
-          "cap_bursatil": 2112601600,
-          "tags": [
-            "losers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -57.45
-        },
-        {
           "id": "EQ_JOBY",
           "symbol": "JOBY",
           "nombre": "Joby Aviation, Inc.",
@@ -13796,23 +13777,42 @@
           "var_ytd": -62.88
         },
         {
-          "id": "EQ_QBTS",
-          "symbol": "QBTS",
-          "nombre": "D-Wave Quantum Inc.",
+          "id": "EQ_LEU",
+          "symbol": "LEU",
+          "nombre": "Centrus Energy Corp.",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 10.65,
-          "var_1d": -7.87,
-          "var_1m": -35.69,
-          "var_12m": -67.82,
-          "volumen": 18599100.0,
-          "cap_bursatil": 4043023360,
+          "precio": 103.29,
+          "var_1d": -6.57,
+          "var_1m": -25.75,
+          "var_12m": -69.89,
+          "volumen": 676800.0,
+          "cap_bursatil": 2112601600,
           "tags": [
             "losers_52w"
           ],
           "tipo": "market_asset",
-          "var_ytd": -59.27
+          "var_ytd": -57.45
+        },
+        {
+          "id": "EQ_CIFR",
+          "symbol": "CIFR",
+          "nombre": "Cipher Digital Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 7.29,
+          "var_1d": -10.0,
+          "var_1m": -52.85,
+          "var_12m": -67.97,
+          "volumen": 56512500.0,
+          "cap_bursatil": 3025573888,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -50.61
         },
         {
           "id": "EQ_SPCX",
@@ -13834,25 +13834,6 @@
           "var_ytd": -16.3
         },
         {
-          "id": "EQ_NOK",
-          "symbol": "NOK",
-          "nombre": "Nokia Oyj",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 8.56,
-          "var_1d": -8.06,
-          "var_1m": -17.45,
-          "var_12m": 19.72,
-          "volumen": 97763100.0,
-          "cap_bursatil": 47924400128,
-          "tags": [
-            "most_actives"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": 32.3
-        },
-        {
           "id": "EQ_NU",
           "symbol": "NU",
           "nombre": "Nu Holdings Ltd.",
@@ -13872,23 +13853,23 @@
           "var_ytd": -30.65
         },
         {
-          "id": "EQ_KVUE",
-          "symbol": "KVUE",
-          "nombre": "Kenvue Inc.",
+          "id": "EQ_NOK",
+          "symbol": "NOK",
+          "nombre": "Nokia Oyj",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 19.31,
-          "var_1d": -1.28,
-          "var_1m": 12.14,
-          "var_12m": 26.89,
-          "volumen": 66595400.0,
-          "cap_bursatil": 37090136064,
+          "precio": 8.56,
+          "var_1d": -8.06,
+          "var_1m": -17.45,
+          "var_12m": 19.72,
+          "volumen": 97763100.0,
+          "cap_bursatil": 47924400128,
           "tags": [
             "most_actives"
           ],
           "tipo": "market_asset",
-          "var_ytd": 17.24
+          "var_ytd": 32.3
         },
         {
           "id": "EQ_BBD",
@@ -13910,23 +13891,42 @@
           "var_ytd": -18.53
         },
         {
-          "id": "EQ_RIVN",
-          "symbol": "RIVN",
-          "nombre": "Rivian Automotive, Inc.",
+          "id": "EQ_KVUE",
+          "symbol": "KVUE",
+          "nombre": "Kenvue Inc.",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 12.16,
-          "var_1d": 6.2,
-          "var_1m": -17.62,
-          "var_12m": -7.81,
-          "volumen": 62609900.0,
-          "cap_bursatil": 17605984256,
+          "precio": 19.31,
+          "var_1d": -1.28,
+          "var_1m": 12.14,
+          "var_12m": 26.89,
+          "volumen": 66595400.0,
+          "cap_bursatil": 37109346304,
           "tags": [
             "most_actives"
           ],
           "tipo": "market_asset",
-          "var_ytd": -38.31
+          "var_ytd": 17.24
+        },
+        {
+          "id": "EQ_SOFI",
+          "symbol": "SOFI",
+          "nombre": "SoFi Technologies, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 16.76,
+          "var_1d": -4.83,
+          "var_1m": 5.81,
+          "var_12m": -45.28,
+          "volumen": 64168800.0,
+          "cap_bursatil": 21731307520,
+          "tags": [
+            "most_actives"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -35.98
         }
       ]
     },
@@ -14731,7 +14731,7 @@
           "high": 4980.0,
           "low": 4750.0,
           "moneda": "ARS",
-          "cap_bursatil": 6435802447872,
+          "cap_bursatil": 6452639432704,
           "ma50": 5202.5,
           "ma200": 5061.39,
           "var_1d": -2.64,
@@ -14857,7 +14857,7 @@
           "high": 1830.0,
           "low": 1713.0,
           "moneda": "ARS",
-          "cap_bursatil": 2614843932672,
+          "cap_bursatil": 2614447308800,
           "ma50": 2010.08,
           "ma200": 2100.15,
           "var_1d": -3.85,
@@ -14878,7 +14878,7 @@
           "high": 1380.0,
           "low": 1295.0,
           "moneda": "ARS",
-          "cap_bursatil": null,
+          "cap_bursatil": 1140138311680,
           "ma50": 1743.34,
           "ma200": 1941.96,
           "var_1d": -4.41,
@@ -14963,19 +14963,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 77343.23,
+          "precio": 77306.59,
           "open": 77202.3984,
-          "high": 77434.1484,
+          "high": 77554.9219,
           "low": 77000.9219,
           "moneda": "USD",
-          "cap_bursatil": 1555458031616,
-          "ma50": 81894.52,
-          "ma200": 73131.22,
-          "var_1d": -0.45,
-          "var_1m": -6.72,
-          "var_12m": 13.73,
+          "cap_bursatil": 1554503827456,
+          "ma50": 81893.79,
+          "ma200": 73131.04,
+          "var_1d": -0.2,
+          "var_1m": -6.76,
+          "var_12m": 13.68,
           "subtitulo": "Criptomoneda Líder / Reserva Digital",
-          "var_ytd": -11.62
+          "var_ytd": -11.66
         },
         {
           "id": "CRYPTO_ETH",
@@ -14984,19 +14984,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2244.08,
+          "precio": 2244.93,
           "open": 2241.1812,
-          "high": 2246.7891,
+          "high": 2251.97,
           "low": 2233.9177,
           "moneda": "USD",
-          "cap_bursatil": 274144641024,
-          "ma50": 2520.36,
+          "cap_bursatil": 274215796736,
+          "ma50": 2520.38,
           "ma200": 2158.07,
-          "var_1d": -0.08,
-          "var_1m": -10.38,
-          "var_12m": 13.7,
+          "var_1d": 0.95,
+          "var_1m": -10.35,
+          "var_12m": 13.74,
           "subtitulo": "Contratos Inteligentes / Web3",
-          "var_ytd": -24.37
+          "var_ytd": -24.34
         },
         {
           "id": "CRYPTO_SOL",
@@ -15005,19 +15005,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 95.46,
+          "precio": 95.74,
           "open": 96.2192,
           "high": 96.8451,
           "low": 95.163,
           "moneda": "USD",
-          "cap_bursatil": 56370679808,
-          "ma50": 109.09,
-          "ma200": 88.79,
-          "var_1d": -1.72,
-          "var_1m": -13.24,
-          "var_12m": 12.03,
+          "cap_bursatil": 56512606208,
+          "ma50": 109.1,
+          "ma200": 88.8,
+          "var_1d": 1.08,
+          "var_1m": -12.99,
+          "var_12m": 12.36,
           "subtitulo": "Blockchain de Alta Velocidad",
-          "var_ytd": -23.32
+          "var_ytd": -23.09
         },
         {
           "id": "CRYPTO_BNB",
@@ -15026,19 +15026,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 702.2,
+          "precio": 706.34,
           "open": 703.3357,
           "high": 709.0713,
           "low": 698.7734,
           "moneda": "USD",
-          "cap_bursatil": 92347154432,
-          "ma50": 748.57,
-          "ma200": 654.78,
-          "var_1d": -0.01,
-          "var_1m": -6.34,
-          "var_12m": 12.19,
+          "cap_bursatil": 92972924928,
+          "ma50": 748.65,
+          "ma200": 654.8,
+          "var_1d": 1.07,
+          "var_1m": -5.79,
+          "var_12m": 12.85,
           "subtitulo": "Ecosistema BNB Chain",
-          "var_ytd": -18.66
+          "var_ytd": -18.18
         },
         {
           "id": "CRYPTO_XRP",
@@ -15047,19 +15047,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.2459,
+          "precio": 1.2485,
           "open": 1.2544,
           "high": 1.2589,
           "low": 1.2416,
           "moneda": "USD",
-          "cap_bursatil": 78966513664,
+          "cap_bursatil": 79082692608,
           "ma50": 1.39,
           "ma200": 1.28,
-          "var_1d": -0.87,
-          "var_1m": -11.12,
-          "var_12m": -12.98,
+          "var_1d": -0.38,
+          "var_1m": -10.93,
+          "var_12m": -12.8,
           "subtitulo": "Pagos y Liquidaciones",
-          "var_ytd": -32.29
+          "var_ytd": -32.15
         },
         {
           "id": "CRYPTO_ADA",
@@ -15068,19 +15068,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.1925,
+          "precio": 0.1929,
           "open": 0.1951,
           "high": 0.1963,
-          "low": 0.1922,
+          "low": 0.192,
           "moneda": "USD",
-          "cap_bursatil": 7087022592,
+          "cap_bursatil": 7097989632,
           "ma50": 0.23,
           "ma200": 0.21,
-          "var_1d": -1.32,
-          "var_1m": -22.78,
-          "var_12m": -31.25,
+          "var_1d": 0.3,
+          "var_1m": -22.62,
+          "var_12m": -31.11,
           "subtitulo": "Blockchain Proof of Stake",
-          "var_ytd": -42.16
+          "var_ytd": -42.04
         },
         {
           "id": "CRYPTO_DOGE",
@@ -15089,19 +15089,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0751,
+          "precio": 0.0754,
           "open": 0.0759,
           "high": 0.0763,
           "low": 0.0748,
           "moneda": "USD",
-          "cap_bursatil": 12920846336,
+          "cap_bursatil": 11820482560,
           "ma50": 0.09,
           "ma200": 0.09,
-          "var_1d": -1.22,
-          "var_1m": -12.37,
-          "var_12m": -23.76,
+          "var_1d": -0.44,
+          "var_1m": -12.02,
+          "var_12m": -23.45,
           "subtitulo": "Moneda Digital Memética",
-          "var_ytd": -35.98
+          "var_ytd": -35.72
         },
         {
           "id": "CRYPTO_USDT",
@@ -15112,13 +15112,13 @@
           "tipo": "market_asset",
           "precio": 0.9989,
           "open": 0.9987,
-          "high": 0.999,
+          "high": 0.9991,
           "low": 0.9986,
           "moneda": "USD",
-          "cap_bursatil": 179906969600,
+          "cap_bursatil": 179933003776,
           "ma50": 1.0,
           "ma200": 1.0,
-          "var_1d": 0.03,
+          "var_1d": 0.05,
           "var_1m": -0.02,
           "var_12m": -0.09,
           "subtitulo": "Stablecoin Dólar",
