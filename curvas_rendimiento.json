@@ -399,7 +399,7 @@
         "duration": 0.01,
         "dias_vto": 7,
         "precio": 764.0,
-        "paridad": 99.58,
+        "paridad": 99.52,
         "cupon": 7.63,
         "ley": "Argentina"
       },
@@ -408,11 +408,11 @@
         "symbol": "TZXD6",
         "nombre": "Boncer Cero Cupón Dic-2026 (TZXD6)",
         "emisor": "República Argentina",
-        "tir": 3.59,
+        "tir": 4.12,
         "duration": 0.11,
         "dias_vto": 43,
         "precio": 314.7,
-        "paridad": 99.59,
+        "paridad": 99.53,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -421,11 +421,11 @@
         "symbol": "TZXM7",
         "nombre": "Boncer Cero Cupón Mar-2027 (TZXM7)",
         "emisor": "República Argentina",
-        "tir": 2.86,
+        "tir": 3.01,
         "duration": 0.4,
         "dias_vto": 149,
         "precio": 234.35,
-        "paridad": 98.86,
+        "paridad": 98.8,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -434,11 +434,11 @@
         "symbol": "TZX27",
         "nombre": "Boncer Cero Cupón Jun-2027 (TZX27)",
         "emisor": "República Argentina",
-        "tir": 3.83,
+        "tir": 3.93,
         "duration": 0.63,
         "dias_vto": 240,
         "precio": 417.0,
-        "paridad": 97.56,
+        "paridad": 97.5,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -447,11 +447,11 @@
         "symbol": "TZXO7",
         "nombre": "Boncer Cero Cupón Oct-2027 (TZXO7)",
         "emisor": "República Argentina",
-        "tir": 5.96,
+        "tir": 6.02,
         "duration": 0.93,
         "dias_vto": 361,
         "precio": 102.2,
-        "paridad": 94.44,
+        "paridad": 94.38,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -460,11 +460,11 @@
         "symbol": "TX28",
         "nombre": "Boncer 2028 (TX28)",
         "emisor": "República Argentina",
-        "tir": 7.46,
+        "tir": 7.52,
         "duration": 0.94,
         "dias_vto": 738,
         "precio": 1830.5,
-        "paridad": 95.32,
+        "paridad": 95.27,
         "cupon": 21.46,
         "ley": "Argentina"
       },
@@ -473,11 +473,11 @@
         "symbol": "TZXD7",
         "nombre": "Boncer Cero Cupón Dic-2027 (TZXD7)",
         "emisor": "República Argentina",
-        "tir": 7.33,
+        "tir": 7.38,
         "duration": 1.04,
         "dias_vto": 408,
         "precio": 292.0,
-        "paridad": 92.4,
+        "paridad": 92.35,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -499,11 +499,11 @@
         "symbol": "TZX28",
         "nombre": "Boncer Cero Cupón Jun-2028 (TZX28)",
         "emisor": "República Argentina",
-        "tir": 10.01,
+        "tir": 10.05,
         "duration": 1.51,
         "dias_vto": 606,
         "precio": 364.85,
-        "paridad": 85.36,
+        "paridad": 85.31,
         "cupon": 0.0,
         "ley": "Argentina"
       },
@@ -564,12 +564,12 @@
         "symbol": "TX31",
         "nombre": "Boncer 2031 (TX31)",
         "emisor": "República Argentina",
-        "tir": 11.57,
+        "tir": 11.6,
         "duration": 2.38,
         "dias_vto": 1855,
         "precio": 1480.0,
-        "paridad": 80.21,
-        "cupon": 22.82,
+        "paridad": 80.17,
+        "cupon": 22.84,
         "ley": "Argentina"
       },
       {
@@ -590,12 +590,12 @@
         "symbol": "DICP",
         "nombre": "Discount en Pesos CER (DICP)",
         "emisor": "República Argentina",
-        "tir": 11.16,
+        "tir": 11.18,
         "duration": 2.81,
         "dias_vto": 2618,
         "precio": 49270.0,
-        "paridad": 86.18,
-        "cupon": 1634.31,
+        "paridad": 86.12,
+        "cupon": 1635.3,
         "ley": "Argentina"
       },
       {
@@ -603,12 +603,12 @@
         "symbol": "PARP",
         "nombre": "Par en Pesos CER (PARP)",
         "emisor": "República Argentina",
-        "tir": 11.12,
+        "tir": 11.13,
         "duration": 5.95,
         "dias_vto": 4442,
         "precio": 33905.0,
-        "paridad": 57.51,
-        "cupon": 520.95,
+        "paridad": 57.47,
+        "cupon": 521.27,
         "ley": "Argentina"
       },
       {
@@ -616,55 +616,55 @@
         "symbol": "CUAP",
         "nombre": "Cuasipar en Pesos CER (CUAP)",
         "emisor": "República Argentina",
-        "tir": 10.79,
+        "tir": 10.8,
         "duration": 8.96,
         "dias_vto": 7001,
         "precio": 39995.0,
-        "paridad": 48.39,
-        "cupon": 1352.77,
+        "paridad": 48.36,
+        "cupon": 1353.6,
         "ley": "Argentina"
       }
     ],
     "regresion": [
       {
         "x": 0.01,
-        "y": 16.94
+        "y": 17.11
       },
       {
         "x": 0.24,
-        "y": 17.72
+        "y": 17.87
       },
       {
         "x": 0.47,
-        "y": 18.45
+        "y": 18.58
       },
       {
         "x": 0.7,
-        "y": 19.12
+        "y": 19.24
       },
       {
         "x": 0.93,
-        "y": 19.74
+        "y": 19.84
       },
       {
         "x": 1.16,
-        "y": 20.31
+        "y": 20.39
       },
       {
         "x": 1.39,
-        "y": 20.83
+        "y": 20.89
       },
       {
         "x": 1.62,
-        "y": 21.29
+        "y": 21.34
       },
       {
         "x": 1.85,
-        "y": 21.7
+        "y": 21.74
       },
       {
         "x": 2.08,
-        "y": 22.06
+        "y": 22.08
       },
       {
         "x": 2.3,
@@ -672,103 +672,103 @@
       },
       {
         "x": 2.53,
-        "y": 22.62
+        "y": 22.61
       },
       {
         "x": 2.76,
-        "y": 22.82
+        "y": 22.8
       },
       {
         "x": 2.99,
-        "y": 22.96
+        "y": 22.93
       },
       {
         "x": 3.22,
-        "y": 23.05
+        "y": 23.02
       },
       {
         "x": 3.45,
-        "y": 23.09
+        "y": 23.05
       },
       {
         "x": 3.68,
-        "y": 23.08
+        "y": 23.03
       },
       {
         "x": 3.91,
-        "y": 23.01
+        "y": 22.96
       },
       {
         "x": 4.14,
-        "y": 22.9
+        "y": 22.83
       },
       {
         "x": 4.37,
-        "y": 22.72
+        "y": 22.66
       },
       {
         "x": 4.6,
-        "y": 22.5
+        "y": 22.43
       },
       {
         "x": 4.83,
-        "y": 22.22
+        "y": 22.15
       },
       {
         "x": 5.06,
-        "y": 21.89
+        "y": 21.81
       },
       {
         "x": 5.29,
-        "y": 21.5
+        "y": 21.43
       },
       {
         "x": 5.52,
-        "y": 21.07
+        "y": 20.99
       },
       {
         "x": 5.75,
-        "y": 20.58
+        "y": 20.5
       },
       {
         "x": 5.98,
-        "y": 20.03
+        "y": 19.96
       },
       {
         "x": 6.21,
-        "y": 19.44
+        "y": 19.37
       },
       {
         "x": 6.44,
-        "y": 18.79
+        "y": 18.72
       },
       {
         "x": 6.67,
-        "y": 18.09
+        "y": 18.03
       },
       {
         "x": 6.89,
-        "y": 17.33
+        "y": 17.28
       },
       {
         "x": 7.12,
-        "y": 16.52
+        "y": 16.48
       },
       {
         "x": 7.35,
-        "y": 15.66
+        "y": 15.62
       },
       {
         "x": 7.58,
-        "y": 14.75
+        "y": 14.72
       },
       {
         "x": 7.81,
-        "y": 13.78
+        "y": 13.76
       },
       {
         "x": 8.04,
-        "y": 12.76
+        "y": 12.75
       },
       {
         "x": 8.27,
@@ -776,19 +776,19 @@
       },
       {
         "x": 8.5,
-        "y": 10.56
+        "y": 10.58
       },
       {
         "x": 8.73,
-        "y": 9.38
+        "y": 9.41
       },
       {
         "x": 8.96,
-        "y": 8.15
+        "y": 8.2
       }
     ],
     "modelo_seleccionado": "Cuadrática",
-    "r2_score": 0.0426
+    "r2_score": 0.0422
   },
   "lecaps": {
     "puntos": [
@@ -1134,7 +1134,7 @@
         "symbol": "BDC28",
         "nombre": "Ciudad de Bs As Badlar 2028 (BDC28)",
         "emisor": "República Argentina",
-        "tir": 31.52,
+        "tir": 31.53,
         "duration": 1.01,
         "dias_vto": 477,
         "precio": 103.25,
@@ -1259,11 +1259,11 @@
       },
       {
         "x": 0.89,
-        "y": 31.57
+        "y": 31.58
       },
       {
         "x": 0.93,
-        "y": 31.96
+        "y": 31.97
       },
       {
         "x": 0.96,
@@ -1271,11 +1271,11 @@
       },
       {
         "x": 0.99,
-        "y": 32.75
+        "y": 32.76
       },
       {
         "x": 1.02,
-        "y": 33.15
+        "y": 33.16
       },
       {
         "x": 1.05,
@@ -1283,11 +1283,11 @@
       },
       {
         "x": 1.09,
-        "y": 33.96
+        "y": 33.97
       },
       {
         "x": 1.12,
-        "y": 34.37
+        "y": 34.38
       },
       {
         "x": 1.15,
@@ -1303,7 +1303,7 @@
       },
       {
         "x": 1.24,
-        "y": 36.05
+        "y": 36.06
       },
       {
         "x": 1.28,
@@ -1311,7 +1311,7 @@
       },
       {
         "x": 1.31,
-        "y": 36.91
+        "y": 36.92
       },
       {
         "x": 1.34,
@@ -1319,7 +1319,7 @@
       }
     ],
     "modelo_seleccionado": "Cuadrática",
-    "r2_score": 0.9094
+    "r2_score": 0.9096
   },
   "dolar_linked": {
     "puntos": [
