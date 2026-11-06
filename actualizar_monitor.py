@@ -492,7 +492,8 @@ def fetch_yahoo_market_group(tickers_config, category_name):
 
                     # Complementar S&P Merval (^MERV) con datos oficiales de BYMA / Rava si Yahoo tiene rezago
                     if sym == '^MERV':
-                        pts_merv = {p['date']: p for p in hist_series}
+                        pts_merv = {}
+                        MERVAL_SCALE = 28.489452
                         try:
                             r_mv = requests.get('https://mercado.rava.com/api/prices/historico/ind/MERVAL?dias=3650', headers=HEADERS, timeout=10)
                             if r_mv.status_code == 200:
@@ -503,15 +504,16 @@ def fetch_yahoo_market_group(tickers_config, category_name):
                                         if datetime.date.fromisoformat(dt_m).weekday() < 5:
                                             pts_merv[dt_m] = {
                                                 'date': dt_m,
-                                                'open': safe_float(row_m.get('apertura')) or cl_m,
-                                                'high': safe_float(row_m.get('maximo')) or cl_m,
-                                                'low': safe_float(row_m.get('minimo')) or cl_m,
-                                                'close': round(cl_m, 2),
+                                                'open': round((safe_float(row_m.get('apertura')) or cl_m) * MERVAL_SCALE, 2),
+                                                'high': round((safe_float(row_m.get('maximo')) or cl_m) * MERVAL_SCALE, 2),
+                                                'low': round((safe_float(row_m.get('minimo')) or cl_m) * MERVAL_SCALE, 2),
+                                                'close': round(cl_m * MERVAL_SCALE, 2),
                                                 'volume': safe_float(row_m.get('volumen', 0))
                                             }
                         except Exception as e_mv:
                             print(f'   [Warn Rava MERVAL]: {e_mv}')
-                        hist_series = [pts_merv[d] for d in sorted(pts_merv.keys())]
+                        if pts_merv:
+                            hist_series = [pts_merv[d] for d in sorted(pts_merv.keys())]
 
                     if hist_series:
                         last_pt = hist_series[-1]
