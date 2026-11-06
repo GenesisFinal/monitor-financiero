@@ -334,13 +334,37 @@ def fetch_tasas_locales():
         last_ipc_m = hist_ipc_m[-1]['close'] if hist_ipc_m else 1.9
         prev_ipc_m = hist_ipc_m[-2]['close'] if len(hist_ipc_m) >= 2 else 1.7
         last_ipc_ia = hist_ipc_ia[-1]['close'] if hist_ipc_ia else 33.4
+        prev_ipc_ia = hist_ipc_ia[-2]['close'] if len(hist_ipc_ia) >= 2 else last_ipc_ia
         tea_impl_ipc = round((((1 + last_ipc_m / 100.0) ** 12) - 1) * 100, 2)
         tna_impl_ipc = round(last_ipc_m * 12, 2)
 
+        meses_es = {
+            1: ('Enero', 'ENE'), 2: ('Febrero', 'FEB'), 3: ('Marzo', 'MAR'),
+            4: ('Abril', 'ABR'), 5: ('Mayo', 'MAY'), 6: ('Junio', 'JUN'),
+            7: ('Julio', 'JUL'), 8: ('Agosto', 'AGO'), 9: ('Septiembre', 'SEP'),
+            10: ('Octubre', 'OCT'), 11: ('Noviembre', 'NOV'), 12: ('Diciembre', 'DIC')
+        }
+        last_ipc_dt = hist_ipc_m[-1]['date'] if hist_ipc_m else '2026-09-30'
+        ipc_yr = int(last_ipc_dt[:4])
+        ipc_mo = int(last_ipc_dt[5:7])
+        mes_nombre, mes_corto = meses_es.get(ipc_mo, ('Septiembre', 'SEP'))
+
+        acum_factor = 1.0
+        for p_ipc in hist_ipc_m:
+            if p_ipc['date'].startswith(f'{ipc_yr}-'):
+                acum_factor *= (1.0 + float(p_ipc['close']) / 100.0)
+        acum_ytd = round((acum_factor - 1.0) * 100, 1)
+        acum_ytd_str = str(acum_ytd).replace('.', ',')
+
+        ipc_12m_prev = hist_ipc_m[-13]['close'] if len(hist_ipc_m) >= 13 else hist_ipc_m[0]['close']
+        var_12m_ipc_m = round(((last_ipc_m - ipc_12m_prev) / ipc_12m_prev) * 100, 2) if ipc_12m_prev else -78.2
+        ia_12m_prev = hist_ipc_ia[-13]['close'] if len(hist_ipc_ia) >= 13 else hist_ipc_ia[0]['close']
+        var_12m_ipc_ia = round(((last_ipc_ia - ia_12m_prev) / ia_12m_prev) * 100, 2) if ia_12m_prev else -84.2
+
         ipc_item = {
             'id': 'INFLACION_IPC_INDEC',
-            'symbol': 'IPC SEP-26',
-            'nombre': 'Inflación Mensual IPC (INDEC - Septiembre 2026)',
+            'symbol': f'IPC {mes_corto}-{str(ipc_yr)[-2:]}',
+            'nombre': f'Inflación Mensual IPC (INDEC - {mes_nombre} {ipc_yr})',
             'categoria': 'Tasas Locales',
             'tipo': 'rate',
             'tna': tna_impl_ipc,
@@ -350,9 +374,9 @@ def fetch_tasas_locales():
             'moneda': '%',
             'var_1d': round(last_ipc_m - prev_ipc_m, 2),
             'var_1m': round(((last_ipc_m - prev_ipc_m) / prev_ipc_m) * 100, 2) if prev_ipc_m else 0.0,
-            'var_12m': -78.2,
-            'var_ytd': 23.6,
-            'subtitulo': f'INDEC Oficial • Septiembre: {last_ipc_m}% Mensual | {last_ipc_ia}% Interanual | 23,6% Acum. 2026'
+            'var_12m': var_12m_ipc_m,
+            'var_ytd': acum_ytd,
+            'subtitulo': f'INDEC Oficial • {mes_nombre}: {last_ipc_m}% Mensual | {last_ipc_ia}% Interanual | {acum_ytd_str}% Acum. {ipc_yr}'
         }
         tasas.append(ipc_item)
         series_map['INFLACION_IPC_INDEC'] = hist_ipc_m
@@ -368,11 +392,11 @@ def fetch_tasas_locales():
             'tem': last_ipc_m,
             'precio': last_ipc_ia,
             'moneda': '%',
-            'var_1d': -0.1,
-            'var_1m': -0.3,
-            'var_12m': -84.2,
-            'var_ytd': 23.6,
-            'subtitulo': 'Variación acumulada últimos 12 meses (Septiembre 2025 - Septiembre 2026)'
+            'var_1d': round(last_ipc_ia - prev_ipc_ia, 2),
+            'var_1m': round(((last_ipc_ia - prev_ipc_ia) / prev_ipc_ia) * 100, 2) if prev_ipc_ia else -0.3,
+            'var_12m': var_12m_ipc_ia,
+            'var_ytd': acum_ytd,
+            'subtitulo': f'Variación acumulada últimos 12 meses ({mes_nombre} {ipc_yr - 1} - {mes_nombre} {ipc_yr})'
         }
         tasas.append(ipc_ia_item)
         series_map['INFLACION_IPC_INTERANUAL'] = hist_ipc_ia
@@ -466,6 +490,29 @@ def fetch_yahoo_market_group(tickers_config, category_name):
                     while hist_series and hist_series[-1]['date'] > TODAY_STR:
                         hist_series.pop()
 
+                    # Complementar S&P Merval (^MERV) con datos oficiales de BYMA / Rava si Yahoo tiene rezago
+                    if sym == '^MERV':
+                        pts_merv = {p['date']: p for p in hist_series}
+                        try:
+                            r_mv = requests.get('https://mercado.rava.com/api/prices/historico/ind/MERVAL?dias=3650', headers=HEADERS, timeout=10)
+                            if r_mv.status_code == 200:
+                                for row_m in r_mv.json().get('datos', []):
+                                    dt_m = str(row_m.get('fecha', ''))[:10]
+                                    cl_m = safe_float(row_m.get('precio'))
+                                    if dt_m and cl_m and cl_m > 0 and dt_m <= TODAY_STR:
+                                        if datetime.date.fromisoformat(dt_m).weekday() < 5:
+                                            pts_merv[dt_m] = {
+                                                'date': dt_m,
+                                                'open': safe_float(row_m.get('apertura')) or cl_m,
+                                                'high': safe_float(row_m.get('maximo')) or cl_m,
+                                                'low': safe_float(row_m.get('minimo')) or cl_m,
+                                                'close': round(cl_m, 2),
+                                                'volume': safe_float(row_m.get('volumen', 0))
+                                            }
+                        except Exception as e_mv:
+                            print(f'   [Warn Rava MERVAL]: {e_mv}')
+                        hist_series = [pts_merv[d] for d in sorted(pts_merv.keys())]
+
                     if hist_series:
                         last_pt = hist_series[-1]
                         last_close = last_pt['close']
@@ -474,10 +521,11 @@ def fetch_yahoo_market_group(tickers_config, category_name):
                         
                         mcap = None
                         t_info = {}
-                        try:
-                            t_info = yf.Ticker(sym).info or {}
-                            mcap = t_info.get('marketCap')
-                        except Exception: pass
+                        if sym != '^MERV':
+                            try:
+                                t_info = yf.Ticker(sym).info or {}
+                                mcap = t_info.get('marketCap')
+                            except Exception: pass
                         
                         official_price = safe_float(t_info.get('regularMarketPrice')) or last_close
                         official_pct = t_info.get('regularMarketChangePercent')
@@ -874,22 +922,27 @@ def fetch_bonos_lecaps():
         ('GD38', 'Global 2038 en Pesos (GD38)', 'Soberanos Dólar Hard (AL/GD)', 'ARS', 'Nueva York', 4.25, 'Step-Up Semestral', 'Semestral', 'Semestral (2027-2038)'),
 
         # Bonos CER (Ajustables por Inflación) - Curva Activa y Líquida
-        ('TZXO6', 'Boncer Cero Cupón Oct-2026 (TZXO6)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (10/2026)'),
         ('TX26', 'Boncer 2026 (TX26)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 2.00, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (11/2026)'),
         ('TZXD6', 'Boncer Cero Cupón Dic-2026 (TZXD6)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (12/2026)'),
         ('TZXM7', 'Boncer Cero Cupón Mar-2027 (TZXM7)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (03/2027)'),
+        ('TZXA7', 'Boncer Cero Cupón Abr-2027 (TZXA7)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (04/2027)'),
+        ('TZXY7', 'Boncer Cero Cupón May-2027 (TZXY7)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (05/2027)'),
         ('TZX27', 'Boncer Cero Cupón Jun-2027 (TZX27)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (06/2027)'),
+        ('TZXS7', 'Boncer Cero Cupón Sep-2027 (TZXS7)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (09/2027)'),
         ('TZXO7', 'Boncer Cero Cupón Oct-2027 (TZXO7)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (10/2027)'),
         ('TZXD7', 'Boncer Cero Cupón Dic-2027 (TZXD7)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (12/2027)'),
+        ('TZXM8', 'Boncer Cero Cupón Mar-2028 (TZXM8)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (03/2028)'),
         ('TZX28', 'Boncer Cero Cupón Jun-2028 (TZX28)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (06/2028)'),
+        ('TZXS8', 'Boncer Cero Cupón Sep-2028 (TZXS8)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (09/2028)'),
         ('TX28', 'Boncer 2028 (TX28)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 2.25, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (11/2028)'),
+        ('TZXD8', 'Boncer Cero Cupón Dic-2028 (TZXD8)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (12/2028)'),
+        ('TZXM9', 'Boncer Cero Cupón Mar-2029 (TZXM9)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 0.00, 'Cero Cupón + CER', 'Al Vto', 'Al Vencimiento (03/2029)'),
         ('TX31', 'Boncer 2031 (TX31)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 2.50, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (11/2031)'),
         ('DICP', 'Discount en Pesos CER (DICP)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 5.83, 'Tasa Fija + CER', 'Semestral', 'Semestral (2024-2033)'),
         ('PARP', 'Par en Pesos CER (PARP)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 3.11, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (12/2038)'),
         ('CUAP', 'Cuasipar en Pesos CER (CUAP)', 'Bonos CER (Inflación)', 'ARS', 'Argentina', 3.31, 'Tasa Fija + CER', 'Semestral', 'Al Vencimiento (12/2045)'),
 
         # LECAPs, BONCAPs & Tasa Fija (Curva Activa Vigente)
-        ('S30O6', 'LECAP Vto. 30/10/2026 (S30O6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 35.28, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
         ('S13N6', 'LECAP Vto. 13/11/2026 (S13N6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 28.32, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
         ('S30N6', 'LECAP Vto. 30/11/2026 (S30N6)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 31.37, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
         ('T15E7', 'BONCAP Vto. 15/01/2027 (T15E7)', 'LECAPs & Tasa Fija', 'ARS', 'Argentina', 27.57, 'Capitalizable Mensual', 'Al Vto', 'Bullet'),
@@ -978,6 +1031,13 @@ def fetch_bonos_lecaps():
             byma_pts[p_rv['date']] = p_rv
         hist_series = [byma_pts[d] for d in sorted(byma_pts.keys())]
 
+        # Si el bono ya venció (no figura en Bonistas y su última rueda operada fue hace más de 7 días), omitir
+        if not b_data and hist_series:
+            last_trade_dt = hist_series[-1].get('date', '2000-01-01')
+            if (today - datetime.date.fromisoformat(last_trade_dt)).days > 7:
+                print(f'   [Info] Omitiendo bono vencido / sin operación activa: {ticker} (última rueda: {last_trade_dt})')
+                continue
+
         # 2. Métricas de Bonistas
         if b_data:
             precio = round(safe_float(b_data.get('last_price', 0)), 2)
@@ -1008,7 +1068,11 @@ def fetch_bonos_lecaps():
 
         # Usar únicamente ruedas reales operadas (CERO interpolación)
         if hist_series:
-            hist_series[-1]['close'] = precio
+            today_iso = today.strftime('%Y-%m-%d')
+            if b_data and today.weekday() < 5 and hist_series[-1]['date'] < today_iso:
+                hist_series.append({'date': today_iso, 'open': precio, 'high': precio, 'low': precio, 'close': precio})
+            else:
+                hist_series[-1]['close'] = precio
             vars_dict = calc_variations(hist_series)
             tipo_item = 'market_asset'
         else:
@@ -1239,10 +1303,13 @@ def fetch_ons():
             hist_series = fetch_real_on_history_rava(alt_ticker)
             
         if hist_series:
+            if b_info and TODAY.weekday() < 5 and hist_series[-1]['date'] < TODAY_STR:
+                hist_series.append({'date': TODAY_STR, 'open': px, 'high': px, 'low': px, 'close': px})
+            else:
+                hist_series[-1]['close'] = px
             open_px = hist_series[-1].get('open', px)
             high_px = hist_series[-1].get('high', px)
             low_px = hist_series[-1].get('low', px)
-            hist_series[-1]['close'] = px
             vars_dict = calc_variations(hist_series)
             tipo_item = 'market_asset'
         else:
@@ -2372,20 +2439,45 @@ def main():
             ('TASA_ECB_DEP', 'ECBDFR', 'Tasa de Depósito BCE (Europa)', 'Banco Central Europeo', 2.50)
         ]
         for tid, fred_id, t_nom, t_sub, fb_val in fred_configs:
-            pts_fred = []
-            try:
-                rf = requests.get(f'https://fred.stlouisfed.org/graph/fredgraph.csv?id={fred_id}', headers=HEADERS, timeout=12)
-                if rf.status_code == 200:
-                    for line in rf.text.strip().splitlines()[1:]:
-                        parts = line.split(',')
-                        if len(parts) == 2 and parts[0] >= '2016-01-01':
-                            v = safe_float(parts[1])
-                            if v is not None:
-                                pts_fred.append({'date': parts[0], 'close': round(v, 2)})
-            except Exception as e:
-                print(f'   [Warn FRED {fred_id}]: {e}')
-            if not pts_fred and tid in prev_series:
-                pts_fred = prev_series[tid]
+            pts_by_dt = {}
+            for p_old in prev_series.get(tid, []):
+                dt_old = p_old.get('date')
+                cl_old = safe_float(p_old.get('close'))
+                if dt_old and cl_old is not None:
+                    pts_by_dt[dt_old] = round(cl_old, 2)
+
+            if tid == 'TASA_FED_FUNDS':
+                try:
+                    r_nyf = requests.get('https://markets.newyorkfed.org/api/rates/unsecured/effr/last/500.json', headers=HEADERS, timeout=10)
+                    if r_nyf.status_code == 200:
+                        for row in r_nyf.json().get('refRates', []):
+                            dt_f = row.get('effectiveDate')
+                            val_f = safe_float(row.get('targetRateTo') or row.get('percentRate'))
+                            if dt_f and val_f is not None:
+                                pts_by_dt[dt_f] = round(val_f, 2)
+                except Exception as e:
+                    print(f'   [Warn NY Fed {tid}]: {e}')
+            elif tid == 'TASA_ECB_DEP':
+                try:
+                    r_ecb = requests.get('https://data-api.ecb.europa.eu/service/data/FM/D.U2.EUR.4F.KR.DFR.LEV?format=csvdata&startPeriod=2016-01-01', headers=HEADERS, timeout=10)
+                    if r_ecb.status_code == 200:
+                        lines_ecb = r_ecb.text.strip().splitlines()
+                        if len(lines_ecb) > 1:
+                            hdr_cols = lines_ecb[0].split(',')
+                            idx_dt = hdr_cols.index('TIME_PERIOD') if 'TIME_PERIOD' in hdr_cols else 8
+                            idx_val = hdr_cols.index('OBS_VALUE') if 'OBS_VALUE' in hdr_cols else 9
+                            for ln in lines_ecb[1:]:
+                                parts = ln.split(',')
+                                if len(parts) > max(idx_dt, idx_val):
+                                    dt_e = parts[idx_dt]
+                                    val_e = safe_float(parts[idx_val])
+                                    if dt_e and dt_e >= '2016-01-01' and val_e is not None:
+                                        if datetime.date.fromisoformat(dt_e).weekday() < 5:
+                                            pts_by_dt[dt_e] = round(val_e, 2)
+                except Exception as e:
+                    print(f'   [Warn ECB API {tid}]: {e}')
+
+            pts_fred = [{'date': d, 'close': pts_by_dt[d]} for d in sorted(pts_by_dt.keys())]
             last_f_val = pts_fred[-1]['close'] if pts_fred else fb_val
             vars_f = calc_variations(pts_fred)
             tasas_int_items.append({
@@ -2516,6 +2608,8 @@ def main():
     for sec_k, sec in master_dataset['secciones'].items():
         for item in sec.get('items', []):
             iid = item.get('id')
+            if iid in ['INFLACION_IPC_INDEC', 'INFLACION_IPC_INTERANUAL']:
+                continue
             if iid in all_series and all_series[iid]:
                 pts = all_series[iid]
                 prev_year_pts = [p for p in pts if (p.get('date') or p.get('time', '')) < f"{current_year}-01-01"]
