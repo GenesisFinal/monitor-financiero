@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "marca": "La Segunda Seguros",
-  "ultima_actualizacion": "2026-11-07 07:59:42",
+  "ultima_actualizacion": "2026-11-07 12:42:41",
   "fecha_cierre": "2026-11-07",
   "secciones": {
     "dolar": {
@@ -17,7 +17,7 @@
           "compra": 1520.0,
           "venta": 1570.0,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-11-05T18:00:00.000Z",
+          "fecha_actualizacion": "2026-11-05T18:55:00.000Z",
           "var_1d": 0.0,
           "var_1m": 1.95,
           "var_12m": 9.79,
@@ -32,7 +32,7 @@
           "compra": 1535.0,
           "venta": 1555.0,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-11-06T21:00:00.000Z",
+          "fecha_actualizacion": "2026-11-07T15:00:00.000Z",
           "var_1d": -0.32,
           "var_1m": 0.0,
           "var_12m": 8.74,
@@ -47,7 +47,7 @@
           "compra": 1560.2,
           "venta": 1587.9,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-11-06T21:00:00.000Z",
+          "fecha_actualizacion": "2026-11-07T15:00:00.000Z",
           "var_1d": -0.04,
           "var_1m": 3.18,
           "var_12m": 9.81,
@@ -62,7 +62,7 @@
           "compra": 1658.4,
           "venta": 1664.9,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-11-06T21:00:00.000Z",
+          "fecha_actualizacion": "2026-11-07T15:00:00.000Z",
           "var_1d": -0.92,
           "var_1m": 3.49,
           "var_12m": 12.76,
@@ -77,7 +77,7 @@
           "compra": 1536.5,
           "venta": 1545.5,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-11-06T15:35:00.000Z",
+          "fecha_actualizacion": "2026-11-05T18:06:00.000Z",
           "var_1d": -0.03,
           "var_1m": 1.88,
           "var_12m": 9.88,
@@ -88,15 +88,15 @@
           "nombre": "Dólar Cripto",
           "categoria": "Dólar",
           "tipo": "single_price",
-          "precio": 1650.09,
-          "compra": 1646.97,
-          "venta": 1650.09,
+          "precio": 1654.97,
+          "compra": 1648.2,
+          "venta": 1654.97,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-11-06T21:00:00.000Z",
-          "var_1d": -0.29,
-          "var_1m": 1.99,
-          "var_12m": 11.15,
-          "var_ytd": 7.1
+          "fecha_actualizacion": "2026-11-07T15:00:00.000Z",
+          "var_1d": 0.0,
+          "var_1m": 2.29,
+          "var_12m": 11.48,
+          "var_ytd": 7.42
         },
         {
           "id": "USD_TARJETA",
@@ -107,7 +107,7 @@
           "compra": 1976.0,
           "venta": 2041.0,
           "moneda": "ARS",
-          "fecha_actualizacion": "2026-11-05T18:00:00.000Z",
+          "fecha_actualizacion": "2026-11-05T18:55:00.000Z",
           "var_1d": 0.0,
           "var_1m": 1.95,
           "var_12m": 9.79,
@@ -13184,7 +13184,7 @@
           "var_1m": 12.68,
           "var_12m": 27.23,
           "volumen": 9219400.0,
-          "cap_bursatil": 789935357952,
+          "cap_bursatil": 788580401152,
           "tags": [
             "top_mcap"
           ],
@@ -13241,7 +13241,7 @@
           "var_1m": 13.53,
           "var_12m": 23.59,
           "volumen": 24822500.0,
-          "cap_bursatil": 995843768320,
+          "cap_bursatil": 998898073600,
           "tags": [
             "top_mcap"
           ],
@@ -13336,7 +13336,7 @@
           "var_1m": 11.7,
           "var_12m": -27.9,
           "volumen": 3951400.0,
-          "cap_bursatil": 3049654784,
+          "cap_bursatil": 3064917760,
           "tags": [
             "day_gainers"
           ],
@@ -13375,7 +13375,7 @@
           "var_1m": -17.31,
           "var_12m": -41.09,
           "volumen": 42702000.0,
-          "cap_bursatil": 14007277568,
+          "cap_bursatil": 15158380544,
           "tags": [
             "day_gainers"
           ],
@@ -13394,14 +13394,32 @@
           "var_1m": -39.4,
           "var_12m": -64.04,
           "volumen": 112515300.0,
-          "cap_bursatil": 8755836928,
+          "cap_bursatil": 9183093760,
           "tags": [
             "day_gainers",
-            "losers_52w",
             "most_actives"
           ],
           "tipo": "market_asset",
           "var_ytd": -42.71
+        },
+        {
+          "id": "EQ_TRVI",
+          "symbol": "TRVI",
+          "nombre": "Trevi Therapeutics, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 14.33,
+          "var_1d": 11.87,
+          "var_1m": 11.73,
+          "var_12m": 22.79,
+          "volumen": 2549100.0,
+          "cap_bursatil": 2041678720,
+          "tags": [
+            "day_gainers"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": 14.46
         },
         {
           "id": "EQ_INFQ",
@@ -13423,26 +13441,6 @@
           "var_ytd": -42.98
         },
         {
-          "id": "EQ_RGTI",
-          "symbol": "RGTI",
-          "nombre": "Rigetti Computing, Inc.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 11.75,
-          "var_1d": 19.29,
-          "var_1m": -16.9,
-          "var_12m": -64.48,
-          "volumen": 27233800.0,
-          "cap_bursatil": 3921782528,
-          "tags": [
-            "day_gainers",
-            "losers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -46.95
-        },
-        {
           "id": "EQ_IRTC",
           "symbol": "IRTC",
           "nombre": "iRhythm Holdings, Inc.",
@@ -13454,7 +13452,7 @@
           "var_1m": -12.07,
           "var_12m": -48.83,
           "volumen": 5666900.0,
-          "cap_bursatil": 2973922304,
+          "cap_bursatil": 2993950720,
           "tags": [
             "day_losers"
           ],
@@ -13512,7 +13510,7 @@
           "var_1m": -1.26,
           "var_12m": -18.38,
           "volumen": 2535800.0,
-          "cap_bursatil": 4083243008,
+          "cap_bursatil": 3965608448,
           "tags": [
             "day_losers"
           ],
@@ -13531,7 +13529,7 @@
           "var_1m": -25.0,
           "var_12m": -46.47,
           "volumen": 5225400.0,
-          "cap_bursatil": 25427310592,
+          "cap_bursatil": 25488439296,
           "tags": [
             "day_losers"
           ],
@@ -13588,7 +13586,7 @@
           "var_1m": -5.65,
           "var_12m": 52.37,
           "volumen": 6162600.0,
-          "cap_bursatil": 11761797120,
+          "cap_bursatil": 11814855680,
           "tags": [
             "day_losers"
           ],
@@ -13607,7 +13605,7 @@
           "var_1m": -20.5,
           "var_12m": 50.35,
           "volumen": 5775800.0,
-          "cap_bursatil": 44781273088,
+          "cap_bursatil": 45048557568,
           "tags": [
             "day_losers"
           ],
@@ -13729,23 +13727,23 @@
           "var_ytd": 217.03
         },
         {
-          "id": "EQ_AXTI",
-          "symbol": "AXTI",
-          "nombre": "AXT, Inc.",
+          "id": "EQ_IBRX",
+          "symbol": "IBRX",
+          "nombre": "ImmunityBio, Inc.",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 38.88,
-          "var_1d": 5.88,
-          "var_1m": -45.74,
-          "var_12m": 272.41,
-          "volumen": 11318600.0,
-          "cap_bursatil": 2549486592,
+          "precio": 8.635,
+          "var_1d": 7.8,
+          "var_1m": -12.87,
+          "var_12m": 299.77,
+          "volumen": 9244400.0,
+          "cap_bursatil": 9151686656,
           "tags": [
             "gainers_52w"
           ],
           "tipo": "market_asset",
-          "var_ytd": 137.8
+          "var_ytd": 336.11
         },
         {
           "id": "EQ_PACS",
@@ -13786,42 +13784,42 @@
           "var_ytd": 280.8
         },
         {
-          "id": "EQ_TXG",
-          "symbol": "TXG",
-          "nombre": "10x Genomics, Inc.",
+          "id": "EQ_AXTI",
+          "symbol": "AXTI",
+          "nombre": "AXT, Inc.",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 59.28,
-          "var_1d": 2.1,
-          "var_1m": -23.29,
-          "var_12m": 247.07,
-          "volumen": 4522600.0,
-          "cap_bursatil": 7723660288,
+          "precio": 38.88,
+          "var_1d": 5.88,
+          "var_1m": -45.74,
+          "var_12m": 272.41,
+          "volumen": 11318600.0,
+          "cap_bursatil": 2549486592,
           "tags": [
             "gainers_52w"
           ],
           "tipo": "market_asset",
-          "var_ytd": 263.46
+          "var_ytd": 137.8
         },
         {
-          "id": "EQ_IBRX",
-          "symbol": "IBRX",
-          "nombre": "ImmunityBio, Inc.",
+          "id": "EQ_ORKA",
+          "symbol": "ORKA",
+          "nombre": "Oruka Therapeutics, Inc.",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 8.635,
-          "var_1d": 7.8,
-          "var_1m": -12.87,
-          "var_12m": 299.77,
-          "volumen": 9244400.0,
-          "cap_bursatil": 9151686656,
+          "precio": 102.86,
+          "var_1d": 7.12,
+          "var_1m": 33.1,
+          "var_12m": 267.88,
+          "volumen": 1071300.0,
+          "cap_bursatil": 6810329600,
           "tags": [
             "gainers_52w"
           ],
           "tipo": "market_asset",
-          "var_ytd": 336.11
+          "var_ytd": 239.36
         },
         {
           "id": "EQ_SMR",
@@ -13835,7 +13833,7 @@
           "var_1m": -30.6,
           "var_12m": -82.13,
           "volumen": 40708500.0,
-          "cap_bursatil": 2084778752,
+          "cap_bursatil": 2085550208,
           "tags": [
             "losers_52w"
           ],
@@ -13900,6 +13898,63 @@
           "var_ytd": -71.17
         },
         {
+          "id": "EQ_TTD",
+          "symbol": "TTD",
+          "nombre": "The Trade Desk, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 12.93,
+          "var_1d": 0.94,
+          "var_1m": 4.78,
+          "var_12m": -70.11,
+          "volumen": 14354800.0,
+          "cap_bursatil": 6113241088,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -65.94
+        },
+        {
+          "id": "EQ_STUB",
+          "symbol": "STUB",
+          "nombre": "StubHub Holdings, Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 6.14,
+          "var_1d": -2.23,
+          "var_1m": 0.0,
+          "var_12m": -67.97,
+          "volumen": 6798100.0,
+          "cap_bursatil": 2346032128,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -54.62
+        },
+        {
+          "id": "EQ_PONY",
+          "symbol": "PONY",
+          "nombre": "Pony AI Inc.",
+          "categoria": "Acciones Mundiales",
+          "subtitulo": "Acción Global",
+          "moneda": "USD",
+          "precio": 4.75,
+          "var_1d": 6.26,
+          "var_1m": -17.53,
+          "var_12m": -67.14,
+          "volumen": 2063500.0,
+          "cap_bursatil": 2067124736,
+          "tags": [
+            "losers_52w"
+          ],
+          "tipo": "market_asset",
+          "var_ytd": -67.24
+        },
+        {
           "id": "EQ_CIFR",
           "symbol": "CIFR",
           "nombre": "Cipher Digital Inc.",
@@ -13920,42 +13975,23 @@
           "var_ytd": -55.66
         },
         {
-          "id": "EQ_TTD",
-          "symbol": "TTD",
-          "nombre": "The Trade Desk, Inc.",
+          "id": "EQ_AVAV",
+          "symbol": "AVAV",
+          "nombre": "AeroVironment, Inc.",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 12.93,
-          "var_1d": 0.94,
-          "var_1m": 4.78,
-          "var_12m": -70.11,
-          "volumen": 14354800.0,
-          "cap_bursatil": 6113241088,
+          "precio": 112.76,
+          "var_1d": 10.46,
+          "var_1m": -18.05,
+          "var_12m": -66.23,
+          "volumen": 1599000.0,
+          "cap_bursatil": 5730542592,
           "tags": [
             "losers_52w"
           ],
           "tipo": "market_asset",
-          "var_ytd": -65.94
-        },
-        {
-          "id": "EQ_QBTS",
-          "symbol": "QBTS",
-          "nombre": "D-Wave Quantum Inc.",
-          "categoria": "Acciones Mundiales",
-          "subtitulo": "Acción Global",
-          "moneda": "USD",
-          "precio": 10.68,
-          "var_1d": 18.01,
-          "var_1m": -26.85,
-          "var_12m": -63.64,
-          "volumen": 26413500.0,
-          "cap_bursatil": 4054412544,
-          "tags": [
-            "losers_52w"
-          ],
-          "tipo": "market_asset",
-          "var_ytd": -59.16
+          "var_ytd": -53.38
         },
         {
           "id": "EQ_INTC",
@@ -14053,23 +14089,23 @@
           "var_ytd": -26.4
         },
         {
-          "id": "EQ_NU",
-          "symbol": "NU",
-          "nombre": "Nu Holdings Ltd.",
+          "id": "EQ_CRWV",
+          "symbol": "CRWV",
+          "nombre": "CoreWeave, Inc.",
           "categoria": "Acciones Mundiales",
           "subtitulo": "Acción Global",
           "moneda": "USD",
-          "precio": 12.03,
-          "var_1d": 2.47,
-          "var_1m": -21.78,
-          "var_12m": -24.91,
-          "volumen": 58352600.0,
-          "cap_bursatil": 58113183744,
+          "precio": 46.4,
+          "var_1d": 6.28,
+          "var_1m": -43.12,
+          "var_12m": -56.06,
+          "volumen": 59294700.0,
+          "cap_bursatil": 25591298048,
           "tags": [
             "most_actives"
           ],
           "tipo": "market_asset",
-          "var_ytd": -28.14
+          "var_ytd": -35.2
         }
       ]
     },
@@ -14958,7 +14994,7 @@
           "high": 1226.0,
           "low": 1172.0,
           "moneda": "ARS",
-          "cap_bursatil": 1039434907648,
+          "cap_bursatil": null,
           "ma50": 1680.0,
           "ma200": 1919.56,
           "var_1d": 0.25,
@@ -15043,19 +15079,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 75917.92,
+          "precio": 75703.11,
           "open": 75741.0156,
           "high": 76101.3047,
-          "low": 75703.4219,
+          "low": 75699.6797,
           "moneda": "USD",
-          "cap_bursatil": 1526211543040,
-          "ma50": 81875.21,
-          "ma200": 73188.63,
-          "var_1d": -0.13,
-          "var_1m": -6.71,
-          "var_12m": 13.32,
+          "cap_bursatil": 1522604179456,
+          "ma50": 81870.92,
+          "ma200": 73187.56,
+          "var_1d": -0.07,
+          "var_1m": -6.98,
+          "var_12m": 13.0,
           "subtitulo": "Criptomoneda Líder / Reserva Digital",
-          "var_ytd": -13.25
+          "var_ytd": -13.49
         },
         {
           "id": "CRYPTO_ETH",
@@ -15064,19 +15100,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 2245.53,
+          "precio": 2236.54,
           "open": 2235.3296,
           "high": 2247.3398,
           "low": 2235.3296,
           "moneda": "USD",
-          "cap_bursatil": 274249089024,
-          "ma50": 2491.36,
-          "ma200": 2155.83,
-          "var_1d": 0.26,
-          "var_1m": -6.43,
-          "var_12m": 14.27,
+          "cap_bursatil": 273438310400,
+          "ma50": 2491.18,
+          "ma200": 2155.79,
+          "var_1d": 0.41,
+          "var_1m": -6.8,
+          "var_12m": 13.82,
           "subtitulo": "Contratos Inteligentes / Web3",
-          "var_ytd": -24.32
+          "var_ytd": -24.62
         },
         {
           "id": "CRYPTO_SOL",
@@ -15085,19 +15121,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 89.98,
+          "precio": 89.21,
           "open": 90.058,
           "high": 90.5215,
-          "low": 89.683,
+          "low": 89.3302,
           "moneda": "USD",
-          "cap_bursatil": 53113356288,
-          "ma50": 107.7,
+          "cap_bursatil": 52797607936,
+          "ma50": 107.69,
           "ma200": 88.99,
-          "var_1d": -0.35,
-          "var_1m": -12.91,
-          "var_12m": 6.64,
+          "var_1d": -1.55,
+          "var_1m": -13.65,
+          "var_12m": 5.74,
           "subtitulo": "Blockchain de Alta Velocidad",
-          "var_ytd": -27.72
+          "var_ytd": -28.34
         },
         {
           "id": "CRYPTO_BNB",
@@ -15106,19 +15142,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 694.14,
+          "precio": 693.28,
           "open": 693.078,
           "high": 696.0815,
           "low": 692.5125,
           "moneda": "USD",
-          "cap_bursatil": 91217698816,
-          "ma50": 744.62,
-          "ma200": 657.25,
-          "var_1d": -0.2,
-          "var_1m": -3.19,
-          "var_12m": 12.46,
+          "cap_bursatil": 91186282496,
+          "ma50": 744.61,
+          "ma200": 657.24,
+          "var_1d": -0.29,
+          "var_1m": -3.31,
+          "var_12m": 12.32,
           "subtitulo": "Ecosistema BNB Chain",
-          "var_ytd": -19.59
+          "var_ytd": -19.69
         },
         {
           "id": "CRYPTO_XRP",
@@ -15127,19 +15163,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 1.1694,
+          "precio": 1.1539,
           "open": 1.178,
           "high": 1.1803,
           "low": 1.1518,
           "moneda": "USD",
-          "cap_bursatil": 74297122816,
+          "cap_bursatil": 73410453504,
           "ma50": 1.38,
           "ma200": 1.27,
-          "var_1d": -2.24,
-          "var_1m": -9.52,
-          "var_12m": -15.08,
+          "var_1d": -2.72,
+          "var_1m": -10.66,
+          "var_12m": -16.15,
           "subtitulo": "Pagos y Liquidaciones",
-          "var_ytd": -36.45
+          "var_ytd": -37.29
         },
         {
           "id": "CRYPTO_ADA",
@@ -15148,19 +15184,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.183,
+          "precio": 0.1815,
           "open": 0.1839,
           "high": 0.1853,
-          "low": 0.1824,
+          "low": 0.1818,
           "moneda": "USD",
-          "cap_bursatil": 6733712896,
+          "cap_bursatil": 6695355904,
           "ma50": 0.23,
           "ma200": 0.21,
-          "var_1d": -1.85,
-          "var_1m": -16.59,
-          "var_12m": -35.01,
+          "var_1d": -3.43,
+          "var_1m": -17.27,
+          "var_12m": -35.55,
           "subtitulo": "Blockchain Proof of Stake",
-          "var_ytd": -45.01
+          "var_ytd": -45.46
         },
         {
           "id": "CRYPTO_DOGE",
@@ -15169,19 +15205,19 @@
           "categoria": "Criptomonedas",
           "subtipo": "",
           "tipo": "market_asset",
-          "precio": 0.0719,
+          "precio": 0.0715,
           "open": 0.0723,
           "high": 0.0726,
-          "low": 0.0717,
+          "low": 0.0716,
           "moneda": "USD",
-          "cap_bursatil": 11256557568,
+          "cap_bursatil": 11214581760,
           "ma50": 0.08,
           "ma200": 0.09,
-          "var_1d": -0.9,
-          "var_1m": -9.22,
-          "var_12m": -23.59,
+          "var_1d": -2.12,
+          "var_1m": -9.72,
+          "var_12m": -24.02,
           "subtitulo": "Moneda Digital Memética",
-          "var_ytd": -38.7
+          "var_ytd": -39.05
         },
         {
           "id": "CRYPTO_USDT",
@@ -15195,10 +15231,10 @@
           "high": 0.9989,
           "low": 0.9986,
           "moneda": "USD",
-          "cap_bursatil": 176811458560,
+          "cap_bursatil": 176806363136,
           "ma50": 1.0,
           "ma200": 1.0,
-          "var_1d": 0.02,
+          "var_1d": 0.01,
           "var_1m": 0.01,
           "var_12m": -0.12,
           "subtitulo": "Stablecoin Dólar",
@@ -15708,11 +15744,11 @@
           "ccl_implicito": null,
           "var_1d": -0.01,
           "var_1m": 5.2,
-          "var_12m": -5.0,
+          "var_12m": -4.62,
           "expense_ratio_pct": 0.15,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null,
-          "var_ytd": -3.12
+          "var_ytd": -2.73
         },
         {
           "id": "ETF_IEF",
@@ -15750,11 +15786,11 @@
           "ccl_implicito": null,
           "var_1d": -0.05,
           "var_1m": 0.53,
-          "var_12m": 1.54,
+          "var_12m": 1.84,
           "expense_ratio_pct": 0.15,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null,
-          "var_ytd": 0.91
+          "var_ytd": 1.22
         },
         {
           "id": "ETF_HYG",
@@ -15771,11 +15807,11 @@
           "ccl_implicito": null,
           "var_1d": -0.06,
           "var_1m": 0.12,
-          "var_12m": 0.66,
+          "var_12m": 1.11,
           "expense_ratio_pct": 0.49,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null,
-          "var_ytd": -0.31
+          "var_ytd": 0.13
         },
         {
           "id": "ETF_LQD",
@@ -15792,11 +15828,11 @@
           "ccl_implicito": null,
           "var_1d": -0.12,
           "var_1m": 2.01,
-          "var_12m": -1.92,
+          "var_12m": -1.5,
           "expense_ratio_pct": 0.14,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null,
-          "var_ytd": -2.15
+          "var_ytd": -1.73
         },
         {
           "id": "ETF_EMB",
@@ -15813,11 +15849,11 @@
           "ccl_implicito": null,
           "var_1d": 0.0,
           "var_1m": 1.1,
-          "var_12m": -0.29,
+          "var_12m": 0.2,
           "expense_ratio_pct": 0.39,
           "dividend_yield_pct": null,
           "patrimonio_formateado": null,
-          "var_ytd": -1.11
+          "var_ytd": -0.63
         },
         {
           "id": "ETF_GLD",
