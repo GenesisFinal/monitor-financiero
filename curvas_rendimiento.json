@@ -1939,7 +1939,7 @@
         "emisor": "YPF Energía Eléctrica",
         "tir": 6.5,
         "duration": 0.5,
-        "dias_vto": 181,
+        "dias_vto": 180,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -1952,7 +1952,7 @@
         "emisor": "Pan American Energy (PAE)",
         "tir": 6.75,
         "duration": 0.5,
-        "dias_vto": 112,
+        "dias_vto": 111,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -1965,7 +1965,7 @@
         "emisor": "Pan American Energy (PAE)",
         "tir": 6.55,
         "duration": 0.61,
-        "dias_vto": 264,
+        "dias_vto": 263,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -1978,7 +1978,7 @@
         "emisor": "Tecpetrol (Techint)",
         "tir": 6.5,
         "duration": 0.77,
-        "dias_vto": 330,
+        "dias_vto": 329,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -1991,7 +1991,7 @@
         "emisor": "Pluspetrol",
         "tir": 6.8,
         "duration": 0.85,
-        "dias_vto": 365,
+        "dias_vto": 364,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2003,8 +2003,8 @@
         "nombre": "Pluspetrol 2028 (PLC3D)",
         "emisor": "Pluspetrol",
         "tir": 7.3,
-        "duration": 1.23,
-        "dias_vto": 527,
+        "duration": 1.22,
+        "dias_vto": 526,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2017,7 +2017,7 @@
         "emisor": "Pan American Energy (PAE)",
         "tir": 7.15,
         "duration": 1.27,
-        "dias_vto": 545,
+        "dias_vto": 544,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2030,7 +2030,7 @@
         "emisor": "Capex",
         "tir": 8.28,
         "duration": 1.31,
-        "dias_vto": 562,
+        "dias_vto": 561,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2043,7 +2043,7 @@
         "emisor": "Cresud",
         "tir": 8.0,
         "duration": 1.39,
-        "dias_vto": 599,
+        "dias_vto": 598,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2056,7 +2056,7 @@
         "emisor": "Pampa Energía",
         "tir": 7.3,
         "duration": 1.45,
-        "dias_vto": 625,
+        "dias_vto": 624,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2068,8 +2068,8 @@
         "nombre": "YPF S.A. 2028 (YM40D)",
         "emisor": "YPF S.A.",
         "tir": 7.5,
-        "duration": 1.51,
-        "dias_vto": 647,
+        "duration": 1.5,
+        "dias_vto": 646,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2082,7 +2082,7 @@
         "emisor": "Cresud",
         "tir": 7.05,
         "duration": 1.69,
-        "dias_vto": 726,
+        "dias_vto": 725,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2094,8 +2094,8 @@
         "nombre": "Pecom 2029 (MCC1D)",
         "emisor": "Pecom Servicios Energía",
         "tir": 7.95,
-        "duration": 1.96,
-        "dias_vto": 841,
+        "duration": 1.95,
+        "dias_vto": 840,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2108,7 +2108,7 @@
         "emisor": "Vista Energy",
         "tir": 8.0,
         "duration": 2.08,
-        "dias_vto": 895,
+        "dias_vto": 894,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2121,7 +2121,7 @@
         "emisor": "YPF S.A.",
         "tir": 8.0,
         "duration": 2.25,
-        "dias_vto": 968,
+        "dias_vto": 967,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2134,7 +2134,7 @@
         "emisor": "Pan American Energy (PAE)",
         "tir": 7.55,
         "duration": 2.35,
-        "dias_vto": 1011,
+        "dias_vto": 1010,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2147,7 +2147,7 @@
         "emisor": "Tecpetrol (Techint)",
         "tir": 6.25,
         "duration": 2.49,
-        "dias_vto": 1069,
+        "dias_vto": 1068,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2160,7 +2160,7 @@
         "emisor": "Vista Energy",
         "tir": 7.45,
         "duration": 2.8,
-        "dias_vto": 1203,
+        "dias_vto": 1202,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2173,7 +2173,7 @@
         "emisor": "Tecpetrol (Techint)",
         "tir": 7.62,
         "duration": 3.36,
-        "dias_vto": 1444,
+        "dias_vto": 1443,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2186,7 +2186,20 @@
         "emisor": "Transportadora de Gas del Sur (TGS)",
         "tir": 8.5,
         "duration": 3.97,
-        "dias_vto": 1707,
+        "dias_vto": 1706,
+        "precio": 100.0,
+        "paridad": 100.0,
+        "cupon": null,
+        "ley": "Argentina"
+      },
+      {
+        "id": "ON_YMCXD",
+        "symbol": "YMCXD",
+        "nombre": "YPF S.A. 2031 (YMCXD)",
+        "emisor": "YPF S.A.",
+        "tir": 8.75,
+        "duration": 4.08,
+        "dias_vto": 1755,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2199,20 +2212,7 @@
         "emisor": "Pampa Energía",
         "tir": 7.95,
         "duration": 4.08,
-        "dias_vto": 1755,
-        "precio": 100.0,
-        "paridad": 100.0,
-        "cupon": null,
-        "ley": "Argentina"
-      },
-      {
-        "id": "ON_YMCXD",
-        "symbol": "YMCXD",
-        "nombre": "YPF S.A. 2031 (YMCXD)",
-        "emisor": "YPF S.A.",
-        "tir": 8.75,
-        "duration": 4.09,
-        "dias_vto": 1756,
+        "dias_vto": 1754,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2225,7 +2225,7 @@
         "emisor": "Vista Energy",
         "tir": 7.68,
         "duration": 4.15,
-        "dias_vto": 1785,
+        "dias_vto": 1784,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2237,8 +2237,8 @@
         "nombre": "Pluspetrol 2032 (PLC4O)",
         "emisor": "Pluspetrol",
         "tir": 7.75,
-        "duration": 4.7,
-        "dias_vto": 2018,
+        "duration": 4.69,
+        "dias_vto": 2017,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2251,7 +2251,7 @@
         "emisor": "YPF Energía Eléctrica",
         "tir": 7.88,
         "duration": 5.02,
-        "dias_vto": 2157,
+        "dias_vto": 2156,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2264,7 +2264,7 @@
         "emisor": "Vista Energy",
         "tir": 7.87,
         "duration": 5.57,
-        "dias_vto": 2394,
+        "dias_vto": 2393,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2276,8 +2276,8 @@
         "nombre": "YPF S.A. 2034 (YM34D)",
         "emisor": "YPF S.A.",
         "tir": 8.25,
-        "duration": 6.09,
-        "dias_vto": 2615,
+        "duration": 6.08,
+        "dias_vto": 2614,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2290,7 +2290,7 @@
         "emisor": "Pampa Energía",
         "tir": 7.88,
         "duration": 6.86,
-        "dias_vto": 2948,
+        "dias_vto": 2947,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2303,7 +2303,7 @@
         "emisor": "IRSA",
         "tir": 8.0,
         "duration": 7.1,
-        "dias_vto": 3053,
+        "dias_vto": 3052,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2315,8 +2315,8 @@
         "nombre": "Vista Energy 2035 (VSCTD)",
         "emisor": "Vista Energy",
         "tir": 7.62,
-        "duration": 7.7,
-        "dias_vto": 3307,
+        "duration": 7.69,
+        "dias_vto": 3306,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2328,8 +2328,8 @@
         "nombre": "Pampa Energía 2037 (MGCRD)",
         "emisor": "Pampa Energía",
         "tir": 7.75,
-        "duration": 9.34,
-        "dias_vto": 4012,
+        "duration": 9.33,
+        "dias_vto": 4011,
         "precio": 100.0,
         "paridad": 100.0,
         "cupon": null,
@@ -2339,7 +2339,7 @@
     "regresion": [
       {
         "x": 0.5,
-        "y": 6.86
+        "y": 6.87
       },
       {
         "x": 0.73,
@@ -2366,7 +2366,7 @@
         "y": 7.43
       },
       {
-        "x": 2.09,
+        "x": 2.08,
         "y": 7.51
       },
       {
@@ -2378,7 +2378,7 @@
         "y": 7.65
       },
       {
-        "x": 2.77,
+        "x": 2.76,
         "y": 7.71
       },
       {
@@ -2390,7 +2390,7 @@
         "y": 7.82
       },
       {
-        "x": 3.45,
+        "x": 3.44,
         "y": 7.87
       },
       {
@@ -2402,7 +2402,7 @@
         "y": 7.95
       },
       {
-        "x": 4.13,
+        "x": 4.12,
         "y": 7.99
       },
       {
@@ -2414,7 +2414,7 @@
         "y": 8.04
       },
       {
-        "x": 4.81,
+        "x": 4.8,
         "y": 8.06
       },
       {
@@ -2422,11 +2422,11 @@
         "y": 8.08
       },
       {
-        "x": 5.26,
+        "x": 5.25,
         "y": 8.09
       },
       {
-        "x": 5.49,
+        "x": 5.48,
         "y": 8.09
       },
       {
@@ -2434,11 +2434,11 @@
         "y": 8.09
       },
       {
-        "x": 5.94,
+        "x": 5.93,
         "y": 8.09
       },
       {
-        "x": 6.17,
+        "x": 6.16,
         "y": 8.08
       },
       {
@@ -2446,11 +2446,11 @@
         "y": 8.07
       },
       {
-        "x": 6.62,
+        "x": 6.61,
         "y": 8.05
       },
       {
-        "x": 6.85,
+        "x": 6.84,
         "y": 8.03
       },
       {
@@ -2458,11 +2458,11 @@
         "y": 8.0
       },
       {
-        "x": 7.3,
+        "x": 7.29,
         "y": 7.97
       },
       {
-        "x": 7.53,
+        "x": 7.52,
         "y": 7.93
       },
       {
@@ -2470,35 +2470,35 @@
         "y": 7.89
       },
       {
-        "x": 7.98,
+        "x": 7.97,
         "y": 7.84
       },
       {
-        "x": 8.21,
+        "x": 8.2,
         "y": 7.79
       },
       {
-        "x": 8.43,
+        "x": 8.42,
         "y": 7.73
       },
       {
-        "x": 8.66,
+        "x": 8.65,
         "y": 7.67
       },
       {
-        "x": 8.89,
+        "x": 8.88,
         "y": 7.61
       },
       {
-        "x": 9.11,
+        "x": 9.1,
         "y": 7.54
       },
       {
-        "x": 9.34,
+        "x": 9.33,
         "y": 7.46
       }
     ],
     "modelo_seleccionado": "Cuadrática",
-    "r2_score": 0.4391
+    "r2_score": 0.4385
   }
 }
